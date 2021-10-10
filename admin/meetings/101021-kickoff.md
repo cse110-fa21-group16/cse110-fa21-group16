@@ -20,7 +20,11 @@
 - [ ] Zhipeng Han
 
 ## Today's agenda
-
+- Create team rules
+- Discuss team brand/name/logo
+- Team page
+- Team intro video
+  
 ## Discussion
 
 ## Decisions made
