@@ -29,5 +29,5 @@
 
 ## For next meeting
 
-### Finished at: *insert time here*
+### Meeting finished at: *insert time here*
 
