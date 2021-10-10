@@ -3,7 +3,7 @@
 ### Team name: 
 ### Type of meeting: Kickoff
 ### Location: Zoom
-### Date/Time: Sunday 10/10/2021 - 3:00-3:30pm
+### Date/Time: Sunday 10/10/2021 - 3:00-3:30pm PDT
 
 ### Attendance
 - [ ] Tai Le
