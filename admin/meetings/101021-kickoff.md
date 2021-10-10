@@ -20,6 +20,9 @@
 - [ ] Zhipeng Han
 
 ## Today's agenda
+Project brainstorm
+Branding
+Contract
 
 ## Discussion
 
