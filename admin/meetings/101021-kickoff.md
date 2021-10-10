@@ -3,7 +3,7 @@
 ### Team name: 
 ### Type of meeting: Kickoff
 ### Location: Zoom
-### Date/Time: Sunday 10/10/2021 - 3:00-3:30pm PDT
+### Date/Time: Sunday 10/10/2021 - 2:00-3:00pm PDT
 
 ### Attendance
 - [ ] Tai Le
@@ -24,8 +24,13 @@
 - Discuss team brand/name/logo
 - Team page
 - Team intro video
-  
+- Project brainstorm
+- Branding
+- Contract
+- 
 ## Discussion
+- Weekly
+
 
 ## Decisions made
 
