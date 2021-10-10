@@ -1,5 +1,6 @@
 # Team 16 Kickoff Meeting
 
+### Team name: 
 ### Type of meeting: Kickoff
 ### Location: Zoom
 ### Date/Time: Sunday 10/10/2021 - 3:00-3:30pm
@@ -22,7 +23,11 @@
 
 ## Discussion
 
+## Decisions made
+
 ## Tasks
 
 ## For next meeting
+
+### Finished at: *insert time here*
 
