@@ -19,3 +19,9 @@
 - Music is a part of my life, I like to play the electronic keyboard. I also enjoy in playing Switch games.
 - Github: https://github.com/h2yuan
 - Github Page: https://h2yuan.github.io/CSE110/
+
+### Andrew Park
+- Hello everyone! I'm a fourth year Computer Science student.
+- In my free time, I love to snowboard, play baseball, and go bowling with friends!
+- Github: https://github.com/quuti
+- Github Page: https://quuti.github.io/CSE110-GitHub-Pages/ 
