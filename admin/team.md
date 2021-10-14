@@ -36,4 +36,4 @@
 - Hi! I am a third year CSE student.
 - I love playing video games, cooking food, and going to the gym
 - Github: https://github.com/gmzhouucsd
-- Github Page: https://www.youtube.com/watch?v=10zdyhKYz7w
+- Github Page: https://gmzhouucsd.github.io/intro/
