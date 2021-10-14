@@ -37,3 +37,9 @@
 - I love playing video games, cooking food, and going to the gym
 - Github: https://github.com/gmzhouucsd
 - Github Page: https://gmzhouucsd.github.io/intro/
+
+### Mohammed Master
+- WASSUP! I am a third year CSE student and going for a minor in Cognitive Science.
+- I love eating different types of food and working on cars.
+- Github: https://github.com/mmaster2020
+- Github Page: 
