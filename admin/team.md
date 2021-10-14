@@ -43,3 +43,9 @@
 - I love eating different types of food and working on cars.
 - Github: https://github.com/mmaster2020
 - Github Page: 
+
+### Kangming Yu
+- Hi! I am a fourth year CSE student.I hope I can continue studying in UCSD as a grad student.
+- I love soccer very much. My favorite club is Barcelona. My favorite player is Messi.
+- Github:https://github.com/Kelvin1003
+- Github Page: https://kelvin1003.github.io/GitHub-Pages/
