@@ -31,3 +31,9 @@
 - I love playing chess and 3D printing random things
 - Github: https://github.com/danielpak1
 - Github Page: https://danielpak1.github.io/User-Page/
+
+### Gavin Zhou
+- Hi! I am a third year CSE student.
+- I love playing video games, cooking food, and going to the gym
+- Github: https://github.com/gmzhouucsd
+- Github Page: https://www.youtube.com/watch?v=10zdyhKYz7w
