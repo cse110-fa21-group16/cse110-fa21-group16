@@ -25,3 +25,9 @@
 - In my free time, I love to snowboard, play baseball, and go bowling with friends!
 - Github: https://github.com/quuti
 - Github Page: https://quuti.github.io/CSE110-GitHub-Pages/ 
+
+### Daniel Pak
+- Hello hello! I am a third year Computer Engineering student.
+- I love playing chess and 3D printing random things
+- Github: https://github.com/danielpak1
+- Github Page: https://danielpak1.github.io/User-Page/
