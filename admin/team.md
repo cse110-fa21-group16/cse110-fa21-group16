@@ -67,3 +67,9 @@
 - In my free time, I enjoy listening to new music, skateboarding, and playing games with friends.
 - [Github](https://github.com/amc01)
 - [Github Page](https://amc01.github.io/User-Page/)
+
+### Zhipeng Han
+- Hi! I am a fourth year Computer Engineer student. 
+- I love to watch movies and play video games on my computer. I'm also exploring some outdoor activities which I might like!
+- Github: https://github.com/zhipeng3
+- Github Page: https://zhipeng3.github.io/cse110-lab-1/
