@@ -49,3 +49,9 @@
 - I love soccer very much. My favorite club is Barcelona. My favorite player is Messi.
 - Github:https://github.com/Kelvin1003
 - Github Page: https://kelvin1003.github.io/GitHub-Pages/
+
+### Evan Puzon 
+- Hi! I am a third year CSE student minoring in Business and I hope to graduate by the end of this year
+- In my free time, I enjoy playing video games or going out to eat and leaving yelp reviews
+- [Github](https://github.com/puzonevan)
+- [Github Page](https://puzonevan.github.io/Lab-1-CSE-110-Fall-2021/)
