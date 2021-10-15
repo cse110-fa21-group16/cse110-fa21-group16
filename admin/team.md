@@ -76,7 +76,7 @@
 
 ### Edwin Lau Mack
 - Hi! I am a fourth year Computer Science student.
-- In my free time, I enjoy playing video games, play volleyball or just go out and hang out with friends.
+- In my free time I enjoy playing video games, play volleyball or just go out and hang out with friends.
 - [Github](https://github.com/EdwinLauM)
 - [Github Page](https://EdwinLauMack.github.io/Lab-1-CSE-110-Fall-2021/)
 
