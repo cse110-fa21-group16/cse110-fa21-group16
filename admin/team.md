@@ -78,5 +78,5 @@
 - Hi! I am a fourth year Computer Science student.
 - In my free time I enjoy playing video games, play volleyball or just go out and hang out with friends.
 - [Github](https://github.com/EdwinLauMack)
-- [Github Page](https://EdwinLauMack.github.io/Lab-1-CSE-110-Fall-2021/)
+- [Github Page](https://edwinlaumack.github.io/CSE-110/)
 
