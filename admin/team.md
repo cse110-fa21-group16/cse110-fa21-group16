@@ -80,3 +80,10 @@
 - [Github](https://github.com/EdwinLauMack)
 - [Github Page](https://edwinlaumack.github.io/CSE-110/)
 
+
+
+###José Santana Sosa
+- Hi! I’m a second year transfer student majoring in Computer Science.
+- I love music, fashion, animals, and traveling/exploring.
+- [Github:](https://github.com/jvsantanasosa)
+- [Github page:](https://jvsantanasosa.github.io/CSE110/)
