@@ -56,12 +56,6 @@
 - [Github](https://github.com/puzonevan)
 - [Github Page](https://puzonevan.github.io/Lab-1-CSE-110-Fall-2021/)
 
-### Evan Puzon 
-- Hi! I am a third year CSE student minoring in Business and I hope to graduate by the end of this year
-- In my free time, I enjoy playing video games or going out to eat and leaving yelp reviews
-- [Github](https://github.com/puzonevan)
-- [Github Page](https://puzonevan.github.io/Lab-1-CSE-110-Fall-2021/)
-
 ### Andy Chen 
 - Hi! I am a third year CSE student and I am from Marshall College.
 - In my free time, I enjoy listening to new music, skateboarding, and playing games with friends.
@@ -82,7 +76,7 @@
 
 
 
-###José Santana Sosa
+### José Santana Sosa
 - Hi! I’m a second year transfer student majoring in Computer Science.
 - I love music, fashion, animals, and traveling/exploring.
 - [Github](https://github.com/jvsantanasosa)
