@@ -42,7 +42,7 @@
 - WASSUP! I am a third year CSE student and going for a minor in Cognitive Science.
 - I love eating different types of food and working on cars.
 - Github: https://github.com/mmaster2020
-- Github Page: 
+- Github Page: https://mmaster2020.github.io/110project/
 
 ### Kangming Yu
 - Hi! I am a fourth year CSE student.I hope I can continue studying in UCSD as a grad student.
