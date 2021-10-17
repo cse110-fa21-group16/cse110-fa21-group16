@@ -1,4 +1,5 @@
 # Team Agile
+![Logo](./branding/powell_logo.png)
 
 # Values
 - Respectful
