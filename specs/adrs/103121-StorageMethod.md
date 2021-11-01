@@ -23,17 +23,16 @@
 
 ## Decision Outcome
 
-Chosen option: "{option 1}", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
+Chosen option: Local Storage to avoid complications in hosting a database server.
 
 ### Positive Consequences <!-- optional -->
 
-* {e.g., improvement of quality attribute satisfaction, follow-up decisions required, …}
-* …
+* Simplicity
 
 ### Negative Consequences <!-- optional -->
 
-* {e.g., compromising quality attribute, follow-up decisions required, …}
-* …
+* Scaling?
+* Does not support connection between users
 
 ## Pros and Cons of the Options <!-- optional -->
 
