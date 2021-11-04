@@ -7,16 +7,16 @@
 
 ### Attendance 
 - [x] Tai Le
-- [] Andrew Park
+- [ ] Andrew Park
 - [x] Andy Chen
-- [] Daniel Pak
-- [] Edwin Lau-mack
+- [ ] Daniel Pak
+- [ ] Edwin Lau-mack
 - [x] Evan Puzon
 - [x] Gavin Zhou
 - [x] Hao Yuan
 - [x] Jose Santana-sosa
 - [x] Kangming Yu
-- [] Mohammed Master
+- [ ] Mohammed Master
 - [x] Zhipeng Han
 
 ## Today's agenda
