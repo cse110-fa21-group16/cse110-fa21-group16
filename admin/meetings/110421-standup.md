@@ -37,6 +37,7 @@
 - We learn about testing in Lab 8, so we can start to think about testing frameworks then
 - Divide tasks evenly so that everyone can work on and present something
 - Integrate geek bot with slack
+- Spoonacular for API
 
 ## Tasks / ToDo
 - Create issues no GitHub to create tasks for each member
