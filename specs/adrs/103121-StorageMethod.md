@@ -1,18 +1,17 @@
 # Decision on which storage method to use for our app.
 
-* Status: {proposed | rejected | accepted | deprecated } <!-- optional -->
-* Deciders: {list everyone involved in the decision} <!-- optional -->
+* Status: accepted <!-- optional -->
+* Deciders: All team members and TA <!-- optional -->
 * Date: 2021-10-31 <!-- optional -->
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences. You may want to articulate the problem in form of a question.}
+We were unsure about whether or not we would need a server-side or local database for this application.
 
 ## Decision Drivers <!-- optional -->
 
-* {driver 1, e.g., a force, facing concern, …}
-* {driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+* A server-side database can will allow users to always be updated and interact with each other
+* A local storage will speed up development process with its simplicity
 
 ## Considered Options
 
@@ -36,34 +35,12 @@ Chosen option: Local Storage to avoid complications in hosting a database server
 
 ## Pros and Cons of the Options <!-- optional -->
 
-### {option 1}
+### Server side database
 
-{example | description | pointer to more information | …} <!-- optional -->
+* Good, because multi-users support
+* Bad, because more complicated to set up given the time constraint
 
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
+### Local storage
 
-### {option 2}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-### {option 3}
-
-{example | description | pointer to more information | …} <!-- optional -->
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Bad, because {argument c}
-* … <!-- numbers of pros and cons can vary -->
-
-## Links <!-- optional -->
-
-* {Link type} {Link to ADR} <!-- example: Refined by [ADR-0005](0005-example.md) -->
-* … <!-- numbers of links can vary -->
+* Good, because easy to use and quick to set up
+* Bad, because doesn't have multi-users support (interaction done locally)
