@@ -2,14 +2,32 @@
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
+  color: rgb(48, 90, 80);
 }
 
 /*****************************************
  *****************************************
- Style for header section in body
+ Style for article
+ *****************************************
+ *****************************************/
+article {
+  width: 60%;
+  box-shadow: 0px 0px 15px #888888;
+  margin-bottom: 90px;
+}
+
+/*****************************************
+ *****************************************
+ Style for header section in article
  *****************************************
  *****************************************/
 header {
+  display: flex;
+  justify-content: center;
+  /* border: 1px solid orange; */
+}
+
+.header-div {
   background-color: rgb(48, 90, 80);
   width: 100%;
   height: 12vh;
@@ -20,8 +38,9 @@ header {
   flex-flow: row nowrap;
 }
 
-header h1 {
+.header-div h1 {
   color: white;
+  font-size: 36px;
 }
 
 .header-placeholder {
@@ -37,57 +56,59 @@ header h1 {
 
 /*****************************************
  *****************************************
- Style for main section in body 
+ Style for main in article 
  *****************************************
  *****************************************/
 main {
   display: flex;
+  width: 100%;
   flex-flow: column wrap;
   align-items: center;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 /*  Style for the origin div 
-    This div contains picture, instructions, and ingredients sub div
+    This div contains picture, instructions, and ingredients sections
 */
 .origin {
-  width: 100%;
+  width: 60%;
   display: grid;
   justify-content: center;
-  grid-template-columns: 30% 40% 20%;
-  border: 1px solid yellow;
+  grid-template-columns: 100%;
+  /* border: 1px solid yellow; */
+}
+
+/*****************************************
+ Style for picture section 
+ *****************************************/
+.picture {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid black; */
 }
 
 #recipe-name {
-  text-align: center;
+  font-size: 36px;
 }
 
-/*****************************************
- Style for picture div 
- *****************************************/
-.picture {
-  border: 1px solid black;
-  display: grid;
-  grid-template-columns: 30%;
-}
-
-video,
-canvas {
-  /* display: none; */
+.recipe-image-div {
+  width: 300px;
+  height: 200px;
   border: 1px solid black;
 }
 
 /*****************************************
- Style for instructions div 
+ Style for instructions section 
  *****************************************/
 .instructions {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 }
 
 /* Style for procedures div */
 .procedures {
   padding-left: 20px;
-  border: 1px solid greenyellow;
+  /* border: 1px solid greenyellow; */
 }
 
 /* Style for list items. Setting padding between each item */
@@ -97,52 +118,45 @@ li {
 
 .step-item {
   width: 95%;
+  height: 50px;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 
-/* Style for action-buttons div */
-.action-buttons {
-  border: 1px solid blue;
-  display: flex;
-  flex-direction: row-reverse;
-  padding: 5px 5px 5px 5px;
-}
-
-/* Standard style for submit and delete buttons */
-#submit-edit,
-#delete-edit {
-  margin-left: 5px;
-  width: 30%;
-  height: 30px;
-  background-color: white;
-  border: 1px solid green;
-}
-
-#delete-edit {
-  border: 1px solid red;
-}
-
-/* Style for submit and delete buttons on hover */
-#submit-edit:hover {
-  cursor: pointer;
-  background-color: green;
+/* Style for add more button in instruction section */
+.add-instruction {
+  width: calc(95% + 5px);
+  height: 50px;
+  background-color: rgb(48, 90, 80);
   color: white;
+  border: none;
+  font-size: 32px;
+  margin-top: 10px;
+  border-radius: 10px;
 }
 
-#delete-edit:hover {
+.add-instruction:hover {
   cursor: pointer;
-  background-color: red;
-  color: white;
 }
 
 /*****************************************
- Style for ingredients div 
+ Style for ingredients section 
  *****************************************/
 .ingredients {
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .ingredients-title {
   visibility: hidden;
+}
+
+.ingredients-item {
+  width: 95%;
+  height: 50px;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-left: 5px;
 }
 
 /* Style for cartegory section. Splitting it into 4 columns
@@ -150,5 +164,54 @@ li {
 .category {
   display: grid;
   grid-template-columns: 10% 40% 10% 40%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+
+/*****************************************
+ *****************************************
+ Style for footer section in article
+ *****************************************
+ *****************************************/
+footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style for action-buttons div */
+.action-buttons {
+  width: 60%;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 5px 5px 5px 5px;
+  margin-top: 10px;
+  /* border: 1px solid blue; */
+}
+
+/* Standard style for submit and delete buttons */
+#submit-edit,
+#delete-edit,
+#cancel-edit {
+  margin-left: 5px;
+  width: 30%;
+  height: 30px;
+  background-color: rgb(48, 90, 80);
+  border: none;
+  color: white;
+  border-radius: 99px;
+}
+
+#delete-edit,
+#cancel-edit {
+  background-color: red;
+}
+
+/* Style for submit and delete buttons on hover */
+#submit-edit:hover {
+  cursor: pointer;
+}
+
+#delete-edit:hover,
+#cancel-edit:hover {
+  cursor: pointer;
 }
