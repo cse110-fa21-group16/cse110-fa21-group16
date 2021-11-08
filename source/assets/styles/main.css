@@ -1,3 +1,4 @@
+/* Global styling */
 * {
   margin: 0;
   padding: 0;
@@ -219,11 +220,7 @@ footer {
   background-color: red;
 }
 
-/* Style for submit and delete buttons on hover */
-#submit-edit:hover {
-  cursor: pointer;
-}
-
+#submit-edit:hover,
 #delete-edit:hover,
 #cancel-edit:hover {
   cursor: pointer;
