@@ -1,8 +1,8 @@
-# Decision on which approach to take for recipe input implementation
+# Decision on which approach to take for recipe input implementation (Updated)
 
 * Status: accepted
 * Deciders: Daniel, Mohammed , Hao, Tai, Han, Edwin, Gavin 
-* Date: 2021-11-06
+* Date: 2021-11-07
 
 ## Context and Problem Statement
 
@@ -21,17 +21,17 @@ We were debating on whether to give users more freedom when adding recipes by ju
 
 ## Decision Outcome
 
-Chosen option: think about 2 textboxes for now and comeback to list of steps and bullet points later because it will make the development process easier considering we don't need to parse the input data.
+Chosen option: textboxes for each instruction and ingredient because even though this approach is a bit more complicated, it gives a better standard and structure to each recipe.
 
 ### Positive Consequences <!-- optional -->
 
-* Improve development process
-* More freedom for users
+* Recipes will look nicer
+* Recipes will look more standardized and structured
+* Data can be retrieved easier
 
 ### Negative Consequences <!-- optional -->
 
-* Recipes will look very inconsistent
-* We may be under-engineering this step
+* May be harder to style and implement
 
 ## Pros and Cons of the Options <!-- optional -->
 
