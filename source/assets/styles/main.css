@@ -90,8 +90,17 @@ main {
 }
 
 #recipe-name {
-  width: 50%;
+  border: none;
   font-size: 2vw;
+  height: 50%;
+  margin: 0 10px;
+  outline: none;
+  resize: none;
+  text-align: center;
+  width: 50%;
+}
+#recipe-name:hover{
+  border: 1px solid #000000;
 }
 
 .recipe-image-div {
