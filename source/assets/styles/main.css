@@ -86,6 +86,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 2em 0;
   /* border: 1px solid black; */
 }
 
@@ -106,7 +107,9 @@ main {
 .recipe-image-div {
   width: 300px;
   height: 200px;
-  border: 1px solid black;
+  border: 1px solid rgb(48, 90, 80);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 1em 0;
 }
 
 /*****************************************
