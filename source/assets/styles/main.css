@@ -90,6 +90,7 @@ main {
 }
 
 #recipe-name {
+  width: 50%;
   font-size: 2vw;
 }
 
