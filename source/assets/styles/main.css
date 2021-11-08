@@ -161,6 +161,19 @@ li {
 
 /* Style for cartegory section. Splitting it into 4 columns
    Each checkbox takes 1 column and their corresponding label take 1 column*/
+.diet-restrict {
+  width: 100%;
+  display: flex;
+  padding-top: 10px;
+  /* border: 1px solid black; */
+}
+
+.diet-restrict-div {
+  width: 100%;
+  padding-left: 20px;
+  /* border: 1px solid black; */
+}
+
 .category {
   display: grid;
   grid-template-columns: 10% 40% 10% 40%;

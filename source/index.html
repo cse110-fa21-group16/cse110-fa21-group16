@@ -26,7 +26,7 @@
         </header> 
         <main>
             <div class="origin">
-                <!-- Picture column -->
+                <!-- Picture section -->
                 <section class="picture">
                     <h1 id="recipe-name">Recipe Name</h1>
                     <!-- Upload picture -->
@@ -38,8 +38,24 @@
                     </div>
                 </section>
             
-                <!-- Instructions column -->
-                <section class="instructions">
+                <!-- Ingredients section -->
+                <section class="ingredients">
+                    <h1 class="ingredients-title">Ingredients List</h1>
+                    <div class="procedures">
+                        <h2>Ingredients:</h2>
+                        <div class="ingredients-div">
+                            <!-- Load ingredients into textboxes here. Below are just place holders -->
+                            <ol class="ingredients-list">
+                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                            </ol>
+                            <button class="add-instruction" id="add-ingredient">+</button>
+                        </div>
+                </section>
+
+                 <!-- Instructions section -->
+                 <section class="instructions">
                     <div class="procedures">
                         <h2>Procedures:</h2>
                         <div class="steps-div">
@@ -53,30 +69,19 @@
                         </div>
                     </div>
                 </section>
-            
-                <!-- Ingredients column -->
-                <section class="ingredients">
-                    <h1 class="ingredients-title">Ingredients List</h1>
-                    <div class="procedures">
-                        <h2>Ingredients:</h2>
-                        <div class="ingredients-div">
-                            <!-- Load ingredients into textboxes here. Below are just place holders -->
-                            <ol class="ingredients-list">
-                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
-                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
-                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
-                            </ol>
-                            <button class="add-instruction" id="add-ingredient">+</button>
-                            <br>
-                            <br>
-                            <h2>Diet Restriction</h2>
-                            <div class="category">
-                                <input type="checkbox">Vegan</input>
-                                <input type="checkbox">Dairy free</input>
-                                <input type="checkbox">Gluten free</input>
-                                <input type="checkbox">Vegetarian</input>
-                            </div>
+
+                <!-- Diet restriction section -->
+                <section class="diet-restrict">
+                    <div class="diet-restrict-div">
+                        <h2>Diet Restriction</h2>
+                        <div class="category">
+                            <input type="checkbox">Vegan</input>
+                            <input type="checkbox">Dairy free</input>
+                            <input type="checkbox">Gluten free</input>
+                            <input type="checkbox">Vegetarian</input>
                         </div>
+                    </div>
+                        
                 </section>
             </div>
         </main>
