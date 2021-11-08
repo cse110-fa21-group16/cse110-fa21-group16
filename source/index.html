@@ -33,7 +33,7 @@
                     <div class="recipe-image-container">
                         <input type="file" accept="image/*">
                         <div class="recipe-image-div">
-                            <img class="recipe-image" src=""></img>
+                            <img class="recipe-image" alt="Uploaded image">
                         </div>
                     </div>
                 </section>
@@ -43,10 +43,22 @@
                     <div class="diet-restrict-div">
                         <h2 class="title">Diet Restriction</h2>
                         <div class="category">
-                            <input type="checkbox">Vegan</input>
-                            <input type="checkbox">Dairy free</input>
-                            <input type="checkbox">Gluten free</input>
-                            <input type="checkbox">Vegetarian</input>
+                            <div>
+                                <input type="checkbox" id="vegan" name="vegan">
+                                <label for="vegan">Vegan</label>
+                            </div>                       
+                            <div>
+                                <input type="checkbox" id="dairy" name="dairy">
+                                <label for="dairy">Dairy free</label>
+                            </div> 
+                            <div>
+                                <input type="checkbox" id="gluten" name="glutten">
+                                <label for="glutten">Glutten free</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="vegetarian" name="vegetarian">
+                                <label for="vegetarian">Vegetarian</label>
+                            </div>
                         </div>
                     </div>
                         
@@ -56,7 +68,7 @@
                 <!-- Ingredients section -->
                 <section class="ingredients">
                     <div class="ingredients-general-div">
-                        <div class="ingredients-list-div" id="">
+                        <div class="ingredients-list-div">
                             <div class="ingredient-column">
                                 <h2 class="title">Ingredient:</h2>
                                 <!-- Load ingredients into textboxes here. Below are just place holders -->
@@ -80,7 +92,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="ingredients-list-div" id="">
+                        <div class="ingredients-list-div">
                             <div class="ingredient-column">
                                 <h2 class="title">Ingredient:</h2>
                                 <!-- Load ingredients into textboxes here. Below are just place holders -->
