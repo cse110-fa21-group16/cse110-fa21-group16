@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Recipe</title>
+
+  <!-- Main Stylesheets & Scripts -->
+  <link rel="stylesheet" href="assets/styles/main.css" />
+  <script src="assets/scripts/main.js" type="module"></script>
+</head>
+
+<body>
+  <header>
+    <a class="home-link" href="index.html">LOGO</a>
+    <h1 class="header-title">ADD RECIPE</h1>
+    <h1 class="header-placeholder">s</h1>
+  </header>
+  <main>
+    <!-- Main body -->
+    <div class="origin">
+        <!-- Picture column -->
+        <div class="picture">
+            <!-- Camera section to capture picture -->
+            <div class="camera">
+                <video id="video">Video stream not available.</video>
+                <button id="startbutton">Take photo</button>
+            </div>
+            <canvas id="canvas"></canvas>
+            <div class="output">
+                <img id="photo" alt="The screen capture will appear in this box.">
+            </div>
+        </div>
+    
+        <!-- Instructions column -->
+        <div class="instructions">
+            <h1 id="recipe-name">Recipe Name</h1>
+            <div class="procedures">
+                <h2>Procedures:</h2>
+                <div class="steps-div">
+                    <!-- Load steps into textboxes here. Below are just place holders -->
+                    <ol class="step-list">
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                        <li><textarea class="step-item">Populate data here</textarea></li>
+                    </ol>
+                </div>
+                <div class="action-buttons">
+                    <button id="submit-edit">Submit</button>
+                    <button id="delete-edit">Delete</button>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Ingredients column -->
+        <div class="ingredients">
+            <h1 class="ingredients-title">Ingredients List</h1>
+            <div class="procedures">
+                <h2>Ingredients:</h2>
+                <div class="ingredients-div">
+                    <!-- Load steps into textboxes here. Below are just place holders -->
+                    <ol class="ingredients-list">
+                        <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                        <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                        <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                        <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                        <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                        <li><textarea class="ingredients-item">Populate data here</textarea></li>
+                    </ol>
+                    <br>
+                    <h2>Diet Restriction</h2>
+                    <div class="category">
+                        <input type="checkbox">Vegan</input>
+                        <input type="checkbox">Dairy free</input>
+                        <input type="checkbox">Gluten free</input>
+                        <input type="checkbox">Vegetarian</input>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </main>
+
+  <!-- Body wrapper -->
+  
+</body>
+
+</html>

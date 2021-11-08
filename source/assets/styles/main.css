@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/*****************************************
+ *****************************************
+ Style for header section in body
+ *****************************************
+ *****************************************/
+header {
+  background-color: rgb(48, 90, 80);
+  width: 100%;
+  height: 12vh;
+  padding: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-flow: row nowrap;
+}
+
+header h1 {
+  color: white;
+}
+
+.header-placeholder {
+  visibility: hidden;
+}
+
+.home-link {
+  text-decoration: none;
+  color: white;
+  font-size: 35px;
+  margin: 0px 0px 0px 20px;
+}
+
+/*****************************************
+ *****************************************
+ Style for main section in body 
+ *****************************************
+ *****************************************/
+main {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  border: 1px solid red;
+}
+
+/*  Style for the origin div 
+    This div contains picture, instructions, and ingredients sub div
+*/
+.origin {
+  width: 100%;
+  display: grid;
+  justify-content: center;
+  grid-template-columns: 30% 40% 20%;
+  border: 1px solid yellow;
+}
+
+#recipe-name {
+  text-align: center;
+}
+
+/*****************************************
+ Style for picture div 
+ *****************************************/
+.picture {
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: 30%;
+}
+
+video,
+canvas {
+  /* display: none; */
+  border: 1px solid black;
+}
+
+/*****************************************
+ Style for instructions div 
+ *****************************************/
+.instructions {
+  border: 1px solid blue;
+}
+
+/* Style for procedures div */
+.procedures {
+  padding-left: 20px;
+  border: 1px solid greenyellow;
+}
+
+/* Style for list items. Setting padding between each item */
+li {
+  padding-top: 10px;
+}
+
+.step-item {
+  width: 95%;
+}
+
+/* Style for action-buttons div */
+.action-buttons {
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 5px 5px 5px 5px;
+}
+
+/* Standard style for submit and delete buttons */
+#submit-edit,
+#delete-edit {
+  margin-left: 5px;
+  width: 30%;
+  height: 30px;
+  background-color: white;
+  border: 1px solid green;
+}
+
+#delete-edit {
+  border: 1px solid red;
+}
+
+/* Style for submit and delete buttons on hover */
+#submit-edit:hover {
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+#delete-edit:hover {
+  cursor: pointer;
+  background-color: red;
+  color: white;
+}
+
+/*****************************************
+ Style for ingredients div 
+ *****************************************/
+.ingredients {
+  border: 1px solid green;
+}
+
+.ingredients-title {
+  visibility: hidden;
+}
+
+/* Style for cartegory section. Splitting it into 4 columns
+   Each checkbox takes 1 column and their corresponding label take 1 column*/
+.category {
+  display: grid;
+  grid-template-columns: 10% 40% 10% 40%;
+  border: 1px solid black;
+}
