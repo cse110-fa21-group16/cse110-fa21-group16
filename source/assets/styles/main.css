@@ -41,7 +41,7 @@ header {
 
 .header-div h1 {
   color: white;
-  font-size: 36px;
+  font-size: 2vw;
 }
 
 .header-placeholder {
@@ -51,7 +51,7 @@ header {
 .home-link {
   text-decoration: none;
   color: white;
-  font-size: 35px;
+  font-size: 2vw;
   margin: 0px 0px 0px 20px;
 }
 
@@ -90,7 +90,7 @@ main {
 }
 
 #recipe-name {
-  font-size: 36px;
+  font-size: 2vw;
 }
 
 .recipe-image-div {
@@ -148,7 +148,7 @@ li {
   /* border: 1px solid green; */
 }
 
-.ingredients-title {
+.placeholer-title {
   visibility: hidden;
 }
 
@@ -194,7 +194,7 @@ footer {
 
 /* Style for action-buttons div */
 .action-buttons {
-  width: 60%;
+  width: 55%;
   display: flex;
   flex-direction: row-reverse;
   padding: 5px 5px 5px 5px;
@@ -224,4 +224,8 @@ footer {
 #delete-edit:hover,
 #cancel-edit:hover {
   cursor: pointer;
+}
+
+.title {
+  font-size: 1vw;
 }
