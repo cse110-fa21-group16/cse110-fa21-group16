@@ -149,13 +149,39 @@ li {
   /* border: 1px solid green; */
 }
 
+.ingredients-general-div {
+  padding-left: 20px;
+  /* border: 1px solid greenyellow; */
+}
+
+.ingredients-list-div {
+  display: grid;
+  grid-template-columns: 50% 20% 27.5%;
+}
+
 .placeholer-title {
   visibility: hidden;
 }
 
 .ingredients-item {
   width: 95%;
-  height: 50px;
+  height: 30px;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.amount-item {
+  width: 80%;
+  height: 30px;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.unit-item {
+  width: 95%;
+  height: 40px;
   border-radius: 10px;
   padding-top: 5px;
   padding-left: 5px;
@@ -191,6 +217,7 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 /* Style for action-buttons div */

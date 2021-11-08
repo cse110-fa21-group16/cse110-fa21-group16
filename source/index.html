@@ -51,23 +51,64 @@
                     </div>
                         
                 </section>
-                
+
+                <br>
                 <!-- Ingredients section -->
                 <section class="ingredients">
-                    <h1 class="placeholer-title">Ingredients List</h1>
-                    <div class="procedures">
-                        <h2 class="title">Ingredients:</h2>
-                        <div class="ingredients-div">
-                            <!-- Load ingredients into textboxes here. Below are just place holders -->
-                            <ol class="ingredients-list">
-                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
-                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
-                                <li><textarea class="ingredients-item">Populate data here</textarea></li>
-                            </ol>
-                            <button class="add-instruction" id="add-ingredient">+</button>
+                    <div class="ingredients-general-div">
+                        <div class="ingredients-list-div" id="">
+                            <div class="ingredient-column">
+                                <h2 class="title">Ingredient:</h2>
+                                <!-- Load ingredients into textboxes here. Below are just place holders -->
+                                <textarea class="ingredients-item">Populate data here</textarea>
+                            </div>
+                            <div class="amount-column">
+                                <h2 class="title">Amount:</h2>
+                                <!-- Load amount into textboxes here. Below are just place holders -->
+                                <input class="amount-item" type="number" value="1"/>
+                            </div>
+                            <div class="unit-column">
+                                <h2 class="title">Unit:</h2>
+                                <!-- Load unit into textboxes here. Below are just place holders -->
+                                <select class="unit-item">
+                                    <option value="">Select unit</option>
+                                    <option value="grams">grams</option>
+                                    <option value="kgs">kgs</option>
+                                    <option value="lbs">lbs</option>
+                                    <option value="tbps">tbps</option>
+                                    <option value="cups">cups</option>
+                                </select>
+                            </div>
                         </div>
+                        <div class="ingredients-list-div" id="">
+                            <div class="ingredient-column">
+                                <h2 class="title">Ingredient:</h2>
+                                <!-- Load ingredients into textboxes here. Below are just place holders -->
+                                <textarea class="ingredients-item">Populate data here</textarea>
+                            </div>
+                            <div class="amount-column">
+                                <h2 class="title">Amount:</h2>
+                                <!-- Load amount into textboxes here. Below are just place holders -->
+                                <input class="amount-item" type="number" value="1"/>
+                            </div>
+                            <div class="unit-column">
+                                <h2 class="title">Unit:</h2>
+                                <!-- Load unit into textboxes here. Below are just place holders -->
+                                <select class="unit-item">
+                                    <option value="">Select unit</option>
+                                    <option value="grams">grams</option>
+                                    <option value="kgs">kgs</option>
+                                    <option value="lbs">lbs</option>
+                                    <option value="tbps">tbps</option>
+                                    <option value="cups">cups</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="add-instruction" id="add-ingredient">+</button>
+                    </div>
                 </section>
 
+                <br>
                  <!-- Instructions section -->
                  <section class="instructions">
                     <div class="procedures">
