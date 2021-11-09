@@ -1,0 +1,393 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "https://joyfoodsunshine.com/#organization",
+            "name": "JoyFoodSunshine",
+            "url": "https://joyfoodsunshine.com/",
+            "sameAs": [
+                "https://www.facebook.com/joyfoodsunshine/",
+                "https://www.instagram.com/joyfoodsunshine/",
+                "https://www.pinterest.com/joyfoodsunshine/",
+                "https://twitter.com/joyfoodsunshine"
+            ],
+            "logo": {
+                "@type": "ImageObject",
+                "@id": "https://joyfoodsunshine.com/#logo",
+                "inLanguage": "en-US",
+                "url": "https://joyfoodsunshine.com/wp-content/uploads/2017/01/NewLogo.png",
+                "contentUrl": "https://joyfoodsunshine.com/wp-content/uploads/2017/01/NewLogo.png",
+                "width": 1958,
+                "height": 733,
+                "caption": "JoyFoodSunshine"
+            },
+            "image": {
+                "@id": "https://joyfoodsunshine.com/#logo"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://joyfoodsunshine.com/#website",
+            "url": "https://joyfoodsunshine.com/",
+            "name": "JoyFoodSunshine",
+            "description": "Recipes for real life.",
+            "publisher": {
+                "@id": "https://joyfoodsunshine.com/#organization"
+            },
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://joyfoodsunshine.com/?s={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#primaryimage",
+            "inLanguage": "en-US",
+            "url": "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square.jpg",
+            "contentUrl": "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square.jpg",
+            "width": 1200,
+            "height": 1200
+        },
+        {
+            "@type": [
+                "WebPage",
+                "FAQPage"
+            ],
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#webpage",
+            "url": "https://joyfoodsunshine.com/pumpkin-muffins/",
+            "name": "Pumpkin Muffins - JoyFoodSunshine",
+            "isPartOf": {
+                "@id": "https://joyfoodsunshine.com/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#primaryimage"
+            },
+            "datePublished": "2021-09-24T10:00:00+00:00",
+            "dateModified": "2021-09-24T12:16:27+00:00",
+            "description": "The Best Pumpkin Muffins are moist, buttery, soft with fragrant fall spices. Use fresh or canned pumpkin to make these easy pumpkin muffins.",
+            "breadcrumb": {
+                "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#breadcrumb"
+            },
+            "mainEntity": [
+                {
+                    "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496267564"
+                },
+                {
+                    "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496287350"
+                },
+                {
+                    "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496294286"
+                },
+                {
+                    "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496312212"
+                },
+                {
+                    "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496346544"
+                }
+            ],
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://joyfoodsunshine.com/pumpkin-muffins/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://joyfoodsunshine.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Pumpkin Muffins"
+                }
+            ]
+        },
+        {
+            "@type": "Article",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#article",
+            "isPartOf": {
+                "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#webpage"
+            },
+            "author": {
+                "@id": "https://joyfoodsunshine.com/#/schema/person/26aa1eec196fcfdeab13ab7a9999d220"
+            },
+            "headline": "Pumpkin Muffins",
+            "datePublished": "2021-09-24T10:00:00+00:00",
+            "dateModified": "2021-09-24T12:16:27+00:00",
+            "wordCount": 1383,
+            "commentCount": 3,
+            "publisher": {
+                "@id": "https://joyfoodsunshine.com/#organization"
+            },
+            "image": {
+                "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#primaryimage"
+            },
+            "thumbnailUrl": "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square.jpg",
+            "articleSection": [
+                "Breakfast",
+                "Fall Recipes",
+                "Muffin Recipes",
+                "Pumpkin Recipes",
+                "Recipe Videos",
+                "Recipes"
+            ],
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "CommentAction",
+                    "name": "Comment",
+                    "target": [
+                        "https://joyfoodsunshine.com/pumpkin-muffins/#respond"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "Person",
+            "@id": "https://joyfoodsunshine.com/#/schema/person/26aa1eec196fcfdeab13ab7a9999d220",
+            "name": "Laura",
+            "sameAs": [
+                "https://joyfoodsunshine.com/about-laura/"
+            ]
+        },
+        {
+            "@type": "Question",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496267564",
+            "position": 1,
+            "url": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496267564",
+            "name": "Is canned pumpkin the same as pumpkin puree?",
+            "answerCount": 1,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! As long as you purchase a can that reads \"pumpkin puree\" and has one ingredient listed - pumpkin. ",
+                "inLanguage": "en-US"
+            },
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496287350",
+            "position": 2,
+            "url": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496287350",
+            "name": "How can I make my muffins light and fluffy?",
+            "answerCount": 1,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "These muffins are so light and fluffy. ",
+                "inLanguage": "en-US"
+            },
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496294286",
+            "position": 3,
+            "url": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496294286",
+            "name": "How many cups in a 15oz can of pumpkin?",
+            "answerCount": 1,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "One 15 oz can of pumpkin usually equals 1 1/2 cups. ",
+                "inLanguage": "en-US"
+            },
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496312212",
+            "position": 4,
+            "url": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496312212",
+            "name": "Can I substitute canned pumpkin for pumpkin puree?",
+            "answerCount": 1,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes, they are the same thing.",
+                "inLanguage": "en-US"
+            },
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "Question",
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496346544",
+            "position": 5,
+            "url": "https://joyfoodsunshine.com/pumpkin-muffins/#faq-question-1622496346544",
+            "name": "How do you make pumpkin muffins from scratch?",
+            "answerCount": 1,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Follow this recipe! ",
+                "inLanguage": "en-US"
+            },
+            "inLanguage": "en-US"
+        },
+        {
+            "@context": "http://schema.org/",
+            "@type": "Recipe",
+            "name": "Best Pumpkin Muffins Recipe",
+            "author": {
+                "@type": "Person",
+                "name": "Laura"
+            },
+            "description": "These are the best pumpkin muffins ever. They are moist, buttery, soft and loaded with fragrant fall spices with just the right amount of sweetness. Use fresh or canned pumpkin to make these easy pumpkin muffins \u2013 no mixer required.",
+            "datePublished": "2021-09-24T04:00:00+00:00",
+            "image": [
+                "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square.jpg",
+                "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square-500x500.jpg",
+                "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square-500x375.jpg",
+                "https://joyfoodsunshine.com/wp-content/uploads/2021/09/pumpkin-muffins-square-480x270.jpg"
+            ],
+            "video": {
+                "name": "Pumpkin Muffins",
+                "description": "These are the best pumpkin muffins. They are moist, buttery, soft and loaded with fragrant fall spices with just the right amount of sweetness. Use fresh or canned pumpkin to make these easy pumpkin muffins \u2013 no mixer required.",
+                "thumbnailUrl": "https://mediavine-res.cloudinary.com/image/upload/s--bly9ERcB--/c_limit,f_auto,fl_lossy,h_1080,q_auto,w_1920/v1629552420/uipicxcexwjjujejtbze.jpg",
+                "contentUrl": "https://embed.mediavine.com/videos/uj0nzikx7nme2nl8f0se",
+                "uploadDate": "2021-08-21T13:27:41+00:00",
+                "duration": "PT68S",
+                "@type": "VideoObject"
+            },
+            "recipeYield": [
+                "14",
+                "14 Muffins"
+            ],
+            "prepTime": "PT10M",
+            "cookTime": "PT15M",
+            "totalTime": "PT25M",
+            "recipeIngredient": [
+                "15 oz pumpkin puree",
+                "\u00bd cup salted butter (melted)",
+                "\u00be cup light brown sugar (packed)",
+                "\u00be cup granulated sugar",
+                "2  eggs",
+                "1 tsp pure vanilla extract",
+                "1 \u00be cups all-purpose flour",
+                "1 TBS pumpkin pie spice",
+                "2 tsp cinnamon",
+                "2 tsp baking powder",
+                "\u00bd tsp fine sea salt",
+                "1 cup mix-ins (optional)  (chocolate chips, cinnamon chips, nuts, dried fruit, etc.)"
+            ],
+            "recipeInstructions": [
+                {
+                    "@type": "HowToStep",
+                    "text": "Preheat oven to 375 degrees F.",
+                    "name": "Preheat oven to 375 degrees F.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-0"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Grease a standard 12-cup muffin tin, set aside.",
+                    "name": "Grease a standard 12-cup muffin tin, set aside.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-1"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "In a small bowl, mix together flour, pumpkin pie spice, cinnamon, baking powder and sea salt. Set aside.",
+                    "name": "In a small bowl, mix together flour, pumpkin pie spice, cinnamon, baking powder and sea salt. Set aside.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-2"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "In a large bowl whisk together pumpkin puree and melted butter until smooth.",
+                    "name": "In a large bowl whisk together pumpkin puree and melted butter until smooth.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-3"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Add brown sugar and granulated sugar and whisk until combined and there are no lumps.",
+                    "name": "Add brown sugar and granulated sugar and whisk until combined and there are no lumps.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-4"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Add eggs and vanilla and stir to combine.",
+                    "name": "Add eggs and vanilla and stir to combine.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-5"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Add dry ingredients and stir until batter is smooth.",
+                    "name": "Add dry ingredients and stir until batter is smooth.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-6"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "If desired, add mix-ins like chocolate chips, cinnamon chips, walnuts, etc. and stir until evenly distributed.",
+                    "name": "If desired, add mix-ins like chocolate chips, cinnamon chips, walnuts, etc. and stir until evenly distributed.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-7"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Pour \u00bc cup of the pumpkin muffin batter into each well of the muffin tin, and smooth out the top.",
+                    "name": "Pour \u00bc cup of the pumpkin muffin batter into each well of the muffin tin, and smooth out the top.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-8"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Bake in preheated oven for 14-17 minutes, or until the tops are set and a cake tested inserted into the center of the loaf comes out clean or with a few crumbs. (I bake mine for 15 minutes).",
+                    "name": "Bake in preheated oven for 14-17 minutes, or until the tops are set and a cake tested inserted into the center of the loaf comes out clean or with a few crumbs. (I bake mine for 15 minutes).",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-9"
+                },
+                {
+                    "@type": "HowToStep",
+                    "text": "Let pumpkin muffins cool in the pan on a wire rack for 10 minutes, then remove them and transfer muffins to a wire rack to cool completely.",
+                    "name": "Let pumpkin muffins cool in the pan on a wire rack for 10 minutes, then remove them and transfer muffins to a wire rack to cool completely.",
+                    "url": "https://joyfoodsunshine.com/pumpkin-muffins/#wprm-recipe-30707-step-0-10"
+                }
+            ],
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "ratingCount": "3"
+            },
+            "recipeCategory": [
+                "Breakfast",
+                "brunch"
+            ],
+            "recipeCuisine": [
+                "American"
+            ],
+            "suitableForDiet": [
+                "https://schema.org/VegetarianDiet"
+            ],
+            "keywords": "best pumpkin muffins, easy pumpkin muffins, healthy pumpkin muffin recipe, pumpkin muffins, pumpkin muffins recipe",
+            "nutrition": {
+                "@type": "NutritionInformation",
+                "servingSize": "1 muffin",
+                "calories": "224 kcal",
+                "carbohydrateContent": "38 g",
+                "proteinContent": "3 g",
+                "fatContent": "7 g",
+                "saturatedFatContent": "4 g",
+                "transFatContent": "1 g",
+                "cholesterolContent": "41 mg",
+                "sodiumContent": "156 mg",
+                "fiberContent": "2 g",
+                "sugarContent": "23 g",
+                "unsaturatedFatContent": "3 g"
+            },
+            "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#recipe",
+            "isPartOf": {
+                "@id": "https://joyfoodsunshine.com/pumpkin-muffins/#article"
+            },
+            "mainEntityOfPage": "https://joyfoodsunshine.com/pumpkin-muffins/#webpage"
+        }
+    ]
+}
