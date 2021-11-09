@@ -312,6 +312,7 @@ class EditRecipe extends HTMLElement {
         /////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > picture section ///////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
+        
         let main = document.createElement("main");
 
         let origin = document.createElement("div");
@@ -499,6 +500,58 @@ class EditRecipe extends HTMLElement {
         
         ing_gen.appendChild(ing_list);
         ing_sec.appendChild(ing_gen);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// creating the main > instruction section //////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        let instructionSection = document.createElement("section");
+
+        // Procedures div 
+        let procedures = document.createElement("div");
+        procedures.setAttribute("class", "procedures");
+
+        // Procedure Title 
+        let procedureTitle = document.createElement("h2");
+        procedureTitle.setAttribute("class", "title");
+        procedureTitle.innerHTML = "Procedures: ";
+        // Append title to procedures div 
+        procedures.appendChild(procedureTitle);
+
+        // Procedure List 
+        let procedureDivList = document.createElement("div");
+        procedureDivList.setAttribute("class", "steps-div");
+        let procedureList = document.createElement("ol");
+        procedureList.setAttribute("class", "step-list");
+
+        // Initialize 3 steps 
+        for(let i = 0; i < 3; i++){
+
+          let procedureListItem = document.createElement("li");
+          let procedureListText = document.createElement("textarea");
+          procedureListText.setAttribute("class", "step-item");
+          procedureListText.innerHTML = "Populate data here";
+
+          procedureListItem.appendChild(procedureListItem);
+          procedureList.appendChild(procedureListItem);
+        }
+
+        // Append Procedure List ol to steps div 
+        procedureDivList.appendChild(procedureList);
+
+        // Adding Instruction Button 
+        let addInstruction = document.createElement("button");
+        addInstruction.setAttribute("class", "add-instruction");
+        addInstruction.setAttribute("id", "add-instruction");
+        addInstruction.innerHTML = "+";
+        // Append button to procedure div list 
+        procedureDivList.appendChild(addInstruction);
+
+        // Append Procedure Div List to procedures div 
+        procedures.appendChild(procedureDivList);
+
+        // Append procedures to instruction section 
+        instructionSection.appendChild(procedureDivList);
+
     }
 }
 
