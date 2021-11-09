@@ -17,6 +17,19 @@ class RecipeCard extends HTMLElement {
         padding: 0;
       }
 
+      .favorite
+      {
+        height: 30px;
+        width: 50px;
+      }
+      
+      .images {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+      
+      
       .card {
         overflow: hidden;
         box-shadow: 0px 2px 20px gray;  
@@ -28,10 +41,18 @@ class RecipeCard extends HTMLElement {
         transition: transform 200ms ease-in;
       }
       .card__image {
+        position: relative;
         height: 12rem;
         width: 100%;
         object-fit: cover;
       }
+
+      .favorite {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
+      
       .card__title {
         padding: 1rem;
       }
@@ -74,6 +95,9 @@ class RecipeCard extends HTMLElement {
                 Image 
          ************************
       */
+      const images = document.createElement("div");
+      images.classList.add("images");
+
       const img = document.createElement("img");
       img.classList.add("card__image");
       const imgSrc = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url"); 
@@ -81,8 +105,35 @@ class RecipeCard extends HTMLElement {
     
       img.setAttribute("src", imgSrc);
       img.setAttribute("alt", title);
-      card_body.append(img);
 
+      const input = document.createElement("input");
+      let liked = true;
+      input.classList.add("favorite");
+      input.type = "image";
+      input.setAttribute("src", "assets/images/heart.png");
+      
+      input.addEventListener("click", changeHeart);
+      
+      function changeHeart()
+      {
+        if (liked)
+        {
+            input.setAttribute("src", "assets/images/empty_heart.png");
+            liked = false;
+        }
+        else
+        {
+            input.setAttribute("src", "assets/images/heart.png");
+            liked = true;
+        }
+      }
+
+      images.appendChild(img);
+      images.appendChild(input);
+
+      card_body.appendChild(images);
+
+    
       /* ************************
                 Title 
          ************************
@@ -185,7 +236,7 @@ class RecipeCard extends HTMLElement {
   
       this.shadowRoot.appendChild(styleElem);
       this.shadowRoot.appendChild(card);
-  
+
       // Some functions that will be helpful here:
       //    document.createElement()
       //    document.querySelector()
@@ -198,6 +249,9 @@ class RecipeCard extends HTMLElement {
       // created in the constructor()
   
       // Part 1 Expose - TODO
+
+
+      
     }
   }
   
@@ -321,6 +375,8 @@ class RecipeCard extends HTMLElement {
     // The .slice(0,-2) here gets ride of the extra ', ' added to the last ingredient
     return finalIngredientList.slice(0, -2);
   }
+
+ 
   
   // Define the Class so you can use it as a custom element.
   // This is critical, leave this here and don't touch it

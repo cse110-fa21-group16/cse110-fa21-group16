@@ -37,6 +37,7 @@ const recipes = [
   
     // Add the first three recipe cards to the page
     createRecipeCards();
+
     // Make the "Show more" button functional
     // bindShowMore();
   }
