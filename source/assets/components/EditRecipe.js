@@ -291,23 +291,23 @@ class EditRecipe extends HTMLElement {
         ///////////////////////// creating the header section /////////////////////////
         ///////////////////////////////////////////////////////////////////////////////
         let header = document.createElement("header");
-        let header_div = document.createElement("div");
-        let header_a = document.createElement("a");
-        let header_title = document.createElement("h1");
-        let header_placeholder = document.createElement("h1");
+        let headerDiv = document.createElement("div");
+        let headerHomeLink = document.createElement("a");
+        let headerTitle = document.createElement("h1");
+        let headerPlaceholder = document.createElement("h1");
 
-        header_div.setAttribute("class", "header-div");
-        header_a.setAttribute("class", "home-link");
-        header_a.setAttribute("href", "index.html");
-        header_a.innerHTML = "LOGO";
-        header_title.setAttribute("class", "header-title");
-        header_title.innerHTML = "EDIT RECIPE";
-        header.header_placeholder.setAttribute("class", "header-placeholder");
-        header_placeholder.innerHTML = "HOLDER";
+        headerDiv.setAttribute("class", "header-div");
+        headerHomeLink.setAttribute("class", "home-link");
+        headerHomeLink.setAttribute("href", "index.html");
+        headerHomeLink.innerHTML = "LOGO";
+        headerTitle.setAttribute("class", "header-title");
+        headerTitle.innerHTML = "EDIT RECIPE";
+        header.headerPlaceholder.setAttribute("class", "header-placeholder");
+        headerPlaceholder.innerHTML = "HOLDER";
 
-        header_div.appendChild(header_a);
-        header_div.appendChild(header_title);
-        header_div.appendChild(header_placeholder);
+        headerDiv.appendChild(headerHomeLink);
+        headerDiv.appendChild(headerTitle);
+        headerDiv.appendChild(headerPlaceholder);
 
         /////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > picture section ///////////////////////////
@@ -318,188 +318,188 @@ class EditRecipe extends HTMLElement {
         let origin = document.createElement("div");
         origin.setAttribute("class", "origin");
 
-        let pic_sec = document.createElement("section");
-        let pic_title = document.createElement("textarea");
-        pic_sec.setAttribute("class", "picture");
-        pic_title.setAttribute("id", "recipe-name");
-        pic_title.innerHTML = "Recipe Name";
+        let picSection = document.createElement("section");
+        let picTitle = document.createElement("textarea");
+        picSection.setAttribute("class", "picture");
+        picTitle.setAttribute("id", "recipe-name");
+        picTitle.innerHTML = "Recipe Name";
 
-        let pic_img_container = document.createElement("div");
-        let pic_img_div = document.createElement("div");
-        let pic_image = document.createElement("img");
-        let pic_input = document.createElement("input");
-        pic_img_container.setAttribute("class", "recipe-image-container");
-        pic_img_div.setAttribute("class", "recipe-image-div");
-        pic_image.setAttribute("class", "recipe-image");
-        pic_image.setAttribute("alt", "Uploaded image");
-        pic_image.setAttribute("width", "300");
-        pic_image.setAttribute("height", "200");
-        pic_input.setAttribute("type", "file");
-        pic_input.setAttribute("accept", "image/*");
+        let picImgContainer = document.createElement("div");
+        let picImgDiv = document.createElement("div");
+        let picImage = document.createElement("img");
+        let picInput = document.createElement("input");
+        picImgContainer.setAttribute("class", "recipe-image-container");
+        picImgDiv.setAttribute("class", "recipe-image-div");
+        picImage.setAttribute("class", "recipe-image");
+        picImage.setAttribute("alt", "Uploaded image");
+        picImage.setAttribute("width", "300");
+        picImage.setAttribute("height", "200");
+        picInput.setAttribute("type", "file");
+        picInput.setAttribute("accept", "image/*");
 
-        pic_img_div.appendChild(pic_image);
-        pic_img_container.appendChild(pic_img_div);
-        pic_img_container.appendChild(pic_input);
+        picImgDiv.appendChild(picImage);
+        picImgContainer.appendChild(picImgDiv);
+        picImgContainer.appendChild(picInput);
 
-        pic_sec.appendChild(pic_title);
-        pic_sec.appendChild(pic_img_container);
+        picSection.appendChild(picTitle);
+        picSection.appendChild(picImgContainer);
         
         /////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > diet section //////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
-        let diet_sec = document.createElement("section");
-        diet_sec.setAttribute("class", "diet-restrict");
+        let dietSection = document.createElement("section");
+        dietSection.setAttribute("class", "diet-restrict");
 
-        let diet_div = document.createElement("div");
-        let diet_title = document.createElement("h2");
-        diet_div.setAttribute("class", "diet-restriction-div");
-        diet_title.setAttribute("class", "title");
-        diet_title.innerHTML = "Diet Restriction";
+        let dietDiv = document.createElement("div");
+        let dietTitle = document.createElement("h2");
+        dietDiv.setAttribute("class", "diet-restriction-div");
+        dietTitle.setAttribute("class", "title");
+        dietTitle.innerHTML = "Diet Restriction";
         
-        let diet_categ = document.createElement("div");
-        diet_categ.setAttribute("class", "category");
+        let dietCategory = document.createElement("div");
+        dietCategory.setAttribute("class", "category");
 
         // option 1: vegan
-        let diet_opt1 = document.createElement("div");
-        let opt1 = document.createElement("input");
-        let opt1_lb = document.createElement("label");
-        opt1.setAttribute("type", "checkbox");
-        opt1.setAttribute("id", "vegan");
-        opt1.setAttribute("name", "vegan");
-        opt1_lb.setAttribute("for", "vegan");
-        opt1_lb.innerHTML = "Vegan"
+        let dietOption1 = document.createElement("div");
+        let optionVegan = document.createElement("input");
+        let optionVeganLabel = document.createElement("label");
+        optionVegan.setAttribute("type", "checkbox");
+        optionVegan.setAttribute("id", "vegan");
+        optionVegan.setAttribute("name", "vegan");
+        optionVeganLabel.setAttribute("for", "vegan");
+        optionVeganLabel.innerHTML = "Vegan"
 
-        diet_opt1.appendChild(opt1);
-        diet_opt1.appendChild(opt1_lb);
+        dietOption1.appendChild(optionVegan);
+        dietOption1.appendChild(optionVeganLabel);
 
         // option 2: dairy
-        let diet_opt2 = document.createElement("div");
-        let opt2 = document.createElement("input");
-        let opt2_lb = document.createElement("label");
-        opt2.setAttribute("type", "checkbox");
-        opt2.setAttribute("id", "dairy");
-        opt2.setAttribute("name", "dairy");
-        opt2_lb.setAttribute("for", "dairy");
-        opt2_lb.innerHTML = "Dairy free"
+        let dietOption2 = document.createElement("div");
+        let optionDairy = document.createElement("input");
+        let optionDairyLabel = document.createElement("label");
+        optionDairy.setAttribute("type", "checkbox");
+        optionDairy.setAttribute("id", "dairy");
+        optionDairy.setAttribute("name", "dairy");
+        optionDairyLabel.setAttribute("for", "dairy");
+        optionDairyLabel.innerHTML = "Dairy free"
 
-        diet_opt2.appendChild(opt2);
-        diet_opt2.appendChild(opt2_lb);
+        dietOption2.appendChild(optionDairy);
+        dietOption2.appendChild(optionDairyLabel);
 
         // option 3: glutten
-        let diet_opt3 = document.createElement("div");
-        let opt3 = document.createElement("input");
-        let opt3_lb = document.createElement("label");
-        opt3.setAttribute("type", "checkbox");
-        opt3.setAttribute("id", "glutten");
-        opt3.setAttribute("name", "glutten");
-        opt3_lb.setAttribute("for", "glutten");
-        opt3_lb.innerHTML = "Glutten free"
+        let dietOption3 = document.createElement("div");
+        let optionGlutten = document.createElement("input");
+        let optionGluttenLabel = document.createElement("label");
+        optionGlutten.setAttribute("type", "checkbox");
+        optionGlutten.setAttribute("id", "glutten");
+        optionGlutten.setAttribute("name", "glutten");
+        optionGluttenLabel.setAttribute("for", "glutten");
+        optionGluttenLabel.innerHTML = "Glutten free"
 
-        diet_opt3.appendChild(opt3);
-        diet_opt3.appendChild(opt3_lb);
+        dietOption3.appendChild(optionGlutten);
+        dietOption3.appendChild(optionGluttenLabel);
 
         // option 4: vegetarian
-        let diet_opt4 = document.createElement("div");
-        let opt4 = document.createElement("input");
-        let opt4_lb = document.createElement("label");
-        opt4.setAttribute("type", "checkbox");
-        opt4.setAttribute("id", "vegetarian");
-        opt4.setAttribute("name", "vegetarian");
-        opt4_lb.setAttribute("for", "vegetarian");
-        opt4_lb.innerHTML = "Vegetarian"
+        let dietOption4 = document.createElement("div");
+        let optionVegetarian = document.createElement("input");
+        let optionVegetarianLabel = document.createElement("label");
+        optionVegetarian.setAttribute("type", "checkbox");
+        optionVegetarian.setAttribute("id", "vegetarian");
+        optionVegetarian.setAttribute("name", "vegetarian");
+        optionVegetarianLabel.setAttribute("for", "vegetarian");
+        optionVegetarianLabel.innerHTML = "Vegetarian"
 
-        diet_opt4.appendChild(opt4);
-        diet_opt4.appendChild(opt4_lb);
+        dietOption4.appendChild(optionVegetarian);
+        dietOption4.appendChild(optionVegetarianLabel);
 
-        diet_categ.appendChild(diet_opt1);
-        diet_categ.appendChild(diet_opt2);
-        diet_categ.appendChild(diet_opt3);
-        diet_categ.appendChild(diet_opt4);
+        dietCategory.appendChild(dietOption1);
+        dietCategory.appendChild(dietOption2);
+        dietCategory.appendChild(dietOption3);
+        dietCategory.appendChild(dietOption4);
 
-        diet_div.appendChild(diet_title);
-        diet_div.appendChild(diet_categ);
+        dietDiv.appendChild(dietTitle);
+        dietDiv.appendChild(dietCategory);
 
-        diet_sec.appendChild(diet_div);
+        dietSection.appendChild(dietDiv);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > ingred. section //////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
-        let ing_sec = document.createElement("section");
-        ing_sec.setAttribute("class", "ingredients");
+        let ingredientSection = document.createElement("section");
+        ingredientSection.setAttribute("class", "ingredients");
 
-        let ing_gen = document.createElement("div");
-        ing_gen.setAttribute("class", "ingredients-general-div");
+        let ingredientGeneralDiv = document.createElement("div");
+        ingredientGeneralDiv.setAttribute("class", "ingredients-general-div");
         
-        let ing_list = document.createElement("div");
-        ing_list.setAttribute("class", "ingredients-list-div");
+        let ingredientListDiv = document.createElement("div");
+        ingredientListDiv.setAttribute("class", "ingredients-list-div");
 
-        let ing_ing = document.createElement("div"); // ingredient column
-        let ing_ing_title = document.createElement("h2");
-        let ing_ing_inp = document.createElement("textarea");
-        ing_ing.setAttribute("class", "ingredient-column");
-        ing_ing_title.setAttribute("class", "title");
-        ing_ing_title.innerHTML = "Ingredient:";
-        ing_ing_inp.setAttribute("class", "ingredients-item");
-        ing_ing_inp.innerHTML = "Populate data here";
+        let ingredientColumn = document.createElement("div"); // ingredient column
+        let ingredientColumnTitle = document.createElement("h2");
+        let ingredientColumnInput = document.createElement("textarea");
+        ingredientColumn.setAttribute("class", "ingredient-column");
+        ingredientColumnTitle.setAttribute("class", "title");
+        ingredientColumnTitle.innerHTML = "Ingredient:";
+        ingredientColumnInput.setAttribute("class", "ingredients-item");
+        ingredientColumnInput.innerHTML = "Populate data here";
 
-        ing_ing.appendChild(ing_ing_title);
-        ing_ing.appendChild(ing_ing_inp);
+        ingredientColumn.appendChild(ingredientColumnTitle);
+        ingredientColumn.appendChild(ingredientColumnInput);
 
-        let ing_amount = document.createElement("div"); // amount column
-        let ing_amount_title = document.createElement("h2");
-        let ing_amount_inp = document.createElement("input");
-        ing_amount.setAttribute("class", "amount-column");
-        ing_amount_title.setAttribute("class", "title");
-        ing_amount_title.innerHTML = "Amount:";
-        ing_amount_inp.setAttribute("class", "amount-item");
-        ing_amount_inp.setAttribute("type", "number");
-        ing_amount_inp.setAttribute("value", "1");
+        let amountColumn = document.createElement("div"); // amount column
+        let amountColumnTitle = document.createElement("h2");
+        let amountColumnInput = document.createElement("input");
+        amountColumn.setAttribute("class", "amount-column");
+        amountColumnTitle.setAttribute("class", "title");
+        amountColumnTitle.innerHTML = "Amount:";
+        amountColumnInput.setAttribute("class", "amount-item");
+        amountColumnInput.setAttribute("type", "number");
+        amountColumnInput.setAttribute("value", "1");
 
-        ing_amount.appendChild(ing_amount_title);
-        ing_amount.appendChild(ing_amount_inp);
+        amountColumn.appendChild(amountColumnTitle);
+        amountColumn.appendChild(amountColumnInput);
 
-        let ing_unit = document.createElement("div"); // unit column
-        let ing_unit_title = document.createElement("h2");
-        ing_unit.setAttribute("class", "unit-column");
-        ing_unit_title.setAttribute("class", "title");
-        ing_unit_title.innerHTML = "Unit:";
+        let unitColumn = document.createElement("div"); // unit column
+        let unitColumnTitle = document.createElement("h2");
+        unitColumn.setAttribute("class", "unit-column");
+        unitColumnTitle.setAttribute("class", "title");
+        unitColumnTitle.innerHTML = "Unit:";
 
-        let ing_unit_inp = document.createElement("select");
-        let unit_df = document.createElement("option");
-        let unit_g = document.createElement("option");
-        let unit_kgs = document.createElement("option");
-        let unit_lbs = document.createElement("option");
-        let unit_tbps = document.createElement("option");
-        let unit_cups = document.createElement("option");
-        unit_df.setAttribute("value", "");
-        unit_g.setAttribute("value", "grams");
-        unit_kgs.setAttribute("value", "kgs");
-        unit_lbs.setAttribute("value", "lbs");
-        unit_tbps.setAttribute("value", "tbps");
-        unit_cups.setAttribute("value", "cups");
-        unit_df.innerHTML = "Select unit";
-        unit_g.innerHTML = "grams";
-        unit_kgs.innerHTML = "kgs";
-        unit_lbs.innerHTML = "lbs";
-        unit_tbps.innerHTML = "tbps";
-        unit_cups.innerHTML = "cups";
-        ing_unit_inp.setAttribute("class", "unit-item");
-        ing_unit_inp.appendChild(unit_df);
-        ing_unit_inp.appendChild(unit_g);
-        ing_unit_inp.appendChild(unit_kgs);
-        ing_unit_inp.appendChild(unit_lbs);
-        ing_unit_inp.appendChild(unit_tbps);
-        ing_unit_inp.appendChild(unit_cups);
+        let unitColumnInput = document.createElement("select");
+        let unitDefault = document.createElement("option");
+        let unitGrams = document.createElement("option");
+        let unitKilograms = document.createElement("option");
+        let unitPounds = document.createElement("option");
+        let unitTablespoons = document.createElement("option");
+        let unitCups = document.createElement("option");
+        unitDefault.setAttribute("value", "");
+        unitGrams.setAttribute("value", "grams");
+        unitKilograms.setAttribute("value", "kgs");
+        unitPounds.setAttribute("value", "lbs");
+        unitTablespoons.setAttribute("value", "tbps");
+        unitCups.setAttribute("value", "cups");
+        unitDefault.innerHTML = "Select unit";
+        unitGrams.innerHTML = "grams";
+        unitKilograms.innerHTML = "kgs";
+        unitPounds.innerHTML = "lbs";
+        unitTablespoons.innerHTML = "tbps";
+        unitCups.innerHTML = "cups";
+        unitColumnInput.setAttribute("class", "unit-item");
+        unitColumnInput.appendChild(unitDefault);
+        unitColumnInput.appendChild(unitGrams);
+        unitColumnInput.appendChild(unitKilograms);
+        unitColumnInput.appendChild(unitPounds);
+        unitColumnInput.appendChild(unitTablespoons);
+        unitColumnInput.appendChild(unitCups);
 
-        ing_unit.appendChild(ing_unit_title);
-        ing_unit.appendChild(ing_amount_inp);
+        unitColumn.appendChild(unitColumnTitle);
+        unitColumn.appendChild(amountColumnInput);
 
-        ing_list.appendChild(ing_ing);
-        ing_list.appendChild(ing_amount);
-        ing_list.appendChild(ing_unit);
+        ingredientListDiv.appendChild(ingredientColumn);
+        ingredientListDiv.appendChild(amountColumn);
+        ingredientListDiv.appendChild(unitColumn);
         
-        ing_gen.appendChild(ing_list);
-        ing_sec.appendChild(ing_gen);
+        ingredientGeneralDiv.appendChild(ingredientListDiv);
+        ingredientSection.appendChild(ingredientGeneralDiv);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > instruction section //////////////////////////
@@ -556,9 +556,9 @@ class EditRecipe extends HTMLElement {
         ////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////// Append origin children //////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
-        origin.appendChild(pic_sec);
-        origin.appendChild(diet_sec);
-        origin.appendChild(ing_sec);
+        origin.appendChild(picSection);
+        origin.appendChild(dietSection);
+        origin.appendChild(ingredientSection);
         origin.appendChild(instructionSection);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
