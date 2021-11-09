@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(48, 90, 80);
+}
+
+article {
+  width: 100%;
+  box-shadow: 0px 0px 15px #888888;
+  margin-bottom: 90px;
+}
+
+/*****************************************
+ *****************************************
+ Style for header section in article
+ *****************************************
+ *****************************************/
+ header {
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid orange; */
+  }
+  
+  .header-div {
+    background-color: rgb(48, 90, 80);
+    width: 100%;
+    height: 12vh;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row nowrap;
+  }
+
+  .header-div h1 {
+    text-align: center;
+    color: white;
+    font-size: 2vw;
+  }
+
+
+  .origin{
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+  }
+
+  .origin>section>div{
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  span{
+    color: black;
+  }
+
+  .origin>servings>servingSize{
+    max-width: 10em;
+  }
+
+  footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .action-buttons {
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    padding: 5px 5px 5px 5px;
+    margin-top: 10px;
+  }
+
+  #back{
+    font-size: x-large;
+    margin-left: 5px;
+    width: 30%;
+    height: 40px;
+    background-color: rgb(48, 90, 80);
+    border: none;
+    color: white;
+    border-radius: 99px;
+    cursor: pointer;
+  }
+
