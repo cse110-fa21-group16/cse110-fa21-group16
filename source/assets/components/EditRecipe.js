@@ -565,6 +565,39 @@ class EditRecipe extends HTMLElement {
         //////////////////////// Append main children //////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
         main.appendChild(origin);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////// Footer ////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        let footer = document.createElement("footer");
+
+        // Action Button Div
+        let actionButtons = document.createElement("div");
+
+        // Action Buttons
+        let submitButton = document.createElement("button");
+        let deleteButton = document.createElement("button");
+        let cancelButton = document.createElement("button");
+
+        submitButton.setAttribute("id", "submit-edit");
+        deleteButton.setAttribute("id", "delete-edit");
+        cancelButton.setAttribute("id", "cancel-edit");
+
+        // Append Buttons to Div
+        actionButtons.appendChild(submitButton);
+        actionButtons.appendChild(deleteButton);
+        actionButtons.appendChild(cancelButton);
+
+        // Append Div to footer 
+        footer.appendChild(actionButtons);
+
+
+        // ////////////////////////////////////////////////////////////////////////////////////////////
+        // //////////////////////// Append header, main, footer to article ////////////////////////////
+        // ////////////////////////////////////////////////////////////////////////////////////////////
+        // page.appendChild(header);
+        // page.appendChild(main);
+        // page.appendChild(footer);
     }
 }
 
