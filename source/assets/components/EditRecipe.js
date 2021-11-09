@@ -287,7 +287,9 @@ class EditRecipe extends HTMLElement {
         // root element to attach everything to
         let page = document.createElement("article");
 
-        // creating the header sections
+        ///////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// creating the header section /////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////
         let header = document.createElement("header");
         let header_div = document.createElement("div");
         let header_a = document.createElement("a");
@@ -306,6 +308,197 @@ class EditRecipe extends HTMLElement {
         header_div.appendChild(header_a);
         header_div.appendChild(header_title);
         header_div.appendChild(header_placeholder);
+
+        /////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// creating the main > picture section ///////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        let main = document.createElement("main");
+
+        let origin = document.createElement("div");
+        origin.setAttribute("class", "origin");
+
+        let pic_sec = document.createElement("section");
+        let pic_title = document.createElement("textarea");
+        pic_sec.setAttribute("class", "picture");
+        pic_title.setAttribute("id", "recipe-name");
+        pic_title.innerHTML = "Recipe Name";
+
+        let pic_img_container = document.createElement("div");
+        let pic_img_div = document.createElement("div");
+        let pic_image = document.createElement("img");
+        let pic_input = document.createElement("input");
+        pic_img_container.setAttribute("class", "recipe-image-container");
+        pic_img_div.setAttribute("class", "recipe-image-div");
+        pic_image.setAttribute("class", "recipe-image");
+        pic_image.setAttribute("alt", "Uploaded image");
+        pic_image.setAttribute("width", "300");
+        pic_image.setAttribute("height", "200");
+        pic_input.setAttribute("type", "file");
+        pic_input.setAttribute("accept", "image/*");
+
+        pic_img_div.appendChild(pic_image);
+        pic_img_container.appendChild(pic_img_div);
+        pic_img_container.appendChild(pic_input);
+
+        pic_sec.appendChild(pic_title);
+        pic_sec.appendChild(pic_img_container);
+        
+        /////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// creating the main > diet section //////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        let diet_sec = document.createElement("section");
+        diet_sec.setAttribute("class", "diet-restrict");
+
+        let diet_div = document.createElement("div");
+        let diet_title = document.createElement("h2");
+        diet_div.setAttribute("class", "diet-restriction-div");
+        diet_title.setAttribute("class", "title");
+        diet_title.innerHTML = "Diet Restriction";
+        
+        let diet_categ = document.createElement("div");
+        diet_categ.setAttribute("class", "category");
+
+        // option 1: vegan
+        let diet_opt1 = document.createElement("div");
+        let opt1 = document.createElement("input");
+        let opt1_lb = document.createElement("label");
+        opt1.setAttribute("type", "checkbox");
+        opt1.setAttribute("id", "vegan");
+        opt1.setAttribute("name", "vegan");
+        opt1_lb.setAttribute("for", "vegan");
+        opt1_lb.innerHTML = "Vegan"
+
+        diet_opt1.appendChild(opt1);
+        diet_opt1.appendChild(opt1_lb);
+
+        // option 2: dairy
+        let diet_opt2 = document.createElement("div");
+        let opt2 = document.createElement("input");
+        let opt2_lb = document.createElement("label");
+        opt2.setAttribute("type", "checkbox");
+        opt2.setAttribute("id", "dairy");
+        opt2.setAttribute("name", "dairy");
+        opt2_lb.setAttribute("for", "dairy");
+        opt2_lb.innerHTML = "Dairy free"
+
+        diet_opt2.appendChild(opt2);
+        diet_opt2.appendChild(opt2_lb);
+
+        // option 3: glutten
+        let diet_opt3 = document.createElement("div");
+        let opt3 = document.createElement("input");
+        let opt3_lb = document.createElement("label");
+        opt3.setAttribute("type", "checkbox");
+        opt3.setAttribute("id", "glutten");
+        opt3.setAttribute("name", "glutten");
+        opt3_lb.setAttribute("for", "glutten");
+        opt3_lb.innerHTML = "Glutten free"
+
+        diet_opt3.appendChild(opt3);
+        diet_opt3.appendChild(opt3_lb);
+
+        // option 4: vegetarian
+        let diet_opt4 = document.createElement("div");
+        let opt4 = document.createElement("input");
+        let opt4_lb = document.createElement("label");
+        opt4.setAttribute("type", "checkbox");
+        opt4.setAttribute("id", "vegetarian");
+        opt4.setAttribute("name", "vegetarian");
+        opt4_lb.setAttribute("for", "vegetarian");
+        opt4_lb.innerHTML = "Vegetarian"
+
+        diet_opt4.appendChild(opt4);
+        diet_opt4.appendChild(opt4_lb);
+
+        diet_categ.appendChild(diet_opt1);
+        diet_categ.appendChild(diet_opt2);
+        diet_categ.appendChild(diet_opt3);
+        diet_categ.appendChild(diet_opt4);
+
+        diet_div.appendChild(diet_title);
+        diet_div.appendChild(diet_categ);
+
+        diet_sec.appendChild(diet_div);
+
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// creating the main > ingred. section //////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////
+        let ing_sec = document.createElement("section");
+        ing_sec.setAttribute("class", "ingredients");
+
+        let ing_gen = document.createElement("div");
+        ing_gen.setAttribute("class", "ingredients-general-div");
+        
+        let ing_list = document.createElement("div");
+        ing_list.setAttribute("class", "ingredients-list-div");
+
+        let ing_ing = document.createElement("div"); // ingredient column
+        let ing_ing_title = document.createElement("h2");
+        let ing_ing_inp = document.createElement("textarea");
+        ing_ing.setAttribute("class", "ingredient-column");
+        ing_ing_title.setAttribute("class", "title");
+        ing_ing_title.innerHTML = "Ingredient:";
+        ing_ing_inp.setAttribute("class", "ingredients-item");
+        ing_ing_inp.innerHTML = "Populate data here";
+
+        ing_ing.appendChild(ing_ing_title);
+        ing_ing.appendChild(ing_ing_inp);
+
+        let ing_amount = document.createElement("div"); // amount column
+        let ing_amount_title = document.createElement("h2");
+        let ing_amount_inp = document.createElement("input");
+        ing_amount.setAttribute("class", "amount-column");
+        ing_amount_title.setAttribute("class", "title");
+        ing_amount_title.innerHTML = "Amount:";
+        ing_amount_inp.setAttribute("class", "amount-item");
+        ing_amount_inp.setAttribute("type", "number");
+        ing_amount_inp.setAttribute("value", "1");
+
+        ing_amount.appendChild(ing_amount_title);
+        ing_amount.appendChild(ing_amount_inp);
+
+        let ing_unit = document.createElement("div"); // unit column
+        let ing_unit_title = document.createElement("h2");
+        ing_unit.setAttribute("class", "unit-column");
+        ing_unit_title.setAttribute("class", "title");
+        ing_unit_title.innerHTML = "Unit:";
+
+        let ing_unit_inp = document.createElement("select");
+        let unit_df = document.createElement("option");
+        let unit_g = document.createElement("option");
+        let unit_kgs = document.createElement("option");
+        let unit_lbs = document.createElement("option");
+        let unit_tbps = document.createElement("option");
+        let unit_cups = document.createElement("option");
+        unit_df.setAttribute("value", "");
+        unit_g.setAttribute("value", "grams");
+        unit_kgs.setAttribute("value", "kgs");
+        unit_lbs.setAttribute("value", "lbs");
+        unit_tbps.setAttribute("value", "tbps");
+        unit_cups.setAttribute("value", "cups");
+        unit_df.innerHTML = "Select unit";
+        unit_g.innerHTML = "grams";
+        unit_kgs.innerHTML = "kgs";
+        unit_lbs.innerHTML = "lbs";
+        unit_tbps.innerHTML = "tbps";
+        unit_cups.innerHTML = "cups";
+        ing_unit_inp.setAttribute("class", "unit-item");
+        ing_unit_inp.appendChild(unit_df);
+        ing_unit_inp.appendChild(unit_g);
+        ing_unit_inp.appendChild(unit_kgs);
+        ing_unit_inp.appendChild(unit_lbs);
+        ing_unit_inp.appendChild(unit_tbps);
+        ing_unit_inp.appendChild(unit_cups);
+
+        ing_unit.appendChild(ing_unit_title);
+        ing_unit.appendChild(ing_amount_inp);
+
+        ing_list.appendChild(ing_ing);
+        ing_list.appendChild(ing_amount);
+        ing_list.appendChild(ing_unit);
+        
+        ing_gen.appendChild(ing_list);
+        ing_sec.appendChild(ing_gen);
     }
 }
 
