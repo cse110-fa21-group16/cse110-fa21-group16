@@ -1,11 +1,11 @@
 class EditRecipe extends HTMLElement {
     constructor() {
         super();
-        let shadow = this.attachShadow({mode: 'open'});
+        let shadow = this.attachShadow({mode: "open"});
     }
 
     set data(data) {
-        let styling = document.createElement('style');
+        let styling = document.createElement("style");
         let styles =
          `/* Global styling */
          
@@ -372,7 +372,7 @@ class EditRecipe extends HTMLElement {
         optionVegan.setAttribute("id", "vegan");
         optionVegan.setAttribute("name", "vegan");
         optionVeganLabel.setAttribute("for", "vegan");
-        optionVeganLabel.innerHTML = "Vegan"
+        optionVeganLabel.innerHTML = "Vegan";
 
         dietOption1.appendChild(optionVegan);
         dietOption1.appendChild(optionVeganLabel);
@@ -385,7 +385,7 @@ class EditRecipe extends HTMLElement {
         optionDairy.setAttribute("id", "dairy");
         optionDairy.setAttribute("name", "dairy");
         optionDairyLabel.setAttribute("for", "dairy");
-        optionDairyLabel.innerHTML = "Dairy free"
+        optionDairyLabel.innerHTML = "Dairy free";
 
         dietOption2.appendChild(optionDairy);
         dietOption2.appendChild(optionDairyLabel);
@@ -398,7 +398,7 @@ class EditRecipe extends HTMLElement {
         optionGlutten.setAttribute("id", "glutten");
         optionGlutten.setAttribute("name", "glutten");
         optionGluttenLabel.setAttribute("for", "glutten");
-        optionGluttenLabel.innerHTML = "Glutten free"
+        optionGluttenLabel.innerHTML = "Glutten free";
 
         dietOption3.appendChild(optionGlutten);
         dietOption3.appendChild(optionGluttenLabel);
@@ -411,7 +411,7 @@ class EditRecipe extends HTMLElement {
         optionVegetarian.setAttribute("id", "vegetarian");
         optionVegetarian.setAttribute("name", "vegetarian");
         optionVegetarianLabel.setAttribute("for", "vegetarian");
-        optionVegetarianLabel.innerHTML = "Vegetarian"
+        optionVegetarianLabel.innerHTML = "Vegetarian";
 
         dietOption4.appendChild(optionVegetarian);
         dietOption4.appendChild(optionVegetarianLabel);
@@ -621,7 +621,6 @@ class EditRecipe extends HTMLElement {
         ////////////////////////////////////////////////////////////////////////////////////////////
         this.shadowRoot.appendChild(styling);
         this.shadowRoot.appendChild(page);
-        console.log(this.shadowRoot);
     }
 }
 
