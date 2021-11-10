@@ -1,0 +1,443 @@
+{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "@id": "https://www.recipetineats.com/#organization",
+            "name": "RecipeTin Eats",
+            "url": "https://www.recipetineats.com/",
+            "sameAs": [
+                "https://www.facebook.com/RecipeTinEats",
+                "http://instagram.com/recipe_tin",
+                "https://www.linkedin.com/in/nagi-maehashi-9779648b",
+                "https://www.youtube.com/c/recipetineats",
+                "http://www.pinterest.com/recipetin/"
+            ],
+            "logo": {
+                "@type": "ImageObject",
+                "@id": "https://www.recipetineats.com/#logo",
+                "inLanguage": "en-US",
+                "url": "https://www.recipetineats.com/wp-content/uploads/2019/04/RecipeTinEats_logo_for_Knowledge_Graph_card.png",
+                "contentUrl": "https://www.recipetineats.com/wp-content/uploads/2019/04/RecipeTinEats_logo_for_Knowledge_Graph_card.png",
+                "width": 2591,
+                "height": 347,
+                "caption": "RecipeTin Eats"
+            },
+            "image": {
+                "@id": "https://www.recipetineats.com/#logo"
+            }
+        },
+        {
+            "@type": "WebSite",
+            "@id": "https://www.recipetineats.com/#website",
+            "url": "https://www.recipetineats.com/",
+            "name": "RecipeTin Eats",
+            "description": "Fast Prep, Big Flavours",
+            "publisher": {
+                "@id": "https://www.recipetineats.com/#organization"
+            },
+            "potentialAction": [
+                {
+                    "@type": "SearchAction",
+                    "target": {
+                        "@type": "EntryPoint",
+                        "urlTemplate": "https://www.recipetineats.com/?s={search_term_string}"
+                    },
+                    "query-input": "required name=search_term_string"
+                }
+            ],
+            "inLanguage": "en-US"
+        },
+        {
+            "@type": "ImageObject",
+            "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#primaryimage",
+            "inLanguage": "en-US",
+            "url": "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg",
+            "contentUrl": "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg",
+            "width": 680,
+            "height": 680,
+            "caption": "Pasta with Olive OIl & Garlic (Aglio Olio): 8 Classic Simple Authentic Pasta Recipes. Pantry favourites on the table in 15 minutes or less."
+        },
+        {
+            "@type": "WebPage",
+            "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#webpage",
+            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/",
+            "name": "8 Quick and Easy Pasta Recipes | RecipeTin Eats",
+            "isPartOf": {
+                "@id": "https://www.recipetineats.com/#website"
+            },
+            "primaryImageOfPage": {
+                "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#primaryimage"
+            },
+            "datePublished": "2014-06-13T00:39:45+00:00",
+            "dateModified": "2020-08-03T20:13:24+00:00",
+            "description": "8 classic Italian pastas! These are all fantastic quick and easy pasta recipes made with pantry essentials so you're sure to be able to make one now no matter how bare your cupboard is!",
+            "breadcrumb": {
+                "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#breadcrumb"
+            },
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "ReadAction",
+                    "target": [
+                        "https://www.recipetineats.com/quick-easy-pasta-recipes/"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "BreadcrumbList",
+            "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#breadcrumb",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://www.recipetineats.com/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Pasta Recipes",
+                    "item": "https://www.recipetineats.com/category/pasta-recipes/"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "8 Quick and Easy Pasta Recipes"
+                }
+            ]
+        },
+        {
+            "@type": "Article",
+            "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#article",
+            "isPartOf": {
+                "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#webpage"
+            },
+            "author": {
+                "@id": "https://www.recipetineats.com/#/schema/person/1d495a057e0419b552333c8526d827a9"
+            },
+            "headline": "8 Quick and Easy Pasta Recipes",
+            "datePublished": "2014-06-13T00:39:45+00:00",
+            "dateModified": "2020-08-03T20:13:24+00:00",
+            "wordCount": 1235,
+            "commentCount": 42,
+            "publisher": {
+                "@id": "https://www.recipetineats.com/#organization"
+            },
+            "image": {
+                "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#primaryimage"
+            },
+            "thumbnailUrl": "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg",
+            "articleSection": [
+                "15 Minute Meals",
+                "Collections",
+                "Italian Recipes",
+                "Most Popular",
+                "Pasta Recipes",
+                "Quick and Easy"
+            ],
+            "inLanguage": "en-US",
+            "potentialAction": [
+                {
+                    "@type": "CommentAction",
+                    "name": "Comment",
+                    "target": [
+                        "https://www.recipetineats.com/quick-easy-pasta-recipes/#respond"
+                    ]
+                }
+            ]
+        },
+        {
+            "@type": "Person",
+            "@id": "https://www.recipetineats.com/#/schema/person/1d495a057e0419b552333c8526d827a9",
+            "name": "Nagi",
+            "image": {
+                "@type": "ImageObject",
+                "@id": "https://www.recipetineats.com/#personlogo",
+                "inLanguage": "en-US",
+                "url": "https://secure.gravatar.com/avatar/400004f5258d5b43d30deed3aa6e9566?s=96&d=https%3A%2F%2Fwww.recipetineats.com%2Fwp-content%2Fthemes%2Fonce-coupled-recipe-tin-eats%2Fassets%2Fimages%2Favatar-guest-temp-cache-bust-duplicate.png&r=g",
+                "contentUrl": "https://secure.gravatar.com/avatar/400004f5258d5b43d30deed3aa6e9566?s=96&d=https%3A%2F%2Fwww.recipetineats.com%2Fwp-content%2Fthemes%2Fonce-coupled-recipe-tin-eats%2Fassets%2Fimages%2Favatar-guest-temp-cache-bust-duplicate.png&r=g",
+                "caption": "Nagi"
+            },
+            "description": "I believe you can make great food with everyday ingredients even if you\u2019re short on time and cost conscious. You just need to cook clever and get creative!",
+            "sameAs": [
+                "http:////www.recipetineats.com/about-me/"
+            ]
+        },
+        {
+            "@context": "http://schema.org/",
+            "@type": "Recipe",
+            "name": "8 simple Italian Pasta Recipes",
+            "author": {
+                "@type": "Person",
+                "name": "Nagi"
+            },
+            "description": "These pasta recipes are simple Italian classics you&#039;ll find in trattorias all across Italy. \u201cPantry\u201d meals that take less than 15 minutes to make, each makes enough for 6 people. For all recipes, follow the Base Steps then move onto the recipe specific steps. Click\u00a0here\u00a0for a PDF printable version of all these recipes on one page.Use the recipe slider to change the serving size. Key step (especially for simple pastas like these) - tossing the sauce with the cooked pasta and a splash of pasta cooking water. The fat in the sauce reacts with the starch in the cooking water, thickening the sauce and making it stick to the pasta strands. This is the proper way to make pasta - no self respecting Italian or restaurant would ever skip this step!",
+            "datePublished": "2014-06-13T10:39:45+00:00",
+            "image": [
+                "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg",
+                "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg?w=500&h=500&crop=1",
+                "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg?w=500&h=375&crop=1",
+                "https://www.recipetineats.com/wp-content/uploads/2014/06/Pasta1.jpg?w=480&h=270&crop=1"
+            ],
+            "recipeYield": [
+                "6",
+                "6 people"
+            ],
+            "prepTime": "PT5M",
+            "cookTime": "PT15M",
+            "totalTime": "PT20M",
+            "recipeIngredient": [
+                "1 lb/500 g   dried spaghetti ((or other long pasta))",
+                "1/2 cup extra virgin olive oil",
+                "10  garlic cloves (, sliced)",
+                "1 tbsp red chilli flakes",
+                "1/4 cup chopped parsley",
+                "1/4 cup extra virgin olive oil",
+                "2  garlic cloves (, crushed)",
+                "21 oz / 600g   crushed tinned tomatoes",
+                "2 tbsp chilli flakes",
+                "1/4 cup chopped parsley",
+                "1/3 cup extra virgin olive oil",
+                "2  garlic cloves (, crushed)",
+                "2 tbsp anchovies (, finely chopped)",
+                "1 tbsp red chilli flakes",
+                "1/4 cup chopped parsley",
+                "2 tbsp extra virgin olive oil",
+                "2  garlic cloves (, crushed)",
+                "1/2  brown onion (, diced)",
+                "14 oz/400g   crushed tinned tomatoes",
+                "1/2 tsp red chilli flakes",
+                "6 oz/ 180g   thinly sliced guanciale (, or diced pancetta or bacon)",
+                "4 tbsp extra virgin olive oil",
+                "2  garlic cloves (, crushed)",
+                "24 oz/800g   fresh cherry tomatoes (, halved)",
+                "1/4 cup fresh basil (, lightly packed)",
+                "1/4 cup olive oil",
+                "3  garlic cloves (, crushed)",
+                "1  brown onion (, diced)",
+                "28 oz / 800g   crushed tinned tomatoes",
+                "1/4 cup fresh basil (, lightly packed)",
+                "1/4 cup extra virgin olive oil",
+                "2  garlic cloves (, crushed)",
+                "14 oz/400g   crushed tinned tomatoes",
+                "1/2 tbsp red chilli flakes",
+                "4 oz/100g   black sliced olives",
+                "2 tbsp capers",
+                "1/4 cup chopped parsley",
+                "1/4 cup extra virgin olive oil",
+                "2  garlic cloves (, crushed)",
+                "1/2  brown onion (, diced)",
+                "14 oz/400g   crushed tinned tomatoes",
+                "5 oz/150g   tinned tuna",
+                "1/4 cup chopped parsley"
+            ],
+            "recipeInstructions": [
+                {
+                    "@type": "HowToSection",
+                    "name": "Base Directions (for All):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Cook 1lb/500g of dried spaghetti (or any other long dried pasta) in a large pot of salted boiling water per packet MINUS 1 minute.",
+                            "name": "Cook 1lb/500g of dried spaghetti (or any other long dried pasta) in a large pot of salted boiling water per packet MINUS 1 minute.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-0-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Meanwhile, prepare one of the sauces below.",
+                            "name": "Meanwhile, prepare one of the sauces below.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-0-1"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "When pasta is ready, scoop out 1 cup of pasta cooking water, and drain pasta.",
+                            "name": "When pasta is ready, scoop out 1 cup of pasta cooking water, and drain pasta.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-0-2"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Add pasta into chosen sauce with 3/4 cup pasta cooking water.&nbsp;Toss pasta until sauce thickens and sticks to pasta (called \"emulsifying\" the sauce), 1 - 2 minutes.&nbsp;Use more pasta water if needed to loosen sauce.",
+                            "name": "Add pasta into chosen sauce with 3/4 cup pasta cooking water.&nbsp;Toss pasta until sauce thickens and sticks to pasta (called \"emulsifying\" the sauce), 1 - 2 minutes.&nbsp;Use more pasta water if needed to loosen sauce.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-0-3"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Season with salt and pepper to taste. Finish pasta per chosen recipe.",
+                            "name": "Season with salt and pepper to taste. Finish pasta per chosen recipe.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-0-4"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "PASTA WITH OLIVE OIL &amp; GARLIC (AGLIO E OLIO):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic and cook until golden - be careful not to burn it. &nbsp;",
+                            "name": "Heat oil over medium high heat. Add garlic and cook until golden - be careful not to burn it. &nbsp;",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-1-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions. Toss through parsley and chilli flakes, serve with parmesan.",
+                            "name": "Toss with pasta and cooking water per Base Directions. Toss through parsley and chilli flakes, serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-1-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "FIERY PASTA (ARRABIATA):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic, stir until fragrant, then add the tinned tomatoes and chilli flakes, simmer on medium for 5 minutes.",
+                            "name": "Heat oil over medium high heat. Add garlic, stir until fragrant, then add the tinned tomatoes and chilli flakes, simmer on medium for 5 minutes.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-2-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions.   Toss through parsley and serve with parmesan.",
+                            "name": "Toss with pasta and cooking water per Base Directions.   Toss through parsley and serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-2-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "PASTA WITH ANCHOVIES (SPAGHETTI CON LE ACCIUGHE):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic and anchovies, stir until the garlic is fragrant and the anchovies have melted.&nbsp;",
+                            "name": "Heat oil over medium high heat. Add garlic and anchovies, stir until the garlic is fragrant and the anchovies have melted.&nbsp;",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-3-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions. Toss through parsley and chilli flakes, and serve with parmesan.",
+                            "name": "Toss with pasta and cooking water per Base Directions. Toss through parsley and chilli flakes, and serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-3-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "AMATRICE SPAGHETTI (SPAGHETTI ALL\u2019AMATRICIANA):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add the garlic, onion and guanciale (or pancetta or bacon) and cook until the onion has softened and the guanciale &nbsp;is golden.",
+                            "name": "Heat oil over medium high heat. Add the garlic, onion and guanciale (or pancetta or bacon) and cook until the onion has softened and the guanciale &nbsp;is golden.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-4-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Add the tinned tomatoes and chilli flakes and bring to rapid simmer. Toss with pasta and cooking water per Base Directions. Serve with parmesan.",
+                            "name": "Add the tinned tomatoes and chilli flakes and bring to rapid simmer. Toss with pasta and cooking water per Base Directions. Serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-4-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "FRESH TOMATO &amp; BASIL SAUCE (POMAROLA):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic and cook&nbsp;until fragrant, add tomato and cook briefly, just to warm through.&nbsp;",
+                            "name": "Heat oil over medium high heat. Add garlic and cook&nbsp;until fragrant, add tomato and cook briefly, just to warm through.&nbsp;",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-5-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions. Toss through basil, serve with parmesan.",
+                            "name": "Toss with pasta and cooking water per Base Directions. Toss through basil, serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-5-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "TOMATO SPAGHETTI (SPAGHETTI NAPOLITANA):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic and cook until fragrant, then add the onion and cook until softened. Then add tinned tomatoes and 1/2 cup water, simmer 5 minutes.&nbsp;",
+                            "name": "Heat oil over medium high heat. Add garlic and cook until fragrant, then add the onion and cook until softened. Then add tinned tomatoes and 1/2 cup water, simmer 5 minutes.&nbsp;",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-6-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions. Toss through basil and serve with parmesan.",
+                            "name": "Toss with pasta and cooking water per Base Directions. Toss through basil and serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-6-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "SPAGHETTI WITH OLIVES AND CAPERS (SPAGHETTI ALLA PUTTANESCA):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic and cook until fragrant, then add tinned tomatoes, chilli flakes, olives, capers and 1/2 cup water. Simmer 3 minutes.",
+                            "name": "Heat oil over medium high heat. Add garlic and cook until fragrant, then add tinned tomatoes, chilli flakes, olives, capers and 1/2 cup water. Simmer 3 minutes.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-7-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions.  Toss through parsley and serve with parmesan.",
+                            "name": "Toss with pasta and cooking water per Base Directions.  Toss through parsley and serve with parmesan.",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-7-1"
+                        }
+                    ]
+                },
+                {
+                    "@type": "HowToSection",
+                    "name": "PASTA WITH TUNA (SPAGHETTI AL TONNO):",
+                    "itemListElement": [
+                        {
+                            "@type": "HowToStep",
+                            "text": "Heat oil over medium high heat. Add garlic and cook until fragrant. Add the onion and cook until softened, then add the tinned tomatoes and 1/2 cup water. Simmer 3 minutes, then add the tuna.&nbsp;",
+                            "name": "Heat oil over medium high heat. Add garlic and cook until fragrant. Add the onion and cook until softened, then add the tinned tomatoes and 1/2 cup water. Simmer 3 minutes, then add the tuna.&nbsp;",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-8-0"
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "text": "Toss with pasta and cooking water per Base Directions. Toss through parsley. Seafood pasta typically not served with parmesan but you can if you want!",
+                            "name": "Toss with pasta and cooking water per Base Directions. Toss through parsley. Seafood pasta typically not served with parmesan but you can if you want!",
+                            "url": "https://www.recipetineats.com/quick-easy-pasta-recipes/#wprm-recipe-30110-step-8-1"
+                        }
+                    ]
+                }
+            ],
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5",
+                "ratingCount": "10"
+            },
+            "recipeCategory": [
+                "Mains",
+                "Pasta"
+            ],
+            "recipeCuisine": [
+                "Western"
+            ],
+            "keywords": "pasta dishes, pasta recipes, quick pasta recipes",
+            "nutrition": {
+                "@type": "NutritionInformation",
+                "servingSize": "181 g",
+                "calories": "468 kcal"
+            },
+            "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#recipe",
+            "isPartOf": {
+                "@id": "https://www.recipetineats.com/quick-easy-pasta-recipes/#article"
+            },
+            "mainEntityOfPage": "https://www.recipetineats.com/quick-easy-pasta-recipes/#webpage"
+        }
+    ]
+}
