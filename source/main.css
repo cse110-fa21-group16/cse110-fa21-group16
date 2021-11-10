@@ -42,7 +42,7 @@ article {
   .header-div h1 {
     text-align: center;
     color: white;
-    font-size: 3vw;
+    font-size: 4vw;
   }
 
 /*****************************************
@@ -61,26 +61,55 @@ article {
  Style for Nutrition Facts section in article
  *****************************************
  *****************************************/
+
+ .servings{
+   text-align: center;
+ }
+
+ #servingSize{
+  max-width: 10em;
+  margin-bottom: 10px;
+ }
+
+ /* .grid-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  max-width: 40%;
+  background-color: rgb(48, 90, 80);
+  padding: 10px;
+}*/
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 100%;
+  max-width: 20%;
+  background-color: rgb(48, 90, 80);
+  padding: 10px;
+  margin: auto;
+   display: flex;
+   flex-direction: column;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+  grid-column-start: 1;
+  border-bottom: 1px solid black;
+}
+
+.item>span{
+  color: black;
+}
+
   .origin{
-    text-align: center;
+    /* text-align: center; */
     font-weight: bold;
     font-size: xx-large;
   }
-
-  .origin>section>div{
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-
-  span{
-    color: black;
-  }
-
-  .origin>servings>servingSize{
-    max-width: 10em;
-  }
-
- 
 
 /*****************************************
  *****************************************
@@ -112,5 +141,6 @@ article {
     color: white;
     border-radius: 99px;
     cursor: pointer;
+    margin-bottom: 15px;
   }
 
