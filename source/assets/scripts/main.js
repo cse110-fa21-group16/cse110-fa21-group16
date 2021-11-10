@@ -4,8 +4,8 @@ function init() {
     console.log("Loaded");
 
     // testing edit recipe component
-    let mainBody = document.querySelector("main[class='main-body']");
+    let editSection = document.querySelector("section[class='edit-section']");
     let editPage = document.createElement("edit-recipe");
     editPage.data = "testing";
-    mainBody.appendChild(editPage);
+    editSection.appendChild(editPage);
 }

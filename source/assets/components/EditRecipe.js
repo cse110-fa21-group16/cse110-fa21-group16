@@ -8,23 +8,25 @@ class EditRecipe extends HTMLElement {
         let styling = document.createElement('style');
         let styles =
          `/* Global styling */
-         * {
-           margin: 0;
-           padding: 0;
-           font-family: Arial, Helvetica, sans-serif;
-           color: rgb(48, 90, 80);
-         }
          
+        * {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, Helvetica, sans-serif;
+          color: rgb(48, 90, 80);
+        }
+
          /*****************************************
           *****************************************
           Style for article
           *****************************************
           *****************************************/
-         article {
-           width: 60%;
-           box-shadow: 0px 0px 15px #888888;
-           margin-bottom: 90px;
-         }
+
+        article {
+          width: 60vw;
+          box-shadow: 0px 0px 15px #888888;
+          margin-bottom: 90px;
+        }
          
          /*****************************************
           *****************************************
@@ -131,6 +133,7 @@ class EditRecipe extends HTMLElement {
          /* Style for procedures div */
          .procedures {
            padding-left: 20px;
+           margin-top: 20px;
            /* border: 1px solid greenyellow; */
          }
          
@@ -173,6 +176,7 @@ class EditRecipe extends HTMLElement {
          
          .ingredients-general-div {
            padding-left: 20px;
+           margin-top: 20px;
            /* border: 1px solid greenyellow; */
          }
          
@@ -240,7 +244,6 @@ class EditRecipe extends HTMLElement {
            width: 100%;
            display: flex;
            justify-content: center;
-           margin-bottom: 20px;
          }
          
          /* Style for action-buttons div */
@@ -250,6 +253,7 @@ class EditRecipe extends HTMLElement {
            flex-direction: row-reverse;
            padding: 5px 5px 5px 5px;
            margin-top: 10px;
+           margin-bottom: 20px;
            /* border: 1px solid blue; */
          }
          
