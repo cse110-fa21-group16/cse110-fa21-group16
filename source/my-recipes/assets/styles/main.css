@@ -1,0 +1,122 @@
+:root {
+  --bg-color: #ffffff;
+  --header-font-color: #ffffff;
+  --major-color: #305A50;
+}
+
+
+/* web font */
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins/Poppins-Regular.ttf");
+}
+
+
+/* root css style */
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+  margin:0px;
+  padding:0px;
+}
+
+
+/* body */
+body {
+  background-color: var(--bg-color);
+  display:flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+
+/* header */
+header{
+  align-items: center;
+  background-color: var(--major-color);
+  display: flex;
+  flex-flow: row nowrap;
+  height: 90px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#web-info > a{
+  color: var(--header-font-color);
+  font-size: 30px;
+  margin: 0px 0px 0px 20px;
+  text-decoration: none;
+}
+
+#web-info > h1{
+  color: var(--header-font-color);
+  display: inline-block;
+  font-size: 30px;
+  margin: 0px 0px 0px 20px;
+}
+
+#page_title > h1 {
+  color: var(--header-font-color);
+  display: inline-block;
+  font-size: 30px;
+  margin: 0px 0px 0px 20px;
+}
+
+#head-buttons > button{
+  background-color: #ffffff;
+  border: 1px solid #ccccd8;
+  border-radius: 14px;
+  color: var(--major-color);
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0px 20px 0px 0px;
+  min-width: 120px;
+  padding: 3px 20px;
+}
+
+#head-buttons > button:hover {
+  border: 1px solid #313131;
+}
+
+
+
+/*****************************************
+ *****************************************
+ Style for main in article 
+ *****************************************
+ *****************************************/
+
+main {
+  align-items: center;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-flow: row wrap;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+#add-recipe {
+  background-color: rgb(48, 90, 80);
+  color: white;
+  text-align: center;
+  font-size: 100px;
+  border-radius: 40px;
+  cursor: pointer;
+  height: 370px;
+  justify-content: space-between;
+  margin: 25px;
+  padding: 0 16px 16px 16px;
+  transition: all 0.4s linear;
+  width: 300px;
+  -moz-transition: all 0.4s linear;
+  -o-transition: all 0.4s linear;
+  -webkit-transition: all 0.4s linear; 
+}
+
+#add-recipe:hover {
+  box-shadow:0px 1px 17px -8px #000;
+  transform: scale(1.02);
+}
+
+
+
