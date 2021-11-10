@@ -1,10 +1,10 @@
 class EditRecipe extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({mode: 'open'});
+        let shadow = this.attachShadow({mode: 'open'});
     }
 
-    set(data) {
+    set data(data) {
         let styling = document.createElement('style');
         let styles =
          `/* Global styling */
@@ -282,7 +282,7 @@ class EditRecipe extends HTMLElement {
          }
         `;
         
-        styling.innerHTML= styles;
+        styling.innerHTML = styles;
         
         // root element to attach everything to
         let page = document.createElement("article");
@@ -302,12 +302,13 @@ class EditRecipe extends HTMLElement {
         headerHomeLink.innerHTML = "LOGO";
         headerTitle.setAttribute("class", "header-title");
         headerTitle.innerHTML = "EDIT RECIPE";
-        header.headerPlaceholder.setAttribute("class", "header-placeholder");
+        headerPlaceholder.setAttribute("class", "header-placeholder");
         headerPlaceholder.innerHTML = "HOLDER";
 
         headerDiv.appendChild(headerHomeLink);
         headerDiv.appendChild(headerTitle);
         headerDiv.appendChild(headerPlaceholder);
+        header.appendChild(headerDiv);
 
         /////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > picture section ///////////////////////////
@@ -448,12 +449,18 @@ class EditRecipe extends HTMLElement {
         let amountColumn = document.createElement("div"); // amount column
         let amountColumnTitle = document.createElement("h2");
         let amountColumnInput = document.createElement("input");
+
         amountColumn.setAttribute("class", "amount-column");
         amountColumnTitle.setAttribute("class", "title");
         amountColumnTitle.innerHTML = "Amount:";
         amountColumnInput.setAttribute("class", "amount-item");
         amountColumnInput.setAttribute("type", "number");
         amountColumnInput.setAttribute("value", "1");
+        
+        let addIngredient = document.createElement("button");
+        addIngredient.setAttribute("class", "add-instruction");
+        addIngredient.setAttribute("id", "add-ingredient");
+        addIngredient.innerHTML = "+";
 
         amountColumn.appendChild(amountColumnTitle);
         amountColumn.appendChild(amountColumnInput);
@@ -492,23 +499,25 @@ class EditRecipe extends HTMLElement {
         unitColumnInput.appendChild(unitCups);
 
         unitColumn.appendChild(unitColumnTitle);
-        unitColumn.appendChild(amountColumnInput);
+        unitColumn.appendChild(unitColumnInput);
 
         ingredientListDiv.appendChild(ingredientColumn);
         ingredientListDiv.appendChild(amountColumn);
         ingredientListDiv.appendChild(unitColumn);
         
         ingredientGeneralDiv.appendChild(ingredientListDiv);
+        ingredientGeneralDiv.appendChild(addIngredient);
         ingredientSection.appendChild(ingredientGeneralDiv);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// creating the main > instruction section //////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
         let instructionSection = document.createElement("section");
+        instructionSection.setAttribute("class", "instructions");
 
         // Procedures div 
         let procedures = document.createElement("div");
-        procedures.setAttribute("class", "procedures");
+        procedures.setAttribute("class", "step-div");
 
         // Procedure Title 
         let procedureTitle = document.createElement("h2");
@@ -531,7 +540,7 @@ class EditRecipe extends HTMLElement {
           procedureListText.setAttribute("class", "step-item");
           procedureListText.innerHTML = "Populate data here";
 
-          procedureListItem.appendChild(procedureListItem);
+          procedureListItem.appendChild(procedureListText);
           procedureList.appendChild(procedureListItem);
         }
 
@@ -573,6 +582,7 @@ class EditRecipe extends HTMLElement {
 
         // Action Button Div
         let actionButtons = document.createElement("div");
+        actionButtons.setAttribute("class", "action-buttons");
 
         // Action Buttons
         let submitButton = document.createElement("button");
@@ -582,6 +592,9 @@ class EditRecipe extends HTMLElement {
         submitButton.setAttribute("id", "submit-edit");
         deleteButton.setAttribute("id", "delete-edit");
         cancelButton.setAttribute("id", "cancel-edit");
+        submitButton.innerHTML = "Submit";
+        deleteButton.innerHTML = "Delete";
+        cancelButton.innerHTML = "Cancel";
 
         // Append Buttons to Div
         actionButtons.appendChild(submitButton);
@@ -604,6 +617,7 @@ class EditRecipe extends HTMLElement {
         ////////////////////////////////////////////////////////////////////////////////////////////
         this.shadowRoot.appendChild(styling);
         this.shadowRoot.appendChild(page);
+        console.log(this.shadowRoot);
     }
 }
 

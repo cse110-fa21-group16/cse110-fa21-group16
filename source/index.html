@@ -1,155 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edit Recipe</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 
-  <!-- Main Stylesheets & Scripts -->
-  <link rel="stylesheet" href="assets/styles/main.css" />
-  <script src="assets/scripts/main.js" type="module"></script>
+    <script src="assets/components/EditRecipe.js" type="module"></script>
+
+    <script src="assets/scripts/main.js" type="module"></script>
+
 </head>
-
 <body>
-  
-  <main>
-    <!-- Main body -->
-    <article>
-        <header>
-            <div class="header-div">
-              <a class="home-link" href="index.html">LOGO</a>
-              <h1 class="header-title">ADD RECIPE</h1>
-              <h1 class="header-placeholder">HOLDER</h1>
-            </div>
-        </header> 
-        <main>
-            <div class="origin">
-                <!-- Picture section -->
-                <section class="picture">
-                    <textarea id="recipe-name">Recipe Name</textarea>
-                    <!-- Upload picture -->
-                    <div class="recipe-image-container">
-                        <div class="recipe-image-div">
-                            <img class="recipe-image" alt="Uploaded image" src="assets/images/chicken-breast.jpg" width="300" height="200">
-                        </div>
-                        <input type="file" accept="image/*">
-                    </div>
-                </section>
-                
-                <!-- Diet restriction section -->
-                <section class="diet-restrict">
-                    <div class="diet-restrict-div">
-                        <h2 class="title">Diet Restriction</h2>
-                        <div class="category">
-                            <div>
-                                <input type="checkbox" id="vegan" name="vegan">
-                                <label for="vegan">Vegan</label>
-                            </div>                       
-                            <div>
-                                <input type="checkbox" id="dairy" name="dairy">
-                                <label for="dairy">Dairy free</label>
-                            </div> 
-                            <div>
-                                <input type="checkbox" id="glutten" name="glutten">
-                                <label for="glutten">Glutten free</label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="vegetarian" name="vegetarian">
-                                <label for="vegetarian">Vegetarian</label>
-                            </div>
-                        </div>
-                    </div>
-                        
-                </section>
-
-                <br>
-                <!-- Ingredients section -->
-                <section class="ingredients">
-                    <div class="ingredients-general-div">
-                        <div class="ingredients-list-div">
-                            <div class="ingredient-column">
-                                <h2 class="title">Ingredient:</h2>
-                                <!-- Load ingredients into textboxes here. Below are just place holders -->
-                                <textarea class="ingredients-item">Populate data here</textarea>
-                            </div>
-                            <div class="amount-column">
-                                <h2 class="title">Amount:</h2>
-                                <!-- Load amount into textboxes here. Below are just place holders -->
-                                <input class="amount-item" type="number" value="1"/>
-                            </div>
-                            <div class="unit-column">
-                                <h2 class="title">Unit:</h2>
-                                <!-- Load unit into textboxes here. Below are just place holders -->
-                                <select class="unit-item">
-                                    <option value="">Select unit</option>
-                                    <option value="grams">grams</option>
-                                    <option value="kgs">kgs</option>
-                                    <option value="lbs">lbs</option>
-                                    <option value="tbps">tbps</option>
-                                    <option value="cups">cups</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="ingredients-list-div">
-                            <div class="ingredient-column">
-                                <h2 class="title">Ingredient:</h2>
-                                <!-- Load ingredients into textboxes here. Below are just place holders -->
-                                <textarea class="ingredients-item">Populate data here</textarea>
-                            </div>
-                            <div class="amount-column">
-                                <h2 class="title">Amount:</h2>
-                                <!-- Load amount into textboxes here. Below are just place holders -->
-                                <input class="amount-item" type="number" value="1"/>
-                            </div>
-                            <div class="unit-column">
-                                <h2 class="title">Unit:</h2>
-                                <!-- Load unit into textboxes here. Below are just place holders -->
-                                <select class="unit-item">
-                                    <option value="">Select unit</option>
-                                    <option value="grams">grams</option>
-                                    <option value="kgs">kgs</option>
-                                    <option value="lbs">lbs</option>
-                                    <option value="tbps">tbps</option>
-                                    <option value="cups">cups</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button class="add-instruction" id="add-ingredient">+</button>
-                    </div>
-                </section>
-
-                <br>
-                <!-- Instructions section -->
-                <section class="instructions">
-                    <div class="procedures">
-                        <h2 class="title">Procedures:</h2>
-                        <div class="steps-div">
-                            <!-- Load steps into textboxes here. Below are just place holders -->
-                            <ol class="step-list">
-                                <li><textarea class="step-item">Populate data here</textarea></li>
-                                <li><textarea class="step-item">Populate data here</textarea></li>
-                                <li><textarea class="step-item">Populate data here</textarea></li>
-                            </ol>
-                            <button class="add-instruction" id="add-instruction">+</button>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-        <footer>
-            <div class="action-buttons">
-                <button id="submit-edit">Submit</button>
-                <button id="delete-edit">Delete</button>
-                <button id="cancel-edit">Cancel</button>
-            </div>
-        </footer>
-    </article>
-  </main>
-
-  <!-- Body wrapper -->
-  
+    <main class="main-body">
+        <!-- Add the page component here -->
+    </main>
 </body>
-
 </html>
