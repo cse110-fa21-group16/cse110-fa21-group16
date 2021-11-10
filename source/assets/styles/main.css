@@ -1,58 +1,84 @@
+:root {
+  --bg-color: #ffffff;
+  --header-font-color: #ffffff;
+  --major-color: #305A50;
+}
+
+
+/* web font */
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins/Poppins-Regular.ttf");
+}
+
+
+/* root css style */
 * {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgb(48, 90, 80);
+  box-sizing: border-box;
+  font-family: "Poppins", serif;
+  margin:0px;
+  padding:0px;
 }
 
-/*****************************************
- *****************************************
- Style for article
- *****************************************
- *****************************************/
-article {
+
+/* body */
+body {
+  background-color: var(--bg-color);
+  display:flex;
+  flex-flow: row wrap;
   width: 100%;
-  box-shadow: 0px 0px 15px #888888;
-  margin-bottom: 90px;
 }
 
-/*****************************************
- *****************************************
- Style for header section in article
- *****************************************
- *****************************************/
-header {
-  display: flex;
-  justify-content: center;
-  /* border: 1px solid orange; */
-}
 
-.header-div {
-  background-color: rgb(48, 90, 80);
-  width: 100%;
-  height: 12vh;
-  padding: 0px;
-  display: flex;
-  justify-content: space-between;
+/* header */
+header{
   align-items: center;
+  background-color: var(--major-color);
+  display: flex;
   flex-flow: row nowrap;
+  height: 90px;
+  justify-content: space-between;
+  width: 100%;
 }
 
-.header-div h1 {
-  color: white;
-  font-size: 2vw;
-}
-
-.header-placeholder {
-  visibility: hidden;
-}
-
-.home-link {
+#web-info > a{
+  color: var(--header-font-color);
+  font-size: 30px;
+  margin: 0px 0px 0px 20px;
   text-decoration: none;
-  color: white;
-  font-size: 2vw;
+}
+
+#web-info > h1{
+  color: var(--header-font-color);
+  display: inline-block;
+  font-size: 30px;
   margin: 0px 0px 0px 20px;
 }
+
+#page_title > h1 {
+  color: var(--header-font-color);
+  display: inline-block;
+  font-size: 30px;
+  margin: 0px 0px 0px 20px;
+}
+
+#head-buttons > button{
+  background-color: #ffffff;
+  border: 1px solid #ccccd8;
+  border-radius: 14px;
+  color: var(--major-color);
+  cursor: pointer;
+  font-size: 18px;
+  margin: 0px 20px 0px 0px;
+  min-width: 120px;
+  padding: 3px 20px;
+}
+
+#head-buttons > button:hover {
+  border: 1px solid #313131;
+}
+
+
 
 /*****************************************
  *****************************************
@@ -61,14 +87,17 @@ header {
  *****************************************/
 
 main {
-  
-  font-family: Oxygen, sans-serif;
-  margin: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
-  grid-gap: 2rem;
-
+  align-items: center;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-flow: row wrap;
+  padding: 40px 20px;
+  width: 100%;
 }
+
+
+
+
 
 
 

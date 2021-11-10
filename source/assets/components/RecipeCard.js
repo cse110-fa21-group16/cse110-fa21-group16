@@ -11,163 +11,91 @@ class RecipeCard extends HTMLElement {
       const styleElem = document.createElement('style');
       const styles = `
 
-      *, *::before, *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      .favorite
-      {
-        height: 30px;
-        width: 50px;
-      }
-      
-      .images {
-        position: relative;
-        top: 0;
-        left: 0;
-      }    
-      .card {
-        overflow: hidden;
-        box-shadow: 0px 2px 20px gray;  
-        border-radius: 0.4rem;
-        display:flex;
-        flex-direction: column;
-        justify-content: space-between;
-        cursor: pointer;
-        transition: transform 200ms ease-in;
-        height: 540px;
-      }
-      .card__image {
-        position: relative;
-        height: 12rem;
-        width: 100%;
-        object-fit: cover;
-      }
-
-      .favorite {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-      }
-      
-      .card__title {
-        // padding: 1rem;
-        display: -webkit-box;
-        height: 80px;
-        line-height: 25px;
-        overflow: hidden;
-        --wekbit-line-clamp: 2;
-        --webkit-box-orient: vertical;
-        
-      }
-
-      .card__organization{
-        color: black !important;
-      }
-
-      .card__description {
-        height: 35px;
-        line-height: 16px;
-        padding-top: 4px;
-        overflow: hidden;
-        --wekbit-line-clamp: 2;
-        position: relative;
-        top: 10px;
-
-      }
-      
-       div.rating {
-        align-items: center;
-        column-gap: 5px;
-        display: flex;
-        position:relative;
-        top: 5px; 
-      }
-
-      div.rating > img {
-        height: auto;
-        display: inline-block;
-        object-fit: scale-down;
-        width: 78px;
-      }
-
-      time{
-        position: relative;
-        top: 8px;
-      }
-      .card__btn {
-        padding: 1rem;
-        font-family: inherit;
-        font-weight: bold;
-        font-size: 1rem;
-        margin: 1rem;
-        border: 2px solid darkgreen;
-        background: transparent;
-        color: green;
-        border-radius: 0.4rem;
-      }
-
-      .ingred > img{
-        position:relative;
-        top: 20px; 
-        right 10px;  
-        height: 30px; 
-        width: 30px; 
-      }
-
-      .ingred > span{
-        position:relative;
-        top:14px;
-      }
-      p.ingredients {
-        position:relative;
-        top: 20px;
-        height: 32px;
-        line-height: 16px;
-        padding-top: 2px;
-        overflow: hidden;
-      }
-
-      .card:hover {
-        transform: scale(1.02);
-      }
+      * {
+      margin: 0;
+      padding: 0;
+    }
     
-      .card:hover .card__btn {
-        background: darkgreen;
-        color: white;
-      } 
+    article {
+      align-items: center;
+      border: 1px solid rgb(223, 225, 229);
+      border-radius: 40px;
+      display: flex;
+      flex-direction: column;
+      height: 350px;
+      justify-content:space-between;
+      margin: 25px;
+      padding: 0 16px 16px 16px;
+      transition: all 0.4s linear;
+      width: 250px;
+      -moz-transition: all 0.4s linear;
+      -o-transition: all 0.4s linear;
+      -webkit-transition: all 0.4s linear; 
+    }
+    article:hover {
+      box-shadow:0px 1px 17px -8px #000;
+      transform: scale(1.02);
+    }
+    article p {
+      color: #305A50;
+      font-size: 20px;
+      text-align: center;
+      position:relative;
+      bottom: 20px;
+    }
+    article > img {
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      height: 180px;
+      object-fit: cover;
+      width: calc(100% + 32px);
+    }
+
+    article input {
+      height:20px;
+      width:37px;
+      position:relative;
+      left: 120px;
+      bottom:10px;
+    }
+
+    article button {
+      border: 1px solid darkgreen;
+      background-color: #fff;
+      border-radius: 14px;
+      color: green;
+      cursor: pointer;
+      font-size: 20px;
+      padding: 5px 30px;
+    }
+    
+    article button:hover {
+      border: 1px solid #313131;
+      color:#c0392b;
+    }
+
+    article time {
+      color: #305A50;
+      font-size: 18px;
+      text-align: center;
+      position:relative;
+      bottom: 20px;
+    }
+
+    article:hover .cook{
+      background: darkgreen;
+      color: white;
     `;
-      styleElem.innerHTML = styles;
-  
-      // Here's the root element that you'll want to attach all of your other elements to
-      const card = document.createElement("article");
+    styleElem.innerHTML = styles;
 
-      //first div of card
-      const reciCard = document.createElement("div");
-      reciCard.classList.add("card");
+    const card = document.createElement('article');
 
-      //body of the card
-      const card_body = document.createElement("div");
-      card_body.classList.add("card__body");
+    const recipeImg = document.createElement('img');
+    recipeImg.src = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url");
+    recipeImg.alt = searchForKey(data, "headline");
+    card.appendChild(recipeImg);
 
-      /* ************************
-                Image 
-         ************************
-      */
-      const images = document.createElement("div");
-      images.classList.add("images");
-
-      const img = document.createElement("img");
-      img.classList.add("card__image");
-      const imgSrc = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url"); 
-      const title = searchForKey(data, "headline");
-    
-      img.setAttribute("src", imgSrc);
-      img.setAttribute("alt", title);
-
-      const input = document.createElement("input");
+    const input = document.createElement("input");
       let liked = true;
       input.classList.add("favorite");
       input.type = "image";
@@ -189,134 +117,31 @@ class RecipeCard extends HTMLElement {
         }
       }
 
-      images.appendChild(img);
-      images.appendChild(input);
+      card.appendChild(input);
 
-      card_body.appendChild(images);
+    // p element - title
+    const recipeTitle = document.createElement('p');
+    recipeTitle.classList.add("title");
+    recipeTitle.textContent = searchForKey(data, "headline");
+    card.appendChild(recipeTitle);
+
+    //time element
+    const time = document.createElement('time');
+    const totalTime = searchForKey(data, 'totalTime');
+    time.textContent = convertTime(totalTime);
+    card.appendChild(time);
+
+    // button element - check recipe
+    const checkButton = document.createElement('button');
+    checkButton.classList.add("cook");
+    checkButton.textContent = "COOK!";
+    card.appendChild(checkButton);
+    checkButton.addEventListener("click", function (event) {
+      showCheck(data);
+    });
+
 
     
-      /* ************************
-                Title 
-         ************************
-      */
-      const titl = document.createElement("h2");
-      titl.classList.add("card__title");
-      titl.textContent = title;
-      card_body.appendChild(titl);
-
-       /* ************************
-                Organization 
-         ************************
-      */
-       const organization = document.createElement("p");
-       organization.classList.add("card__organization");
-       const org = getOrganization(data) || searchForKey(data, "organization");
-       organization.textContent = org;
-       card_body.append(organization);
-       
-       /* ************************
-                Rating 
-         ************************
-      */
-        const ratingV = searchForKey(data, "aggregateRating")?.ratingValue; 
-        const ratingC = searchForKey(data, "aggregateRating")?.ratingCount; 
-
-        const rating = document.createElement('div');
-        rating.classList.add('rating');
-        const ratingScore = document.createElement('span');
-        rating.appendChild(ratingScore);
-    
-        if (ratingV) { //if the recipe has a review
-          const ratingCount = document.createElement('span');
-          const ratingImg = document.createElement('img');
-    
-          const ratingImgScore = Math.round(ratingV); //we round to the nearest integer in order to use one of the star svg's given
-    
-          ratingImg.setAttribute('src', `assets/images/${ratingImgScore}-star.svg`); //set the new start svg
-    
-          ratingScore.textContent = Math.round(ratingV*100)/100; //we do this in order to evade having such a big decimal number (rounds to 2 decimal points)
-          ratingCount.textContent = `(${ratingC})`;  //we set the amount of reviews (count)
-    
-          rating.appendChild(ratingImg);
-          rating.appendChild(ratingCount);
-        } else {
-          ratingScore.textContent = "There are currently no reviews"; //if there is no ratingV then the recipe has no reviews
-        }
-        card_body.appendChild(rating)
-
-        /* ************************
-                Time 
-         **************************
-      */
-        const time = document.createElement('time');
-        const totalTime = searchForKey(data, 'totalTime');
-        time.textContent = convertTime(totalTime);
-        card_body.appendChild(time);
-
-
-
-       /* ************************
-                Description 
-         *************************
-      */
-      const info = searchForKey(data, "description");
-      const description = document.createElement("p");
-      description.classList.add("card__description");
-      description.textContent = info;
-      card_body.appendChild(description);
-
-       /* ************************
-                Ingredient Title 
-         **************************
-      */
-      const ingTitle = document.createElement("div");
-      ingTitle.classList.add("ingred");
-
-      const ingImg = document.createElement("img");
-      ingImg.setAttribute("src", "assets/images/ingredients.png");
-      ingImg.setAttribute("alt", "Ingredients Image");
-
-      ingTitle.appendChild(ingImg);
-
-      const ti = document.createElement("span");
-      ti.textContent = "Ingredients:";
-      ingTitle.appendChild(ti);
-
-      card_body.appendChild(ingTitle);
-
-    //   <div class="ingred">
-    //    <img src="assets/images/ingredients.png" alt="ing">
-    //    <span>Ingedents:</span>
-    // </div>
-
-      /* ************************
-                Ingredients 
-         ************************
-      */
-       const ingredients = document.createElement('p');
-       ingredients.classList.add('ingredients');
-       const ingredientsList = searchForKey(data, 'recipeIngredient');
-       ingredients.textContent = createIngredientList(ingredientsList);
-       card_body.appendChild(ingredients);
-
-       /* ************************
-                Button 
-         ************************
-      */
-      const button = document.createElement("button");
-      button.classList.add("card__btn");
-      button.textContent = "View Recipe";
-
-      reciCard.appendChild(card_body);
-      reciCard.appendChild(button);
-
-
-      card.appendChild(reciCard);
-      
-
-
-
-  
     //   const img = document.createElement('img');
     //   // console.log(data);
     //   const imgSrc = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url"); //get the thumbnail url
