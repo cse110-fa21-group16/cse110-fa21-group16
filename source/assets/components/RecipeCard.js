@@ -27,18 +27,17 @@ class RecipeCard extends HTMLElement {
         position: relative;
         top: 0;
         left: 0;
-      }
-      
-      
+      }    
       .card {
         overflow: hidden;
         box-shadow: 0px 2px 20px gray;  
-        border-radius: 0.2rem;
+        border-radius: 0.4rem;
         display:flex;
         flex-direction: column;
         justify-content: space-between;
         cursor: pointer;
         transition: transform 200ms ease-in;
+        height: 540px;
       }
       .card__image {
         position: relative;
@@ -54,10 +53,49 @@ class RecipeCard extends HTMLElement {
       }
       
       .card__title {
-        padding: 1rem;
+        // padding: 1rem;
+        display: -webkit-box;
+        height: 80px;
+        line-height: 25px;
+        overflow: hidden;
+        --wekbit-line-clamp: 2;
+        --webkit-box-orient: vertical;
+        
       }
+
+      .card__organization{
+        color: black !important;
+      }
+
       .card__description {
-        padding: 0 1rem;
+        height: 35px;
+        line-height: 16px;
+        padding-top: 4px;
+        overflow: hidden;
+        --wekbit-line-clamp: 2;
+        position: relative;
+        top: 10px;
+
+      }
+      
+       div.rating {
+        align-items: center;
+        column-gap: 5px;
+        display: flex;
+        position:relative;
+        top: 5px; 
+      }
+
+      div.rating > img {
+        height: auto;
+        display: inline-block;
+        object-fit: scale-down;
+        width: 78px;
+      }
+
+      time{
+        position: relative;
+        top: 8px;
       }
       .card__btn {
         padding: 1rem;
@@ -65,16 +103,39 @@ class RecipeCard extends HTMLElement {
         font-weight: bold;
         font-size: 1rem;
         margin: 1rem;
-        border: 2px solid red;
+        border: 2px solid darkgreen;
         background: transparent;
-        color: red;
-        border-radius: 0.2rem;  
+        color: green;
+        border-radius: 0.4rem;
       }
+
+      .ingred > img{
+        position:relative;
+        top: 20px; 
+        right 10px;  
+        height: 30px; 
+        width: 30px; 
+      }
+
+      .ingred > span{
+        position:relative;
+        top:14px;
+      }
+      p.ingredients {
+        position:relative;
+        top: 20px;
+        height: 32px;
+        line-height: 16px;
+        padding-top: 2px;
+        overflow: hidden;
+      }
+
       .card:hover {
         transform: scale(1.02);
       }
+    
       .card:hover .card__btn {
-        background: red;
+        background: darkgreen;
         color: white;
       } 
     `;
@@ -142,10 +203,61 @@ class RecipeCard extends HTMLElement {
       titl.classList.add("card__title");
       titl.textContent = title;
       card_body.appendChild(titl);
-      
+
+       /* ************************
+                Organization 
+         ************************
+      */
+       const organization = document.createElement("p");
+       organization.classList.add("card__organization");
+       const org = getOrganization(data) || searchForKey(data, "organization");
+       organization.textContent = org;
+       card_body.append(organization);
+       
+       /* ************************
+                Rating 
+         ************************
+      */
+        const ratingV = searchForKey(data, "aggregateRating")?.ratingValue; 
+        const ratingC = searchForKey(data, "aggregateRating")?.ratingCount; 
+
+        const rating = document.createElement('div');
+        rating.classList.add('rating');
+        const ratingScore = document.createElement('span');
+        rating.appendChild(ratingScore);
+    
+        if (ratingV) { //if the recipe has a review
+          const ratingCount = document.createElement('span');
+          const ratingImg = document.createElement('img');
+    
+          const ratingImgScore = Math.round(ratingV); //we round to the nearest integer in order to use one of the star svg's given
+    
+          ratingImg.setAttribute('src', `assets/images/${ratingImgScore}-star.svg`); //set the new start svg
+    
+          ratingScore.textContent = Math.round(ratingV*100)/100; //we do this in order to evade having such a big decimal number (rounds to 2 decimal points)
+          ratingCount.textContent = `(${ratingC})`;  //we set the amount of reviews (count)
+    
+          rating.appendChild(ratingImg);
+          rating.appendChild(ratingCount);
+        } else {
+          ratingScore.textContent = "There are currently no reviews"; //if there is no ratingV then the recipe has no reviews
+        }
+        card_body.appendChild(rating)
+
+        /* ************************
+                Time 
+         **************************
+      */
+        const time = document.createElement('time');
+        const totalTime = searchForKey(data, 'totalTime');
+        time.textContent = convertTime(totalTime);
+        card_body.appendChild(time);
+
+
+
        /* ************************
                 Description 
-         ************************
+         *************************
       */
       const info = searchForKey(data, "description");
       const description = document.createElement("p");
@@ -153,12 +265,44 @@ class RecipeCard extends HTMLElement {
       description.textContent = info;
       card_body.appendChild(description);
 
+       /* ************************
+                Ingredient Title 
+         **************************
+      */
+      const ingTitle = document.createElement("div");
+      ingTitle.classList.add("ingred");
+
+      const ingImg = document.createElement("img");
+      ingImg.setAttribute("src", "assets/images/ingredients.png");
+      ingImg.setAttribute("alt", "Ingredients Image");
+
+      ingTitle.appendChild(ingImg);
+
+      const ti = document.createElement("span");
+      ti.textContent = "Ingredients:";
+      ingTitle.appendChild(ti);
+
+      card_body.appendChild(ingTitle);
+
+    //   <div class="ingred">
+    //    <img src="assets/images/ingredients.png" alt="ing">
+    //    <span>Ingedents:</span>
+    // </div>
+
+      /* ************************
+                Ingredients 
+         ************************
+      */
+       const ingredients = document.createElement('p');
+       ingredients.classList.add('ingredients');
+       const ingredientsList = searchForKey(data, 'recipeIngredient');
+       ingredients.textContent = createIngredientList(ingredientsList);
+       card_body.appendChild(ingredients);
 
        /* ************************
                 Button 
          ************************
       */
-
       const button = document.createElement("button");
       button.classList.add("card__btn");
       button.textContent = "View Recipe";
