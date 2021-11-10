@@ -1,4 +1,4 @@
-class EditRecipe extends HTMLElement {
+class NutritionPage extends HTMLElement {
     constructor() {
         super();
         let shadow = this.attachShadow({mode: "open"});
@@ -153,7 +153,7 @@ class EditRecipe extends HTMLElement {
         let page = document.createElement("article");
 
         ///////////////////////////////////////////////////////////////////////////////
-        ///////////////////////// creating the header section /////////////////////////
+        ///////////////////////// Creating the header section /////////////////////////
         ///////////////////////////////////////////////////////////////////////////////
         let header = document.createElement("header");
         let headerDiv = document.createElement("div");
@@ -167,7 +167,7 @@ class EditRecipe extends HTMLElement {
         header.appendChild(headerDiv);
 
         /////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////// creating the main and origin //////////////////////////////////
+        ///////////////////////// Creating the main and origin //////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
         
         let main = document.createElement("main");
@@ -175,46 +175,172 @@ class EditRecipe extends HTMLElement {
         let origin = document.createElement("div");
         origin.classList.add("origin");
 
+        /////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// Creating the Servings /////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
         
+        let amountPerServings = document.createElement("section");
+        amountPerServings.classList.add("amountPerServings");
+        let servings = document.createElement("div");
+        servings.classList.add("servings");
+        servings.innerHTML("Enter the amount of servings");
 
-
-        let picSection = document.createElement("section");
-        let picTitle = document.createElement("textarea");
-        picSection.setAttribute("class", "picture");
-        picTitle.setAttribute("id", "recipe-name");
-        picTitle.innerHTML = "Recipe Name";
-
-        let picImgContainer = document.createElement("div");
-        let picImgDiv = document.createElement("div");
-        let picImage = document.createElement("img");
-        let picInput = document.createElement("input");
-        picImgContainer.setAttribute("class", "recipe-image-container");
-        picImgDiv.setAttribute("class", "recipe-image-div");
-        picImage.setAttribute("class", "recipe-image");
-        picImage.setAttribute("alt", "Uploaded image");
-        picImage.setAttribute("width", "300");
-        picImage.setAttribute("height", "200");
-        picInput.setAttribute("type", "file");
-        picInput.setAttribute("accept", "image/*");
-
-        picImgDiv.appendChild(picImage);
-        picImgContainer.appendChild(picImgDiv);
-        picImgContainer.appendChild(picInput);
-
-        picSection.appendChild(picTitle);
-        picSection.appendChild(picImgContainer);
+        let form = document.createElement("form");
+        form.setAttribute("action", "");
+        let label = document.createElement("label");
+        label.setAttribute("for", "amount");
+        let input = document.createElement("input");
+        input.setAttribute("type", "text");
+        input.setAttribute("id", "servingSize");
+        input.setAttribute("name", "amount");
         
-        
-        
-        
+        form.appendChild(label);
+        form.appendChild(input);
+        servings.appendChild(form);
+        amountPerServings.appendChild(servings);
 
+
+        /////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////// Creating the Nutrition Facts /////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        
+        let facts = document.createElement("section");
+        facts.classList.add("facts");
+        let gridContainer = document.createElement("div");
+        gridContainer.classList.add("gird-container");
+
+        // calories
+        let calories = document.createElement("div");
+        calories.classList.add("item calories");
+        let caloriesDiv = document.createElement("div");
+        caloriesDiv.innerHTML("Calories");
+        let caloriesSpan = document.createElement("span");
+        caloriesSpan.innerHTML("100");
+
+        calories.appendChild(caloriesDiv);
+        calories.appendChild(caloriesSpan);
+
+        // sat-fat
+        let satFat = document.createElement("div");
+        satFat.classList.add("item sat-fat");
+        let satFatDiv = document.createElement("div");
+        satFatDiv.innerHTML("Total Fat");
+        let satFatSpan = document.createElement("span");
+        satFatSpan.innerHTML("100");
+
+        satFat.appendChild(satFatDiv);
+        satFat.appendChild(satFatSpan);
+
+        // trans-fat
+        let transFat = document.createElement("div");
+        transFat.classList.add("item trans-fat");
+        let transFatDiv = document.createElement("div");
+        transFatDiv.innerHTML("Trans Fat");
+        let transFatSpan = document.createElement("span");
+        transFatSpan.innerHTML("100");
+
+        transFat.appendChild(transFatDiv);
+        transFat.appendChild(transFatSpan);
+
+        // cholesterol
+        let cholesterol = document.createElement("div");
+        cholesterol.classList.add("item cholesterol");
+        let cholesterolDiv = document.createElement("div");
+        cholesterolDiv.innerHTML("Cholesterol");
+        let cholesterolSpan = document.createElement("span");
+        cholesterolSpan.innerHTML("100");
+
+        cholesterol.appendChild(cholesterolDiv);
+        cholesterol.appendChild(cholesterolSpan);
+
+        // sodium
+        let sodium = document.createElement("div");
+        sodium.classList.add("item sodium");
+        let sodiumDiv = document.createElement("div");
+        sodiumDiv.innerHTML("Sodium");
+        let sodiumSpan = document.createElement("span");
+        sodiumSpan.innerHTML("100");
+
+        sodium.appendChild(sodiumDiv);
+        sodium.appendChild(sodiumSpan);
+
+        // carbohydrate
+        let carbohydrate = document.createElement("div");
+        carbohydrate.classList.add("item carbohydrate");
+        let carbohydrateDiv = document.createElement("div");
+        carbohydrateDiv.innerHTML("Carbohydrate");
+        let carbohydrateSpan = document.createElement("span");
+        carbohydrateSpan.innerHTML("100");
+
+        carbohydrate.appendChild(carbohydrateiv);
+        carbohydrate.appendChild(carbohydrateSpan);
+
+        // fiber
+        let fiber = document.createElement("div");
+        fiber.classList.add("item fiber");
+        let fiberDiv = document.createElement("div");
+        fiberDiv.innerHTML("Dietary Fiber");
+        let fiberSpan = document.createElement("span");
+        fiberSpan.innerHTML("100");
+
+        fiber.appendChild(fiberDiv);
+        fiber.appendChild(fiberSpan);
+
+        // sugars
+        let sugars = document.createElement("div");
+        sugars.classList.add("item sugars");
+        let sugarsDiv = document.createElement("div");
+        sugarsDiv.innerHTML("Total Sugars");
+        let sugarsSpan = document.createElement("span");
+        sugarsSpan.innerHTML("100");
+
+
+        sugars.appendChild(sugarsDiv);
+        sugars.appendChild(sugarsSpan);
+
+        // protein
+        let protein = document.createElement("div");
+        protein.classList.add("item protein");
+        let proteinDiv = document.createElement("div");
+        proteinDiv.innerHTML("Protein");
+        let proteinSpan = document.createElement("span");
+        proteinSpan.innerHTML("100");
+
+
+        protein.appendChild(proteinDiv);
+        protein.appendChild(proteinSpan);
+
+        // vitamins
+        let vitamins = document.createElement("div");
+        vitamins.classList.add("item vitamins");
+        let vitaminsDiv = document.createElement("div");
+        vitaminsDiv.innerHTML("Vitamins");
+        let vitaminsSpan = document.createElement("span");
+        vitaminsSpan.innerHTML("100");
+
+        vitamins.appendChild(vitaminsDiv);
+        vitamins.appendChild(vitaminsSpan);
+
+        // append all divs to grid-container
+
+        gridContainer.appendChild(calories);
+        gridContainer.appendChild(satFat);
+        gridContainer.appendChild(transFat);
+        gridContainer.appendChild(cholesterol);
+        gridContainer.appendChild(sodium);
+        gridContainer.appendChild(carbohydrate);
+        gridContainer.appendChild(fiber);
+        gridContainer.appendChild(sugars);
+        gridContainer.appendChild(protein);
+        gridContainer.appendChild(vitamins);
+
+        facts.appendChild(gridContainer);
+        
         ////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////// Append origin children //////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
-        origin.appendChild(picSection);
-        origin.appendChild(dietSection);
-        origin.appendChild(ingredientSection);
-        origin.appendChild(instructionSection);
+        origin.appendChild(amountPerServings);
+        origin.appendChild(facts);
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////// Append main children //////////////////////////////////////////////
@@ -228,28 +354,18 @@ class EditRecipe extends HTMLElement {
 
         // Action Button Div
         let actionButtons = document.createElement("div");
-        actionButtons.setAttribute("class", "action-buttons");
+        actionButtons.classList.add("action-buttons");
 
         // Action Buttons
-        let submitButton = document.createElement("button");
-        let deleteButton = document.createElement("button");
-        let cancelButton = document.createElement("button");
-
-        submitButton.setAttribute("id", "submit-edit");
-        deleteButton.setAttribute("id", "delete-edit");
-        cancelButton.setAttribute("id", "cancel-edit");
-        submitButton.innerHTML = "Submit";
-        deleteButton.innerHTML = "Delete";
-        cancelButton.innerHTML = "Cancel";
+        let backButton = document.createElement("button");
+        backButton.setAttribute("id", "back");
+        backButton.innerHTML("Go Back");
 
         // Append Buttons to Div
-        actionButtons.appendChild(submitButton);
-        actionButtons.appendChild(deleteButton);
-        actionButtons.appendChild(cancelButton);
+        actionButtons.appendChild(backButton);
 
         // Append Div to footer 
         footer.appendChild(actionButtons);
-
 
         ////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////// Append header, main, footer to article ////////////////////////////
@@ -266,5 +382,5 @@ class EditRecipe extends HTMLElement {
     }
 }
 
-// define the 'edit-recipe' element using this class
-customElements.define("edit-recipe", EditRecipe);
+// define the 'nutrition-page' element using this class
+customElements.define("nutrition-page", NutritionPage);
