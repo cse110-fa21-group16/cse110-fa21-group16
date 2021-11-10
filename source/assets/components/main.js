@@ -35,7 +35,7 @@ const recipes = [
     let fetchSuccessful = await fetchRecipes();
     // if they didn't successfully load, quit the function
     if (!fetchSuccessful) {
-      console.log('Recipe fetch unsuccessful');
+      console.log("Recipe fetch unsuccessful");
       return;
     };
   
@@ -69,36 +69,13 @@ const recipes = [
       });
     });
   }
-  
-  
-  
-      // This function is called for you up above
-      // From this function, you are going to fetch each of the recipes in the 'recipes' array above.
-      // Once you have that data, store it in the 'recipeData' object. You can use whatever you like
-      // for the keys. Once everything in the array has been successfully fetched, call the resolve(true)
-      // callback function to resolve this promise. If there's any error fetching any of the items, call
-      // the reject(false) function.  
-  
-      // For part 2 - note that you can fetch local files as well, so store any JSON files you'd like to fetch
-      // in the recipes folder and fetch them from there. You'll need to add their paths to the recipes array.
-  
-      // Part 1 Expose - TODO
-  
-  
+    
   function createRecipeCards() {
   
-   
-    // This function is called for you up above.
-    // From within this function you can access the recipe data from the JSON 
-    // files with the recipeData Object above. Make sure you only display the 
-    // three recipes we give you, you'll use the bindShowMore() function to
-    // show any others you've added when the user clicks on the "Show more" button.
-  
-    // Part 1 Expose - TODO
-      const main = document.querySelector('main');
+      const main = document.querySelector("main");
       for (let i = 0; i < recipes.length; i++) //iterate through the whole recipes array
       {
-      const CardtoCreate = document.createElement('recipe-card'); //create a card for it
+      const CardtoCreate = document.createElement("recipe-card"); //create a card for it
       CardtoCreate.data = recipeData[recipes[i]]; //store the data into the card
       main.appendChild(CardtoCreate); //append to main so it shows up
 
@@ -106,11 +83,11 @@ const recipes = [
       }
   }
   
-  /*function bindShowMore() {
+  function bindShowMore() {
   
-    const main = document.querySelector('main');
-    const button = document.querySelector('button');
-    const arrow = document.querySelector('#button-wrapper>img');
+    const main = document.querySelector("main");
+    const button = document.querySelector("button");
+    const arrow = document.querySelector("#button-wrapper>img");
     
     const addRecipes = [] //used to we can later delete them
     let moreOrLess = false; //when set to false means it's not expanded, else it is expanded
@@ -126,7 +103,7 @@ const recipes = [
     {
       for (let i = 0; i < newRecipes.length; i++) //traverse through the new recipes
       {
-        const CardtoCreate = document.createElement('recipe-card');
+        const CardtoCreate = document.createElement("recipe-card");
         CardtoCreate.data = recipeData[newRecipes[i]]; 
         addRecipes.push(CardtoCreate); //create a recipe card and put it in our addRecipes array (this is used in order to remove them later from main)
       }
@@ -155,4 +132,4 @@ const recipes = [
     })
   
   }
-  */    
+    
