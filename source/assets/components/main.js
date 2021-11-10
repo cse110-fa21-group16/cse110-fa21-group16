@@ -8,13 +8,13 @@ const recipes = [
     'https://introweb.tech/assets/json/chocolateChip.json',
     'assets/recipes/roasted_brussel_sprouts.json',
     'assets/recipes/greek_chicken_skewers.json',
-    'assets/recipes/chicken_apple.json',
+    'assets/recipes/quickEasyPaste.json',
     'https://introweb.tech/assets/json/ghostCookies.json',
     'https://introweb.tech/assets/json/birthdayCake.json',
     'https://introweb.tech/assets/json/chocolateChip.json',
     'assets/recipes/roasted_brussel_sprouts.json',
     'assets/recipes/greek_chicken_skewers.json',
-    'assets/recipes/chicken_apple.json'
+    'assets/recipes/quickEasyPaste.json',
   ];
   
 
