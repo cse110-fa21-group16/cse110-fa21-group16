@@ -92,27 +92,26 @@ main {
   width: 150px;
   height: 150px;
   border: 1px solid rgb(48, 90, 80);
-  margin: 1em 0;
   border-radius: 10px;
+  margin: 10px;
 }
 
 .recipe-list {
   width: 90%;
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
+  justify-content: space-between
 }
 
 #add-recipe {
-  width: 150px;
+  width: 152px;
   height: 152px;
   background-color: rgb(48, 90, 80);
   color: white;
-  margin: 1em 0;
   border-radius: 10px;
-  cursor: pointer;
-  /* font-size: 40px; */
-  padding: 0px 0px 0px 0px;
+  border: none;
+  font-size: 40px;
+  margin: 10px;
 }
 
 .recipe-name {
