@@ -83,53 +83,53 @@ const recipes = [
       }
   }
   
-  function bindShowMore() {
+  // function bindShowMore() {
   
-    const main = document.querySelector("main");
-    const button = document.querySelector("button");
-    const arrow = document.querySelector("#button-wrapper>img");
+  //   const main = document.querySelector("main");
+  //   const button = document.querySelector("button");
+  //   const arrow = document.querySelector("#button-wrapper>img");
     
-    const addRecipes = [] //used to we can later delete them
-    let moreOrLess = false; //when set to false means it's not expanded, else it is expanded
+  //   const addRecipes = [] //used to we can later delete them
+  //   let moreOrLess = false; //when set to false means it's not expanded, else it is expanded
   
-    button.addEventListener('click', () => {
+  //   button.addEventListener('click', () => {
         
-      if (moreOrLess)
-        moreOrLess = false;
-      else
-        moreOrLess = true;
+  //     if (moreOrLess)
+  //       moreOrLess = false;
+  //     else
+  //       moreOrLess = true;
   
-    if (moreOrLess) //if we are on show more
-    {
-      for (let i = 0; i < newRecipes.length; i++) //traverse through the new recipes
-      {
-        const CardtoCreate = document.createElement("recipe-card");
-        CardtoCreate.data = recipeData[newRecipes[i]]; 
-        addRecipes.push(CardtoCreate); //create a recipe card and put it in our addRecipes array (this is used in order to remove them later from main)
-      }
+  //   if (moreOrLess) //if we are on show more
+  //   {
+  //     for (let i = 0; i < newRecipes.length; i++) //traverse through the new recipes
+  //     {
+  //       const CardtoCreate = document.createElement("recipe-card");
+  //       CardtoCreate.data = recipeData[newRecipes[i]]; 
+  //       addRecipes.push(CardtoCreate); //create a recipe card and put it in our addRecipes array (this is used in order to remove them later from main)
+  //     }
   
-      for (let j = 0; j < addRecipes.length; j++) //traverse through the addRecipes array and append every card into main
-      {
-        main.appendChild(addRecipes[j]);
-      }
-      button.textContent = "Show Less"; //change the text to "show less"
-      arrow.style.transform = "rotate(180deg)"; //rotate the arrow upside down
-    }
-    else
-    {
-      for (let k = 0; k < addRecipes.length; k++) //else if we are on show less we traverse through the addrecipes array
-      {
-        main.removeChild(addRecipes[k]); //we get that card and we remove it from main 
-      }
-      while (addRecipes.length != 0) //while addRecipes array is not empty we pop it (empty it out) 
-      {
-          addRecipes.pop();
-      }
-      button.textContent = "Show More"; //change the text of the button 
-      arrow.style.transform = "rotate(0deg)"; //rotate the arrow to its original position
+  //     for (let j = 0; j < addRecipes.length; j++) //traverse through the addRecipes array and append every card into main
+  //     {
+  //       main.appendChild(addRecipes[j]);
+  //     }
+  //     button.textContent = "Show Less"; //change the text to "show less"
+  //     arrow.style.transform = "rotate(180deg)"; //rotate the arrow upside down
+  //   }
+  //   else
+  //   {
+  //     for (let k = 0; k < addRecipes.length; k++) //else if we are on show less we traverse through the addrecipes array
+  //     {
+  //       main.removeChild(addRecipes[k]); //we get that card and we remove it from main 
+  //     }
+  //     while (addRecipes.length != 0) //while addRecipes array is not empty we pop it (empty it out) 
+  //     {
+  //         addRecipes.pop();
+  //     }
+  //     button.textContent = "Show More"; //change the text of the button 
+  //     arrow.style.transform = "rotate(0deg)"; //rotate the arrow to its original position
   
-    } 
-    })
+  //   } 
+  //   })
   
-  }
+  // }
     
