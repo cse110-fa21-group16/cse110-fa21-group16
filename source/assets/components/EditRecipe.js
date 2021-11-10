@@ -353,7 +353,7 @@ class EditRecipe extends HTMLElement {
 
         let dietDiv = document.createElement("div");
         let dietTitle = document.createElement("h2");
-        dietDiv.setAttribute("class", "diet-restriction-div");
+        dietDiv.setAttribute("class", "diet-restrict-div");
         dietTitle.setAttribute("class", "title");
         dietTitle.innerHTML = "Diet Restriction";
         
@@ -517,7 +517,7 @@ class EditRecipe extends HTMLElement {
 
         // Procedures div 
         let procedures = document.createElement("div");
-        procedures.setAttribute("class", "step-div");
+        procedures.setAttribute("class", "procedures");
 
         // Procedure Title 
         let procedureTitle = document.createElement("h2");
@@ -559,7 +559,7 @@ class EditRecipe extends HTMLElement {
         procedures.appendChild(procedureDivList);
 
         // Append procedures to instruction section 
-        instructionSection.appendChild(procedureDivList);
+        instructionSection.appendChild(procedures);
         
 
         ////////////////////////////////////////////////////////////////////////////////////////////
