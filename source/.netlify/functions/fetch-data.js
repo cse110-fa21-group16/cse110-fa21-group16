@@ -16,14 +16,14 @@ const APIKey = process.env.API_KEY;
 //     });
 // }
 
-const API_ENDPOINT = "https://icanhazdadjoke.com/";
+const API_ENDPOINT = "https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30";
 
 exports.handler = async (event, context) => {
   return fetch(API_ENDPOINT, { headers: { Accept: "application/json" } })
     .then((response) => response.json())
     .then((data) => ({
       statusCode: 200,
-      body: data.joke,
+      body: data,
     }))
     .catch((error) => ({ statusCode: 422, body: String(error) }));
 };
