@@ -7,7 +7,7 @@ class RecipeCardFea extends HTMLElement {
   }
 
   set data(data) {
-    const styleElem = document.createElement('style');
+    const styleElem = document.createElement("style");
     const styles = `
       * {
         margin: 0;
