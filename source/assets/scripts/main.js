@@ -137,9 +137,7 @@ async function checkAndLoad() {
  */
  async function fetchData() {
     return new Promise((resolve, reject) => {
-        let APIKey = 'eeddc2691bca41409c4571260c14987b';
-    
-        fetch(`https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30`)
+        fetch(`/.netlify/functions/fetch-data`)
         .then(response => response.json())
         .then(data => {
             console.log(data['recipes']);
