@@ -81,7 +81,7 @@ async function fetchRecipes() {
 function createFeaRecipeCards() {
   return new Promise((resolve, reject) => {
     for (let i = 0; i < 3; i++) {
-      let newRecipeCard = document.createElement('recipe-card-fea');
+      let newRecipeCard = document.createElement("recipe-card-fea");
       newRecipeCard.data = feaRecipeData[i];
       $('#featured-list').appendChild(newRecipeCard);
     }
