@@ -38,4 +38,4 @@ class EmptyCard extends HTMLElement {
   }
 }
 
-customElements.define('empty-card', EmptyCard);
+customElements.define("empty-card", EmptyCard);
