@@ -137,7 +137,7 @@ async function checkAndLoad() {
  */
  async function fetchData() {
     return new Promise((resolve, reject) => {
-        fetch(`/.netlify/functions/fetch-data`)
+        fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
         .then(response => response.json())
         .then(data => {
             console.log(data['recipes']);
