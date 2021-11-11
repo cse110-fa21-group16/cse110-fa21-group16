@@ -1,11 +1,11 @@
 class EditRecipe extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({mode: 'open'});
+        this.attachShadow({mode: "open"});
     }
 
     set(data) {
-        let styling = document.createElement('style');
+        let styling = document.createElement("style");
         let styles =
         `
         /* Delete Confirmation Section Style */
@@ -49,10 +49,10 @@ class EditRecipe extends HTMLElement {
         }
         `;
 
-        styling.innerHTML = styles;
+        styling.textContent = styles;
 
         // Root Element
-        let deleteSection = document.createElement("section")
+        let deleteSection = document.createElement("section");
 
         // Root Attributes
         deleteSection.setAttribute("class", "delete-confirmation");
