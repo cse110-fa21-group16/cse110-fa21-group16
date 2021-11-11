@@ -20,7 +20,6 @@ const API_ENDPOINT = `https://api.spoonacular.com/recipes/random?apiKey=${APIKey
 
 exports.handler = async (event, context) => {
     return new Promise((resolve, reject) => {
-
 		fetch(API_ENDPOINT)
         .then(res => res.json())
         .then(data => {
