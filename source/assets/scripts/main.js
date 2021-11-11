@@ -9,7 +9,7 @@ const featureRecipes = [
   'https://introweb.tech/assets/json/chocolateChip.json',
   'assets/recipes/meatball.json',
   'assets/recipes/quickEasyPaste.json',
-  'assets/recipes/pumpkinMuffins.json'
+  "assets/recipes/pumpkinMuffins.json"
 ];
 
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
