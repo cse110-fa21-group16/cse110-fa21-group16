@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 const APIKey = process.env.API_KEY;
 
 export function handler(event, context, callback) {
