@@ -136,7 +136,5 @@ async function checkAndLoad() {
  * @returns a Promise of fetched data
  */
  async function fetchData() {
-    return new Promise((resolve, reject) => {
-        fetch(`/.netlify/functions/fetch-data`);
-    });
+    await fetch(`/.netlify/functions/fetch-data`);
 }
