@@ -1,14 +1,12 @@
 class RecipeCard extends HTMLElement {
   constructor() {
     super();
-    // Part 1 Expose - TODO
-    this.attachShadow({mode: 'open'});
-    // You'll want to attach the shadow DOM here
+    this.attachShadow({mode: "open"});
   }
 
   set data(data) {
     // This is the CSS that you'll use for your recipe cards
-    const styleElem = document.createElement('style');
+    const styleElem = document.createElement("style");
     const styles = `
 
     * {
@@ -88,13 +86,16 @@ class RecipeCard extends HTMLElement {
   `;
   styleElem.innerHTML = styles;
 
-  const card = document.createElement('article');
-
-  const recipeImg = document.createElement('img');
+  //recipe card
+  const card = document.createElement("article");
+  
+  //recipe card image
+  const recipeImg = document.createElement("img");
   recipeImg.src = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url");
   recipeImg.alt = searchForKey(data, "headline");
   card.appendChild(recipeImg);
 
+  //recipe card favorite button
   const input = document.createElement("input");
     let liked = true;
     input.classList.add("favorite");
@@ -120,116 +121,32 @@ class RecipeCard extends HTMLElement {
     card.appendChild(input);
 
   // p element - title
-  const recipeTitle = document.createElement('p');
+  const recipeTitle = document.createElement("p");
   recipeTitle.classList.add("title");
   recipeTitle.textContent = searchForKey(data, "headline");
   card.appendChild(recipeTitle);
 
   //time element
-  const time = document.createElement('time');
-  const totalTime = searchForKey(data, 'totalTime');
+  const time = document.createElement("time");
+  const totalTime = searchForKey(data, "totalTime");
   time.textContent = convertTime(totalTime);
   card.appendChild(time);
 
   // button element - check recipe
-  const checkButton = document.createElement('button');
+  const checkButton = document.createElement("button");
   checkButton.classList.add("cook");
-  checkButton.textContent = "COOK!";
+  checkButton.textContent = "View Recipe  ";
   card.appendChild(checkButton);
   checkButton.addEventListener("click", function (event) {
     showCheck(data);
   });
 
+   this.shadowRoot.appendChild(styleElem);
+   this.shadowRoot.appendChild(card);
 
-  
-  //   const img = document.createElement('img');
-  //   // console.log(data);
-  //   const imgSrc = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url"); //get the thumbnail url
-  //   const title = searchForKey(data, "headline");  //might change 
-  //   const organization = getOrganization(data) || searchForKey(data, "organization"); //get the organization name
-  //   const linkToArticle = getUrl(data) || searchForKey(data, 'mainEntityOfPage'); //get the url to the article)
-  //   const ratingV = searchForKey(data, "aggregateRating")?.ratingValue; //get the rating value of the recipe
-  //   const ratingC = searchForKey(data, "aggregateRating")?.ratingCount; //get the rating count of the recipe
-
-  //   img.setAttribute("src", imgSrc);  //store the source of the image for the recipe
-  //   img.setAttribute("alt", title); //store the alternative text 
-  //   card.appendChild(img); //append to 'article'
-
-  //   const titl = document.createElement('p'); //create the title element
-  //   titl.classList.add('title'); //add it to the class title 
-  //   const link = document.createElement('a'); //create the link element
-  //   link.setAttribute("href", linkToArticle); //set its link to the link of the article
-  //   link.textContent = title; //change the content of the link to its headline 
-  //   titl.appendChild(link); 
-  //   card.appendChild(titl);
-    
-  //   const org = document.createElement('p');
-  //   org.classList.add("organization");
-  //   org.textContent = organization; //change the organization name
-  //   card.appendChild(org); 
-
-
-  //   const rating = document.createElement('div');
-  //   rating.classList.add('rating');
-  //   const ratingScore = document.createElement('span');
-  //   rating.appendChild(ratingScore);
-
-  //   if (ratingV) { //if the recipe has a review
-  //     const ratingCount = document.createElement('span');
-  //     const ratingImg = document.createElement('img');
-
-  //     const ratingImgScore = Math.round(ratingV); //we round to the nearest integer in order to use one of the star svg's given
-
-  //     ratingImg.setAttribute('src', `assets/images/icons/${ratingImgScore}-star.svg`); //set the new start svg
-
-  //     ratingScore.textContent = Math.round(ratingV*100)/100; //we do this in order to evade having such a big decimal number (rounds to 2 decimal points)
-  //     ratingCount.textContent = `(${ratingC})`;  //we set the amount of reviews (count)
-
-  //     rating.appendChild(ratingImg);
-  //     rating.appendChild(ratingCount);
-  //   } else {
-  //     ratingScore.textContent = "There are currently no reviews"; //if there is no ratingV then the recipe has no reviews
-  //   }
-  //   card.appendChild(rating)
-
-  //   const time = document.createElement('time');
-  //   const totalTime = searchForKey(data, 'totalTime');
-  //   time.textContent = convertTime(totalTime);
-  //   card.appendChild(time);
-
-  //   const ingredients = document.createElement('p');
-  //   ingredients.classList.add('ingredients');
-  //   const ingredientsList = searchForKey(data, 'recipeIngredient');
-  //   ingredients.textContent = createIngredientList(ingredientsList);
-  //   card.appendChild(ingredients);
-
-    this.shadowRoot.appendChild(styleElem);
-    this.shadowRoot.appendChild(card);
-
-    // Some functions that will be helpful here:
-    //    document.createElement()
-    //    document.querySelector()
-    //    element.classList.add()
-    //    element.setAttribute()
-    //    element.appendChild()
-    //    & All of the helper functions below
-
-    // Make sure to attach your root element and styles to the shadow DOM you
-    // created in the constructor()
-
-    // Part 1 Expose - TODO
-
-
-    
   }
 }
 
-
-/*********************************************************************/
-/***                       Helper Functions:                       ***/
-/***          Below are some functions I used when making          ***/
-/***     the solution, feel free to use them or not, up to you     ***/
-/*********************************************************************/
 
 /**
  * Recursively search for a key nested somewhere inside an object
@@ -348,5 +265,5 @@ function createIngredientList(ingredientArr) {
 
 
 // Define the Class so you can use it as a custom element.
-// This is critical, leave this here and don't touch it
 customElements.define('recipe-card', RecipeCard);
+
