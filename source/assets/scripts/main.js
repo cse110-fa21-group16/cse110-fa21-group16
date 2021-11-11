@@ -112,22 +112,22 @@ function createFavRecipeCards() {
  * @returns void
  */
 async function checkAndLoad() {
-    if (storage.getItem('recipes') == undefined) { // create new entry if data not found in storage
+    if (storage.getItem("recipes") === undefined) { // create new entry if data not found in storage
         let fetchSuccess = await fetchData();
         if (!fetchSuccess) {
             console.log("Failed fetch");
         }
 
         // store fetched data to storage
-        storage.setItem('recipes', JSON.stringify(recipes));
+        storage.setItem("recipes", JSON.stringify(recipes));
 
         // now load data from storage into 'recipes' variable
-        let dataFromStorage = JSON.parse(storage.getItem('recipes'));
+        let dataFromStorage = JSON.parse(storage.getItem("recipes"));
         recipes = dataFromStorage;
     } else { // pull data from storage if key is found found
-        let dataFromStorage = JSON.parse(storage.getItem('recipes'));
+        let dataFromStorage = JSON.parse(storage.getItem("recipes"));
         recipes = dataFromStorage;
-        console.log("recipes: " + recipes);
+        // console.log("recipes: " + recipes);
     }
 }
 
@@ -140,14 +140,14 @@ async function checkAndLoad() {
  async function fetchData() {
     return new Promise((resolve, reject) => {
         fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
-        .then(response => response.json())
-        .then(data => {
-            console.log(data['recipes']);
-            let fetchedData = data['recipes'];
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data["recipes"]);
+            let fetchedData = data["recipes"];
             for (let i = 0; i < fetchedData.length; i++) {
                 recipes[i] = fetchedData[i];
             }
             resolve(true);
-        }).catch(error => reject(false));
+        }).catch((error) => reject(false));
     });
 }
