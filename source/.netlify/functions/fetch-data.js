@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const APIKey = process.env.API_KEY;
 
-export function handler(event, context, callback) {
+exports.handler = function(event, context, callback) {
     const url = `https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30`;
     fetch(url)
     .then(response => response.json())
