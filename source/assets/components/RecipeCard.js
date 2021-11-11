@@ -104,6 +104,10 @@ class RecipeCard extends HTMLElement {
     
     input.addEventListener("click", changeHeart);
     
+    /**
+     * Toggle on and off the favorite heart button
+     * @returns void
+     */
     function changeHeart()
     {
       if (liked)
