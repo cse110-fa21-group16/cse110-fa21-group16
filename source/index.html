@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="Group16 Recipe Demo" />
+    <meta name="keywords" content="Recipe, Demo" />
+    <meta name="author" content="Group16" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Group16 Recipe Demo</title>
+    <link href="assets/images/icons/WEBICON.ico" rel="icon" />
+
+    <script src="assets/components/RecipeCardMy.js" type="module"></script>
+    <script src="assets/components/RecipeCardFea.js" type="module"></script>
+    <script src="assets/components/NewCard.js" type="module"></script>
+    <script src="assets/components/EmptyCard.js" type="module"></script>
+
+    <link rel="stylesheet" href="assets/styles/main.css" type="text/css">
+    <script src="assets/scripts/main.js" type="module"></script>
+</head>
+
+<body>
+    <header>
+        <section id="web-info">
+            <a href="index.html">LOGO</a>
+            <h1>Web Name</h1>
+        </section>
+        <section id="head-buttons">
+            <button id="search-button">SEARCH</button>
+            <button id="filters-button">Filters</button>
+        </section>
+    </header>
+
+    <main>
+        <section class="main-item" id="featured-recipes">
+            <div class="main-item-title">
+                <a class="item-title" href="">Featured Recipes of the Day</a>
+                <img class="arrow-img" src="assets/images/icons/arrow.svg" width="15px" />
+            </div>
+            <div class="recipes-list" id="featured-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="favorite-recipes">
+            <div class="main-item-title">
+                <a class="item-title">Favorites</a>
+                <img class="arrow-img" src="assets/images/icons/arrow.svg" width="15px" />
+            </div>
+            <div class="recipes-list" id="favorite-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="my-recipes">
+            <div class="main-item-title">
+                <a class="item-title">My Recipes</a>
+                <img class="arrow-img" src="assets/images/icons/arrow.svg" width="15px" />
+            </div>
+            <div class="recipes-list" id="my-list">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <img class="arrow-img" src="assets/images/icons/add.svg" width="50px" />
+    </footer>
+</body>
+
+</html>
