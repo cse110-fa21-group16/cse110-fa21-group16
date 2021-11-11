@@ -3,7 +3,7 @@ const $ = (selector) => document.querySelector(selector);
 class RecipeCardMy extends HTMLElement {
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
+    this.shadow = this.attachShadow({ mode: "open" });
   }
 
   set data(data) {
