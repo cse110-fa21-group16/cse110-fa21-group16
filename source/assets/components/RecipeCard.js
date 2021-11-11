@@ -104,6 +104,10 @@ class RecipeCard extends HTMLElement {
       
       input.addEventListener("click", changeHeart);
       
+      /**
+       * Toggles on and off the heart based on favorite
+       * @returns void
+       */
       function changeHeart()
       {
         if (liked)
@@ -135,7 +139,7 @@ class RecipeCard extends HTMLElement {
     // button element - check recipe
     const checkButton = document.createElement("button");
     checkButton.classList.add("cook");
-    checkButton.textContent = "COOK!";
+    checkButton.textContent = "View Recipe  ";
     card.appendChild(checkButton);
     checkButton.addEventListener("click", function (event) {
       showCheck(data);
