@@ -2,9 +2,9 @@
   "name": "cse110-fa21-group16",
   "version": "1.0.0",
   "description": "This application will keep track of a multitude of recipes that you can use for your own cooking needs",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
-    "start": "npm install"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
