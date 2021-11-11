@@ -18,6 +18,10 @@ let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 const feaRecipeData = {};
 const favRecipeData = {};
 
+// new code added here
+let recipes = {};
+let storage = window.localStorage;
+
 window.addEventListener('DOMContentLoaded', init);
 
 
@@ -41,6 +45,7 @@ async function init() {
   };
 
   main();
+  checkAndLoad();
 }
 
 function main() {
@@ -98,4 +103,51 @@ function createFavRecipeCards() {
     }
     resolve(true);
   });
+}
+
+/**
+ * Check local storage for existing 'recipe' key
+ * If exists, then load data into the 'recipes' variable
+ * If not, create a new key in local storage, store fetched data in there, and load into variable
+ * @returns void
+ */
+async function checkAndLoad() {
+    if (storage.getItem("recipes") === undefined) { // create new entry if data not found in storage
+        let fetchSuccess = await fetchData();
+        if (!fetchSuccess) {
+            console.log("Failed fetch");
+        }
+
+        // store fetched data to storage
+        storage.setItem("recipes", JSON.stringify(recipes));
+
+        // now load data from storage into 'recipes' variable
+        let dataFromStorage = JSON.parse(storage.getItem("recipes"));
+        recipes = dataFromStorage;
+    } else { // pull data from storage if key is found found
+        let dataFromStorage = JSON.parse(storage.getItem("recipes"));
+        recipes = dataFromStorage;
+        // console.log("recipes: " + recipes);
+    }
+}
+
+/**
+ * Fetch data from spoonacular API (this function makes a call to another function
+ * in the back-end Netlify service that is used to call our API. This way, the API key 
+ * is hidden from the client-side)
+ * @returns a Promise of fetched data
+ */
+ async function fetchData() {
+    return new Promise((resolve, reject) => {
+        fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
+        .then((response) => response.json())
+        .then((data) => {
+            // console.log(data["recipes"]);
+            let fetchedData = data["recipes"];
+            for (let i = 0; i < fetchedData.length; i++) {
+                recipes[i] = fetchedData[i];
+            }
+            resolve(true);
+        }).catch((error) => reject(false));
+    });
 }
