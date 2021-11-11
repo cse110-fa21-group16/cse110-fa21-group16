@@ -84,7 +84,7 @@ class NutritionPage extends HTMLElement {
          .grid-container {
            display: grid;
            grid-template-columns: 100%;
-           max-width: 20%;
+           max-width: 21%;
            background-color: rgb(48, 90, 80);
            padding: 10px;
            margin: auto;
