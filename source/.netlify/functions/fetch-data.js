@@ -16,7 +16,7 @@ const APIKey = process.env.API_KEY;
 //     });
 // }
 
-const API_ENDPOINT = "https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30";
+const API_ENDPOINT = `https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30`;
 
 exports.handler = async (event, context) => {
     return new Promise((resolve, reject) => {
