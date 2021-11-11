@@ -136,6 +136,16 @@ async function checkAndLoad() {
  * @returns a Promise of fetched data
  */
  async function fetchData() {
-    let data =  await fetch(`/.netlify/functions/fetch-data`);
-    console.log(data);
+    return new Promise((resolve, reject) => {
+        fetch(`/.netlify/functions/fetch-data`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data['recipes']);
+            let fetchedData = data['recipes'];
+            for (let i = 0; i < fetchedData.length; i++) {
+                recipes[i] = fetchedData[i];
+            }
+            resolve(true);
+        }).catch(error => reject(false));
+    });
 }
