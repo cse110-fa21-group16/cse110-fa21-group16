@@ -22,10 +22,11 @@ exports.handler = async (event, context) => {
     return new Promise((resolve, reject) => {
 
 		fetch(API_ENDPOINT)
-        .then(res => {
+        .then(res => res.json())
+        .then(data => {
             resolve({
                 statusCode: 200,
-                body: JSON.stringify(res)
+                body: JSON.stringify(data)
             })
         }).catch(error => reject(false));
 
