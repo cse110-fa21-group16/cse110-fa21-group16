@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require("axios");
 const APIKey = process.env.API_KEY;
 
 exports.handler = function(event, context, callback) {
