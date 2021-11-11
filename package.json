@@ -1,9 +1,9 @@
 {
-  "type": "module",
   "name": "cse110-fa21-group16",
   "version": "1.0.0",
   "description": "This application will keep track of a multitude of recipes that you can use for your own cooking needs",
   "homepage": "https://github.com/cse110-fa21-group16/cse110-fa21-group16#readme",
+  "type": "module",
   "scripts": {
     "build": "npm install"
   },
