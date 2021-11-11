@@ -132,7 +132,9 @@ async function checkAndLoad() {
 }
 
 /**
- * Fetch data from spoonacular API
+ * Fetch data from spoonacular API (this function makes a call to another function
+ * in the back-end Netlify service that is used to call our API. This way, the API key 
+ * is hidden from the client-side)
  * @returns a Promise of fetched data
  */
  async function fetchData() {
