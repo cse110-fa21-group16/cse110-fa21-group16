@@ -19,18 +19,15 @@ const APIKey = process.env.API_KEY;
 const API_ENDPOINT = "https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30";
 
 exports.handler = async (event, context) => {
-  return await fetch(
-      API_ENDPOINT, 
-      { headers: 
-        { 
-            "Content-Type": "application/json",
-            "Accept": "application/json" 
-        } 
-      }
-    )
-    .then((res) => ({
-      statusCode: 200,
-      body: JSON.stringify(res),
-    }))
-    .catch((error) => ({ statusCode: 422, body: String(error) }));
+    return new Promise((resolve, reject) => {
+
+		fetch(API_ENDPOINT)
+        .then(res => {
+            resolve({
+                statusCode: 200,
+                body: JSON.stringify(res)
+            })
+        }).catch(error => reject(false));
+
+	});
 };
