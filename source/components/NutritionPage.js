@@ -199,7 +199,6 @@ class NutritionPage extends HTMLElement {
         servings.appendChild(form);
         amountPerServings.appendChild(servings);
 
-
         /////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////// Creating the Nutrition Facts /////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////
@@ -207,7 +206,7 @@ class NutritionPage extends HTMLElement {
         let facts = document.createElement("section");
         facts.classList.add("facts");
         let gridContainer = document.createElement("div");
-        gridContainer.classList.add("gird-container");
+        gridContainer.classList.add("grid-container");
 
         // calories
         let calories = document.createElement("div");
@@ -272,7 +271,7 @@ class NutritionPage extends HTMLElement {
         let carbohydrateSpan = document.createElement("span");
         carbohydrateSpan.innerHTML("100");
 
-        carbohydrate.appendChild(carbohydrateiv);
+        carbohydrate.appendChild(carbohydrateDiv);
         carbohydrate.appendChild(carbohydrateSpan);
 
         // fiber
