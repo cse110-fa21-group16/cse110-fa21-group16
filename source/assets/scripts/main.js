@@ -12,7 +12,7 @@ const featureRecipes = [
   'assets/recipes/pumpkinMuffins.json'
 ];
 
-let myRecipeArray = JSON.parse(localStorage.getItem('myRecipeArray'));
+let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 
 
 const feaRecipeData = {};
