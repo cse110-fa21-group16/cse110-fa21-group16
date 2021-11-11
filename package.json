@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "This application will keep track of a multitude of recipes that you can use for your own cooking needs",
   "homepage": "https://github.com/cse110-fa21-group16/cse110-fa21-group16#readme",
-  "type": "module",
   "scripts": {
     "build": "npm install"
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "node-fetch": "^3.1.0"
+    "node-fetch-commonjs": "^3.0.3"
   }
 }
