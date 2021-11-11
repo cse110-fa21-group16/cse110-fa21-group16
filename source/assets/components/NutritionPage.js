@@ -89,6 +89,7 @@ class NutritionPage extends HTMLElement {
            padding: 10px;
            margin: auto;
            display: flex;
+           overflow: auto;
            flex-direction: column;
          }
          
@@ -161,7 +162,7 @@ class NutritionPage extends HTMLElement {
         
         headerDiv.classList.add("header-div");
         headerTitle.classList.add("header-title");
-        headerTitle.innerHTML("Nutrition Facts");
+        headerTitle.innerHTML = "Nutrition Facts";
 
         headerDiv.appendChild(headerTitle);
         header.appendChild(headerDiv);
@@ -183,7 +184,7 @@ class NutritionPage extends HTMLElement {
         amountPerServings.classList.add("amountPerServings");
         let servings = document.createElement("div");
         servings.classList.add("servings");
-        servings.innerHTML("Enter the amount of servings");
+        servings.innerHTML = "Enter the amount of servings";
 
         let form = document.createElement("form");
         form.setAttribute("action", "");
@@ -210,88 +211,96 @@ class NutritionPage extends HTMLElement {
 
         // calories
         let calories = document.createElement("div");
-        calories.classList.add("item calories");
+        calories.classList.add("item");
         let caloriesDiv = document.createElement("div");
-        caloriesDiv.innerHTML("Calories");
+        caloriesDiv.classList.add("calories");
+        caloriesDiv.innerHTML = "Calories";
         let caloriesSpan = document.createElement("span");
-        caloriesSpan.innerHTML("100");
+        caloriesSpan.innerHTML = "100";
 
         calories.appendChild(caloriesDiv);
         calories.appendChild(caloriesSpan);
 
         // sat-fat
         let satFat = document.createElement("div");
-        satFat.classList.add("item sat-fat");
+        satFat.classList.add("item");
         let satFatDiv = document.createElement("div");
-        satFatDiv.innerHTML("Total Fat");
+        satFatDiv.classList.add("sat-fat");
+        satFatDiv.innerHTML = "Total Fat";
         let satFatSpan = document.createElement("span");
-        satFatSpan.innerHTML("100");
+        satFatSpan.innerHTML = "100";
 
         satFat.appendChild(satFatDiv);
         satFat.appendChild(satFatSpan);
 
         // trans-fat
         let transFat = document.createElement("div");
-        transFat.classList.add("item trans-fat");
+        transFat.classList.add("item");
         let transFatDiv = document.createElement("div");
-        transFatDiv.innerHTML("Trans Fat");
+        transFatDiv.classList.add("trans-fat");
+        transFatDiv.innerHTML = "Trans Fat";
         let transFatSpan = document.createElement("span");
-        transFatSpan.innerHTML("100");
+        transFatSpan.innerHTML = "100";
 
         transFat.appendChild(transFatDiv);
         transFat.appendChild(transFatSpan);
 
         // cholesterol
         let cholesterol = document.createElement("div");
-        cholesterol.classList.add("item cholesterol");
+        cholesterol.classList.add("item");
         let cholesterolDiv = document.createElement("div");
-        cholesterolDiv.innerHTML("Cholesterol");
+        cholesterolDiv.classList.add("cholesterol");
+        cholesterolDiv.innerHTML = "Cholesterol";
         let cholesterolSpan = document.createElement("span");
-        cholesterolSpan.innerHTML("100");
+        cholesterolSpan.innerHTML = "100";
 
         cholesterol.appendChild(cholesterolDiv);
         cholesterol.appendChild(cholesterolSpan);
 
         // sodium
         let sodium = document.createElement("div");
-        sodium.classList.add("item sodium");
+        sodium.classList.add("item");
         let sodiumDiv = document.createElement("div");
-        sodiumDiv.innerHTML("Sodium");
+        sodiumDiv.classList.add("sodium");
+        sodiumDiv.innerHTML = "Sodium";
         let sodiumSpan = document.createElement("span");
-        sodiumSpan.innerHTML("100");
+        sodiumSpan.innerHTML = "100";
 
         sodium.appendChild(sodiumDiv);
         sodium.appendChild(sodiumSpan);
 
         // carbohydrate
         let carbohydrate = document.createElement("div");
-        carbohydrate.classList.add("item carbohydrate");
+        carbohydrate.classList.add("item");
         let carbohydrateDiv = document.createElement("div");
-        carbohydrateDiv.innerHTML("Carbohydrate");
+        carbohydrateDiv.classList.add("carbohydrate");
+        carbohydrateDiv.innerHTML = "Carbohydrate";
         let carbohydrateSpan = document.createElement("span");
-        carbohydrateSpan.innerHTML("100");
+        carbohydrateSpan.innerHTML = "100";
 
         carbohydrate.appendChild(carbohydrateDiv);
         carbohydrate.appendChild(carbohydrateSpan);
 
         // fiber
         let fiber = document.createElement("div");
-        fiber.classList.add("item fiber");
+        fiber.classList.add("item");
         let fiberDiv = document.createElement("div");
-        fiberDiv.innerHTML("Dietary Fiber");
+        fiberDiv.classList.add("fiber");
+        fiberDiv.innerHTML = "Dietary Fiber";
         let fiberSpan = document.createElement("span");
-        fiberSpan.innerHTML("100");
+        fiberSpan.innerHTML = "100";
 
         fiber.appendChild(fiberDiv);
         fiber.appendChild(fiberSpan);
 
         // sugars
         let sugars = document.createElement("div");
-        sugars.classList.add("item sugars");
+        sugars.classList.add("item");
         let sugarsDiv = document.createElement("div");
-        sugarsDiv.innerHTML("Total Sugars");
+        sugarsDiv.classList.add("sugar");
+        sugarsDiv.innerHTML = "Total Sugars";
         let sugarsSpan = document.createElement("span");
-        sugarsSpan.innerHTML("100");
+        sugarsSpan.innerHTML = "100";
 
 
         sugars.appendChild(sugarsDiv);
@@ -299,11 +308,12 @@ class NutritionPage extends HTMLElement {
 
         // protein
         let protein = document.createElement("div");
-        protein.classList.add("item protein");
+        protein.classList.add("item");
         let proteinDiv = document.createElement("div");
-        proteinDiv.innerHTML("Protein");
+        proteinDiv.classList.add("protein");
+        proteinDiv.innerHTML = "Protein";
         let proteinSpan = document.createElement("span");
-        proteinSpan.innerHTML("100");
+        proteinSpan.innerHTML = "100";
 
 
         protein.appendChild(proteinDiv);
@@ -311,11 +321,12 @@ class NutritionPage extends HTMLElement {
 
         // vitamins
         let vitamins = document.createElement("div");
-        vitamins.classList.add("item vitamins");
+        vitamins.classList.add("item");
         let vitaminsDiv = document.createElement("div");
-        vitaminsDiv.innerHTML("Vitamins");
+        vitaminsDiv.classList.add("vitamins");
+        vitaminsDiv.innerHTML = "Vitamins";
         let vitaminsSpan = document.createElement("span");
-        vitaminsSpan.innerHTML("100");
+        vitaminsSpan.innerHTML = "100";
 
         vitamins.appendChild(vitaminsDiv);
         vitamins.appendChild(vitaminsSpan);
@@ -358,7 +369,7 @@ class NutritionPage extends HTMLElement {
         // Action Buttons
         let backButton = document.createElement("button");
         backButton.setAttribute("id", "back");
-        backButton.innerHTML("Go Back");
+        backButton.innerHTML = "Go Back";
 
         // Append Buttons to Div
         actionButtons.appendChild(backButton);
