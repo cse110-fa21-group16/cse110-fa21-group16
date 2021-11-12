@@ -92,7 +92,10 @@ main {
 }
 
 .item-title {
+  background-color: #ffffff;
+  border: 0px;
   color: var(--major-color);
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
@@ -108,6 +111,13 @@ main {
 
 .recipes-list {
   max-width: 80vw;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.recipes-page-list {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
