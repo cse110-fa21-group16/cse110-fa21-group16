@@ -1,5 +1,5 @@
-import {checkFav, rmFav, addFav} from "../scripts/helpCrudFunc.js";
-import {getImgUrl, getTitle, getTime} from "../scripts/helpGetDataFunc.js";
+import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
+import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardFeaturedPG extends HTMLElement {
   constructor() {
@@ -97,10 +97,10 @@ class RecipeCardFeaturedPG extends HTMLElement {
     else {
       heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
     }
-    
-    heartImg.addEventListener("click", function(event){
+
+    heartImg.addEventListener("click", function (event) {
       changeHeart(data, heartImg);
-  });
+    });
 
     card.appendChild(heartImg);
 
