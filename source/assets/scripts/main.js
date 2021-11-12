@@ -3,133 +3,43 @@
 const $ = (selector) => document.querySelector(selector);
 
 
-const featureRecipes = [
-  'https://introweb.tech/assets/json/ghostCookies.json',
-  'https://introweb.tech/assets/json/birthdayCake.json',
-  'https://introweb.tech/assets/json/chocolateChip.json',
-  'assets/recipes/meatball.json',
-  'assets/recipes/quickEasyPaste.json',
-  "assets/recipes/pumpkinMuffins.json"
-];
-
+let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
+let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeData"));
 
 
-const feaRecipeData = {};
-const favRecipeData = {};
+window.addEventListener("DOMContentLoaded", init);
 
-// new code added here
-let recipes = {};
-let storage = window.localStorage;
-
-window.addEventListener('DOMContentLoaded', init);
-
-
+/**
+ * Intitial and load page
+ * @returns a Promise of fetched data
+ */
 async function init() {
-  let fetchSuccessful = await fetchRecipes();
+  let fetchSuccessful = await fetchFeaRecipeArray();
   if (!fetchSuccessful) {
-    console.log('Recipe fetch unsuccessful');
+    console.log("Recipe fetch unsuccessful");
     return;
   };
 
   let addFeaCardSuccessful = await createFeaRecipeCards();
   if (!addFeaCardSuccessful) {
-    console.log('Add recipe unsuccessful');
+    console.log("Add featured recipe unsuccessful");
     return;
   };
 
   let addFavCardSuccessful = await createFavRecipeCards();
   if (!addFavCardSuccessful) {
-    console.log('Add recipe unsuccessful');
+    console.log("Add favorite recipe unsuccessful");
     return;
   };
 
-  main();
-  checkAndLoad();
+  let addMyCardSuccessful = await createMyRecipeCards();
+  if (!addMyCardSuccessful) {
+    console.log("Add my recipe unsuccessful");
+    return;
+  };
 }
 
-function main() {
-  let addNewCard = document.createElement('new-card');
-  $('#my-list').appendChild(addNewCard);
-  let addEmptyCard = document.createElement('empty-card');
-  $('#my-list').appendChild(addEmptyCard);
-  addNewCard = document.createElement('empty-card');
-  $('#my-list').appendChild(addNewCard);
-}
-
-async function fetchRecipes() {
-  return new Promise((resolve, reject) => {
-    for (let i = 0; i < featureRecipes.length; i++) {
-      fetch(featureRecipes[i])
-        .then(response => {
-          if (!response.ok) {
-            reject(false);
-          }
-          else {
-            return response.json();
-          }
-        })
-        .catch(e => reject(false))
-        .then(data => {
-          feaRecipeData[i] = data;
-          favRecipeData[i] = data;
-          if (featureRecipes.length == Object.keys(feaRecipeData).length) {
-            resolve(true);
-          }
-        })
-        .catch(e => reject(false))
-    }
-  });
-}
-
-
-function createFeaRecipeCards() {
-  return new Promise((resolve, reject) => {
-    for (let i = 0; i < 3; i++) {
-      let newRecipeCard = document.createElement("recipe-card-fea");
-      newRecipeCard.data = feaRecipeData[i];
-      $('#featured-list').appendChild(newRecipeCard);
-    }
-    resolve(true);
-  });
-}
-
-function createFavRecipeCards() {
-  return new Promise((resolve, reject) => {
-    for (let i = 3; i < 6; i++) {
-      let newFavRecipeCard = document.createElement('recipe-card-fea');
-      newFavRecipeCard.data = favRecipeData[i];
-      $("#favorite-list").appendChild(newFavRecipeCard);
-    }
-    resolve(true);
-  });
-}
-
-/**
- * Check local storage for existing 'recipe' key
- * If exists, then load data into the 'recipes' variable
- * If not, create a new key in local storage, store fetched data in there, and load into variable
- * @returns void
- */
-async function checkAndLoad() {
-    if (storage.getItem("recipes") === undefined) { // create new entry if data not found in storage
-        let fetchSuccess = await fetchData();
-        if (!fetchSuccess) {
-            console.log("Failed fetch");
-        }
-
-        // store fetched data to storage
-        storage.setItem("recipes", JSON.stringify(recipes));
-
-        // now load data from storage into 'recipes' variable
-        let dataFromStorage = JSON.parse(storage.getItem("recipes"));
-        recipes = dataFromStorage;
-    } else { // pull data from storage if key is found found
-        let dataFromStorage = JSON.parse(storage.getItem("recipes"));
-        recipes = dataFromStorage;
-        // console.log("recipes: " + recipes);
-    }
-}
 
 /**
  * Fetch data from spoonacular API (this function makes a call to another function
@@ -137,17 +47,94 @@ async function checkAndLoad() {
  * is hidden from the client-side)
  * @returns a Promise of fetched data
  */
- async function fetchData() {
-    return new Promise((resolve, reject) => {
-        fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
+async function fetchFeaRecipeArray() {
+  return new Promise((resolve, reject) => {
+    if (feaRecipeArray == null) {
+      fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
+      // fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
         .then((response) => response.json())
         .then((data) => {
-            // console.log(data["recipes"]);
-            let fetchedData = data["recipes"];
-            for (let i = 0; i < fetchedData.length; i++) {
-                recipes[i] = fetchedData[i];
-            }
-            resolve(true);
+          feaRecipeArray = data["recipes"];
+          localStorage.setItem("feaRecipeArray", JSON.stringify(feaRecipeArray));
+          resolve(true);
         }).catch((error) => reject(false));
-    });
+    }
+    else {
+      resolve(true);
+    }
+  });
+}
+
+
+/**
+ * Initial Featured Recipes section with three random recipes from feaRecipeArray
+ * @returns a Promise of fetched data
+ */
+function createFeaRecipeCards() {
+  return new Promise((resolve, reject) => {
+    let index = Math.round(Math.random() * 25);
+    for (let i = index; i < index + 3; i++) {
+      let newFeaRecipeCard = document.createElement("recipe-card-fea");
+      newFeaRecipeCard.data = feaRecipeArray[i];
+      $("#featured-list").appendChild(newFeaRecipeCard);
+    }
+    resolve(true);
+  });
+}
+
+
+/**
+ * Initial Favorites Recipes section with three recipes from favRecipeArray
+ * If no favorite recipes, then remove the Favorites Recipes section
+ * @returns a Promise of fetched data
+ */
+function createFavRecipeCards() {
+  return new Promise((resolve, reject) => {
+    if (favRecipeArray == null) {
+      favRecipeArray = [];
+      $("#favorite-recipes").classList.remove("shown")
+    }
+    for (let i = 0; i < 3 && i < favRecipeArray.length; i++) {
+    // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
+      let newFavRecipeCard = document.createElement("recipe-card-fea");
+      newFavRecipeCard.data = favRecipeArray[i];
+      // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
+      $("#favorite-list").appendChild(newFavRecipeCard);
+    }
+    if (favRecipeArray.length < 3) {
+      for (let i = 0; i < 3 - favRecipeArray.length; i++) {
+        let addEmptyCard = document.createElement("empty-card");
+        $("#favorite-list").appendChild(addEmptyCard);
+      }
+    }
+    resolve(true);
+  });
+}
+
+/**
+ * Initial My Recipes section with three recipes from myRecipeArray
+ * @returns a Promise of fetched data
+ */
+ function createMyRecipeCards() {
+  return new Promise((resolve, reject) => {
+    if (myRecipeArray == null) {
+      myRecipeArray = [];
+    }
+    for (let i = 0; i < 3 && i < myRecipeArray.length; i++) {
+    // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
+      let newMyRecipeCard = document.createElement("recipe-card-my");
+      newMyRecipeCard.data = myRecipeArray[i];
+      // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
+      $("#my-list").appendChild(newMyRecipeCard);
+    }
+    if (myRecipeArray.length < 3) {
+      let addNewCard = document.createElement("new-card");
+      $("#my-list").appendChild(addNewCard);
+      for (let i = 0; i < 2 - myRecipeArray.length; i++) {
+        let addEmptyCard = document.createElement("empty-card");
+        $("#my-list").appendChild(addEmptyCard);
+      }
+    }
+    resolve(true);
+  });
 }
