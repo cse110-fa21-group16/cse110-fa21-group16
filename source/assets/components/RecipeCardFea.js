@@ -98,22 +98,12 @@ class RecipeCardFea extends HTMLElement {
 
 
 function getImgUrl(data) {
-  if (data.image) return data.image.url;
-  if (data['@graph']) {
-    for (let i = 0; i < data['@graph'].length; i++) {
-      if (data['@graph'][i]['@type'] == 'ImageObject') return data['@graph'][i]['url'];
-    }
-  };
+  if (data.image) return data.image;
   return null;
 }
 
 function getTitle(data) {
-  if (data.headline) return data.headline;
-  if (data['@graph']) {
-    for (let i = 0; i < data['@graph'].length; i++) {
-      if (data['@graph'][i]['@type'] == 'Article') return data['@graph'][i]['headline'];
-    }
-  };
+  if (data.title) return data.title;
   return null;
 }
 

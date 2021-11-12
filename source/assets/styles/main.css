@@ -21,6 +21,10 @@
   padding: 0px;
 }
 
+main > section:not(section.shown) {
+  display: none;
+}
+
 /* body */
 body {
   background-color: var(--bg-color);
