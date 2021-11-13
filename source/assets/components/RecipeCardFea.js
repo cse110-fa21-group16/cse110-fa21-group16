@@ -96,7 +96,7 @@ class RecipeCardFea extends HTMLElement {
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
     checkButton.addEventListener("click", function (event) {
-      showCheck(data);
+      viewRecipe(data);
     });
 
 
@@ -105,4 +105,17 @@ class RecipeCardFea extends HTMLElement {
   }
 }
 
+/**
+ * Load Featured Recipe Page
+ * @returns void
+ */
+function viewRecipe(data) {
+  $("#view-recipe-page").classList.add('main-shown');
+  const viewRecipePage = document.createElement("view-fea-recipe");
+  viewRecipePage.data = data;
+  $("#view-recipe-page").appendChild(viewRecipePage);
+  leaveMain();
+}
+
 customElements.define('recipe-card-fea', RecipeCardFea);
+

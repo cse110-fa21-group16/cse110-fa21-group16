@@ -122,6 +122,9 @@ class RecipeCardFeaturedPG extends HTMLElement {
     checkButton.classList.add("cook");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
+    checkButton.addEventListener("click", function (event) {
+      viewRecipe(data);
+    });
 
 
     this.shadowRoot.appendChild(styleElem);
@@ -146,7 +149,17 @@ function changeHeart(data, cardObj) {
   }
 }
 
-
+/**
+ * Load Featured Recipe Page
+ * @returns void
+ */
+ function viewRecipe(data) {
+  $("#view-recipe-page").classList.add('main-shown');
+  const viewRecipePage = document.createElement("view-fea-recipe");
+  viewRecipePage.data = data;
+  $("#view-recipe-page").appendChild(viewRecipePage);
+  leaveMain();
+}
 
 // Define the Class so you can use it as a custom element.
 customElements.define("recipe-card-featured-pg", RecipeCardFeaturedPG);

@@ -1,7 +1,7 @@
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
-class ViewRecipe extends HTMLElement {
+class ViewMyRecipe extends HTMLElement {
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
@@ -12,6 +12,7 @@ class ViewRecipe extends HTMLElement {
         const styles = `
         /* root css style */
         * {
+            color: #305A50;
             margin: 0;
             padding: 0;
         }
@@ -56,6 +57,7 @@ class ViewRecipe extends HTMLElement {
 
         /* main */
         article > main {
+            align-content: flex-start;
             display: flex;
             flex: 1 1 70%;
             flex-flow: row wrap;
@@ -74,7 +76,9 @@ class ViewRecipe extends HTMLElement {
         }
 
         #main-header > h1 {
+            line-height: 35px;
             font-size: 30px;
+            margin: 0px 30px;
         }
 
 
@@ -88,7 +92,7 @@ class ViewRecipe extends HTMLElement {
 
         #left-main > img {
             border-radius: 14px;
-            width: 170px;
+            width: 260px;
         }
 
         #left-main > h2 {
@@ -128,9 +132,17 @@ class ViewRecipe extends HTMLElement {
             margin-bottom: 15px;
         }
 
+        #steps-list {
+            font-size: 17px;
+            text-indent: 50px;
+            line-height: 30px;
+            margin: 0px 5px 0px 10px;
+        }
+
         #steps-list > ol > li {
-            font-size: 20px;
-            margin: 20px 10px 20px 30px;
+            font-size: 17px;
+            margin: 20px 5px 20px 30px;
+            text-indent: 0px;
         }
 
         /* main-footer */
@@ -138,8 +150,8 @@ class ViewRecipe extends HTMLElement {
             align-items: center;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: center;
-            margin: 60px;
+            justify-content: flex-end;
+            margin: 90px 60px 60px 60px;
             width: 100%;
         }
 
@@ -181,8 +193,8 @@ class ViewRecipe extends HTMLElement {
         }
 
         #ingre-list > ol > li {
-            font-size: 20px;
-            margin: 20px 10px 20px 30px;
+            font-size: 16px;
+            margin: 10px 10px 10px 30px;
         }
 
         .diet-check {
@@ -410,4 +422,4 @@ class ViewRecipe extends HTMLElement {
 }
 
 
-customElements.define('view-recipe', ViewRecipe);
+customElements.define('view-my-recipe', ViewMyRecipe);

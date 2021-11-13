@@ -192,8 +192,6 @@ function setButtonListen() {
 
   $("#feature-page-to-landing").addEventListener("click", function (event) {
     loadLanding();
-    $("#featured-page").classList.remove("shown");
-    $("#featured-page-list").innerHTML = "";
   });
 
   $("#to-favorite-page").addEventListener("click", function (event) {
@@ -204,8 +202,6 @@ function setButtonListen() {
 
   $("#favorite-page-to-landing").addEventListener("click", function (event) {
     loadLanding();
-    $("#favorite-page").classList.remove("shown");
-    $("#favorite-page-list").innerHTML = "";
   });
 }
 
@@ -217,7 +213,11 @@ function setButtonListen() {
 function loadLanding() {
   $("#featured-recipes").classList.add("shown");
   $("#favorite-recipes").classList.add("shown");
-  $("#my-recipes").classList.add('shown');
+  $("#my-recipes").classList.add("shown");
+  $("#featured-page").classList.remove("shown");
+  $("#featured-page-list").innerHTML = "";
+  $("#favorite-page").classList.remove("shown");
+  $("#favorite-page-list").innerHTML = "";
   createFeaRecipeCards();
   createMyRecipeCards();
   createFavRecipeCards();
@@ -235,4 +235,28 @@ function leaveLanding() {
   $("#featured-list").innerHTML = "";
   $("#favorite-list").innerHTML = "";
   $("#my-list").innerHTML = "";
+}
+
+
+/**
+* Load main page (like to add page)
+* @returns void
+*/
+function loadMain() {
+  $("#main-header").classList.add("main-shown");
+  $("#main-main").classList.add("main-shown");
+  $("#main-footer").classList.add("main-shown");
+  loadLanding();
+}
+
+
+/**
+* Leave main page (like to add page)
+* @returns void
+*/
+function leaveMain() {
+  $("#main-header").classList.remove("main-shown");
+  $("#main-main").classList.remove("main-shown");
+  $("#main-footer").classList.remove("main-shown");
+  leaveLanding();
 }
