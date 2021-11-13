@@ -95,7 +95,7 @@ class RecipeCardFea extends HTMLElement {
     const checkButton = document.createElement("button");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", function (event) {
+    checkButton.addEventListener("click", () => {
       viewRecipe(data);
     });
 

@@ -19,25 +19,25 @@ async function init() {
   if (!fetchSuccessful) {
     console.log("Recipe fetch unsuccessful");
     return;
-  };
+  }
 
   let addFeaCardSuccessful = await createFeaRecipeCards();
   if (!addFeaCardSuccessful) {
     console.log("Add featured recipe unsuccessful");
     return;
-  };
+  }
 
   let addFavCardSuccessful = await createFavRecipeCards();
   if (!addFavCardSuccessful) {
     console.log("Add favorite recipe unsuccessful");
     return;
-  };
+  }
 
   let addMyCardSuccessful = await createMyRecipeCards();
   if (!addMyCardSuccessful) {
     console.log("Add my recipe unsuccessful");
     return;
-  };
+  }
 
   setButtonListen();
 }
@@ -59,7 +59,7 @@ async function fetchFeaRecipeArray() {
           feaRecipeArray = data["recipes"];
           localStorage.setItem("feaRecipeArray", JSON.stringify(feaRecipeArray));
           resolve(true);
-        }).catch((error) => reject(false));
+        }).catch(() => reject(false));
     }
     else {
       resolve(true);
@@ -73,7 +73,7 @@ async function fetchFeaRecipeArray() {
  * @returns a Promise of fetched data
  */
 function createFeaRecipeCards() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     $("#featured-list").innerHTML = "";
     let index = Math.round(Math.random() * 25);
     for (let i = index; i < index + 3; i++) {
@@ -92,7 +92,7 @@ function createFeaRecipeCards() {
  * @returns a Promise of fetched data
  */
 function createFavRecipeCards() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
       $("#favorite-recipes").classList.remove("shown");
@@ -121,7 +121,7 @@ function createFavRecipeCards() {
  * @returns a Promise of fetched data
  */
 function createMyRecipeCards() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     if (myRecipeArray == null) {
       myRecipeArray = [];
     }
@@ -151,7 +151,7 @@ function createMyRecipeCards() {
  * @returns a Promise
  */
 function createFeaRecipePage() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     $("#featured-page-list").innerHTML = "";
     for (let i = 0; i < feaRecipeArray.length; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
@@ -168,7 +168,7 @@ function createFeaRecipePage() {
  * @returns a Promise
  */
 function createFavRecipePage() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     $("#favorite-page-list").innerHTML = "";
     for (let i = 0; i < favRecipeArray.length; i++) {
       let newFavRecipeCard = document.createElement("recipe-card-featured-pg");
@@ -190,7 +190,7 @@ function createFavRecipePage() {
  * @returns a Promise
  */
 function createMyRecipePage() {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     $("#my-page-list").innerHTML = "";
     for (let i = 0; i < myRecipeArray.length; i++) {
       let newMyRecipeCard = document.createElement("recipe-card-my-my-page");
@@ -210,32 +210,32 @@ function createMyRecipePage() {
  * @returns void
  */
 function setButtonListen() {
-  $("#to-feature-page").addEventListener("click", function (event) {
+  $("#to-feature-page").addEventListener("click", () => {
     leaveLanding();
     loadFeatured();
   });
 
-  $("#feature-page-to-landing").addEventListener("click", function (event) {
+  $("#feature-page-to-landing").addEventListener("click", () =>{
     leaveFeatured();
     loadLanding();
   });
 
-  $("#to-favorite-page").addEventListener("click", function (event) {
+  $("#to-favorite-page").addEventListener("click", () => {
     leaveLanding();
     loadFavorite();
   });
 
-  $("#favorite-page-to-landing").addEventListener("click", function (event) {
+  $("#favorite-page-to-landing").addEventListener("click", () => {
     leaveFavorite();
     loadLanding();
   });
 
-  $("#to-my-page").addEventListener("click", function (event) {
+  $("#to-my-page").addEventListener("click", () => {
     leaveLanding();
     loadMyRecipe();
   });
 
-  $("#my-page-to-landing").addEventListener("click", function (event) {
+  $("#my-page-to-landing").addEventListener("click", () => {
     leaveMyRecipe();
     loadLanding();
   });

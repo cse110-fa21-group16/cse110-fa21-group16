@@ -295,7 +295,7 @@ class ViewMyRecipe extends HTMLElement {
 
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
-        editButton.addEventListener("click", function (event) {
+        editButton.addEventListener("click", () => {
             myRecipeToEdit(data);
         });
 

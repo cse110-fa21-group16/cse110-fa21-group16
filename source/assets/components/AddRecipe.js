@@ -505,7 +505,7 @@ class AddRecipe extends HTMLElement {
     ingredientGeneralDiv.appendChild(addIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
 
-    addIngredient.addEventListener("click", function (event) {
+    addIngredient.addEventListener("click", () => {
       addIngreItems(addIngredient);
     });
 
@@ -555,7 +555,7 @@ class AddRecipe extends HTMLElement {
     // Append button to procedure div list 
     procedureDivList.appendChild(addInstruction);
 
-    addInstruction.addEventListener("click", function (event) {
+    addInstruction.addEventListener("click", () => {
       addInstruItems(procedureList);
     });
 
@@ -603,7 +603,7 @@ class AddRecipe extends HTMLElement {
 
     cancelButton.addEventListener("click", leaveAdd);
 
-    submitButton.addEventListener("click", function (event) {
+    submitButton.addEventListener("click", () => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;

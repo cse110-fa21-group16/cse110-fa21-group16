@@ -257,7 +257,7 @@ class ViewFeaRecipe extends HTMLElement {
             heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
         }
 
-        heartImg.addEventListener("click", function (event) {
+        heartImg.addEventListener("click", () => {
             changeHeart(data, heartImg);
         });
 

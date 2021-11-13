@@ -98,7 +98,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
       heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
     }
 
-    heartImg.addEventListener("click", function (event) {
+    heartImg.addEventListener("click", () => {
       changeHeart(data, heartImg);
     });
 
@@ -122,7 +122,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
     checkButton.classList.add("cook");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", function (event) {
+    checkButton.addEventListener("click", () => {
       viewRecipe(data);
     });
 

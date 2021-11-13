@@ -1,11 +1,11 @@
 import { updateMy } from "../scripts/helpCrudFunc.js";
-import { getImgUrl, getTitle, getStepsArray, getIngreArray } from "../scripts/helpGetDataFunc.js";
+import { getTitle, getStepsArray, getIngreArray } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 class EditRecipe extends HTMLElement {
   constructor() {
     super();
-    let shadow = this.attachShadow({ mode: "open" });
+    this.shadow = this.attachShadow({ mode: "open" });
   }
 
   set data(data) {
@@ -524,7 +524,7 @@ class EditRecipe extends HTMLElement {
     ingredientGeneralDiv.appendChild(addIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
 
-    addIngredient.addEventListener("click", function (event) {
+    addIngredient.addEventListener("click", () => {
       addIngreItems(addIngredient);
     });
 
@@ -573,7 +573,7 @@ class EditRecipe extends HTMLElement {
     // Append button to procedure div list 
     procedureDivList.appendChild(addInstruction);
 
-    addInstruction.addEventListener("click", function (event) {
+    addInstruction.addEventListener("click", () => {
       addInstruItems(procedureList);
     });
 
@@ -623,15 +623,15 @@ class EditRecipe extends HTMLElement {
     actionButtons.appendChild(deleteButton);
     actionButtons.appendChild(cancelButton);
 
-    cancelButton.addEventListener("click", function (event) {
+    cancelButton.addEventListener("click", () => {
       leaveEdit(data);
     });
 
-    deleteButton.addEventListener("click", function (event) {
+    deleteButton.addEventListener("click", () => {
       toDelete(data);
     });
 
-    submitButton.addEventListener("click", function (event) {
+    submitButton.addEventListener("click", () => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;
@@ -681,8 +681,8 @@ class EditRecipe extends HTMLElement {
     ////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////// Attach to shadow DOM //////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////
-    this.shadowRoot.appendChild(styling);
-    this.shadowRoot.appendChild(page);
+    this.shadow.appendChild(styling);
+    this.shadow.appendChild(page);
   }
 }
 

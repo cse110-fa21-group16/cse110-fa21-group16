@@ -84,11 +84,11 @@ class DeleteConfirmation extends HTMLElement {
         buttons.appendChild(yesButton);
         buttons.appendChild(noButton);
 
-        yesButton.addEventListener("click", function (event) {
+        yesButton.addEventListener("click", () => {
             deleteRecipe(data);
         });
 
-        noButton.addEventListener("click", function (event) {
+        noButton.addEventListener("click", () => {
             backToView(data);
         });
 
