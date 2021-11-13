@@ -149,5 +149,5 @@ function changeHeart(data, cardObj) {
 
 
 // Define the Class so you can use it as a custom element.
-customElements.define('recipe-card-featured-pg', RecipeCardFeaturedPG);
+customElements.define("recipe-card-featured-pg", RecipeCardFeaturedPG);
 

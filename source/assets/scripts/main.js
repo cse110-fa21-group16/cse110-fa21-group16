@@ -92,7 +92,7 @@ function createFeaRecipeCards() {
  */
 function createFavRecipeCards() {
   return new Promise((resolve, reject) => {
-    if (favRecipeArray == null || favRecipeArray.length == 0) {
+    if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
       $("#favorite-recipes").classList.remove("shown");
     }
@@ -169,9 +169,9 @@ function createFavRecipePage() {
       newFavRecipeCard.data = favRecipeArray[i];
       $("#favorite-page-list").appendChild(newFavRecipeCard);
     }
-    if (favRecipeArray.length == 0) {
+    if (favRecipeArray.length === 0) {
       let noFavTip = document.createElement("h1");
-      noFavTip.textContent = "You may not have favorite recipe. You could add new one."
+      noFavTip.textContent = "You may not have favorite recipe. You could add new one.";
       $("#favorite-page-list").appendChild(noFavTip);
     }
     resolve(true);
@@ -185,26 +185,26 @@ function createFavRecipePage() {
  */
 function setButtonListen() {
   $("#to-feature-page").addEventListener("click", function (event) {
-    $("#featured-page").classList.add('shown');
+    $("#featured-page").classList.add("shown");
     createFeaRecipePage();
     leaveLanding();
   });
 
   $("#feature-page-to-landing").addEventListener("click", function (event) {
     loadLanding();
-    $("#featured-page").classList.remove('shown');
+    $("#featured-page").classList.remove("shown");
     $("#featured-page-list").innerHTML = "";
   });
 
   $("#to-favorite-page").addEventListener("click", function (event) {
-    $("#favorite-page").classList.add('shown');
+    $("#favorite-page").classList.add("shown");
     createFavRecipePage();
     leaveLanding();
   });
 
   $("#favorite-page-to-landing").addEventListener("click", function (event) {
     loadLanding();
-    $("#favorite-page").classList.remove('shown');
+    $("#favorite-page").classList.remove("shown");
     $("#favorite-page-list").innerHTML = "";
   });
 }
@@ -215,8 +215,8 @@ function setButtonListen() {
  * @returns void
  */
 function loadLanding() {
-  $("#featured-recipes").classList.add('shown');
-  $("#favorite-recipes").classList.add('shown');
+  $("#featured-recipes").classList.add("shown");
+  $("#favorite-recipes").classList.add("shown");
   $("#my-recipes").classList.add('shown');
   createFeaRecipeCards();
   createMyRecipeCards();
@@ -229,9 +229,9 @@ function loadLanding() {
 * @returns void
 */
 function leaveLanding() {
-  $("#featured-recipes").classList.remove('shown');
-  $("#favorite-recipes").classList.remove('shown');
-  $("#my-recipes").classList.remove('shown');
+  $("#featured-recipes").classList.remove("shown");
+  $("#favorite-recipes").classList.remove("shown");
+  $("#my-recipes").classList.remove("shown");
   $("#featured-list").innerHTML = "";
   $("#favorite-list").innerHTML = "";
   $("#my-list").innerHTML = "";
