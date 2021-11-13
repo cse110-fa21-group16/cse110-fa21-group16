@@ -18,6 +18,8 @@
     <script src="assets/components/ViewFeaRecipe.js" type="module"></script>
     <script src="assets/components/ViewMyRecipe.js" type="module"></script>
     <script src="assets/components/AddRecipe.js" type="module"></script>
+    <script src="assets/components/RecipeCardMyMyPage.js" type="module"></script>
+    <script src="assets/components/NewCardMyPage.js" type="module"></script>
 
     <link rel="stylesheet" href="assets/styles/main.css" type="text/css">
     <script src="assets/scripts/main.js"></script>
@@ -56,7 +58,7 @@
 
         <section class="main-item shown" id="my-recipes">
             <div class="main-item-title">
-                <a class="item-title">My Recipes</a>
+                <button class="item-title" id="to-my-page">My Recipes</button>
                 <img class="arrow-img" src="assets/images/icons/arrow.svg" width="15px" />
             </div>
             <div class="recipes-list" id="my-list">
@@ -78,6 +80,15 @@
                 <button class="item-title" id="favorite-page-to-landing">Favorites</button>
             </div>
             <div class="recipes-page-list" id="favorite-page-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="my-page">
+            <div class="main-item-title">
+                <img class="arrow-img" src="assets/images/icons/leftArrow.svg" width="15px" />
+                <button class="item-title" id="my-page-to-landing">My Recipes</button>
+            </div>
+            <div class="recipes-page-list" id="my-page-list">
             </div>
         </section>
     </main>

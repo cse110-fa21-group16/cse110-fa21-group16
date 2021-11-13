@@ -159,7 +159,7 @@ function createFeaRecipePage() {
 
 
 /**
- * Initial favorite Recipes page with all recipes from feaRecipeArray
+ * Initial favorite Recipes page with all recipes from favRecipeArray
  * @returns a Promise
  */
 function createFavRecipePage() {
@@ -177,6 +177,27 @@ function createFavRecipePage() {
     resolve(true);
   });
 }
+
+
+/**
+ * Initial My Recipes page with all recipes from myRecipeArray
+ * @returns a Promise
+ */
+ function createMyRecipePage() {
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < myRecipeArray.length; i++) {
+      let newMyRecipeCard = document.createElement("recipe-card-my-my-page");
+      newMyRecipeCard.data = myRecipeArray[i];
+      $("#my-page-list").appendChild(newMyRecipeCard);
+    }
+    if (myRecipeArray.length === 0) {
+      let addNewCard = document.createElement("new-card-my-page");
+      $("#my-page-list").appendChild(addNewCard);
+    }
+    resolve(true);
+  });
+}
+
 
 
 /**
@@ -205,6 +226,18 @@ function setButtonListen() {
   $("#favorite-page-to-landing").addEventListener("click", function (event) {
     $("#favorite-page").classList.remove("shown");
     $("#favorite-page-list").innerHTML = "";
+    loadLanding();
+  });
+
+  $("#to-my-page").addEventListener("click", function (event) {
+    $("#my-page").classList.add("shown");
+    createMyRecipePage();
+    leaveLanding();
+  });
+
+  $("#my-page-to-landing").addEventListener("click", function (event) {
+    $("#my-page").classList.remove("shown");
+    $("#my-page-list").innerHTML = "";
     loadLanding();
   });
 }
@@ -263,4 +296,6 @@ function leaveMain() {
   $("#featured-page-list").innerHTML = "";
   $("#favorite-page").classList.remove("shown");
   $("#favorite-page-list").innerHTML = "";
+  $("#my-page").classList.remove("shown");
+  $("#my-page-list").innerHTML = "";
 }
