@@ -92,7 +92,10 @@ main {
 }
 
 .item-title {
+  background-color: #ffffff;
+  border: 0px;
   color: var(--major-color);
+  cursor: pointer;
   font-size: 30px;
   font-weight: bold;
   text-decoration: none;
@@ -107,11 +110,18 @@ main {
 }
 
 .recipes-list {
-  max-width: 80vw;
   display: flex;
   flex-flow: row wrap;
-  align-items: center;
   justify-content: center;
+  max-width: 80vw;
+}
+
+.recipes-page-list {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 61vh;
 }
 
 /* footer */

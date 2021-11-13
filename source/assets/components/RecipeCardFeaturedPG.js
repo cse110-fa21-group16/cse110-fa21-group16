@@ -1,13 +1,16 @@
-class RecipeCard extends HTMLElement {
-    constructor() {
-      super();
-      this.attachShadow({mode: "open"});
-    }
-  
-    set data(data) {
-      // This is the CSS that you'll use for your recipe cards
-      const styleElem = document.createElement("style");
-      const styles = `
+import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
+import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
+
+class RecipeCardFeaturedPG extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  set data(data) {
+    // This is the CSS that you'll use for your recipe cards
+    const styleElem = document.createElement("style");
+    const styles = `
 
       * {
       margin: 0;
@@ -20,12 +23,12 @@ class RecipeCard extends HTMLElement {
       border-radius: 40px;
       display: flex;
       flex-direction: column;
-      height: 350px;
+      height: 300px;
       justify-content:space-between;
       margin: 25px;
       padding: 0 16px 16px 16px;
       transition: all 0.4s linear;
-      width: 250px;
+      width: 200px;
       -moz-transition: all 0.4s linear;
       -o-transition: all 0.4s linear;
       -webkit-transition: all 0.4s linear; 
@@ -36,25 +39,21 @@ class RecipeCard extends HTMLElement {
     }
     article p {
       color: #305A50;
-      font-size: 20px;
+      font-size: 16px;
       text-align: center;
-      position:relative;
-      bottom: 20px;
     }
-    article > img {
+    article .recipe-img {
       border-top-left-radius: 40px;
       border-top-right-radius: 40px;
-      height: 180px;
+      height: 120px;
       object-fit: cover;
       width: calc(100% + 32px);
     }
 
-    article input {
-      height:20px;
-      width:37px;
-      position:relative;
-      left: 120px;
-      bottom:10px;
+    article .favorite {
+      align-self: flex-end;
+      height: 20px;
+      width: 20px;
     }
 
     article button {
@@ -69,205 +68,86 @@ class RecipeCard extends HTMLElement {
     
     article button:hover {
       border: 1px solid #313131;
-      color:#c0392b;
-    }
-
-    article time {
-      color: #305A50;
-      font-size: 18px;
-      text-align: center;
-      position:relative;
-      bottom: 20px;
-    }
-
-    article:hover .cook{
       background: darkgreen;
       color: white;
+    }
+
+    article .cook-time {
+      font-size: 13px;
+    }
     `;
     styleElem.innerHTML = styles;
 
-    //recipe card
+    // recipe card
     const card = document.createElement("article");
-    
-    //recipe card image
+
+    // recipe card image
     const recipeImg = document.createElement("img");
-    recipeImg.src = searchForKey(data, "thumbnail") || searchForKey(data, "thumbnailUrl") || searchForKey(data, "url");
-    recipeImg.alt = searchForKey(data, "headline");
+    recipeImg.classList.add("recipe-img");
+    recipeImg.src = getImgUrl(data);
+    recipeImg.alt = getTitle(data);
     card.appendChild(recipeImg);
 
-    //recipe card favorite button
-    const input = document.createElement("input");
-      let liked = true;
-      input.classList.add("favorite");
-      input.type = "image";
-      input.setAttribute("src", "assets/images/heart.png");
-      
-      input.addEventListener("click", changeHeart);
-      
-      /**
-       * Toggles on and off the heart based on favorite
-       * @returns void
-       */
-      function changeHeart()
-      {
-        if (liked)
-        {
-            input.setAttribute("src", "assets/images/empty_heart.png");
-            liked = false;
-        }
-        else
-        {
-            input.setAttribute("src", "assets/images/heart.png");
-            liked = true;
-        }
-      }
+    // recipe card favorite button
+    const heartImg = document.createElement("img");
+    heartImg.classList.add("favorite");
+    if (checkFav(getTitle(data))) {
+      heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
+    }
+    else {
+      heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+    }
 
-      card.appendChild(input);
+    heartImg.addEventListener("click", function (event) {
+      changeHeart(data, heartImg);
+    });
+
+    card.appendChild(heartImg);
 
     // p element - title
     const recipeTitle = document.createElement("p");
     recipeTitle.classList.add("title");
-    recipeTitle.textContent = searchForKey(data, "headline");
+    recipeTitle.textContent = getTitle(data);
     card.appendChild(recipeTitle);
 
-    //time element
-    const time = document.createElement("time");
-    const totalTime = searchForKey(data, "totalTime");
-    time.textContent = convertTime(totalTime);
+    // time element
+    const time = document.createElement("p");
+    time.classList.add("cook-time");
+    const totalTime = getTime(data);
+    time.textContent = `${totalTime} min`;
     card.appendChild(time);
 
     // button element - check recipe
     const checkButton = document.createElement("button");
     checkButton.classList.add("cook");
-    checkButton.textContent = "View Recipe  ";
+    checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", function (event) {
-      showCheck(data);
-    });
 
-     this.shadowRoot.appendChild(styleElem);
-     this.shadowRoot.appendChild(card);
-  
-    }
-  }
-  
-  
-  /**
-   * Recursively search for a key nested somewhere inside an object
-   * @param {Object} object the object with which you'd like to search
-   * @param {String} key the key that you are looking for in the object
-   * @returns {*} the value of the found key
-   */
-  function searchForKey(object, key) {
-    var value;
-    Object.keys(object).some(function (k) {
-      if (k === key) {
-        value = object[k];
-        return true;
-      }
-      if (object[k] && typeof object[k] === 'object') {
-        value = searchForKey(object[k], key);
-        return value !== undefined;
-      }
-    });
-    return value;
-  }
-  
-  /**
-   * Extract the URL from the given recipe schema JSON object
-   * @param {Object} data Raw recipe JSON to find the URL of
-   * @returns {String} If found, it returns the URL as a string, otherwise null
-   */
-  function getUrl(data) {
-    if (data.url) return data.url;
-    if (data['@graph']) {
-      for (let i = 0; i < data['@graph'].length; i++) {
-        if (data['@graph'][i]['@type'] == 'Article') return data['@graph'][i]['@id'];
-      }
-    };
-    return null;
-  }
-  
-  /**
-   * Similar to getUrl(), this function extracts the organizations name from the
-   * schema JSON object. It's not in a standard location so this function helps.
-   * @param {Object} data Raw recipe JSON to find the org string of
-   * @returns {String} If found, it retuns the name of the org as a string, otherwise null
-   */
-  function getOrganization(data) {
-    if (data.publisher?.name) return data.publisher?.name;
-    if (data['@graph']) {
-      for (let i = 0; i < data['@graph'].length; i++) {
-        if (data['@graph'][i]['@type'] == 'Organization') {
-          return data['@graph'][i].name;
-        }
-      }
-    };
-    return null;
-  }
-  
-  /**
-   * Converts ISO 8061 time strings to regular english time strings.
-   * Not perfect but it works for this lab
-   * @param {String} time time string to format
-   * @return {String} formatted time string
-   */
-  function convertTime(time) {
-    let timeStr = '';
-  
-    // Remove the 'PT'
-    time = time.slice(2);
-  
-    let timeArr = time.split('');
-    if (time.includes('H')) {
-      for (let i = 0; i < timeArr.length; i++) {
-        if (timeArr[i] == 'H') return `${timeStr} hr`;
-        timeStr += timeArr[i];
-      }
-    } else {
-      for (let i = 0; i < timeArr.length; i++) {
-        if (timeArr[i] == 'M') return `${timeStr} min`;
-        timeStr += timeArr[i];
-      }
-    }
-  
-    return '';
-  }
-  
-  /**
-   * Takes in a list of ingredients raw from imported data and returns a neatly
-   * formatted comma separated list.
-   * @param {Array} ingredientArr The raw unprocessed array of ingredients from the
-   *                              imported data
-   * @return {String} the string comma separate list of ingredients from the array
-   */
-  function createIngredientList(ingredientArr) {
-    let finalIngredientList = '';
-  
-    /**
-     * Removes the quantity and measurement from an ingredient string.
-     * This isn't perfect, it makes the assumption that there will always be a quantity
-     * (sometimes there isn't, so this would fail on something like '2 apples' or 'Some olive oil').
-     * For the purposes of this lab you don't have to worry about those cases.
-     * @param {String} ingredient the raw ingredient string you'd like to process
-     * @return {String} the ingredient without the measurement & quantity 
-     * (e.g. '1 cup flour' returns 'flour')
-     */
-    function _removeQtyAndMeasurement(ingredient) {
-      return ingredient.split(' ').splice(2).join(' ');
-    }
-  
-    ingredientArr.forEach(ingredient => {
-      ingredient = _removeQtyAndMeasurement(ingredient);
-      finalIngredientList += `${ingredient}, `;
-    });
-  
-    // The .slice(0,-2) here gets ride of the extra ', ' added to the last ingredient
-    return finalIngredientList.slice(0, -2);
-  }
 
- 
-  
-  // Define the Class so you can use it as a custom element.
-  customElements.define('recipe-card', RecipeCard);
+    this.shadowRoot.appendChild(styleElem);
+    this.shadowRoot.appendChild(card);
+
+  }
+}
+
+
+/**
+ * Toggles on and off the heart based on favorite
+ * @returns void
+ */
+function changeHeart(data, cardObj) {
+  if (checkFav(getTitle(data))) {
+    cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+    rmFav(getTitle(data));
+  }
+  else {
+    cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
+    addFav(data);
+  }
+}
+
+
+
+// Define the Class so you can use it as a custom element.
+customElements.define("recipe-card-featured-pg", RecipeCardFeaturedPG);
 

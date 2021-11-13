@@ -5,13 +5,13 @@ const $ = (selector) => document.querySelector(selector);
 
 let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
-let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeData"));
+let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 
 
 window.addEventListener("DOMContentLoaded", init);
 
 /**
- * Intitial and load page
+ * Initial and load page
  * @returns a Promise of fetched data
  */
 async function init() {
@@ -38,6 +38,8 @@ async function init() {
     console.log("Add my recipe unsuccessful");
     return;
   };
+
+  setButtonListen();
 }
 
 
@@ -51,7 +53,7 @@ async function fetchFeaRecipeArray() {
   return new Promise((resolve, reject) => {
     if (feaRecipeArray == null) {
       fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
-      // fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
+        // fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
         .then((response) => response.json())
         .then((data) => {
           feaRecipeArray = data["recipes"];
@@ -90,12 +92,12 @@ function createFeaRecipeCards() {
  */
 function createFavRecipeCards() {
   return new Promise((resolve, reject) => {
-    if (favRecipeArray == null) {
+    if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
-      $("#favorite-recipes").classList.remove("shown")
+      $("#favorite-recipes").classList.remove("shown");
     }
     for (let i = 0; i < 3 && i < favRecipeArray.length; i++) {
-    // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
+      // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
       let newFavRecipeCard = document.createElement("recipe-card-fea");
       newFavRecipeCard.data = favRecipeArray[i];
       // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
@@ -115,13 +117,13 @@ function createFavRecipeCards() {
  * Initial My Recipes section with three recipes from myRecipeArray
  * @returns a Promise of fetched data
  */
- function createMyRecipeCards() {
+function createMyRecipeCards() {
   return new Promise((resolve, reject) => {
     if (myRecipeArray == null) {
       myRecipeArray = [];
     }
     for (let i = 0; i < 3 && i < myRecipeArray.length; i++) {
-    // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
+      // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
       let newMyRecipeCard = document.createElement("recipe-card-my");
       newMyRecipeCard.data = myRecipeArray[i];
       // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
@@ -137,4 +139,100 @@ function createFavRecipeCards() {
     }
     resolve(true);
   });
+}
+
+
+/**
+ * Initial Featured Recipes page with all recipes from feaRecipeArray
+ * @returns a Promise
+ */
+function createFeaRecipePage() {
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < feaRecipeArray.length; i++) {
+      let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
+      newFeaRecipeCard.data = feaRecipeArray[i];
+      $("#featured-page-list").appendChild(newFeaRecipeCard);
+    }
+    resolve(true);
+  });
+}
+
+
+/**
+ * Initial favorite Recipes page with all recipes from feaRecipeArray
+ * @returns a Promise
+ */
+function createFavRecipePage() {
+  return new Promise((resolve, reject) => {
+    for (let i = 0; i < favRecipeArray.length; i++) {
+      let newFavRecipeCard = document.createElement("recipe-card-featured-pg");
+      newFavRecipeCard.data = favRecipeArray[i];
+      $("#favorite-page-list").appendChild(newFavRecipeCard);
+    }
+    if (favRecipeArray.length === 0) {
+      let noFavTip = document.createElement("h1");
+      noFavTip.textContent = "You may not have favorite recipe. You could add new one.";
+      $("#favorite-page-list").appendChild(noFavTip);
+    }
+    resolve(true);
+  });
+}
+
+
+/**
+ * Set event listener for all title button
+ * @returns void
+ */
+function setButtonListen() {
+  $("#to-feature-page").addEventListener("click", function (event) {
+    $("#featured-page").classList.add("shown");
+    createFeaRecipePage();
+    leaveLanding();
+  });
+
+  $("#feature-page-to-landing").addEventListener("click", function (event) {
+    loadLanding();
+    $("#featured-page").classList.remove("shown");
+    $("#featured-page-list").innerHTML = "";
+  });
+
+  $("#to-favorite-page").addEventListener("click", function (event) {
+    $("#favorite-page").classList.add("shown");
+    createFavRecipePage();
+    leaveLanding();
+  });
+
+  $("#favorite-page-to-landing").addEventListener("click", function (event) {
+    loadLanding();
+    $("#favorite-page").classList.remove("shown");
+    $("#favorite-page-list").innerHTML = "";
+  });
+}
+
+
+/**
+ * Load landing page
+ * @returns void
+ */
+function loadLanding() {
+  $("#featured-recipes").classList.add("shown");
+  $("#favorite-recipes").classList.add("shown");
+  $("#my-recipes").classList.add('shown');
+  createFeaRecipeCards();
+  createMyRecipeCards();
+  createFavRecipeCards();
+}
+
+
+/**
+* Leave landing page
+* @returns void
+*/
+function leaveLanding() {
+  $("#featured-recipes").classList.remove("shown");
+  $("#favorite-recipes").classList.remove("shown");
+  $("#my-recipes").classList.remove("shown");
+  $("#featured-list").innerHTML = "";
+  $("#favorite-list").innerHTML = "";
+  $("#my-list").innerHTML = "";
 }

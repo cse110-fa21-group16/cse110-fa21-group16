@@ -1,4 +1,4 @@
-const $ = (selector) => document.querySelector(selector);
+import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardFea extends HTMLElement {
   constructor() {
@@ -61,9 +61,13 @@ class RecipeCardFea extends HTMLElement {
     
       article button:hover {
         border: 1px solid #313131;
-        color:#c0392b;
+        background: darkgreen;
+        color: white;
       }
     
+      article .cook-time {
+        font-size: 15px;
+      }
     `;
     styleElem.innerHTML = styles;
 
@@ -80,6 +84,13 @@ class RecipeCardFea extends HTMLElement {
     recipeTitle.textContent = getTitle(data);
     card.appendChild(recipeTitle);
 
+    // time element
+    const time = document.createElement("p");
+    time.classList.add("cook-time");
+    const totalTime = getTime(data);
+    time.textContent = `${totalTime} min`;
+    card.appendChild(time);
+
     // button element - check recipe
     const checkButton = document.createElement('button');
     checkButton.textContent = "COOK!";
@@ -93,19 +104,5 @@ class RecipeCardFea extends HTMLElement {
     this.shadow.appendChild(card);
   }
 }
-
-
-
-
-function getImgUrl(data) {
-  if (data.image) return data.image;
-  return null;
-}
-
-function getTitle(data) {
-  if (data.title) return data.title;
-  return null;
-}
-
 
 customElements.define('recipe-card-fea', RecipeCardFea);
