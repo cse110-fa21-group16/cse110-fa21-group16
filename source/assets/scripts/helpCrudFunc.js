@@ -65,3 +65,19 @@ export function updateMy(data) {
     }
     localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
 }
+
+/**
+* Remove the recipe to the myRecipeArray
+* @returns void
+*/
+export function rmMy(data) {
+    let i = 0;
+    for (; i < myRecipeArray.length; i++) {
+        if (myRecipeArray[i].title == data.title) {
+            break;
+        }
+    }
+    delete myRecipeArray[i];
+    myRecipeArray = myRecipeArray.filter(function (e) { return e });
+    localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+}

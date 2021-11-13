@@ -57,13 +57,13 @@ class RecipeCardFeaturedPG extends HTMLElement {
     }
 
     article button {
-      border: 1px solid darkgreen;
+      border: 1px solid #ccccd8;
       background-color: #fff;
       border-radius: 14px;
-      color: green;
+      color: #305A50;
       cursor: pointer;
-      font-size: 20px;
-      padding: 5px 30px;
+      font-size: 17px;
+      padding: 4px 26px;
     }
     
     article button:hover {
@@ -153,7 +153,7 @@ function changeHeart(data, cardObj) {
  * Load Featured Recipe Page
  * @returns void
  */
- function viewRecipe(data) {
+function viewRecipe(data) {
   $("#view-recipe-page").classList.add('main-shown');
   const viewRecipePage = document.createElement("view-fea-recipe");
   viewRecipePage.data = data;

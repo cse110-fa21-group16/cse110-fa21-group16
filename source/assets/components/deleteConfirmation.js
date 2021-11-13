@@ -1,87 +1,82 @@
-class EditRecipe extends HTMLElement {
+import { rmMy } from "../scripts/helpCrudFunc.js";
+
+class DeleteConfirmation extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({mode: "open"});
+        this.shadow = this.attachShadow({ mode: 'open' });
     }
 
-    set(data) {
-        let styling = document.createElement("style");
-        let styles =
-        `
-        /* Delete Confirmation Section Style */
-        .delete-confirmation{
-            width: 100%;
+    set data(data) {
+        const styleElem = document.createElement('style');
+        const styles = `
+        * {
+            margin: 0;
+            padding: 0;
+            color: rgb(48, 90, 80);
         }
-        .delete-confirmation-container{
-            background-color: #FAFAFA;
-            border: 1px solid rgb(48, 90, 80);
-            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-            height: 25vh;
-            margin: 0 auto;
-            width: 35vw;
+
+        article {
+            align-items: center;
+            display: flex;
+            flex-flow: row wrap;
+            justify-content:center;
+            width: 700px;
+            box-shadow: 0px 0px 15px #888888;
+            margin: 250px 0px 90px 0px;
         }
-        
-        /* Children of Delete Confirmation */
-        .delete-title{
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 1.75em;
-            margin: 2em 0;
+
+        h1 {
             text-align: center;
+            width: 100%;
+            margin-top: 60px;
+        }
+
+        div {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content:space-between;
+            width:100%;
+            margin: 100px;
+        }
+
+
+        button {
+            background-color: #ffffff;
+            border: 1px solid #ccccd8;
+            border-radius: 14px;
+            color: #305a50;
+            cursor: pointer;
+            font-size: 20px;
+            margin: 0px 50px;
+            min-width: 120px;
+            padding: 5px 20px;
         }
         
-        .delete-buttons{
-            display: flex; 
-            justify-content: space-around;   
-        }
-        .delete-button{
-            border: 2px solid rgb(48, 90, 80);
-            background-color: #FAFAFA;
-            color: #000000;
-            padding: 1em 3em;
-            
-            letter-spacing: .1em;
-            text-transform: uppercase;
-        }
-        .delete-button:hover{
-            border-color: #FAFAFA;
-            background-color: rgb(48, 90, 80);
-            color: #FAFAFA;
+        button:hover {
+            border: 1px solid #313131;
+            background: darkgreen;
+            color: white;
         }
         `;
+        styleElem.innerHTML = styles;
 
-        styling.textContent = styles;
+        const card = document.createElement("article");
 
-        // Root Element
-        let deleteSection = document.createElement("section");
-
-        // Root Attributes
-        deleteSection.setAttribute("class", "delete-confirmation");
-
-        ///////////////////////////////////////////////////////////////////////////////
-        ///////////////////////// DELETE CONFIRMATION CONTAINER ///////////////////////
-        ///////////////////////////////////////////////////////////////////////////////
-        let container = document.createElement("div");
-
-        // Container Attributes 
-        container.setAttribute("class", "delete-confirmation-container");
-
-        // Delete Title
-        let title = document.createElement("h2");
-        title.setAttribute("class", "delete-title");
-        title.innerHTML = "Do you want to delete this recipe?";
-        // Append Title to container 
-        container.appendChild(title);
+        // warn
+        const warn = document.createElement("h1");
+        warn.textContent = "Do you want to delete this recipe?";
 
         // Buttons div 
-        let buttons = document.createElement("div");
-        let yesButton = document.createElement("button");
-        let noButton = document.createElement("button");
+        const buttons = document.createElement("div");
+        const yesButton = document.createElement("button");
+        const noButton = document.createElement("button");
+
+        yesButton.textContent = "YES";
+        noButton.textContent = "NO";
 
         // Buttons Attributes 
-        yesButton.setAttribute("type", "button");
         yesButton.setAttribute("class", "delete-button");
         yesButton.setAttribute("id", "delete-yes");
-        noButton.setAttribute("type", "button");
         noButton.setAttribute("class", "delete-button");
         noButton.setAttribute("id", "delete-no");
 
@@ -89,17 +84,51 @@ class EditRecipe extends HTMLElement {
         buttons.appendChild(yesButton);
         buttons.appendChild(noButton);
 
-        // Append buttons div to container 
-        container.appendChild(buttons);
+        yesButton.addEventListener("click", function (event) {
+            deleteRecipe(data);
+        });
 
+        noButton.addEventListener("click", function (event) {
+            backToView(data);
+        });
 
-        ///////////////////////////////////////////////////////////////////////////////
-        ///////////////////////// APPEND TO SECTION & SHADOW DOM //////////////////////
-        ///////////////////////////////////////////////////////////////////////////////
-        deleteSection.appendChild(container);
+        card.appendChild(warn);
+        card.appendChild(buttons);
 
-        this.shadowRoot.appendChild(styling);
-        this.shadowRoot.appendChild(deleteSection);
+        this.shadow.appendChild(styleElem);
+        this.shadow.appendChild(card);
     }
-
 }
+
+/**
+ * Delete recipes and return to main page
+ * @returns void
+ */
+function deleteRecipe(data) {
+    rmMy(data);
+    $("#delete-page").classList.remove('main-shown');
+    $("#delete-page").innerHTML = "";
+    loadMain();
+    if ($("#my-page").classList.contains("shown")) {
+        loadMyRecipe();
+    }
+    else {
+        loadLanding();
+    }
+}
+
+
+/**
+ * Do not delete recipes and return to view page
+ * @returns void
+ */
+function backToView(data) {
+    $("#delete-page").classList.remove('main-shown');
+    $("#delete-page").innerHTML = "";
+    let editRecipePage = document.createElement("edit-recipe");
+    editRecipePage.data = data;
+    $("#add-recipe-page").appendChild(editRecipePage);
+    $("#add-recipe-page").classList.add('main-shown');
+}
+
+customElements.define("delete-confirmation", DeleteConfirmation);

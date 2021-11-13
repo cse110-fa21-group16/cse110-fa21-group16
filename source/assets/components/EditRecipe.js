@@ -627,6 +627,10 @@ class EditRecipe extends HTMLElement {
       leaveEdit(data);
     });
 
+    deleteButton.addEventListener("click", function (event) {
+      toDelete(data);
+    });
+
     submitButton.addEventListener("click", function (event) {
       let inputData = {};
       inputData["title"] = picTitle.value;
@@ -772,6 +776,15 @@ function leaveEdit(data) {
   const viewRecipePage = document.createElement("view-my-recipe");
   viewRecipePage.data = data;
   $("#view-recipe-page").appendChild(viewRecipePage);
+}
+
+function toDelete(data) {
+  $("#add-recipe-page").classList.remove('main-shown');
+  $("#add-recipe-page").innerHTML = "";
+  $("#delete-page").classList.add('main-shown');
+  const deletePage = document.createElement("delete-confirmation");
+  deletePage.data = data;
+  $("#delete-page").appendChild(deletePage);
 }
 
 // define the 'edit-recipe' element using this class
