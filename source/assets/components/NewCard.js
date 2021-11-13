@@ -1,5 +1,3 @@
-const $ = (selector) => document.querySelector(selector);
-
 class NewCard extends HTMLElement {
   constructor() {
     super();
