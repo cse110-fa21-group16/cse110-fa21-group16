@@ -1,3 +1,4 @@
+import { addMy } from "../scripts/helpCrudFunc.js";
 class AddRecipe extends HTMLElement {
   constructor() {
     super();
@@ -455,6 +456,7 @@ class AddRecipe extends HTMLElement {
     addIngredient.setAttribute("class", "add-instruction");
     addIngredient.setAttribute("id", "add-ingredient");
     addIngredient.innerHTML = "+";
+    
 
     amountColumn.appendChild(amountColumnTitle);
     amountColumn.appendChild(amountColumnInput);
@@ -503,6 +505,10 @@ class AddRecipe extends HTMLElement {
     ingredientGeneralDiv.appendChild(addIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
 
+    addIngredient.addEventListener("click", function (event) {
+      addIngreItems(addIngredient);
+    });
+
     ////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////// creating the main > instruction section //////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -549,6 +555,10 @@ class AddRecipe extends HTMLElement {
     // Append button to procedure div list 
     procedureDivList.appendChild(addInstruction);
 
+    addInstruction.addEventListener("click", function (event) {
+      addInstruItems(procedureList);
+    });
+
     // Append Procedure Div List to procedures div 
     procedures.appendChild(procedureDivList);
 
@@ -580,22 +590,51 @@ class AddRecipe extends HTMLElement {
 
     // Action Buttons
     let submitButton = document.createElement("button");
-    let deleteButton = document.createElement("button");
     let cancelButton = document.createElement("button");
 
     submitButton.setAttribute("id", "submit-edit");
-    deleteButton.setAttribute("id", "delete-edit");
     cancelButton.setAttribute("id", "cancel-edit");
     submitButton.innerHTML = "Submit";
-    deleteButton.innerHTML = "Delete";
     cancelButton.innerHTML = "Cancel";
 
     // Append Buttons to Div
     actionButtons.appendChild(submitButton);
-    actionButtons.appendChild(deleteButton);
     actionButtons.appendChild(cancelButton);
 
-    cancelButton.addEventListener("click", cancelAdd);
+    cancelButton.addEventListener("click", leaveAdd);
+
+    submitButton.addEventListener("click", function (event) {
+      let inputData = {};
+      inputData["title"] =  picTitle.value;
+      inputData["vegetarian"] = optionVegetarian.checked;
+      inputData["vegan"] = optionVegan.checked;
+      inputData["glutenFree"] = optionGlutten.checked;
+      inputData["dairyFree"] = optionDairy.checked;
+
+      inputData["extendedIngredients"] = [];
+      let ingreItemList = ingredientGeneralDiv.getElementsByClassName("ingredients-item");
+      let amountList = ingredientGeneralDiv.getElementsByClassName("amount-item");
+      let unitList = ingredientGeneralDiv.getElementsByClassName("unit-item");
+      for (let i = 0; i < ingreItemList.length; i++) {
+        let newIngreInfo = {}
+        newIngreInfo["name"] = ingreItemList[i].value;
+        newIngreInfo["amount"] = amountList[i].value;
+        newIngreInfo["unit"] = unitList[i].value;
+        inputData["extendedIngredients"].push(newIngreInfo);
+      }
+
+      let instruList = procedureList.getElementsByClassName("step-item");
+      let listHtml = "<ol>";
+      for (let i of instruList) {
+          let newInstruList = `<li>${i.value}</li>`;
+          listHtml += newInstruList;  
+      }
+      listHtml += "</ol>"
+      inputData["instructions"] = listHtml;
+
+      addMy(inputData);
+      leaveAdd();
+    });
 
     // Append Div to footer 
     footer.appendChild(actionButtons);
@@ -616,14 +655,96 @@ class AddRecipe extends HTMLElement {
   }
 }
 
-function cancelAdd() {
+function addIngreItems(buttonItem) {
+  let ingredientListDiv = document.createElement("div");
+  ingredientListDiv.setAttribute("class", "ingredients-list-div");
+
+  let ingredientColumn = document.createElement("div"); // ingredient column
+  let ingredientColumnTitle = document.createElement("h2");
+  let ingredientColumnInput = document.createElement("textarea");
+  ingredientColumn.setAttribute("class", "ingredient-column");
+  ingredientColumnTitle.setAttribute("class", "title");
+  ingredientColumnTitle.innerHTML = "Ingredient:";
+  ingredientColumnInput.setAttribute("class", "ingredients-item");
+  ingredientColumnInput.innerHTML = "Populate data here";
+
+  ingredientColumn.appendChild(ingredientColumnTitle);
+  ingredientColumn.appendChild(ingredientColumnInput);
+
+  let amountColumn = document.createElement("div"); // amount column
+  let amountColumnTitle = document.createElement("h2");
+  let amountColumnInput = document.createElement("input");
+
+  amountColumn.setAttribute("class", "amount-column");
+  amountColumnTitle.setAttribute("class", "title");
+  amountColumnTitle.innerHTML = "Amount:";
+  amountColumnInput.setAttribute("class", "amount-item");
+  amountColumnInput.setAttribute("type", "number");
+  amountColumnInput.setAttribute("value", "1");
+
+  amountColumn.appendChild(amountColumnTitle);
+  amountColumn.appendChild(amountColumnInput);
+
+  let unitColumn = document.createElement("div"); // unit column
+  let unitColumnTitle = document.createElement("h2");
+  unitColumn.setAttribute("class", "unit-column");
+  unitColumnTitle.setAttribute("class", "title");
+  unitColumnTitle.innerHTML = "Unit:";
+
+  let unitColumnInput = document.createElement("select");
+  let unitDefault = document.createElement("option");
+  let unitGrams = document.createElement("option");
+  let unitKilograms = document.createElement("option");
+  let unitPounds = document.createElement("option");
+  let unitTablespoons = document.createElement("option");
+  let unitCups = document.createElement("option");
+  unitDefault.setAttribute("value", "");
+  unitGrams.setAttribute("value", "grams");
+  unitKilograms.setAttribute("value", "kgs");
+  unitPounds.setAttribute("value", "lbs");
+  unitTablespoons.setAttribute("value", "tbps");
+  unitCups.setAttribute("value", "cups");
+  unitDefault.innerHTML = "Select unit";
+  unitGrams.innerHTML = "grams";
+  unitKilograms.innerHTML = "kgs";
+  unitPounds.innerHTML = "lbs";
+  unitTablespoons.innerHTML = "tbps";
+  unitCups.innerHTML = "cups";
+  unitColumnInput.setAttribute("class", "unit-item");
+  unitColumnInput.appendChild(unitDefault);
+  unitColumnInput.appendChild(unitGrams);
+  unitColumnInput.appendChild(unitKilograms);
+  unitColumnInput.appendChild(unitPounds);
+  unitColumnInput.appendChild(unitTablespoons);
+  unitColumnInput.appendChild(unitCups);
+
+  unitColumn.appendChild(unitColumnTitle);
+  unitColumn.appendChild(unitColumnInput);
+
+  ingredientListDiv.appendChild(ingredientColumn);
+  ingredientListDiv.appendChild(amountColumn);
+  ingredientListDiv.appendChild(unitColumn);
+  buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
+}
+
+
+function addInstruItems(olItem) {
+  let procedureListItem = document.createElement("li");
+  let procedureListText = document.createElement("textarea");
+  procedureListText.setAttribute("class", "step-item");
+  procedureListText.innerHTML = "Populate data here";
+
+  procedureListItem.appendChild(procedureListText);
+  olItem.appendChild(procedureListItem);
+}
+
+function leaveAdd() {
   $("#add-recipe-page").classList.remove('main-shown');
   $("#add-recipe-page").innerHTML = "";
   loadMain();
   if ($("#my-page").classList.contains("shown")) {
     loadMyRecipe();
   }
-
   else {
     loadLanding();
   }

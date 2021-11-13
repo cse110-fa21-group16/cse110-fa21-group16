@@ -197,10 +197,8 @@ function createMyRecipePage() {
       newMyRecipeCard.data = myRecipeArray[i];
       $("#my-page-list").appendChild(newMyRecipeCard);
     }
-    if (myRecipeArray.length === 0) {
-      let addNewCard = document.createElement("new-card-my-page");
-      $("#my-page-list").appendChild(addNewCard);
-    }
+    let addNewCard = document.createElement("new-card-my-page");
+    $("#my-page-list").appendChild(addNewCard);
     resolve(true);
   });
 }

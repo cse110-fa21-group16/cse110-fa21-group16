@@ -39,3 +39,13 @@ export function addFav(data) {
     favRecipeArray.push(data);
     localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray));
 }
+
+
+/**
+* Add the recipe to the favRecipeArray
+* @returns void
+*/
+export function addMy(data) {
+    myRecipeArray.push(data);
+    localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+}

@@ -23,7 +23,6 @@ class ViewMyRecipe extends HTMLElement {
             display: flex;
             flex-flow: row wrap;
             margin: 10px 0px 90px 0px;
-            width: 70%;
         }
 
 
@@ -96,10 +95,12 @@ class ViewMyRecipe extends HTMLElement {
         }
 
         #left-main > h2 {
+            visibility: hidden;
             margin: 60px 0px 20px 0px;
         }
         
         #left-main > p {
+            visibility: hidden;
             font-size: 20px;
             margin-bottom: 40px;
         }
@@ -290,6 +291,7 @@ class ViewMyRecipe extends HTMLElement {
 
         const backButton = document.createElement("button");
         backButton.textContent = "Back";
+        backButton.addEventListener("click", myRecipeToLand);
 
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
@@ -418,6 +420,22 @@ class ViewMyRecipe extends HTMLElement {
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
+    }
+}
+
+/**
+ * Leave Featured Recipe Page to landing page
+ * @returns void
+ */
+function myRecipeToLand() {
+    $("#view-recipe-page").classList.remove('main-shown');
+    $("#view-recipe-page").innerHTML = "";
+    loadMain();
+    if ($("#my-page").classList.contains("shown")) {
+        loadMyRecipe();
+    }
+    else {
+        loadLanding();
     }
 }
 

@@ -1,4 +1,4 @@
-const $ = (selector) => document.querySelector(selector);
+import {  getTitle } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardMy extends HTMLElement {
   constructor() {
@@ -83,6 +83,9 @@ class RecipeCardMy extends HTMLElement {
     const checkButton = document.createElement('button');
     checkButton.textContent = "CHECK";
     card.appendChild(checkButton);
+    checkButton.addEventListener("click", function (event) {
+      viewRecipe(data);
+    });
 
 
     this.shadow.appendChild(styleElem);
@@ -91,11 +94,16 @@ class RecipeCardMy extends HTMLElement {
 }
 
 
-
-
-function getTitle(data) {
-  if (data.title) return data.title;
-  return null;
+/**
+ * Load My Recipe Page
+ * @returns void
+ */
+ function viewRecipe(data) {
+  $("#view-recipe-page").classList.add('main-shown');
+  const viewRecipePage = document.createElement("view-my-recipe");
+  viewRecipePage.data = data;
+  $("#view-recipe-page").appendChild(viewRecipePage);
+  leaveMain();
 }
 
 
