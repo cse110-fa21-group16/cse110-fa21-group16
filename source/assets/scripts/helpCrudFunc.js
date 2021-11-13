@@ -42,10 +42,26 @@ export function addFav(data) {
 
 
 /**
-* Add the recipe to the favRecipeArray
+* Add the recipe to the myRecipeArray
 * @returns void
 */
 export function addMy(data) {
     myRecipeArray.push(data);
+    localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+}
+
+
+/**
+* Updata the recipe to the myRecipeArray
+* @returns void
+*/
+export function updateMy(data) {
+    let i = 0;
+    for (; i < myRecipeArray.length; i++) {
+        if (myRecipeArray[i].title == data.title) {
+            myRecipeArray[i] = data;
+            break;
+        }
+    }
     localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
 }

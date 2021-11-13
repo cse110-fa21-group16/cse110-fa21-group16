@@ -456,7 +456,7 @@ class AddRecipe extends HTMLElement {
     addIngredient.setAttribute("class", "add-instruction");
     addIngredient.setAttribute("id", "add-ingredient");
     addIngredient.innerHTML = "+";
-    
+
 
     amountColumn.appendChild(amountColumnTitle);
     amountColumn.appendChild(amountColumnInput);
@@ -605,7 +605,7 @@ class AddRecipe extends HTMLElement {
 
     submitButton.addEventListener("click", function (event) {
       let inputData = {};
-      inputData["title"] =  picTitle.value;
+      inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;
       inputData["vegan"] = optionVegan.checked;
       inputData["glutenFree"] = optionGlutten.checked;
@@ -625,12 +625,15 @@ class AddRecipe extends HTMLElement {
 
       let instruList = procedureList.getElementsByClassName("step-item");
       let listHtml = "<ol>";
+      let instruArray = [];
       for (let i of instruList) {
-          let newInstruList = `<li>${i.value}</li>`;
-          listHtml += newInstruList;  
+        let newInstruList = `<li>${i.value}</li>`;
+        listHtml += newInstruList;
+        instruArray.push(i.value);
       }
       listHtml += "</ol>"
       inputData["instructions"] = listHtml;
+      inputData["instructionsArray"] = instruArray;
 
       addMy(inputData);
       leaveAdd();

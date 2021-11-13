@@ -295,6 +295,10 @@ class ViewMyRecipe extends HTMLElement {
 
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
+        editButton.addEventListener("click", function (event) {
+            myRecipeToEdit(data);
+        });
+
 
         mainFooterSec.appendChild(backButton);
         mainFooterSec.appendChild(editButton);
@@ -439,5 +443,17 @@ function myRecipeToLand() {
     }
 }
 
+/**
+ * Leave Featured Recipe Page to edit page
+ * @returns void
+ */
+function myRecipeToEdit(data) {
+    $("#view-recipe-page").classList.remove('main-shown');
+    $("#view-recipe-page").innerHTML = "";
+    let editRecipePage = document.createElement("edit-recipe");
+    editRecipePage.data = data;
+    $("#add-recipe-page").appendChild(editRecipePage);
+    $("#add-recipe-page").classList.add('main-shown');
+}
 
 customElements.define('view-my-recipe', ViewMyRecipe);
