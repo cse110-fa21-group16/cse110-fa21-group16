@@ -453,11 +453,20 @@ function changeHeart(data, cardObj) {
  * Leave Featured Recipe Page to landing page
  * @returns void
  */
- function feaRecipeToLand() {
+function feaRecipeToLand() {
     $("#view-recipe-page").classList.remove('main-shown');
     $("#view-recipe-page").innerHTML = "";
     loadMain();
-  }
+    if ($("#featured-page").classList.contains("shown")) {
+        loadFeatured();
+    }
+    else if ($("#favorite-page").classList.contains("shown")) {
+        loadFavorite();
+    }
+    else {
+        loadLanding();
+    }
+}
 
 
 

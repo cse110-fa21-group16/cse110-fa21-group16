@@ -74,6 +74,7 @@ async function fetchFeaRecipeArray() {
  */
 function createFeaRecipeCards() {
   return new Promise((resolve, reject) => {
+    $("#featured-list").innerHTML = "";
     let index = Math.round(Math.random() * 25);
     for (let i = index; i < index + 3; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-fea");
@@ -95,7 +96,9 @@ function createFavRecipeCards() {
     if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
       $("#favorite-recipes").classList.remove("shown");
+      resolve(true);
     }
+    $("#favorite-list").innerHTML = "";
     for (let i = 0; i < 3 && i < favRecipeArray.length; i++) {
       // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
       let newFavRecipeCard = document.createElement("recipe-card-fea");
@@ -122,6 +125,7 @@ function createMyRecipeCards() {
     if (myRecipeArray == null) {
       myRecipeArray = [];
     }
+    $("#my-list").innerHTML = "";
     for (let i = 0; i < 3 && i < myRecipeArray.length; i++) {
       // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
       let newMyRecipeCard = document.createElement("recipe-card-my");
@@ -148,6 +152,7 @@ function createMyRecipeCards() {
  */
 function createFeaRecipePage() {
   return new Promise((resolve, reject) => {
+    $("#featured-page-list").innerHTML = "";
     for (let i = 0; i < feaRecipeArray.length; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
       newFeaRecipeCard.data = feaRecipeArray[i];
@@ -164,6 +169,7 @@ function createFeaRecipePage() {
  */
 function createFavRecipePage() {
   return new Promise((resolve, reject) => {
+    $("#favorite-page-list").innerHTML = "";
     for (let i = 0; i < favRecipeArray.length; i++) {
       let newFavRecipeCard = document.createElement("recipe-card-featured-pg");
       newFavRecipeCard.data = favRecipeArray[i];
@@ -183,8 +189,9 @@ function createFavRecipePage() {
  * Initial My Recipes page with all recipes from myRecipeArray
  * @returns a Promise
  */
- function createMyRecipePage() {
+function createMyRecipePage() {
   return new Promise((resolve, reject) => {
+    $("#my-page-list").innerHTML = "";
     for (let i = 0; i < myRecipeArray.length; i++) {
       let newMyRecipeCard = document.createElement("recipe-card-my-my-page");
       newMyRecipeCard.data = myRecipeArray[i];
@@ -206,38 +213,32 @@ function createFavRecipePage() {
  */
 function setButtonListen() {
   $("#to-feature-page").addEventListener("click", function (event) {
-    $("#featured-page").classList.add("shown");
-    createFeaRecipePage();
     leaveLanding();
+    loadFeatured();
   });
 
   $("#feature-page-to-landing").addEventListener("click", function (event) {
-    $("#featured-page").classList.remove("shown");
-    $("#featured-page-list").innerHTML = "";
+    leaveFeatured();
     loadLanding();
   });
 
   $("#to-favorite-page").addEventListener("click", function (event) {
-    $("#favorite-page").classList.add("shown");
-    createFavRecipePage();
     leaveLanding();
+    loadFavorite();
   });
 
   $("#favorite-page-to-landing").addEventListener("click", function (event) {
-    $("#favorite-page").classList.remove("shown");
-    $("#favorite-page-list").innerHTML = "";
+    leaveFavorite();
     loadLanding();
   });
 
   $("#to-my-page").addEventListener("click", function (event) {
-    $("#my-page").classList.add("shown");
-    createMyRecipePage();
     leaveLanding();
+    loadMyRecipe();
   });
 
   $("#my-page-to-landing").addEventListener("click", function (event) {
-    $("#my-page").classList.remove("shown");
-    $("#my-page-list").innerHTML = "";
+    leaveMyRecipe();
     loadLanding();
   });
 }
@@ -270,6 +271,64 @@ function leaveLanding() {
   $("#my-list").innerHTML = "";
 }
 
+/**
+ * Load featured page
+ * @returns void
+ */
+function loadFeatured() {
+  $("#featured-page").classList.add("shown");
+  createFeaRecipePage();
+}
+
+
+/**
+* Leave featured page
+* @returns void
+*/
+function leaveFeatured() {
+  $("#featured-page").classList.remove("shown");
+  $("#featured-page-list").innerHTML = "";
+}
+
+/**
+ * Load favorite page
+ * @returns void
+ */
+function loadFavorite() {
+  $("#favorite-page").classList.add("shown");
+  createFavRecipePage();
+}
+
+
+/**
+* Leave favorite page
+* @returns void
+*/
+function leaveFavorite() {
+  $("#favorite-page").classList.remove("shown");
+  $("#favorite-page-list").innerHTML = "";
+}
+
+
+/**
+ * Load my recipe page
+ * @returns void
+ */
+function loadMyRecipe() {
+  $("#my-page").classList.add("shown");
+  createMyRecipePage();
+}
+
+
+/**
+* Leave my recipe page
+* @returns void
+*/
+function leaveMyRecipe() {
+  $("#my-page").classList.remove("shown");
+  $("#my-page-list").innerHTML = "";
+}
+
 
 /**
 * Load main page (like to add page)
@@ -279,7 +338,6 @@ function loadMain() {
   $("#main-header").classList.add("main-shown");
   $("#main-main").classList.add("main-shown");
   $("#main-footer").classList.add("main-shown");
-  loadLanding();
 }
 
 
@@ -291,11 +349,10 @@ function leaveMain() {
   $("#main-header").classList.remove("main-shown");
   $("#main-main").classList.remove("main-shown");
   $("#main-footer").classList.remove("main-shown");
-  leaveLanding();
-  $("#featured-page").classList.remove("shown");
+  $("#featured-list").innerHTML = "";
+  $("#favorite-list").innerHTML = "";
+  $("#my-list").innerHTML = "";
   $("#featured-page-list").innerHTML = "";
-  $("#favorite-page").classList.remove("shown");
   $("#favorite-page-list").innerHTML = "";
-  $("#my-page").classList.remove("shown");
   $("#my-page-list").innerHTML = "";
 }
