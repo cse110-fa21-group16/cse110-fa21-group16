@@ -4,7 +4,7 @@
  * Get the image of recipe
  * @returns string
  */
-export function getImgUrl(data) {
+ export function getImgUrl(data) {
     if (data.image) return data.image;
     return null;
 }
@@ -27,4 +27,70 @@ export function getTitle(data) {
 export function getTime(data) {
     if (data.readyInMinutes) return data.readyInMinutes;
     return null;
+}
+
+
+/**
+ * Get the steps of recipe
+ * @returns string
+ */
+ export function getSteps(data) {
+    if (data.instructions) return data.instructions;
+    return null;
+}
+
+/**
+ * Get the ingredients of recipe
+ * @returns string
+ */
+ export function getIngre(data) {
+    let listHtml = "<ol>";
+    let ingreArray = data.extendedIngredients;
+    for (let i of ingreArray) {
+        let ingreName = i.name;
+        let ingreAmount = i.amount;
+        let ingreUnit = i.unit;
+        let newIngreList = `<li>${ingreName} - ${ingreAmount} ${ingreUnit}</li>`;
+        listHtml += newIngreList;  
+    }
+    listHtml += "</ol>"
+
+    return listHtml;
+}
+
+/**
+ * Get the vegetarian of recipe
+ * @returns bool
+ */
+ export function getVegeta(data) {
+    if (data.vegetarian) return data.vegetarian;
+    return false;
+}
+
+
+/**
+ * Get the vegan of recipe
+ * @returns bool
+ */
+ export function getVegan(data) {
+    if (data.vegan) return data.vegan;
+    return false;
+}
+
+/**
+ * Get the glutenFree of recipe
+ * @returns bool
+ */
+ export function getGluten(data) {
+    if (data.glutenFree) return data.glutenFree;
+    return false;
+}
+
+/**
+ * Get the dairyFree of recipe
+ * @returns bool
+ */
+ export function getDairy(data) {
+    if (data.dairyFree) return data.dairyFree;
+    return false;
 }
