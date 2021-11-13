@@ -9,5 +9,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "node-fetch-commonjs": "^3.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.2.0"
   }
 }
