@@ -3,7 +3,7 @@ import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 class RecipeCardFea extends HTMLElement {
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
+    this.shadow = this.attachShadow({ mode: "open" });
   }
 
   set data(data) {
@@ -71,15 +71,15 @@ class RecipeCardFea extends HTMLElement {
     `;
     styleElem.innerHTML = styles;
 
-    const card = document.createElement('article');
+    const card = document.createElement("article");
 
-    const recipeImg = document.createElement('img');
+    const recipeImg = document.createElement("img");
     recipeImg.src = getImgUrl(data);
     recipeImg.alt = getTitle(data);
     card.appendChild(recipeImg);
 
     // p element - title
-    const recipeTitle = document.createElement('p');
+    const recipeTitle = document.createElement("p");
     recipeTitle.classList.add("title");
     recipeTitle.textContent = getTitle(data);
     card.appendChild(recipeTitle);
@@ -92,7 +92,7 @@ class RecipeCardFea extends HTMLElement {
     card.appendChild(time);
 
     // button element - check recipe
-    const checkButton = document.createElement('button');
+    const checkButton = document.createElement("button");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
     checkButton.addEventListener("click", function (event) {
@@ -110,12 +110,12 @@ class RecipeCardFea extends HTMLElement {
  * @returns void
  */
 function viewRecipe(data) {
-  $("#view-recipe-page").classList.add('main-shown');
+  $("#view-recipe-page").classList.add("main-shown");
   const viewRecipePage = document.createElement("view-fea-recipe");
   viewRecipePage.data = data;
   $("#view-recipe-page").appendChild(viewRecipePage);
   leaveMain();
 }
 
-customElements.define('recipe-card-fea', RecipeCardFea);
+customElements.define("recipe-card-fea", RecipeCardFea);
 

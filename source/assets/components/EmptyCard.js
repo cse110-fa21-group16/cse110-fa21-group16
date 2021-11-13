@@ -3,9 +3,9 @@ const $ = (selector) => document.querySelector(selector);
 class EmptyCard extends HTMLElement {
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
+    this.shadow = this.attachShadow({ mode: "open" });
 
-    const styleElem = document.createElement('style');
+    const styleElem = document.createElement("style");
     const styles = `
       * {
         margin: 0;
@@ -31,7 +31,7 @@ class EmptyCard extends HTMLElement {
     `;
     styleElem.innerHTML = styles;
 
-    const card = document.createElement('article');
+    const card = document.createElement("article");
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);

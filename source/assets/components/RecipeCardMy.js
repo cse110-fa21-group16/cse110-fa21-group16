@@ -7,7 +7,7 @@ class RecipeCardMy extends HTMLElement {
   }
 
   set data(data) {
-    const styleElem = document.createElement('style');
+    const styleElem = document.createElement("style");
     const styles = `
       * {
         margin: 0;
@@ -68,9 +68,9 @@ class RecipeCardMy extends HTMLElement {
     `;
     styleElem.innerHTML = styles;
 
-    const card = document.createElement('article');
+    const card = document.createElement("article");
 
-    const recipeImg = document.createElement('div');
+    const recipeImg = document.createElement("div");
     card.appendChild(recipeImg);
 
     // p element - title
@@ -80,7 +80,7 @@ class RecipeCardMy extends HTMLElement {
     card.appendChild(recipeTitle);
 
     // button element - check recipe
-    const checkButton = document.createElement('button');
+    const checkButton = document.createElement("button");
     checkButton.textContent = "CHECK";
     card.appendChild(checkButton);
     checkButton.addEventListener("click", function (event) {
@@ -99,7 +99,7 @@ class RecipeCardMy extends HTMLElement {
  * @returns void
  */
  function viewRecipe(data) {
-  $("#view-recipe-page").classList.add('main-shown');
+  $("#view-recipe-page").classList.add("main-shown");
   const viewRecipePage = document.createElement("view-my-recipe");
   viewRecipePage.data = data;
   $("#view-recipe-page").appendChild(viewRecipePage);
@@ -107,4 +107,4 @@ class RecipeCardMy extends HTMLElement {
 }
 
 
-customElements.define('recipe-card-my', RecipeCardMy);
+customElements.define("recipe-card-my", RecipeCardMy);

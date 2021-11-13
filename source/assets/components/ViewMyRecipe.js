@@ -8,7 +8,7 @@ class ViewMyRecipe extends HTMLElement {
     }
 
     set data(data) {
-        const styleElem = document.createElement('style');
+        const styleElem = document.createElement("style");
         const styles = `
         /* root css style */
         * {
@@ -217,7 +217,7 @@ class ViewMyRecipe extends HTMLElement {
         `;
         styleElem.innerHTML = styles;
 
-        const card = document.createElement('article');
+        const card = document.createElement("article");
 
         // header
         const header = document.createElement("header");
@@ -432,7 +432,7 @@ class ViewMyRecipe extends HTMLElement {
  * @returns void
  */
 function myRecipeToLand() {
-    $("#view-recipe-page").classList.remove('main-shown');
+    $("#view-recipe-page").classList.remove("main-shown");
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     if ($("#my-page").classList.contains("shown")) {
@@ -448,12 +448,12 @@ function myRecipeToLand() {
  * @returns void
  */
 function myRecipeToEdit(data) {
-    $("#view-recipe-page").classList.remove('main-shown');
+    $("#view-recipe-page").classList.remove("main-shown");
     $("#view-recipe-page").innerHTML = "";
     let editRecipePage = document.createElement("edit-recipe");
     editRecipePage.data = data;
     $("#add-recipe-page").appendChild(editRecipePage);
-    $("#add-recipe-page").classList.add('main-shown');
+    $("#add-recipe-page").classList.add("main-shown");
 }
 
-customElements.define('view-my-recipe', ViewMyRecipe);
+customElements.define("view-my-recipe", ViewMyRecipe);

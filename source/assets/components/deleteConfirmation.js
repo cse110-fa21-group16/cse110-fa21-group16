@@ -3,11 +3,11 @@ import { rmMy } from "../scripts/helpCrudFunc.js";
 class DeleteConfirmation extends HTMLElement {
     constructor() {
         super();
-        this.shadow = this.attachShadow({ mode: 'open' });
+        this.shadow = this.attachShadow({ mode: "open" });
     }
 
     set data(data) {
-        const styleElem = document.createElement('style');
+        const styleElem = document.createElement("style");
         const styles = `
         * {
             margin: 0;
@@ -106,7 +106,7 @@ class DeleteConfirmation extends HTMLElement {
  */
 function deleteRecipe(data) {
     rmMy(data);
-    $("#delete-page").classList.remove('main-shown');
+    $("#delete-page").classList.remove("main-shown");
     $("#delete-page").innerHTML = "";
     loadMain();
     if ($("#my-page").classList.contains("shown")) {
@@ -123,12 +123,12 @@ function deleteRecipe(data) {
  * @returns void
  */
 function backToView(data) {
-    $("#delete-page").classList.remove('main-shown');
+    $("#delete-page").classList.remove("main-shown");
     $("#delete-page").innerHTML = "";
     let editRecipePage = document.createElement("edit-recipe");
     editRecipePage.data = data;
     $("#add-recipe-page").appendChild(editRecipePage);
-    $("#add-recipe-page").classList.add('main-shown');
+    $("#add-recipe-page").classList.add("main-shown");
 }
 
 customElements.define("delete-confirmation", DeleteConfirmation);

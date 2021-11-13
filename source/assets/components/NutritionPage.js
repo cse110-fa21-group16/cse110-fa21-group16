@@ -392,5 +392,5 @@ class NutritionPage extends HTMLElement {
     }
 }
 
-// define the 'nutrition-page' element using this class
+// define the "nutrition-page" element using this class
 customElements.define("nutrition-page", NutritionPage);

@@ -742,7 +742,7 @@ function addInstruItems(olItem) {
 }
 
 function leaveAdd() {
-  $("#add-recipe-page").classList.remove('main-shown');
+  $("#add-recipe-page").classList.remove("main-shown");
   $("#add-recipe-page").innerHTML = "";
   loadMain();
   if ($("#my-page").classList.contains("shown")) {
@@ -753,5 +753,5 @@ function leaveAdd() {
   }
 }
 
-// define the 'edit-recipe' element using this class
+// define the "edit-recipe" element using this class
 customElements.define("add-recipe", AddRecipe);

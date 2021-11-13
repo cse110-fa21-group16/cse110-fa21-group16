@@ -9,7 +9,7 @@ class ViewFeaRecipe extends HTMLElement {
     }
 
     set data(data) {
-        const styleElem = document.createElement('style');
+        const styleElem = document.createElement("style");
         const styles = `
         /* root css style */
         * {
@@ -220,7 +220,7 @@ class ViewFeaRecipe extends HTMLElement {
         `;
         styleElem.innerHTML = styles;
 
-        const card = document.createElement('article');
+        const card = document.createElement("article");
 
         // header
         const header = document.createElement("header");
@@ -454,7 +454,7 @@ function changeHeart(data, cardObj) {
  * @returns void
  */
 function feaRecipeToLand() {
-    $("#view-recipe-page").classList.remove('main-shown');
+    $("#view-recipe-page").classList.remove("main-shown");
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     if ($("#featured-page").classList.contains("shown")) {
@@ -470,4 +470,4 @@ function feaRecipeToLand() {
 
 
 
-customElements.define('view-fea-recipe', ViewFeaRecipe);
+customElements.define("view-fea-recipe", ViewFeaRecipe);

@@ -8,7 +8,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
   }
 
   set data(data) {
-    // This is the CSS that you'll use for your recipe cards
+    // This is the CSS that you"ll use for your recipe cards
     const styleElem = document.createElement("style");
     const styles = `
 
@@ -154,7 +154,7 @@ function changeHeart(data, cardObj) {
  * @returns void
  */
 function viewRecipe(data) {
-  $("#view-recipe-page").classList.add('main-shown');
+  $("#view-recipe-page").classList.add("main-shown");
   const viewRecipePage = document.createElement("view-fea-recipe");
   viewRecipePage.data = data;
   $("#view-recipe-page").appendChild(viewRecipePage);

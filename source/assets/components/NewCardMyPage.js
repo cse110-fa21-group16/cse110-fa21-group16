@@ -1,9 +1,9 @@
 class NewCardMyPage extends HTMLElement {
   constructor() {
     super();
-    this.shadow = this.attachShadow({ mode: 'open' });
+    this.shadow = this.attachShadow({ mode: "open" });
 
-    const styleElem = document.createElement('style');
+    const styleElem = document.createElement("style");
     const styles = `
       * {
         margin: 0;
@@ -33,9 +33,9 @@ class NewCardMyPage extends HTMLElement {
     `;
     styleElem.innerHTML = styles;
 
-    const card = document.createElement('article');
+    const card = document.createElement("article");
 
-    const checkButton = document.createElement('img');
+    const checkButton = document.createElement("img");
     checkButton.src = "assets/images/icons/add.svg";
     checkButton.width = "50";
     card.appendChild(checkButton);
@@ -51,7 +51,7 @@ function addNewRecipe() {
   let addRecipePage = document.createElement("add-recipe");
   addRecipePage.data = {};
   $("#add-recipe-page").appendChild(addRecipePage);
-  $("#add-recipe-page").classList.add('main-shown');
+  $("#add-recipe-page").classList.add("main-shown");
 }
 
-customElements.define('new-card-my-page', NewCardMyPage);
+customElements.define("new-card-my-page", NewCardMyPage);
