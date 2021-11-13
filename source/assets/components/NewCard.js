@@ -39,11 +39,19 @@ class NewCard extends HTMLElement {
     checkButton.src = "assets/images/icons/add.svg";
     checkButton.width = "50";
     card.appendChild(checkButton);
+    checkButton.addEventListener("click", addNewRecipe);
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);
   }
 }
 
+function addNewRecipe() {
+  leaveMain();
+  let addRecipePage = document.createElement("add-recipe");
+  addRecipePage.data = {};
+  $("#add-recipe-page").appendChild(addRecipePage);
+  $("#add-recipe-page").classList.add('main-shown');
+}
 
 customElements.define('new-card', NewCard);
