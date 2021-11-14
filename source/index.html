@@ -15,13 +15,20 @@
     <script src="assets/components/NewCard.js" type="module"></script>
     <script src="assets/components/EmptyCard.js" type="module"></script>
     <script src="assets/components/RecipeCardFeaturedPG.js" type="module"></script>
+    <script src="assets/components/ViewFeaRecipe.js" type="module"></script>
+    <script src="assets/components/ViewMyRecipe.js" type="module"></script>
+    <script src="assets/components/AddRecipe.js" type="module"></script>
+    <script src="assets/components/RecipeCardMyMyPage.js" type="module"></script>
+    <script src="assets/components/NewCardMyPage.js" type="module"></script>
+    <script src="assets/components/EditRecipe.js" type="module"></script>
+    <script src="assets/components/deleteConfirmation.js" type="module"></script>
 
     <link rel="stylesheet" href="assets/styles/main.css" type="text/css">
     <script src="assets/scripts/main.js"></script>
 </head>
 
 <body>
-    <header>
+    <header class="main-shown" id="main-header">
         <section id="web-info">
             <a href="index.html">LOGO</a>
             <h1>Web Name</h1>
@@ -32,7 +39,7 @@
         </section>
     </header>
 
-    <main>
+    <main class="main-shown" id="main-main">
         <section class="main-item shown" id="featured-recipes">
             <div class="main-item-title">
                 <button class="item-title" id="to-feature-page">Featured Recipes of the Day</button>
@@ -53,7 +60,7 @@
 
         <section class="main-item shown" id="my-recipes">
             <div class="main-item-title">
-                <a class="item-title">My Recipes</a>
+                <button class="item-title" id="to-my-page">My Recipes</button>
                 <img class="arrow-img" src="assets/images/icons/arrow.svg" width="15px" />
             </div>
             <div class="recipes-list" id="my-list">
@@ -77,11 +84,24 @@
             <div class="recipes-page-list" id="favorite-page-list">
             </div>
         </section>
+
+        <section class="main-item" id="my-page">
+            <div class="main-item-title">
+                <img class="arrow-img" src="assets/images/icons/leftArrow.svg" width="15px" />
+                <button class="item-title" id="my-page-to-landing">My Recipes</button>
+            </div>
+            <div class="recipes-page-list" id="my-page-list">
+            </div>
+        </section>
     </main>
 
-    <footer>
-        <img class="arrow-img" src="assets/images/icons/add.svg" width="50px" />
+    <footer class="main-shown" id="main-footer">
+        <img id="footer-img" src="assets/images/icons/add.svg" width="50px" />
     </footer>
+
+    <section id="add-recipe-page"></section>
+    <section id="view-recipe-page"></section>
+    <section id="delete-page"></section>
 </body>
 
 </html>

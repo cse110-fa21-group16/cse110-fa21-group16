@@ -8,7 +8,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
   }
 
   set data(data) {
-    // This is the CSS that you'll use for your recipe cards
+    // This is the CSS that you"ll use for your recipe cards
     const styleElem = document.createElement("style");
     const styles = `
 
@@ -57,13 +57,13 @@ class RecipeCardFeaturedPG extends HTMLElement {
     }
 
     article button {
-      border: 1px solid darkgreen;
+      border: 1px solid #ccccd8;
       background-color: #fff;
       border-radius: 14px;
-      color: green;
+      color: #305A50;
       cursor: pointer;
-      font-size: 20px;
-      padding: 5px 30px;
+      font-size: 17px;
+      padding: 4px 26px;
     }
     
     article button:hover {
@@ -98,7 +98,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
       heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
     }
 
-    heartImg.addEventListener("click", function (event) {
+    heartImg.addEventListener("click", () => {
       changeHeart(data, heartImg);
     });
 
@@ -122,6 +122,9 @@ class RecipeCardFeaturedPG extends HTMLElement {
     checkButton.classList.add("cook");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
+    checkButton.addEventListener("click", () => {
+      viewRecipe(data);
+    });
 
 
     this.shadowRoot.appendChild(styleElem);
@@ -146,7 +149,17 @@ function changeHeart(data, cardObj) {
   }
 }
 
-
+/**
+ * Load Featured Recipe Page
+ * @returns void
+ */
+function viewRecipe(data) {
+  $("#view-recipe-page").classList.add("main-shown");
+  const viewRecipePage = document.createElement("view-fea-recipe");
+  viewRecipePage.data = data;
+  $("#view-recipe-page").appendChild(viewRecipePage);
+  leaveMain();
+}
 
 // Define the Class so you can use it as a custom element.
 customElements.define("recipe-card-featured-pg", RecipeCardFeaturedPG);

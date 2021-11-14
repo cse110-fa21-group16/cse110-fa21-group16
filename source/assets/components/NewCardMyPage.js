@@ -1,4 +1,4 @@
-class NewCard extends HTMLElement {
+class NewCardMyPage extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -16,12 +16,12 @@ class NewCard extends HTMLElement {
         border-radius: 40px;
         display: flex;
         flex-direction: column;
-        height: 350px;
+        height: 300px;
         justify-content:center;
         margin: 25px;
         padding: 0 16px 16px 16px;
         transition: all 0.4s linear;
-        width: 250px;
+        width: 200px;
         -moz-transition: all 0.4s linear;
         -o-transition: all 0.4s linear;
         -webkit-transition: all 0.4s linear; 
@@ -54,4 +54,4 @@ function addNewRecipe() {
   $("#add-recipe-page").classList.add("main-shown");
 }
 
-customElements.define("new-card", NewCard);
+customElements.define("new-card-my-page", NewCardMyPage);

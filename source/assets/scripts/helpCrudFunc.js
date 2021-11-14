@@ -39,3 +39,45 @@ export function addFav(data) {
     favRecipeArray.push(data);
     localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray));
 }
+
+
+/**
+* Add the recipe to the myRecipeArray
+* @returns void
+*/
+export function addMy(data) {
+    myRecipeArray.push(data);
+    localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+}
+
+
+/**
+* Updata the recipe to the myRecipeArray
+* @returns void
+*/
+export function updateMy(data) {
+    let i = 0;
+    for (; i < myRecipeArray.length; i++) {
+        if (myRecipeArray[i].title == data.title) {
+            myRecipeArray[i] = data;
+            break;
+        }
+    }
+    localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+}
+
+/**
+* Remove the recipe to the myRecipeArray
+* @returns void
+*/
+export function rmMy(data) {
+    let i = 0;
+    for (; i < myRecipeArray.length; i++) {
+        if (myRecipeArray[i].title == data.title) {
+            break;
+        }
+    }
+    delete myRecipeArray[i];
+    myRecipeArray = myRecipeArray.filter(function (e) { return e });
+    localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+}

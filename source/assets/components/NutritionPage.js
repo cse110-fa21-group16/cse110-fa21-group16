@@ -1,7 +1,7 @@
 class NutritionPage extends HTMLElement {
     constructor() {
         super();
-        let shadow = this.attachShadow({mode: "open"});
+        this.shadow = this.attachShadow({ mode: "open" });
     }
 
     set data(data) {
@@ -387,10 +387,10 @@ class NutritionPage extends HTMLElement {
         ////////////////////////////////////////////////////////////////////////////////////////////
         //////////////////////// Attach to shadow DOM //////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////
-        this.shadowRoot.appendChild(styling);
-        this.shadowRoot.appendChild(page);
+        this.shadow.appendChild(styling);
+        this.shadow.appendChild(page);
     }
 }
 
-// define the 'nutrition-page' element using this class
+// define the "nutrition-page" element using this class
 customElements.define("nutrition-page", NutritionPage);

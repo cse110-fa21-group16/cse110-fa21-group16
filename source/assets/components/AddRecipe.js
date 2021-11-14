@@ -1,8 +1,5 @@
-import { updateMy } from "../scripts/helpCrudFunc.js";
-import { getTitle, getStepsArray, getIngreArray } from "../scripts/helpGetDataFunc.js";
-import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
-
-class EditRecipe extends HTMLElement {
+import { addMy } from "../scripts/helpCrudFunc.js";
+class AddRecipe extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -12,282 +9,282 @@ class EditRecipe extends HTMLElement {
     let styling = document.createElement("style");
     let styles =
       `/* Global styling */
-         
-        * {
-          margin: 0;
-          padding: 0;
-          color: rgb(48, 90, 80);
-        }
+       
+      * {
+        margin: 0;
+        padding: 0;
+        color: rgb(48, 90, 80);
+      }
 
-         /*****************************************
-          *****************************************
-          Style for article
-          *****************************************
-          *****************************************/
+       /*****************************************
+        *****************************************
+        Style for article
+        *****************************************
+        *****************************************/
 
-        article {
-          width: 60vw;
-          box-shadow: 0px 0px 15px #888888;
-          margin: 10px 0px 90px 10px;
-        }
-         
-         /*****************************************
-          *****************************************
-          Style for header section in article
-          *****************************************
-          *****************************************/
-         header {
-           display: flex;
-           justify-content: center;
-           /* border: 1px solid orange; */
-         }
-         
-         .header-div {
-           background-color: rgb(48, 90, 80);
-           width: 100%;
-           height: 12vh;
-           padding: 0px;
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-           flex-flow: row nowrap;
-         }
-         
-         .header-div h1 {
-           color: white;
-           font-size: 2vw;
-         }
-         
-         .header-placeholder {
-           visibility: hidden;
-         }
-         
-         .home-link {
-           text-decoration: none;
-           color: white;
-           font-size: 2vw;
-           margin: 0px 0px 0px 20px;
-         }
-         
-         /*****************************************
-          *****************************************
-          Style for main in article 
-          *****************************************
-          *****************************************/
-         main {
-           display: flex;
-           width: 100%;
-           flex-flow: column wrap;
-           align-items: center;
-           /* border: 1px solid red; */
-         }
-         
-         /*  Style for the origin div 
-             This div contains picture, instructions, and ingredients sections
-         */
-         .origin {
-           width: 60%;
-           display: grid;
-           justify-content: center;
-           grid-template-columns: 100%;
-           /* border: 1px solid yellow; */
-         }
-         
-         /*****************************************
-          Style for picture section 
-          *****************************************/
-         .picture {
-           display: flex;
-           justify-content: space-between;
-           align-items: center;
-           margin: 2em 0;
-           /* border: 1px solid black; */
-         }
-         
-         #recipe-name {
-           border: none;
-           font-size: 2vw;
-           height: 50%;
-           margin: 0 10px;
-           outline: none;
-           resize: none;
-           text-align: center;
-           width: 50%;
-         }
-         #recipe-name:hover{
-           border: 1px solid #000000;
-         }
-         
-         .recipe-image-div {
-           width: 300px;
-           height: 200px;
-           border: 1px solid rgb(48, 90, 80);
-           box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-           margin: 1em 0;
-         }
-         
-         /*****************************************
-          Style for instructions section 
-          *****************************************/
-         .instructions {
-           /* border: 1px solid blue; */
-         }
-         
-         /* Style for procedures div */
-         .procedures {
-           padding-left: 20px;
-           margin-top: 20px;
-           /* border: 1px solid greenyellow; */
-         }
-         
-         /* Style for list items. Setting padding between each item */
-         li {
-           padding-top: 10px;
-         }
-         
-         .step-item {
-           width: 95%;
-           height: 50px;
-           border-radius: 10px;
-           padding-top: 5px;
-           padding-left: 5px;
-           resize: none;
-         }
-         
-         /* Style for add more button in instruction section */
-         .add-instruction {
-           width: calc(95% + 5px);
-           height: 50px;
-           background-color: rgb(48, 90, 80);
-           color: white;
-           border: none;
-           font-size: 32px;
-           margin-top: 10px;
-           border-radius: 10px;
-         }
-         
-         .add-instruction:hover {
-           cursor: pointer;
-         }
-         
-         /*****************************************
-          Style for ingredients section 
-          *****************************************/
-         .ingredients {
-           /* border: 1px solid green; */
-         }
-         
-         .ingredients-general-div {
-           padding-left: 20px;
-           margin-top: 20px;
-           /* border: 1px solid greenyellow; */
-         }
-         
-         .ingredients-list-div {
-           display: grid;
-           grid-template-columns: 50% 20% 27.5%;
-         }
-         
-         .placeholer-title {
-           visibility: hidden;
-         }
-         
-         .ingredients-item {
-           width: 95%;
-           height: 30px;
-           border-radius: 10px;
-           padding-top: 5px;
-           padding-left: 5px;
-           resize: none;
-         }
-         
-         .amount-item {
-           width: 80%;
-           height: 30px;
-           border-radius: 10px;
-           padding-top: 5px;
-           padding-left: 5px;
-         }
-         
-         .unit-item {
-           width: 95%;
-           height: 40px;
-           border-radius: 10px;
-           padding-top: 5px;
-           padding-left: 5px;
-         }
-         
-         /* Style for cartegory section. Splitting it into 4 columns
-            Each checkbox takes 1 column and their corresponding label take 1 column*/
-         .diet-restrict {
-           width: 100%;
-           display: flex;
-           padding-top: 10px;
-           /* border: 1px solid black; */
-         }
-         
-         .diet-restrict-div {
-           width: 100%;
-           padding-left: 20px;
-           /* border: 1px solid black; */
-         }
-         
-         .category {
-           display: grid;
-           grid-template-columns: 50% 50%;
-           /* border: 1px solid black; */
-         }
-         
-         /*****************************************
-          *****************************************
-          Style for footer section in article
-          *****************************************
-          *****************************************/
-         footer {
-           width: 100%;
-           display: flex;
-           justify-content: center;
-         }
-         
-         /* Style for action-buttons div */
-         .action-buttons {
-           width: 55%;
-           display: flex;
-           flex-direction: row-reverse;
-           padding: 5px 5px 5px 5px;
-           margin-top: 10px;
-           margin-bottom: 20px;
-           /* border: 1px solid blue; */
-         }
-         
-         /* Standard style for submit and delete buttons */
-         #submit-edit,
-         #delete-edit,
-         #cancel-edit {
-           margin-left: 5px;
-           width: 30%;
-           height: 30px;
-           background-color: rgb(48, 90, 80);
-           border: none;
-           color: white;
-           border-radius: 99px;
-         }
-         
-         #delete-edit,
-         #cancel-edit {
-           background-color: red;
-         }
-         
-         #submit-edit:hover,
-         #delete-edit:hover,
-         #cancel-edit:hover {
-           cursor: pointer;
-         }
-         
-         .title {
-           font-size: 1vw;
-         }
-        `;
+      article {
+        width: 60vw;
+        box-shadow: 0px 0px 15px #888888;
+        margin: 10px 0px 90px 10px;
+      }
+       
+       /*****************************************
+        *****************************************
+        Style for header section in article
+        *****************************************
+        *****************************************/
+       header {
+         display: flex;
+         justify-content: center;
+         /* border: 1px solid orange; */
+       }
+       
+       .header-div {
+         background-color: rgb(48, 90, 80);
+         width: 100%;
+         height: 12vh;
+         padding: 0px;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         flex-flow: row nowrap;
+       }
+       
+       .header-div h1 {
+         color: white;
+         font-size: 2vw;
+       }
+       
+       .header-placeholder {
+         visibility: hidden;
+       }
+       
+       .home-link {
+         text-decoration: none;
+         color: white;
+         font-size: 2vw;
+         margin: 0px 0px 0px 20px;
+       }
+       
+       /*****************************************
+        *****************************************
+        Style for main in article 
+        *****************************************
+        *****************************************/
+       main {
+         display: flex;
+         width: 100%;
+         flex-flow: column wrap;
+         align-items: center;
+         /* border: 1px solid red; */
+       }
+       
+       /*  Style for the origin div 
+           This div contains picture, instructions, and ingredients sections
+       */
+       .origin {
+         width: 60%;
+         display: grid;
+         justify-content: center;
+         grid-template-columns: 100%;
+         /* border: 1px solid yellow; */
+       }
+       
+       /*****************************************
+        Style for picture section 
+        *****************************************/
+       .picture {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         margin: 2em 0;
+         /* border: 1px solid black; */
+       }
+       
+       #recipe-name {
+         border: none;
+         font-size: 2vw;
+         height: 50%;
+         margin: 0 10px;
+         outline: none;
+         resize: none;
+         text-align: center;
+         width: 50%;
+       }
+       #recipe-name:hover{
+         border: 1px solid #000000;
+       }
+       
+       .recipe-image-div {
+         width: 300px;
+         height: 200px;
+         border: 1px solid rgb(48, 90, 80);
+         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+         margin: 1em 0;
+       }
+       
+       /*****************************************
+        Style for instructions section 
+        *****************************************/
+       .instructions {
+         /* border: 1px solid blue; */
+       }
+       
+       /* Style for procedures div */
+       .procedures {
+         padding-left: 20px;
+         margin-top: 20px;
+         /* border: 1px solid greenyellow; */
+       }
+       
+       /* Style for list items. Setting padding between each item */
+       li {
+         padding-top: 10px;
+       }
+       
+       .step-item {
+         width: 95%;
+         height: 50px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+         resize: none;
+       }
+       
+       /* Style for add more button in instruction section */
+       .add-instruction {
+         width: calc(95% + 5px);
+         height: 50px;
+         background-color: rgb(48, 90, 80);
+         color: white;
+         border: none;
+         font-size: 32px;
+         margin-top: 10px;
+         border-radius: 10px;
+       }
+       
+       .add-instruction:hover {
+         cursor: pointer;
+       }
+       
+       /*****************************************
+        Style for ingredients section 
+        *****************************************/
+       .ingredients {
+         /* border: 1px solid green; */
+       }
+       
+       .ingredients-general-div {
+         padding-left: 20px;
+         margin-top: 20px;
+         /* border: 1px solid greenyellow; */
+       }
+       
+       .ingredients-list-div {
+         display: grid;
+         grid-template-columns: 50% 20% 27.5%;
+       }
+       
+       .placeholer-title {
+         visibility: hidden;
+       }
+       
+       .ingredients-item {
+         width: 95%;
+         height: 30px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+         resize: none;
+       }
+       
+       .amount-item {
+         width: 80%;
+         height: 30px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+       }
+       
+       .unit-item {
+         width: 95%;
+         height: 40px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+       }
+       
+       /* Style for cartegory section. Splitting it into 4 columns
+          Each checkbox takes 1 column and their corresponding label take 1 column*/
+       .diet-restrict {
+         width: 100%;
+         display: flex;
+         padding-top: 10px;
+         /* border: 1px solid black; */
+       }
+       
+       .diet-restrict-div {
+         width: 100%;
+         padding-left: 20px;
+         /* border: 1px solid black; */
+       }
+       
+       .category {
+         display: grid;
+         grid-template-columns: 50% 50%;
+         /* border: 1px solid black; */
+       }
+       
+       /*****************************************
+        *****************************************
+        Style for footer section in article
+        *****************************************
+        *****************************************/
+       footer {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+       }
+       
+       /* Style for action-buttons div */
+       .action-buttons {
+         width: 55%;
+         display: flex;
+         flex-direction: row-reverse;
+         padding: 5px 5px 5px 5px;
+         margin-top: 10px;
+         margin-bottom: 20px;
+         /* border: 1px solid blue; */
+       }
+       
+       /* Standard style for submit and delete buttons */
+       #submit-edit,
+       #delete-edit,
+       #cancel-edit {
+         margin-left: 5px;
+         width: 30%;
+         height: 30px;
+         background-color: rgb(48, 90, 80);
+         border: none;
+         color: white;
+         border-radius: 99px;
+       }
+       
+       #delete-edit,
+       #cancel-edit {
+         background-color: red;
+       }
+       
+       #submit-edit:hover,
+       #delete-edit:hover,
+       #cancel-edit:hover {
+         cursor: pointer;
+       }
+       
+       .title {
+         font-size: 1vw;
+       }
+      `;
 
     styling.innerHTML = styles;
 
@@ -308,7 +305,7 @@ class EditRecipe extends HTMLElement {
     headerHomeLink.setAttribute("href", "index.html");
     headerHomeLink.innerHTML = "LOGO";
     headerTitle.setAttribute("class", "header-title");
-    headerTitle.innerHTML = "EDIT RECIPE";
+    headerTitle.innerHTML = "ADD RECIPE";
     headerPlaceholder.setAttribute("class", "header-placeholder");
     headerPlaceholder.innerHTML = "HOLDER";
 
@@ -330,7 +327,7 @@ class EditRecipe extends HTMLElement {
     let picTitle = document.createElement("textarea");
     picSection.setAttribute("class", "picture");
     picTitle.setAttribute("id", "recipe-name");
-    picTitle.innerHTML = getTitle(data);
+    picTitle.innerHTML = "Recipe Name";
 
     let picImgContainer = document.createElement("div");
     let picInput = document.createElement("input");
@@ -367,9 +364,6 @@ class EditRecipe extends HTMLElement {
     optionVegan.setAttribute("name", "vegan");
     optionVeganLabel.setAttribute("for", "vegan");
     optionVeganLabel.innerHTML = "Vegan";
-    if (getVegan(data)) {
-      optionVegan.setAttribute("checked", "");
-    }
 
     dietOption1.appendChild(optionVegan);
     dietOption1.appendChild(optionVeganLabel);
@@ -383,9 +377,6 @@ class EditRecipe extends HTMLElement {
     optionDairy.setAttribute("name", "dairy");
     optionDairyLabel.setAttribute("for", "dairy");
     optionDairyLabel.innerHTML = "Dairy free";
-    if (getDairy(data)) {
-      optionDairy.setAttribute("checked", "");
-    }
 
     dietOption2.appendChild(optionDairy);
     dietOption2.appendChild(optionDairyLabel);
@@ -399,9 +390,6 @@ class EditRecipe extends HTMLElement {
     optionGlutten.setAttribute("name", "glutten");
     optionGluttenLabel.setAttribute("for", "glutten");
     optionGluttenLabel.innerHTML = "Glutten free";
-    if (getGluten(data)) {
-      optionGlutten.setAttribute("checked", "");
-    }
 
     dietOption3.appendChild(optionGlutten);
     dietOption3.appendChild(optionGluttenLabel);
@@ -415,9 +403,6 @@ class EditRecipe extends HTMLElement {
     optionVegetarian.setAttribute("name", "vegetarian");
     optionVegetarianLabel.setAttribute("for", "vegetarian");
     optionVegetarianLabel.innerHTML = "Vegetarian";
-    if (getVegeta(data)) {
-      optionVegetarian.setAttribute("checked", "");
-    }
 
     dietOption4.appendChild(optionVegetarian);
     dietOption4.appendChild(optionVegetarianLabel);
@@ -441,86 +426,82 @@ class EditRecipe extends HTMLElement {
     let ingredientGeneralDiv = document.createElement("div");
     ingredientGeneralDiv.setAttribute("class", "ingredients-general-div");
 
-    let ingreArr = getIngreArray(data);
-    for (let i = 0; i < ingreArr.length; i++) {
-      let ingredientListDiv = document.createElement("div");
-      ingredientListDiv.setAttribute("class", "ingredients-list-div");
+    let ingredientListDiv = document.createElement("div");
+    ingredientListDiv.setAttribute("class", "ingredients-list-div");
 
-      let ingredientColumn = document.createElement("div"); // ingredient column
-      let ingredientColumnTitle = document.createElement("h2");
-      let ingredientColumnInput = document.createElement("textarea");
-      ingredientColumn.setAttribute("class", "ingredient-column");
-      ingredientColumnTitle.setAttribute("class", "title");
-      ingredientColumnTitle.innerHTML = "Ingredient:";
-      ingredientColumnInput.setAttribute("class", "ingredients-item");
-      ingredientColumnInput.innerHTML = ingreArr[i].name;
+    let ingredientColumn = document.createElement("div"); // ingredient column
+    let ingredientColumnTitle = document.createElement("h2");
+    let ingredientColumnInput = document.createElement("textarea");
+    ingredientColumn.setAttribute("class", "ingredient-column");
+    ingredientColumnTitle.setAttribute("class", "title");
+    ingredientColumnTitle.innerHTML = "Ingredient:";
+    ingredientColumnInput.setAttribute("class", "ingredients-item");
+    ingredientColumnInput.innerHTML = "Populate data here";
 
-      ingredientColumn.appendChild(ingredientColumnTitle);
-      ingredientColumn.appendChild(ingredientColumnInput);
+    ingredientColumn.appendChild(ingredientColumnTitle);
+    ingredientColumn.appendChild(ingredientColumnInput);
 
-      let amountColumn = document.createElement("div"); // amount column
-      let amountColumnTitle = document.createElement("h2");
-      let amountColumnInput = document.createElement("input");
+    let amountColumn = document.createElement("div"); // amount column
+    let amountColumnTitle = document.createElement("h2");
+    let amountColumnInput = document.createElement("input");
 
-      amountColumn.setAttribute("class", "amount-column");
-      amountColumnTitle.setAttribute("class", "title");
-      amountColumnTitle.innerHTML = "Amount:";
-      amountColumnInput.setAttribute("class", "amount-item");
-      amountColumnInput.setAttribute("type", "number");
-      amountColumnInput.value = ingreArr[i].amount;
-
-      amountColumn.appendChild(amountColumnTitle);
-      amountColumn.appendChild(amountColumnInput);
-
-      let unitColumn = document.createElement("div"); // unit column
-      let unitColumnTitle = document.createElement("h2");
-      unitColumn.setAttribute("class", "unit-column");
-      unitColumnTitle.setAttribute("class", "title");
-      unitColumnTitle.innerHTML = "Unit:";
-
-      let unitColumnInput = document.createElement("select");
-      let unitDefault = document.createElement("option");
-      let unitGrams = document.createElement("option");
-      let unitKilograms = document.createElement("option");
-      let unitPounds = document.createElement("option");
-      let unitTablespoons = document.createElement("option");
-      let unitCups = document.createElement("option");
-      unitDefault.setAttribute("value", "");
-      unitGrams.setAttribute("value", "grams");
-      unitKilograms.setAttribute("value", "kgs");
-      unitPounds.setAttribute("value", "lbs");
-      unitTablespoons.setAttribute("value", "tbps");
-      unitCups.setAttribute("value", "cups");
-      unitDefault.innerHTML = "Select unit";
-      unitGrams.innerHTML = "grams";
-      unitKilograms.innerHTML = "kgs";
-      unitPounds.innerHTML = "lbs";
-      unitTablespoons.innerHTML = "tbps";
-      unitCups.innerHTML = "cups";
-      unitColumnInput.setAttribute("class", "unit-item");
-      unitColumnInput.value = ingreArr[i].unit;
-      unitColumnInput.appendChild(unitDefault);
-      unitColumnInput.appendChild(unitGrams);
-      unitColumnInput.appendChild(unitKilograms);
-      unitColumnInput.appendChild(unitPounds);
-      unitColumnInput.appendChild(unitTablespoons);
-      unitColumnInput.appendChild(unitCups);
-
-      unitColumn.appendChild(unitColumnTitle);
-      unitColumn.appendChild(unitColumnInput);
-
-      ingredientListDiv.appendChild(ingredientColumn);
-      ingredientListDiv.appendChild(amountColumn);
-      ingredientListDiv.appendChild(unitColumn);
-      ingredientGeneralDiv.appendChild(ingredientListDiv);
-    }
-
+    amountColumn.setAttribute("class", "amount-column");
+    amountColumnTitle.setAttribute("class", "title");
+    amountColumnTitle.innerHTML = "Amount:";
+    amountColumnInput.setAttribute("class", "amount-item");
+    amountColumnInput.setAttribute("type", "number");
+    amountColumnInput.setAttribute("value", "1");
 
     let addIngredient = document.createElement("button");
     addIngredient.setAttribute("class", "add-instruction");
     addIngredient.setAttribute("id", "add-ingredient");
     addIngredient.innerHTML = "+";
 
+
+    amountColumn.appendChild(amountColumnTitle);
+    amountColumn.appendChild(amountColumnInput);
+
+    let unitColumn = document.createElement("div"); // unit column
+    let unitColumnTitle = document.createElement("h2");
+    unitColumn.setAttribute("class", "unit-column");
+    unitColumnTitle.setAttribute("class", "title");
+    unitColumnTitle.innerHTML = "Unit:";
+
+    let unitColumnInput = document.createElement("select");
+    let unitDefault = document.createElement("option");
+    let unitGrams = document.createElement("option");
+    let unitKilograms = document.createElement("option");
+    let unitPounds = document.createElement("option");
+    let unitTablespoons = document.createElement("option");
+    let unitCups = document.createElement("option");
+    unitDefault.setAttribute("value", "");
+    unitGrams.setAttribute("value", "grams");
+    unitKilograms.setAttribute("value", "kgs");
+    unitPounds.setAttribute("value", "lbs");
+    unitTablespoons.setAttribute("value", "tbps");
+    unitCups.setAttribute("value", "cups");
+    unitDefault.innerHTML = "Select unit";
+    unitGrams.innerHTML = "grams";
+    unitKilograms.innerHTML = "kgs";
+    unitPounds.innerHTML = "lbs";
+    unitTablespoons.innerHTML = "tbps";
+    unitCups.innerHTML = "cups";
+    unitColumnInput.setAttribute("class", "unit-item");
+    unitColumnInput.appendChild(unitDefault);
+    unitColumnInput.appendChild(unitGrams);
+    unitColumnInput.appendChild(unitKilograms);
+    unitColumnInput.appendChild(unitPounds);
+    unitColumnInput.appendChild(unitTablespoons);
+    unitColumnInput.appendChild(unitCups);
+
+    unitColumn.appendChild(unitColumnTitle);
+    unitColumn.appendChild(unitColumnInput);
+
+    ingredientListDiv.appendChild(ingredientColumn);
+    ingredientListDiv.appendChild(amountColumn);
+    ingredientListDiv.appendChild(unitColumn);
+
+    ingredientGeneralDiv.appendChild(ingredientListDiv);
     ingredientGeneralDiv.appendChild(addIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
 
@@ -551,12 +532,13 @@ class EditRecipe extends HTMLElement {
     let procedureList = document.createElement("ol");
     procedureList.setAttribute("class", "step-list");
 
-    let stepsArr = getStepsArray(data);
-    for (let i = 0; i < stepsArr.length; i++) {
+    // Initialize 3 steps 
+    for (let i = 0; i < 3; i++) {
+
       let procedureListItem = document.createElement("li");
       let procedureListText = document.createElement("textarea");
       procedureListText.setAttribute("class", "step-item");
-      procedureListText.innerHTML = stepsArr[i];
+      procedureListText.innerHTML = "Populate data here";
 
       procedureListItem.appendChild(procedureListText);
       procedureList.appendChild(procedureListItem);
@@ -608,28 +590,18 @@ class EditRecipe extends HTMLElement {
 
     // Action Buttons
     let submitButton = document.createElement("button");
-    let deleteButton = document.createElement("button");
     let cancelButton = document.createElement("button");
 
     submitButton.setAttribute("id", "submit-edit");
-    deleteButton.setAttribute("id", "delete-edit");
     cancelButton.setAttribute("id", "cancel-edit");
     submitButton.innerHTML = "Submit";
-    deleteButton.innerHTML = "Delete";
     cancelButton.innerHTML = "Cancel";
 
     // Append Buttons to Div
     actionButtons.appendChild(submitButton);
-    actionButtons.appendChild(deleteButton);
     actionButtons.appendChild(cancelButton);
 
-    cancelButton.addEventListener("click", () => {
-      leaveEdit(data);
-    });
-
-    deleteButton.addEventListener("click", () => {
-      toDelete(data);
-    });
+    cancelButton.addEventListener("click", leaveAdd);
 
     submitButton.addEventListener("click", () => {
       let inputData = {};
@@ -663,8 +635,8 @@ class EditRecipe extends HTMLElement {
       inputData["instructions"] = listHtml;
       inputData["instructionsArray"] = instruArray;
 
-      updateMy(inputData);
-      leaveEdit(inputData);
+      addMy(inputData);
+      leaveAdd();
     });
 
     // Append Div to footer 
@@ -769,23 +741,17 @@ function addInstruItems(olItem) {
   olItem.appendChild(procedureListItem);
 }
 
-function leaveEdit(data) {
+function leaveAdd() {
   $("#add-recipe-page").classList.remove("main-shown");
   $("#add-recipe-page").innerHTML = "";
-  $("#view-recipe-page").classList.add("main-shown");
-  const viewRecipePage = document.createElement("view-my-recipe");
-  viewRecipePage.data = data;
-  $("#view-recipe-page").appendChild(viewRecipePage);
-}
-
-function toDelete(data) {
-  $("#add-recipe-page").classList.remove("main-shown");
-  $("#add-recipe-page").innerHTML = "";
-  $("#delete-page").classList.add("main-shown");
-  const deletePage = document.createElement("delete-confirmation");
-  deletePage.data = data;
-  $("#delete-page").appendChild(deletePage);
+  loadMain();
+  if ($("#my-page").classList.contains("shown")) {
+    loadMyRecipe();
+  }
+  else {
+    loadLanding();
+  }
 }
 
 // define the "edit-recipe" element using this class
-customElements.define("edit-recipe", EditRecipe);
+customElements.define("add-recipe", AddRecipe);

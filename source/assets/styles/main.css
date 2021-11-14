@@ -21,6 +21,10 @@
   padding: 0px;
 }
 
+body > *:not(.main-shown) {
+  display: none;
+}
+
 main > section:not(section.shown) {
   display: none;
 }
@@ -30,6 +34,7 @@ body {
   background-color: var(--bg-color);
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   width: 100%;
 }
 
@@ -138,4 +143,9 @@ footer {
 .edit-section {
   display: flex;
   justify-content: center;
+}
+
+/* other-page */
+#view-recipe-page {
+  width: 90%;
 }

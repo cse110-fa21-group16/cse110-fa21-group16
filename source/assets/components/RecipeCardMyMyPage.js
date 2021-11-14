@@ -1,6 +1,6 @@
 import {  getTitle } from "../scripts/helpGetDataFunc.js";
 
-class RecipeCardMy extends HTMLElement {
+class RecipeCardMyMyPage extends HTMLElement {
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -20,12 +20,12 @@ class RecipeCardMy extends HTMLElement {
         border-radius: 40px;
         display: flex;
         flex-direction: column;
-        height: 350px;
+        height: 300px;
         justify-content:space-between;
         margin: 25px;
         padding: 0 16px 16px 16px;
         transition: all 0.4s linear;
-        width: 250px;
+        width: 200px;
         -moz-transition: all 0.4s linear;
         -o-transition: all 0.4s linear;
         -webkit-transition: all 0.4s linear; 
@@ -37,14 +37,14 @@ class RecipeCardMy extends HTMLElement {
 
       article p {
         color: #305A50;
-        font-size: 20px;
+        font-size: 16px;
         text-align: center;
       }
 
       article > img {
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;
-        height: 180px;
+        height: 120px;
         object-fit: cover;
         width: calc(100% + 32px);
       }
@@ -107,4 +107,4 @@ class RecipeCardMy extends HTMLElement {
 }
 
 
-customElements.define("recipe-card-my", RecipeCardMy);
+customElements.define("recipe-card-my-my-page", RecipeCardMyMyPage);
