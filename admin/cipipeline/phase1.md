@@ -13,6 +13,7 @@
 - Our current pipeline that involves the above workflows:
 
 ![Workflow Diagram](https://raw.githubusercontent.com/cse110-fa21-group16/cse110-fa21-group16/master/admin/cipipeline/phase1.drawio.png)
+- In general, when an issue is created, it will be moved to the to-do list. The assigned person will then create a separate branch and push changes to that branch. They will then make a pull request, which will automatically be moved to the in-progress list, and request for reviews from other members. The implemented Github Actions will run and provide a report on errors from those changes. After a request for review is approved by other members, the changes will be merged with the master branch and the request itself will be moved to the done list on the project board. If the reviewers request for some changes, the PR will stay in the review-in-progress list until it is approved.
 
 ## Workflows that we are planning to add
 
