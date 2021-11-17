@@ -29,11 +29,13 @@ Went over new tasks to assign to everyone
 Everyone:
 - Read and understand Kangming’s code
 - Do we need a way to add nutrition facts when creating own recipe?
+
 Devs:
 - Look into implementing importing images and nutrition facts features
 - Add logo and name to site
 - Fix and clean up CRUD features based on testing
 - Fix up UI
+
 Design:
 - Start testing the page by manually messing around with it and trying to manually “break” it
 - Test for CRUD features
