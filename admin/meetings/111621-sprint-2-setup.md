@@ -38,3 +38,8 @@ Design:
 - Start testing the page by manually messing around with it and trying to manually “break” it
 - Test for CRUD features
 - Test for UI if there’s time
+
+## For Next Meeting:
+Discuss changes and progress
+
+### Meeting finished at: 7:00PM
