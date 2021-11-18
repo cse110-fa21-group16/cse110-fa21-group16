@@ -606,14 +606,14 @@ class EditRecipe extends HTMLElement {
 
     // Remove Instruction Button 
     let removeInstruction = document.createElement("button");
-    removeInstruction.setAttribute("class", "remove-instruction");
+    removeInstruction.setAttribute("class", "delete-instruction");
     removeInstruction.setAttribute("id", "remove-instruction");
     removeInstruction.textContent = "-";
     // Append button to Div List 
     procedureDivList.appendChild(removeInstruction);
     // Remove Button Click Event 
     removeInstruction.addEventListener("click", () =>{
-      removeInstruItem(procedureDivList);
+      removeInstruItem(procedureList);
     });
 
 
@@ -806,8 +806,13 @@ function addIngreItems(buttonItem) {
   buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
 }
 
-function removeInstruItem(olItem){
-  
+function removeInstruItem(instruList){
+  if(instruList.children.length > 1){
+    instruList.removeChild(instruList.children[instruList.children.length - 1]);
+  }
+  else{
+    alert("There must be at least 1 procedure");
+  }
 }
 
 function addInstruItems(olItem) {
