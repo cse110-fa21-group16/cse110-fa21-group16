@@ -530,12 +530,13 @@ class EditRecipe extends HTMLElement {
       ingredientGeneralDiv.appendChild(ingredientListDiv);
     }
 
-
+    // Add Ingredient Button
     let addIngredient = document.createElement("button");
     addIngredient.setAttribute("class", "add-instruction");
     addIngredient.setAttribute("id", "add-ingredient");
     addIngredient.innerHTML = "+";
 
+    // Remove Ingredient Button
     let removeIngredient = document.createElement("button");
     removeIngredient.setAttribute("class", "delete-instruction");
     removeIngredient.setAttribute("id", "remove-ingredient");
@@ -545,6 +546,7 @@ class EditRecipe extends HTMLElement {
     ingredientGeneralDiv.appendChild(removeIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
 
+    // Add/Remove Button Click Events
     addIngredient.addEventListener("click", () => {
       addIngreItems(addIngredient);
     });
@@ -600,6 +602,7 @@ class EditRecipe extends HTMLElement {
     addInstruction.addEventListener("click", () => {
       addInstruItems(procedureList);
     });
+
 
     // Append Procedure Div List to procedures div 
     procedures.appendChild(procedureDivList);
