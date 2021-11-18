@@ -10,7 +10,6 @@ const API_Endpoint = `https://api.spoonacular.com/recipes/random?apiKey=${APIKey
  * @returns 
  */
 exports.handler = async (event, context) => {
-    localStorage.removeItem("fetchedData");
     if (localStorage.getItem("fetchedData") === null) {
         return new Promise((resolve, reject) => {
             fetch(API_Endpoint)
@@ -29,5 +28,4 @@ exports.handler = async (event, context) => {
             body: JSON.stringify(localStorage.getItem("fetchedData"))
         }
     }
-   
 };
