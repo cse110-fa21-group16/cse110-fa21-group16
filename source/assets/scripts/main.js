@@ -15,17 +15,17 @@ window.addEventListener("DOMContentLoaded", init);
  * @returns a Promise of fetched data
  */
 async function init() {
-  let fetchSuccessful = await fetchFeaRecipeArray();
-  if (!fetchSuccessful) {
-    console.log("Recipe fetch unsuccessful");
-    return;
-  }
+  // let fetchSuccessful = await fetchFeaRecipeArray();
+  // if (!fetchSuccessful) {
+  //   console.log("Recipe fetch unsuccessful");
+  //   return;
+  // }
 
-  let addFeaCardSuccessful = await createFeaRecipeCards();
-  if (!addFeaCardSuccessful) {
-    console.log("Add featured recipe unsuccessful");
-    return;
-  }
+  // let addFeaCardSuccessful = await createFeaRecipeCards();
+  // if (!addFeaCardSuccessful) {
+  //   console.log("Add featured recipe unsuccessful");
+  //   return;
+  // }
 
   let addFavCardSuccessful = await createFavRecipeCards();
   if (!addFavCardSuccessful) {
