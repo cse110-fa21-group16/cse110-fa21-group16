@@ -52,7 +52,7 @@ async function init() {
 async function fetchFeaRecipeArray() {
   return new Promise((resolve, reject) => {
     if (feaRecipeArray == null) {
-      fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data")
+      fetch("https://unruffled-lichterman-185ae7.netlify.app/.netlify/functions/fetch-data", {mode: "no-cors"})
         // fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
         .then((response) => response.json())
         .then((data) => {
