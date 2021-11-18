@@ -25,7 +25,7 @@ exports.handler = async (event, context) => {
     } else {
         return {
             statusCode: 200,
-            body: JSON.stringify(localStorage.getItem("fetchedData"))
+            body: JSON.parse(localStorage.getItem("fetchedData"))
         }
     }
 };

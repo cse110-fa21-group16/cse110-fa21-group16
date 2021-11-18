@@ -3,7 +3,7 @@
 const $ = (selector) => document.querySelector(selector);
 
 
-let feaRecipeArray = localStorage.getItem("feaRecipeArray");
+let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 
