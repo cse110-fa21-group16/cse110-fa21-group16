@@ -542,6 +542,7 @@ class EditRecipe extends HTMLElement {
     removeIngredient.setAttribute("id", "remove-ingredient");
     removeIngredient.textContent = "-";
 
+    // Add Buttons to div
     ingredientGeneralDiv.appendChild(addIngredient);
     ingredientGeneralDiv.appendChild(removeIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
@@ -601,6 +602,18 @@ class EditRecipe extends HTMLElement {
 
     addInstruction.addEventListener("click", () => {
       addInstruItems(procedureList);
+    });
+
+    // Remove Instruction Button 
+    let removeInstruction = document.createElement("button");
+    removeInstruction.setAttribute("class", "remove-instruction");
+    removeInstruction.setAttribute("id", "remove-instruction");
+    removeInstruction.textContent = "-";
+    // Append button to Div List 
+    procedureDivList.appendChild(removeInstruction);
+    // Remove Button Click Event 
+    removeInstruction.addEventListener("click", () =>{
+      removeInstruItem(procedureDivList);
     });
 
 
@@ -793,7 +806,7 @@ function addIngreItems(buttonItem) {
   buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
 }
 
-function removeInstrutItem(olItem){
+function removeInstruItem(olItem){
   
 }
 
