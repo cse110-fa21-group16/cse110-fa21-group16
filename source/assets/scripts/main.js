@@ -126,16 +126,16 @@ function createMyRecipeCards() {
       myRecipeArray = [];
     }
     $("#my-list").innerHTML = "";
-    for (let i = 0; i < 3 && i < myRecipeArray.length; i++) {
-      // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
+    let addNewCard = document.createElement("new-card");
+    $("#my-list").appendChild(addNewCard);
+    for (let i = 0; i < 2 && i < myRecipeArray.length; i++) {
+      // for (let i = 0; i < 2 && i < feaRecipeArray.length; i++) {            // Test code
       let newMyRecipeCard = document.createElement("recipe-card-my");
       newMyRecipeCard.data = myRecipeArray[i];
       // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
       $("#my-list").appendChild(newMyRecipeCard);
     }
-    if (myRecipeArray.length < 3) {
-      let addNewCard = document.createElement("new-card");
-      $("#my-list").appendChild(addNewCard);
+    if (myRecipeArray.length < 2) {
       for (let i = 0; i < 2 - myRecipeArray.length; i++) {
         let addEmptyCard = document.createElement("empty-card");
         $("#my-list").appendChild(addEmptyCard);
