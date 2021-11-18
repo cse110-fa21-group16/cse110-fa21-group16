@@ -726,10 +726,19 @@ class EditRecipe extends HTMLElement {
   }
 }
 
+/**
+ * removes ingredient div in DOM
+ * @param {object} ingreList list of ingredient
+ */
 function removeIngreItem(ingreList){
+  // Add and remove buttons are part of the ingredient list 
+  // If the ingredient list contains more than 1 ingredient 
+  // and the 2 buttons 
   if (ingreList.children.length > 3){
+    // Remove the last ingredient
     ingreList.removeChild(ingreList.children[ingreList.children.length - 3]);
   }else{
+    // Alert the user 
     alert("There must be at least 1 Ingredient");
   }
 }
@@ -806,11 +815,18 @@ function addIngreItems(buttonItem) {
   buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
 }
 
+/**
+ * removes instruction item in list 
+ * @param {object} instruList list of instructions
+ */
 function removeInstruItem(instruList){
+  // If the instruction list has more than 1 instruction 
   if(instruList.children.length > 1){
+    // Remove the last instruction 
     instruList.removeChild(instruList.children[instruList.children.length - 1]);
   }
   else{
+    // Alert the user 
     alert("There must be at least 1 procedure");
   }
 }
