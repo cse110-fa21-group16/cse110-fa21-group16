@@ -18,9 +18,6 @@ exports.handler = async (event, context) => {
                 localStorage.setItem("fetchedData", JSON.stringify(data));
                 resolve({
                     statusCode: 200,
-                    header: {
-                        "Access-Control-Allow-Origin": "*",
-                    },
                     body: JSON.stringify(data)
                 })
             }).catch(error => reject(false));
@@ -28,9 +25,6 @@ exports.handler = async (event, context) => {
     } else {
         return {
             statusCode: 200,
-            header: {
-                "Access-Control-Allow-Origin": "*",
-            },
             body: JSON.stringify(localStorage.getItem("fetchedData"))
         }
     }
