@@ -1,4 +1,5 @@
 const fetch = require("node-fetch-commonjs");
+const localStorage = require("localStorage");
 const APIKey = process.env.API_KEY;
 const API_Endpoint = `https://api.spoonacular.com/recipes/random?apiKey=${APIKey}&number=30`;
 
@@ -9,11 +10,12 @@ const API_Endpoint = `https://api.spoonacular.com/recipes/random?apiKey=${APIKey
  * @returns 
  */
 exports.handler = async (event, context) => {
-    if (window.localStorage.getItem("feaRecipeArray") === null) { // fetch from api if no key found in local storage
+    if (localStorage.getItem("fetchedData") === null) {
         return new Promise((resolve, reject) => {
             fetch(API_Endpoint)
             .then(res => res.json())
             .then(data => {
+                localStorage.setItem("fetchedData", JSON.stringify(data));
                 resolve({
                     statusCode: 200,
                     body: JSON.stringify(data)
@@ -21,9 +23,10 @@ exports.handler = async (event, context) => {
             }).catch(error => reject(false));
         });
     } else {
-        return { // else load from storage
+        return {
             statusCode: 200,
-            body: JSON.stringify(window.localStorage.getItem("feaRecipeArray"))
+            body: JSON.stringify(localStorage.getItem("fetchedData"))
         }
     }
+   
 };
