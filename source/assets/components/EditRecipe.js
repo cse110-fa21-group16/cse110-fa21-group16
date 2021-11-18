@@ -711,7 +711,11 @@ class EditRecipe extends HTMLElement {
 }
 
 function removeIngreItem(ingreList){
-
+  if (ingreList.children.length > 3){
+    ingreList.removeChild(ingreList.children[ingreList.children.length - 3]);
+  }else{
+    alert("There must be at least 1 Ingredient");
+  }
 }
 
 function addIngreItems(buttonItem) {
