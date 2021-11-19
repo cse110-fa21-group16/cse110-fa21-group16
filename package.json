@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
+    "localStorage": "^1.0.4",
     "node-fetch-commonjs": "^3.0.3"
   },
   "devDependencies": {
