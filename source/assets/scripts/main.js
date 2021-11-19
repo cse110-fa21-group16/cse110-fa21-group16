@@ -2,7 +2,7 @@
 
 const $ = (selector) => document.querySelector(selector);
 
-
+let nextMyRecipeID = JSON.parse(localStorage.getItem("nextMyRecipeID"));
 let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
@@ -122,6 +122,9 @@ function createFavRecipeCards() {
  */
 function createMyRecipeCards() {
   return new Promise((resolve) => {
+    if (nextMyRecipeID == null) {
+      nextMyRecipeID = 0;
+    }
     if (myRecipeArray == null) {
       myRecipeArray = [];
     }

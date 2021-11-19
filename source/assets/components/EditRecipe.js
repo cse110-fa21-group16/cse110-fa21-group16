@@ -703,6 +703,8 @@ class EditRecipe extends HTMLElement {
       inputData["instructions"] = listHtml;
       inputData["instructionsArray"] = instruArray;
 
+      inputData["id"] = data["id"];
+      
       updateMy(inputData);
       leaveEdit(inputData);
     });

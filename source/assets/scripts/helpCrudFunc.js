@@ -46,7 +46,10 @@ export function addFav(data) {
 * @returns void
 */
 export function addMy(data) {
+    data["id"] = nextMyRecipeID;
+    nextMyRecipeID += 1;
     myRecipeArray.push(data);
+    localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
 }
 
@@ -58,7 +61,7 @@ export function addMy(data) {
 export function updateMy(data) {
     let i = 0;
     for (; i < myRecipeArray.length; i++) {
-        if (myRecipeArray[i].title == data.title) {
+        if (myRecipeArray[i].id == data.id) {
             myRecipeArray[i] = data;
             break;
         }
@@ -73,7 +76,7 @@ export function updateMy(data) {
 export function rmMy(data) {
     let i = 0;
     for (; i < myRecipeArray.length; i++) {
-        if (myRecipeArray[i].title == data.title) {
+        if (myRecipeArray[i].id == data.id) {
             break;
         }
     }
