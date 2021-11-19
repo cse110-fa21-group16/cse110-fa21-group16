@@ -451,7 +451,6 @@ class AddRecipe extends HTMLElement {
     ingredientColumnTitle.setAttribute("class", "title");
     ingredientColumnTitle.innerHTML = "Ingredient:";
     ingredientColumnInput.setAttribute("class", "ingredients-item");
-    ingredientColumnInput.innerHTML = "Populate data here";
 
     ingredientColumn.appendChild(ingredientColumnTitle);
     ingredientColumn.appendChild(ingredientColumnInput);
@@ -562,7 +561,6 @@ class AddRecipe extends HTMLElement {
       let procedureListItem = document.createElement("li");
       let procedureListText = document.createElement("textarea");
       procedureListText.setAttribute("class", "step-item");
-      procedureListText.innerHTML = "Populate data here";
 
       procedureListItem.appendChild(procedureListText);
       procedureList.appendChild(procedureListItem);
@@ -721,7 +719,6 @@ function addIngreItems(buttonItem) {
   ingredientColumnTitle.setAttribute("class", "title");
   ingredientColumnTitle.innerHTML = "Ingredient:";
   ingredientColumnInput.setAttribute("class", "ingredients-item");
-  ingredientColumnInput.innerHTML = "Populate data here";
 
   ingredientColumn.appendChild(ingredientColumnTitle);
   ingredientColumn.appendChild(ingredientColumnInput);
@@ -803,7 +800,6 @@ function addInstruItems(olItem) {
   let procedureListItem = document.createElement("li");
   let procedureListText = document.createElement("textarea");
   procedureListText.setAttribute("class", "step-item");
-  procedureListText.innerHTML = "Populate data here";
 
   procedureListItem.appendChild(procedureListText);
   olItem.appendChild(procedureListItem);
