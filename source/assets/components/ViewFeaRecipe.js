@@ -296,6 +296,9 @@ class ViewFeaRecipe extends HTMLElement {
         const stepsSec = document.createElement("section");
         stepsSec.id = "steps-list";
         stepsSec.innerHTML = getSteps(data);
+        if (stepsSec.innerHTML == '') {
+            stepsSec.innerHTML = 'OOOPS! The recipe does not contain any procedure or steps. Please start using your imagination!'
+        }
 
         rightMainSec.appendChild(stepsTitle);
         rightMainSec.appendChild(stepsSec);
