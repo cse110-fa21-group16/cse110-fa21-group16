@@ -335,7 +335,6 @@ function leaveMyRecipe() {
 function loadMain() {
   $("#main-header").classList.add("main-shown");
   $("#main-main").classList.add("main-shown");
-  $("#main-footer").classList.add("main-shown");
 }
 
 
@@ -346,7 +345,6 @@ function loadMain() {
 function leaveMain() {
   $("#main-header").classList.remove("main-shown");
   $("#main-main").classList.remove("main-shown");
-  $("#main-footer").classList.remove("main-shown");
   $("#featured-list").innerHTML = "";
   $("#favorite-list").innerHTML = "";
   $("#my-list").innerHTML = "";
