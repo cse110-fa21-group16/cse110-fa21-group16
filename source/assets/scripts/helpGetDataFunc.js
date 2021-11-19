@@ -6,7 +6,7 @@
  */
 export function getImgUrl(data) {
     if (data.image) return data.image;
-    return null;
+    return "assets/images/noPhoto.jpeg";
 }
 
 
