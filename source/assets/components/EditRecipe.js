@@ -169,6 +169,21 @@ class EditRecipe extends HTMLElement {
          .add-instruction:hover {
            cursor: pointer;
          }
+
+        /* Style for Remove button in instruction section */
+        .delete-instruction{
+          width: calc(95% + 5px);
+           height: 50px;
+           background-color: #FF5555;
+           color: white;
+           border: none;
+           font-size: 32px;
+           margin-top: 10px;
+           border-radius: 10px;
+        }
+        .delete-instruction:hover {
+          cursor: pointer;
+        }
          
          /*****************************************
           Style for ingredients section 
@@ -515,18 +530,30 @@ class EditRecipe extends HTMLElement {
       ingredientGeneralDiv.appendChild(ingredientListDiv);
     }
 
-
+    // Add Ingredient Button
     let addIngredient = document.createElement("button");
     addIngredient.setAttribute("class", "add-instruction");
     addIngredient.setAttribute("id", "add-ingredient");
     addIngredient.innerHTML = "+";
 
+    // Remove Ingredient Button
+    let removeIngredient = document.createElement("button");
+    removeIngredient.setAttribute("class", "delete-instruction");
+    removeIngredient.setAttribute("id", "remove-ingredient");
+    removeIngredient.textContent = "-";
+
+    // Add Buttons to div
     ingredientGeneralDiv.appendChild(addIngredient);
+    ingredientGeneralDiv.appendChild(removeIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
 
+    // Add/Remove Button Click Events
     addIngredient.addEventListener("click", () => {
       addIngreItems(addIngredient);
     });
+    removeIngredient.addEventListener("click", () =>{
+      removeIngreItem(ingredientGeneralDiv);
+    })
 
     ////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////// creating the main > instruction section //////////////////////////
@@ -576,6 +603,19 @@ class EditRecipe extends HTMLElement {
     addInstruction.addEventListener("click", () => {
       addInstruItems(procedureList);
     });
+
+    // Remove Instruction Button 
+    let removeInstruction = document.createElement("button");
+    removeInstruction.setAttribute("class", "delete-instruction");
+    removeInstruction.setAttribute("id", "remove-instruction");
+    removeInstruction.textContent = "-";
+    // Append button to Div List 
+    procedureDivList.appendChild(removeInstruction);
+    // Remove Button Click Event 
+    removeInstruction.addEventListener("click", () =>{
+      removeInstruItem(procedureList);
+    });
+
 
     // Append Procedure Div List to procedures div 
     procedures.appendChild(procedureDivList);
@@ -686,6 +726,23 @@ class EditRecipe extends HTMLElement {
   }
 }
 
+/**
+ * removes ingredient div in DOM
+ * @param {object} ingreList list of ingredient
+ */
+function removeIngreItem(ingreList){
+  // Add and remove buttons are part of the ingredient list 
+  // If the ingredient list contains more than 1 ingredient 
+  // and the 2 buttons 
+  if (ingreList.children.length > 3){
+    // Remove the last ingredient
+    ingreList.removeChild(ingreList.children[ingreList.children.length - 3]);
+  }else{
+    // Alert the user 
+    alert("There must be at least 1 Ingredient");
+  }
+}
+
 function addIngreItems(buttonItem) {
   let ingredientListDiv = document.createElement("div");
   ingredientListDiv.setAttribute("class", "ingredients-list-div");
@@ -758,6 +815,21 @@ function addIngreItems(buttonItem) {
   buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
 }
 
+/**
+ * removes instruction item in list 
+ * @param {object} instruList list of instructions
+ */
+function removeInstruItem(instruList){
+  // If the instruction list has more than 1 instruction 
+  if(instruList.children.length > 1){
+    // Remove the last instruction 
+    instruList.removeChild(instruList.children[instruList.children.length - 1]);
+  }
+  else{
+    // Alert the user 
+    alert("There must be at least 1 procedure");
+  }
+}
 
 function addInstruItems(olItem) {
   let procedureListItem = document.createElement("li");
