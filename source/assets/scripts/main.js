@@ -60,6 +60,16 @@ async function init() {
   router.addPage("ToFeaturedPage", () => {
     leaveLanding();
     loadFeatured();
+  });
+
+  router.addPage("ToFavoritePage", () => {
+    leaveLanding();
+    loadFavorite();
+  });
+
+  router.addPage("ToMyRecipePage", () => {
+    leaveLanding();
+    loadMyRecipe();
   })
 
   setButtonListen();
@@ -89,6 +99,20 @@ async function fetchFeaRecipeArray() {
     else {
       resolve(true);
     }
+
+    // add arouting at the beginning of landing
+    for (let i = 0; i < feaRecipeArray.length; i++ ) {
+      let page = feaRecipeArray[i]["title"];
+      router.addPage(page, () => {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        $("#view-recipe-page").classList.add("main-shown");
+        const viewRecipePage = document.createElement("view-fea-recipe");
+        viewRecipePage.data = feaRecipeArray[i];
+        $("#view-recipe-page").appendChild(viewRecipePage);
+        leaveMain();
+      });
+    }
   });
 }
 
@@ -104,17 +128,6 @@ function createFeaRecipeCards() {
     for (let i = index; i < index + 3; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-fea");
       newFeaRecipeCard.data = feaRecipeArray[i];
-
-      // add routing
-      let page = feaRecipeArray[i]["title"];
-      router.addPage(page, () => {
-        $("#view-recipe-page").classList.add("main-shown");
-        const viewRecipePage = document.createElement("view-fea-recipe");
-        viewRecipePage.data = feaRecipeArray[i];
-        $("#view-recipe-page").appendChild(viewRecipePage);
-        leaveMain();
-      });
-
       $("#featured-list").appendChild(newFeaRecipeCard);
     }
     resolve(true);
@@ -203,17 +216,6 @@ function createFeaRecipePage() {
     for (let i = 0; i < feaRecipeArray.length; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
       newFeaRecipeCard.data = feaRecipeArray[i];
-
-      // add routing
-      let page = feaRecipeArray[i]["title"];
-      router.addPage(page, () => {
-        $("#view-recipe-page").classList.add("main-shown");
-        const viewRecipePage = document.createElement("view-fea-recipe");
-        viewRecipePage.data = feaRecipeArray[i];
-        $("#view-recipe-page").appendChild(viewRecipePage);
-        leaveMain();
-      });
-
       $("#featured-page-list").appendChild(newFeaRecipeCard);
     }
     resolve(true);
@@ -285,29 +287,29 @@ function setButtonListen() {
     router.navigate("ToFeaturedPage");
   });
 
-  $("#feature-page-to-landing").addEventListener("click", () =>{
-    leaveFeatured();
-    loadLanding();
+  $("#feature-page-to-landing").addEventListener("click", (e) =>{
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("home");
   });
 
-  $("#to-favorite-page").addEventListener("click", () => {
-    leaveLanding();
-    loadFavorite();
+  $("#to-favorite-page").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("ToFavoritePage");
   });
 
-  $("#favorite-page-to-landing").addEventListener("click", () => {
-    leaveFavorite();
-    loadLanding();
+  $("#favorite-page-to-landing").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("home");
   });
 
-  $("#to-my-page").addEventListener("click", () => {
-    leaveLanding();
-    loadMyRecipe();
+  $("#to-my-page").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("ToMyRecipePage");
   });
 
-  $("#my-page-to-landing").addEventListener("click", () => {
-    leaveMyRecipe();
-    loadLanding();
+  $("#my-page-to-landing").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("home");
   });
 }
 
@@ -431,9 +433,9 @@ function bindEscKey() {
    * if the escape key is pressed, use your router to navigate() to the 'home'
    * page. This will let us go back to the home page from the detailed page.
    */
-  document.addEventListener('keydown', (event) => {
+  document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
-      router.navigate('home');
+      router.navigate("home");
     }
   });
 }
