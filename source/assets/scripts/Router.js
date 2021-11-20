@@ -21,7 +21,7 @@
      *                            visually
      */
     constructor(homeFunc) {
-      this['home'] = homeFunc;
+      this["home"] = homeFunc;
     }
   
     /**

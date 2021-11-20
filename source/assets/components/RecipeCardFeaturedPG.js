@@ -1,4 +1,4 @@
-import { $, leaveMain } from "../scripts/main.js";
+import { $, leaveMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
@@ -123,10 +123,17 @@ class RecipeCardFeaturedPG extends HTMLElement {
     checkButton.classList.add("cook");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", () => {
-      viewRecipe(data);
-    });
+    // checkButton.addEventListener("click", () => {
+    //   viewRecipe(data);
+    // });
 
+    // bind check button to router
+    checkButton.addEventListener("click", (e) => {
+      console.log(e.path[0].nodeName);
+      console.log(recipeTitle.innerHTML);
+      if (e.path[0].nodeName == "B") return;
+      router.navigate(recipeTitle.innerHTML);
+    });
 
     this.shadowRoot.appendChild(styleElem);
     this.shadowRoot.appendChild(card);

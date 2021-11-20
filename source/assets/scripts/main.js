@@ -11,7 +11,7 @@ let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 /**
  * Creating a router object. The constructor's function is the "home" function
  */
-const router = new Router(function () {
+export const router = new Router(function () {
   console.log("Returning to landing page!");
   leaveFeatured();
   leaveFavorite();
@@ -57,8 +57,14 @@ async function init() {
     return;
   }
 
+  router.addPage("ToFeaturedPage", () => {
+    leaveLanding();
+    loadFeatured();
+  })
+
   setButtonListen();
   bindEscKey();
+  bindPopstate();
 }
 
 
@@ -98,6 +104,17 @@ function createFeaRecipeCards() {
     for (let i = index; i < index + 3; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-fea");
       newFeaRecipeCard.data = feaRecipeArray[i];
+
+      // add routing
+      let page = feaRecipeArray[i]["title"];
+      router.addPage(page, () => {
+        $("#view-recipe-page").classList.add("main-shown");
+        const viewRecipePage = document.createElement("view-fea-recipe");
+        viewRecipePage.data = feaRecipeArray[i];
+        $("#view-recipe-page").appendChild(viewRecipePage);
+        leaveMain();
+      });
+
       $("#featured-list").appendChild(newFeaRecipeCard);
     }
     resolve(true);
@@ -186,6 +203,17 @@ function createFeaRecipePage() {
     for (let i = 0; i < feaRecipeArray.length; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
       newFeaRecipeCard.data = feaRecipeArray[i];
+
+      // add routing
+      let page = feaRecipeArray[i]["title"];
+      router.addPage(page, () => {
+        $("#view-recipe-page").classList.add("main-shown");
+        const viewRecipePage = document.createElement("view-fea-recipe");
+        viewRecipePage.data = feaRecipeArray[i];
+        $("#view-recipe-page").appendChild(viewRecipePage);
+        leaveMain();
+      });
+
       $("#featured-page-list").appendChild(newFeaRecipeCard);
     }
     resolve(true);
@@ -252,9 +280,9 @@ export function createMyRecipePage() {
  * @returns void
  */
 function setButtonListen() {
-  $("#to-feature-page").addEventListener("click", () => {
-    leaveLanding();
-    loadFeatured();
+  $("#to-feature-page").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("ToFeaturedPage");
   });
 
   $("#feature-page-to-landing").addEventListener("click", () =>{
@@ -406,6 +434,38 @@ function bindEscKey() {
   document.addEventListener('keydown', (event) => {
     if (event.key == "Escape") {
       router.navigate('home');
+    }
+  });
+}
+
+/**
+ * Binds the 'popstate' event on the window (which fires when the back &
+ * forward buttons are pressed) so the navigation will continue to work 
+ * as expected. (Hint - you should be passing in which page you are on
+ * in your Router when you push your state so you can access that page
+ * info in your popstate function)
+ */
+ function bindPopstate() {
+  /**
+   * TODO - Part 1 Step 6
+   * Finally, add an event listener to the window object for the 'popstate'
+   * event - this fires when the forward or back buttons are pressed in a browser.
+   * If your event has a state object that you passed in, navigate to that page,
+   * otherwise navigate to 'home'.
+   * 
+   * IMPORTANT: Pass in the boolean true as the second argument in navigate() here
+   * so your navigate() function does not add your going back action to the history,
+   * creating an infinite loop
+   */
+  window.addEventListener('popstate', (event) => {
+    console.log(event.state);
+    console.log(history);
+
+    // if event.state == null then just navigate to home
+    if (event.state != undefined) {
+      router.navigate(event.state["page"], true);
+    } else {
+      router.navigate("home", true);
     }
   });
 }
