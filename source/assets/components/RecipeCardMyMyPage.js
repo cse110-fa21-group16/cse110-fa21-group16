@@ -1,3 +1,4 @@
+import { $, leaveMain } from "../scripts/main.js";
 import {  getTitle } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardMyMyPage extends HTMLElement {

@@ -1,4 +1,6 @@
+import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
 import { addMy } from "../scripts/helpCrudFunc.js";
+
 class AddRecipe extends HTMLElement {
   constructor() {
     super();

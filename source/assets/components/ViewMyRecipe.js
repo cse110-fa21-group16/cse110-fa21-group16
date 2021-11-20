@@ -1,3 +1,4 @@
+import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 

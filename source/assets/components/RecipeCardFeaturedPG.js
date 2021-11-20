@@ -1,3 +1,4 @@
+import { $, leaveMain } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 

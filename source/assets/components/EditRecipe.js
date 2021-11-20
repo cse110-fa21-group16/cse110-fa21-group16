@@ -1,3 +1,4 @@
+import { $ } from "../scripts/main.js";
 import { updateMy } from "../scripts/helpCrudFunc.js";
 import { getTitle, getStepsArray, getIngreArray } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";

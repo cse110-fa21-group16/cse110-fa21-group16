@@ -16,7 +16,7 @@ export function getImgUrl(data) {
  */
 export function getTitle(data) {
     if (data.title) return data.title;
-    return null;
+    return " ";
 }
 
 

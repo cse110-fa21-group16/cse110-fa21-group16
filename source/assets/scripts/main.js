@@ -1,12 +1,30 @@
 // main.js
+import { Router } from "./Router.js";
 
-const $ = (selector) => document.querySelector(selector);
+export const $ = (selector) => document.querySelector(selector);
 
 let nextMyRecipeID = JSON.parse(localStorage.getItem("nextMyRecipeID"));
 let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 
+/**
+ * Creating a router object. The constructor's function is the "home" function
+ */
+const router = new Router(function () {
+  console.log("Returning to landing page!");
+  leaveFeatured();
+  leaveFavorite();
+  leaveMyRecipe();
+  $("#add-recipe-page").classList.remove("main-shown");
+  $("#add-recipe-page").innerHTML = "";
+  $("#view-recipe-page").classList.remove("main-shown");
+  $("#view-recipe-page").innerHTML = "";
+  $("#delete-page").classList.remove("main-shown");
+  $("#delete-page").innerHTML = "";
+  loadMain();
+  loadLanding();
+});
 
 window.addEventListener("DOMContentLoaded", init);
 
@@ -15,17 +33,17 @@ window.addEventListener("DOMContentLoaded", init);
  * @returns a Promise of fetched data
  */
 async function init() {
-  let fetchSuccessful = await fetchFeaRecipeArray();
-  if (!fetchSuccessful) {
-    console.log("Recipe fetch unsuccessful");
-    return;
-  }
+  // let fetchSuccessful = await fetchFeaRecipeArray();
+  // if (!fetchSuccessful) {
+  //   console.log("Recipe fetch unsuccessful");
+  //   return;
+  // }
 
-  let addFeaCardSuccessful = await createFeaRecipeCards();
-  if (!addFeaCardSuccessful) {
-    console.log("Add featured recipe unsuccessful");
-    return;
-  }
+  // let addFeaCardSuccessful = await createFeaRecipeCards();
+  // if (!addFeaCardSuccessful) {
+  //   console.log("Add featured recipe unsuccessful");
+  //   return;
+  // }
 
   let addFavCardSuccessful = await createFavRecipeCards();
   if (!addFavCardSuccessful) {
@@ -40,6 +58,7 @@ async function init() {
   }
 
   setButtonListen();
+  bindEscKey();
 }
 
 
@@ -122,18 +141,23 @@ function createFavRecipeCards() {
  */
 function createMyRecipeCards() {
   return new Promise((resolve) => {
+    myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update to new array
+
     if (nextMyRecipeID == null) {
       nextMyRecipeID = 0;
     }
+
     if (myRecipeArray == null) {
       myRecipeArray = [];
     }
+
     $("#my-list").innerHTML = "";
     let addNewCard = document.createElement("new-card");
     $("#my-list").appendChild(addNewCard);
     for (let i = 0; i < 2 && i < myRecipeArray.length; i++) {
       // for (let i = 0; i < 2 && i < feaRecipeArray.length; i++) {            // Test code
       let newMyRecipeCard = document.createElement("recipe-card-my");
+      console.log(myRecipeArray);
       newMyRecipeCard.data = myRecipeArray[i];
       // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
       $("#my-list").appendChild(newMyRecipeCard);
@@ -192,8 +216,18 @@ function createFavRecipePage() {
  * Initial My Recipes page with all recipes from myRecipeArray
  * @returns a Promise
  */
-function createMyRecipePage() {
+export function createMyRecipePage() {
   return new Promise((resolve) => {
+    myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update to the new array
+
+    if (nextMyRecipeID == null) {
+      nextMyRecipeID = 0;
+    }
+
+    if (myRecipeArray == null) {
+      myRecipeArray = [];
+    }
+
     $("#my-page-list").innerHTML = "";
     for (let i = 0; i < myRecipeArray.length; i++) {
       let newMyRecipeCard = document.createElement("recipe-card-my-my-page");
@@ -249,7 +283,7 @@ function setButtonListen() {
  * Load landing page
  * @returns void
  */
-function loadLanding() {
+export function loadLanding() {
   $("#featured-recipes").classList.add("shown");
   $("#favorite-recipes").classList.add("shown");
   $("#my-recipes").classList.add("shown");
@@ -263,7 +297,7 @@ function loadLanding() {
 * Leave landing page
 * @returns void
 */
-function leaveLanding() {
+export function leaveLanding() {
   $("#featured-recipes").classList.remove("shown");
   $("#favorite-recipes").classList.remove("shown");
   $("#my-recipes").classList.remove("shown");
@@ -276,7 +310,7 @@ function leaveLanding() {
  * Load featured page
  * @returns void
  */
-function loadFeatured() {
+export function loadFeatured() {
   $("#featured-page").classList.add("shown");
   createFeaRecipePage();
 }
@@ -286,7 +320,7 @@ function loadFeatured() {
 * Leave featured page
 * @returns void
 */
-function leaveFeatured() {
+export function leaveFeatured() {
   $("#featured-page").classList.remove("shown");
   $("#featured-page-list").innerHTML = "";
 }
@@ -295,7 +329,7 @@ function leaveFeatured() {
  * Load favorite page
  * @returns void
  */
-function loadFavorite() {
+export function loadFavorite() {
   $("#favorite-page").classList.add("shown");
   createFavRecipePage();
 }
@@ -305,7 +339,7 @@ function loadFavorite() {
 * Leave favorite page
 * @returns void
 */
-function leaveFavorite() {
+export function leaveFavorite() {
   $("#favorite-page").classList.remove("shown");
   $("#favorite-page-list").innerHTML = "";
 }
@@ -315,7 +349,7 @@ function leaveFavorite() {
  * Load my recipe page
  * @returns void
  */
-function loadMyRecipe() {
+export function loadMyRecipe() {
   $("#my-page").classList.add("shown");
   createMyRecipePage();
 }
@@ -325,7 +359,7 @@ function loadMyRecipe() {
 * Leave my recipe page
 * @returns void
 */
-function leaveMyRecipe() {
+export function leaveMyRecipe() {
   $("#my-page").classList.remove("shown");
   $("#my-page-list").innerHTML = "";
 }
@@ -335,7 +369,7 @@ function leaveMyRecipe() {
 * Load main page (like to add page)
 * @returns void
 */
-function loadMain() {
+export function loadMain() {
   $("#main-header").classList.add("main-shown");
   $("#main-main").classList.add("main-shown");
   $("#main-footer").classList.add("main-shown");
@@ -346,7 +380,7 @@ function loadMain() {
 * Leave main page (like to add page)
 * @returns void
 */
-function leaveMain() {
+export function leaveMain() {
   $("#main-header").classList.remove("main-shown");
   $("#main-main").classList.remove("main-shown");
   $("#main-footer").classList.remove("main-shown");
@@ -356,4 +390,17 @@ function leaveMain() {
   $("#featured-page-list").innerHTML = "";
   $("#favorite-page-list").innerHTML = "";
   $("#my-page-list").innerHTML = "";
+}
+
+function bindEscKey() {
+  /**
+   * For this step, add an event listener to document for the 'keydown' event,
+   * if the escape key is pressed, use your router to navigate() to the 'home'
+   * page. This will let us go back to the home page from the detailed page.
+   */
+  document.addEventListener('keydown', (event) => {
+    if (event.key == "Escape") {
+      router.navigate('home');
+    }
+  });
 }

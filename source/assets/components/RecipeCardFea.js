@@ -1,3 +1,4 @@
+import { $, leaveMain } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardFea extends HTMLElement {

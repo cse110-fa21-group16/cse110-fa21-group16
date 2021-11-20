@@ -1,3 +1,4 @@
+import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
 import { rmMy } from "../scripts/helpCrudFunc.js";
 
 class DeleteConfirmation extends HTMLElement {
