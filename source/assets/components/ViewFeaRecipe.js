@@ -1,4 +1,4 @@
-import { $, loadMain, loadFeatured, loadFavorite, loadLanding } from "../scripts/main.js";
+import { $, loadMain, loadFeatured, loadFavorite, loadLanding, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
@@ -462,13 +462,13 @@ function feaRecipeToLand() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     if ($("#featured-page").classList.contains("shown")) {
-        loadFeatured();
+        router.navigate("ToFeaturedPage");
     }
     else if ($("#favorite-page").classList.contains("shown")) {
-        loadFavorite();
+        router.navigate("ToFavoritePage");
     }
     else {
-        loadLanding();
+        router.navigate("home");
     }
 }
 

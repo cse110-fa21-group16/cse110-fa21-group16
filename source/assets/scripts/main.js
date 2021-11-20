@@ -58,16 +58,25 @@ async function init() {
   }
 
   router.addPage("ToFeaturedPage", () => {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    loadMain();
     leaveLanding();
     loadFeatured();
   });
 
   router.addPage("ToFavoritePage", () => {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    loadMain();
     leaveLanding();
     loadFavorite();
   });
 
   router.addPage("ToMyRecipePage", () => {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    loadMain();
     leaveLanding();
     loadMyRecipe();
   })
@@ -103,6 +112,7 @@ async function fetchFeaRecipeArray() {
     // add arouting at the beginning of landing
     for (let i = 0; i < feaRecipeArray.length; i++ ) {
       let page = feaRecipeArray[i]["title"];
+      page = page.replace(/&/g, "");
       router.addPage(page, () => {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";

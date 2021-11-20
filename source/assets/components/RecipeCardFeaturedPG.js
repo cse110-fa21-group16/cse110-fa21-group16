@@ -131,8 +131,10 @@ class RecipeCardFeaturedPG extends HTMLElement {
     checkButton.addEventListener("click", (e) => {
       console.log(e.path[0].nodeName);
       console.log(recipeTitle.innerHTML);
+      let page = recipeTitle.innerHTML;
+      page = page.replace(/&amp;/g, "");
       if (e.path[0].nodeName == "B") return;
-      router.navigate(recipeTitle.innerHTML);
+      router.navigate(page);
     });
 
     this.shadowRoot.appendChild(styleElem);
