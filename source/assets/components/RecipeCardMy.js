@@ -1,4 +1,4 @@
-import { $, leaveMain } from "../scripts/main.js";
+import { $, leaveMain, router } from "../scripts/main.js";
 import {  getTitle } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardMy extends HTMLElement {
@@ -84,10 +84,13 @@ class RecipeCardMy extends HTMLElement {
     const checkButton = document.createElement("button");
     checkButton.textContent = "CHECK";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", () => {
-      viewRecipe(data);
-    });
 
+    // bind check button to router
+    checkButton.addEventListener("click", (e) => {
+      // console.log(e.path[0].nodeName);
+      // if (e.path[0].nodeName == "B") return;
+      router.navigate(data["id"]);
+    });
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);

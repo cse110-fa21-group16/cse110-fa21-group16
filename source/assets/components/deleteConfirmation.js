@@ -1,4 +1,4 @@
-import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
+import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.js";
 import { rmMy } from "../scripts/helpCrudFunc.js";
 
 class DeleteConfirmation extends HTMLElement {
@@ -111,10 +111,12 @@ function deleteRecipe(data) {
     $("#delete-page").innerHTML = "";
     loadMain();
     if ($("#my-page").classList.contains("shown")) {
-        loadMyRecipe();
+        // router.navigate("ToMyRecipePage");
+        window.history.back();
     }
     else {
-        loadLanding();
+        // router.navigate("home");
+        window.history.back();
     }
 }
 

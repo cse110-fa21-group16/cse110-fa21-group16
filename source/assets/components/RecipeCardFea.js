@@ -99,12 +99,10 @@ class RecipeCardFea extends HTMLElement {
 
     // bind check button to router
     checkButton.addEventListener("click", (e) => {
-      console.log(e.path[0].nodeName);
-      console.log(recipeTitle.innerHTML);
       let page = recipeTitle.innerHTML;
       page = page.replace(/&amp;/g, "");
-      console.log(page);
-      if (e.path[0].nodeName == "B") return;
+      // console.log(page);
+      // if (e.path[0].nodeName == "B") return;
       router.navigate(page);
     });
 

@@ -1,4 +1,4 @@
-import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
+import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
@@ -296,7 +296,7 @@ class ViewMyRecipe extends HTMLElement {
 
         const editButton = document.createElement("button");
         editButton.textContent = "Edit";
-        editButton.addEventListener("click", () => {
+        editButton.addEventListener("click", (e) => {
             myRecipeToEdit(data);
         });
 
@@ -437,10 +437,10 @@ function myRecipeToLand() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     if ($("#my-page").classList.contains("shown")) {
-        loadMyRecipe();
+        router.navigate("ToMyRecipePage");
     }
     else {
-        loadLanding();
+        router.navigate("home");
     }
 }
 

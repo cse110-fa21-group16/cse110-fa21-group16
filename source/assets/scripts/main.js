@@ -57,6 +57,37 @@ async function init() {
     return;
   }
 
+  // Routing for every card in myRecipeArray
+  // Since we're allowing duplicate name, we'll use id to distinguish them
+  for (let i = 0; i < myRecipeArray.length; i++) {
+    // Routing for viewing/checking out recipe
+    router.addPage(myRecipeArray[i]["id"], () => {
+      myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update the array
+      $("#add-recipe-page").classList.remove("main-shown");
+      $("#add-recipe-page").innerHTML = "";
+      $("#view-recipe-page").classList.remove("main-shown");
+      $("#view-recipe-page").innerHTML = "";
+      $("#view-recipe-page").classList.add("main-shown");
+      const viewRecipePage = document.createElement("view-my-recipe");
+      viewRecipePage.data = myRecipeArray[i];
+      $("#view-recipe-page").appendChild(viewRecipePage);
+      leaveMain();
+    });
+
+    // Routing for editing a recipe
+    // router.addPage(myRecipeArray[i]["id"]+"Edit", () => {
+    //   myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update the array
+    //   $("#view-recipe-page").classList.remove("main-shown");
+    //   $("#view-recipe-page").innerHTML = "";
+    //   let editRecipePage = document.createElement("edit-recipe");
+    //   editRecipePage.data = myRecipeArray[i];
+    //   $("#add-recipe-page").appendChild(editRecipePage);
+    //   $("#add-recipe-page").classList.add("main-shown");
+    // });
+  }
+
+
+  // Routing for section page links
   router.addPage("ToFeaturedPage", () => {
     $("#view-recipe-page").classList.remove("main-shown");
     $("#view-recipe-page").innerHTML = "";
@@ -112,7 +143,7 @@ async function fetchFeaRecipeArray() {
     // add arouting at the beginning of landing
     for (let i = 0; i < feaRecipeArray.length; i++ ) {
       let page = feaRecipeArray[i]["title"];
-      page = page.replace(/&/g, "");
+      page = page.replace(/&/g, ""); // replace all ampersand in string
       router.addPage(page, () => {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
@@ -203,6 +234,22 @@ function createMyRecipeCards() {
       console.log(myRecipeArray);
       newMyRecipeCard.data = myRecipeArray[i];
       // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
+
+      // Update routing when a recipe is added
+      // Routing for viewing/checking a recipe 
+      router.addPage(myRecipeArray[i]["id"], () => {
+        myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update the array
+        $("#add-recipe-page").classList.remove("main-shown");
+        $("#add-recipe-page").innerHTML = "";
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        $("#view-recipe-page").classList.add("main-shown");
+        const viewRecipePage = document.createElement("view-my-recipe");
+        viewRecipePage.data = myRecipeArray[i];
+        $("#view-recipe-page").appendChild(viewRecipePage);
+        leaveMain();
+      });
+  
       $("#my-list").appendChild(newMyRecipeCard);
     }
     if (myRecipeArray.length < 2) {
@@ -277,6 +324,22 @@ export function createMyRecipePage() {
     for (let i = 0; i < myRecipeArray.length; i++) {
       let newMyRecipeCard = document.createElement("recipe-card-my-my-page");
       newMyRecipeCard.data = myRecipeArray[i];
+
+      // Update routing when a recipe is added in myrecipe page
+      // Routing for viewing/checking a recipe 
+      router.addPage(myRecipeArray[i]["id"], () => {
+        myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update the array
+        $("#add-recipe-page").classList.remove("main-shown");
+        $("#add-recipe-page").innerHTML = "";
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        $("#view-recipe-page").classList.add("main-shown");
+        const viewRecipePage = document.createElement("view-my-recipe");
+        viewRecipePage.data = myRecipeArray[i];
+        $("#view-recipe-page").appendChild(viewRecipePage);
+        leaveMain();
+      });
+  
       $("#my-page-list").appendChild(newMyRecipeCard);
     }
     let addNewCard = document.createElement("new-card-my-page");
@@ -437,12 +500,13 @@ export function leaveMain() {
   $("#my-page-list").innerHTML = "";
 }
 
+
+/**
+ * Credit: Lab 7 skeleton, Tai's implementation of skeleton
+ * If the escape key is pressed, use your router to navigate() to the 'home'
+ * page. This will let us go back to the home page from the detailed page.
+ */
 function bindEscKey() {
-  /**
-   * For this step, add an event listener to document for the 'keydown' event,
-   * if the escape key is pressed, use your router to navigate() to the 'home'
-   * page. This will let us go back to the home page from the detailed page.
-   */
   document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
       router.navigate("home");
@@ -451,25 +515,18 @@ function bindEscKey() {
 }
 
 /**
+ * Credit: Lab 7 skeleton, Tai's implementation of skeleton
  * Binds the 'popstate' event on the window (which fires when the back &
  * forward buttons are pressed) so the navigation will continue to work 
- * as expected. (Hint - you should be passing in which page you are on
- * in your Router when you push your state so you can access that page
- * info in your popstate function)
+ * as expected.
  */
  function bindPopstate() {
   /**
-   * TODO - Part 1 Step 6
-   * Finally, add an event listener to the window object for the 'popstate'
-   * event - this fires when the forward or back buttons are pressed in a browser.
-   * If your event has a state object that you passed in, navigate to that page,
-   * otherwise navigate to 'home'.
-   * 
    * IMPORTANT: Pass in the boolean true as the second argument in navigate() here
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
-  window.addEventListener('popstate', (event) => {
+  window.addEventListener("popstate", (event) => {
     console.log(event.state);
     console.log(history);
 
@@ -480,4 +537,12 @@ function bindEscKey() {
       router.navigate("home", true);
     }
   });
+
+  /**
+   * Handling global error
+   * Reload the page if an error occured
+   */
+  window.addEventListener("error", () => {
+    window.location.reload();
+  })
 }
