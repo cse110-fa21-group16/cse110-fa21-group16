@@ -57,6 +57,21 @@ async function init() {
     return;
   }
 
+  // Routing for every card in feaReicpeArray
+  for (let i = 0; i < feaRecipeArray.length; i++ ) {
+    let page = feaRecipeArray[i]["title"];
+    page = page.replace(/&/g, ""); // replace all ampersand in string
+    router.addPage(page, () => {
+      $("#view-recipe-page").classList.remove("main-shown");
+      $("#view-recipe-page").innerHTML = "";
+      $("#view-recipe-page").classList.add("main-shown");
+      const viewRecipePage = document.createElement("view-fea-recipe");
+      viewRecipePage.data = feaRecipeArray[i];
+      $("#view-recipe-page").appendChild(viewRecipePage);
+      leaveMain();
+    });
+  }
+
   // Routing for every card in myRecipeArray
   // Since we're allowing duplicate name, we'll use id to distinguish them
   for (let i = 0; i < myRecipeArray.length; i++) {
@@ -138,21 +153,6 @@ async function fetchFeaRecipeArray() {
     }
     else {
       resolve(true);
-    }
-
-    // add arouting at the beginning of landing
-    for (let i = 0; i < feaRecipeArray.length; i++ ) {
-      let page = feaRecipeArray[i]["title"];
-      page = page.replace(/&/g, ""); // replace all ampersand in string
-      router.addPage(page, () => {
-        $("#view-recipe-page").classList.remove("main-shown");
-        $("#view-recipe-page").innerHTML = "";
-        $("#view-recipe-page").classList.add("main-shown");
-        const viewRecipePage = document.createElement("view-fea-recipe");
-        viewRecipePage.data = feaRecipeArray[i];
-        $("#view-recipe-page").appendChild(viewRecipePage);
-        leaveMain();
-      });
     }
   });
 }
