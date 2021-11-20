@@ -8,6 +8,9 @@ let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
  * @returns bool
  */
 export function checkFav(recipeTitle) {
+    if (favRecipeArray === null || favRecipeArray.length === 0) {
+        favRecipeArray = [];
+    }
     for (let i of favRecipeArray) {
         if (i.title == recipeTitle) {
             return true;
@@ -59,9 +62,9 @@ export function addMy(data) {
     }
 
     data["id"] = nextMyRecipeID;
-    console.log(data["id"]);
     nextMyRecipeID += 1;
     myRecipeArray.push(data);
+    console.log(myRecipeArray.length);
     localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
 }

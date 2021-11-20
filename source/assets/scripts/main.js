@@ -112,12 +112,15 @@ function createFeaRecipeCards() {
  */
 function createFavRecipeCards() {
   return new Promise((resolve) => {
+    favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray")); // update to new array
+
     if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
       $("#favorite-recipes").classList.remove("shown");
       resolve(true);
     }
     $("#favorite-list").innerHTML = "";
+    console.log(favRecipeArray);
     for (let i = 0; i < 3 && i < favRecipeArray.length; i++) {
       // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
       let newFavRecipeCard = document.createElement("recipe-card-fea");
@@ -197,6 +200,8 @@ function createFeaRecipePage() {
 function createFavRecipePage() {
   return new Promise((resolve) => {
     $("#favorite-page-list").innerHTML = "";
+    favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray")); // update to new array
+    console.log(favRecipeArray);
     for (let i = 0; i < favRecipeArray.length; i++) {
       let newFavRecipeCard = document.createElement("recipe-card-featured-pg");
       newFavRecipeCard.data = favRecipeArray[i];
