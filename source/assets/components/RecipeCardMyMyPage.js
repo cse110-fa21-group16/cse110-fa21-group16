@@ -1,5 +1,5 @@
 import { $, leaveMain, router } from "../scripts/main.js";
-import {  getTitle } from "../scripts/helpGetDataFunc.js";
+import {  getTitle, getImgUrl } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardMyMyPage extends HTMLElement {
   constructor() {
@@ -45,7 +45,7 @@ class RecipeCardMyMyPage extends HTMLElement {
       article > img {
         border-top-left-radius: 40px;
         border-top-right-radius: 40px;
-        height: 120px;
+        height: 135px;
         object-fit: cover;
         width: calc(100% + 32px);
       }
@@ -71,7 +71,9 @@ class RecipeCardMyMyPage extends HTMLElement {
 
     const card = document.createElement("article");
 
-    const recipeImg = document.createElement("div");
+    const recipeImg = document.createElement("img");
+    recipeImg.src = getImgUrl(data);
+    recipeImg.alt = getTitle(data);
     card.appendChild(recipeImg);
 
     // p element - title

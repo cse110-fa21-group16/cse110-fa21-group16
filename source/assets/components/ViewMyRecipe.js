@@ -97,13 +97,13 @@ class ViewMyRecipe extends HTMLElement {
 
         #left-main > h2 {
             visibility: hidden;
-            margin: 60px 0px 20px 0px;
+            margin: 10px 0px 20px 0px;
         }
         
         #left-main > p {
             visibility: hidden;
             font-size: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
 
         #left-main > button {
