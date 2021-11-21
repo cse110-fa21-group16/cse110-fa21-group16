@@ -25,7 +25,7 @@ class AddRecipe extends HTMLElement {
         *****************************************/
 
       article {
-        width: 60vw;
+        width: 70vw;
         box-shadow: 0px 0px 15px #888888;
         margin: 10px 0px 90px 10px;
       }
@@ -85,7 +85,7 @@ class AddRecipe extends HTMLElement {
            This div contains picture, instructions, and ingredients sections
        */
        .origin {
-         width: 60%;
+         width: 70%;
          display: grid;
          justify-content: center;
          grid-template-columns: 100%;
@@ -96,6 +96,7 @@ class AddRecipe extends HTMLElement {
         Style for picture section 
         *****************************************/
        .picture {
+         width: 98%;
          display: flex;
          justify-content: space-between;
          align-items: center;
@@ -104,7 +105,8 @@ class AddRecipe extends HTMLElement {
        }
        
        #recipe-name {
-         border: none;
+         border: 1px solid #ccccd8;
+         border-radius: 14px;
          font-size: 2vw;
          height: 50%;
          margin: 0 10px;
@@ -114,20 +116,28 @@ class AddRecipe extends HTMLElement {
          width: 50%;
        }
        #recipe-name:hover{
-         border: 1px solid #000000;
+         border: 1px solid #313131;
        }
        
-       .recipe-image-div {
-         width: 300px;
-         height: 200px;
-         border: 1px solid rgb(48, 90, 80);
-         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-         margin: 1em 0;
+       .recipe-image-container input {
+         margin: 10px;
        }
+
        
+       #pic-img-pre-read {
+         border-radius: 14px;
+         width: 260px;
+         margin: 10px
+       }
+
        /*****************************************
         Style for instructions section 
         *****************************************/
+       .category label {
+         margin-left: 5px;
+         font-size: 17px;
+       }
+
        .instructions {
          /* border: 1px solid blue; */
        }
@@ -151,6 +161,7 @@ class AddRecipe extends HTMLElement {
          padding-top: 5px;
          padding-left: 5px;
          resize: none;
+         font-size: 18px;
        }
        
        /* Style for add more button in instruction section */
@@ -163,25 +174,37 @@ class AddRecipe extends HTMLElement {
          font-size: 32px;
          margin-top: 10px;
          border-radius: 10px;
+         transition: all 0.1s linear;
+         -moz-transition: all 0.1s linear;
+         -o-transition: all 0.1s linear;
+         -webkit-transition: all 0.1s linear; 
        }
        
        .add-instruction:hover {
          cursor: pointer;
+         box-shadow:0px 1px 17px -8px #000;
+         transform: scale(1.02);
        }
 
        /* Style for Remove button in instruction section */
         .delete-instruction{
           width: calc(95% + 5px);
            height: 50px;
-           background-color: #FF5555;
+           background-color: #c0392b;
            color: white;
            border: none;
            font-size: 32px;
            margin-top: 10px;
            border-radius: 10px;
+           transition: all 0.1s linear;
+           -moz-transition: all 0.1s linear;
+           -o-transition: all 0.1s linear;
+           -webkit-transition: all 0.1s linear; 
         }
         .delete-instruction:hover {
           cursor: pointer;
+          box-shadow:0px 1px 17px -8px #000;
+          transform: scale(1.02);
         }
        
        /*****************************************
@@ -213,14 +236,17 @@ class AddRecipe extends HTMLElement {
          padding-top: 5px;
          padding-left: 5px;
          resize: none;
+         font-size: 17px;
        }
        
        .amount-item {
+         border: 1px solid rgb(118, 118, 118);
          width: 80%;
          height: 30px;
          border-radius: 10px;
          padding-top: 5px;
          padding-left: 5px;
+         font-size: 17px;
        }
        
        .unit-item {
@@ -229,6 +255,7 @@ class AddRecipe extends HTMLElement {
          border-radius: 10px;
          padding-top: 5px;
          padding-left: 5px;
+         font-size: 17px;
        }
        
        /* Style for cartegory section. Splitting it into 4 columns
@@ -265,41 +292,45 @@ class AddRecipe extends HTMLElement {
        
        /* Style for action-buttons div */
        .action-buttons {
-         width: 55%;
          display: flex;
-         flex-direction: row-reverse;
-         padding: 5px 5px 5px 5px;
-         margin-top: 10px;
-         margin-bottom: 20px;
-         /* border: 1px solid blue; */
+         flex-flow: row nowrap;
+         padding: 5px;
+         margin: 20px 0px;
+         justify-content: center;
        }
        
        /* Standard style for submit and delete buttons */
        #submit-edit,
-       #delete-edit,
        #cancel-edit {
-         margin-left: 5px;
-         width: 30%;
-         height: 30px;
-         background-color: rgb(48, 90, 80);
-         border: none;
-         color: white;
-         border-radius: 99px;
+        border: 1px solid #ccccd8;
+        background-color: #fff;
+        border-radius: 14px;
+        color: #305A50;
+        cursor: pointer;
+        font-size: 20px;
+        margin: 20px;
+        padding: 5px 40px;
+       }
+
+       #cancel-edit {
+        color: #c0392b;
+       }
+
+       
+       #submit-edit:hover {
+        border: 1px solid #313131;
+        background: rgb(48, 90, 80);
+        color: white;
        }
        
-       #delete-edit,
-       #cancel-edit {
-         background-color: red;
-       }
-       
-       #submit-edit:hover,
-       #delete-edit:hover,
        #cancel-edit:hover {
-         cursor: pointer;
+        background: #c0392b;
+        color: white;
        }
-       
+
        .title {
-         font-size: 1vw;
+         font-size: 20px;
+         margin: 5px 0px 10px 0px;
        }
       `;
 
@@ -344,15 +375,32 @@ class AddRecipe extends HTMLElement {
     let picTitle = document.createElement("textarea");
     picSection.setAttribute("class", "picture");
     picTitle.setAttribute("id", "recipe-name");
-    picTitle.innerHTML = "Recipe Name";
+    picTitle.placeholder = "Recipe Name";
 
     let picImgContainer = document.createElement("div");
     let picInput = document.createElement("input");
+    let picImgPreRead = document.createElement("img");
+    picImgPreRead.style.display = "none";
+    picImgPreRead.id = "pic-img-pre-read";
     picImgContainer.setAttribute("class", "recipe-image-container");
     picInput.setAttribute("type", "file");
     picInput.setAttribute("accept", "image/*");
 
+    picInput.addEventListener("change", () => {
+      if (picInput.files.length) {
+        let file = picInput.files[0];
+        let reader = new FileReader();
+        reader.onload = () => {
+          picImgPreRead.style.display = "block";
+          picImgPreRead.src = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+      }
+    });
+
     picImgContainer.appendChild(picInput);
+    picImgContainer.appendChild(picImgPreRead);
 
     picSection.appendChild(picTitle);
     picSection.appendChild(picImgContainer);
@@ -367,7 +415,7 @@ class AddRecipe extends HTMLElement {
     let dietTitle = document.createElement("h2");
     dietDiv.setAttribute("class", "diet-restrict-div");
     dietTitle.setAttribute("class", "title");
-    dietTitle.innerHTML = "Diet Restriction";
+    dietTitle.innerHTML = "Diet Restriction: ";
 
     let dietCategory = document.createElement("div");
     dietCategory.setAttribute("class", "category");
@@ -472,7 +520,7 @@ class AddRecipe extends HTMLElement {
     addIngredient.setAttribute("class", "add-instruction");
     addIngredient.setAttribute("id", "add-ingredient");
     addIngredient.innerHTML = "+";
-    
+
     // Remove Ingredient Button
     let removeIngredient = document.createElement("button");
     removeIngredient.setAttribute("class", "delete-instruction");
@@ -530,7 +578,7 @@ class AddRecipe extends HTMLElement {
     addIngredient.addEventListener("click", () => {
       addIngreItems(addIngredient);
     });
-    removeIngredient.addEventListener("click", () =>{
+    removeIngredient.addEventListener("click", () => {
       removeIngreItem(ingredientGeneralDiv);
     })
 
@@ -590,7 +638,7 @@ class AddRecipe extends HTMLElement {
     // Append button to Div List 
     procedureDivList.appendChild(removeInstruction);
     // Remove Button Click Event 
-    removeInstruction.addEventListener("click", () =>{
+    removeInstruction.addEventListener("click", () => {
       removeInstruItem(procedureList);
     });
 
@@ -633,8 +681,8 @@ class AddRecipe extends HTMLElement {
     cancelButton.innerHTML = "Cancel";
 
     // Append Buttons to Div
-    actionButtons.appendChild(submitButton);
     actionButtons.appendChild(cancelButton);
+    actionButtons.appendChild(submitButton);
 
     cancelButton.addEventListener("click", leaveAdd);
 
@@ -670,6 +718,19 @@ class AddRecipe extends HTMLElement {
       inputData["instructions"] = listHtml;
       inputData["instructionsArray"] = instruArray;
 
+
+      // Using canvas to compress image
+      let imgCanvas = document.createElement("canvas");
+      let imgContext = imgCanvas.getContext("2d");
+
+      imgCanvas.width = picImgPreRead.width;
+      imgCanvas.height = picImgPreRead.height;
+
+      imgContext.drawImage(picImgPreRead, 0, 0, picImgPreRead.width, picImgPreRead.height);
+
+
+      inputData["image"] = imgCanvas.toDataURL("image/jpeg");
+
       addMy(inputData);
       leaveAdd();
     });
@@ -697,14 +758,14 @@ class AddRecipe extends HTMLElement {
  * removes ingredient div in DOM
  * @param {object} ingreList list of ingredient
  */
- function removeIngreItem(ingreList){
+function removeIngreItem(ingreList) {
   // Add and remove buttons are part of the ingredient list 
   // If the ingredient list contains more than 1 ingredient 
   // and the 2 buttons 
-  if (ingreList.children.length > 3){
+  if (ingreList.children.length > 3) {
     // Remove the last ingredient
     ingreList.removeChild(ingreList.children[ingreList.children.length - 3]);
-  }else{
+  } else {
     // Alert the user 
     alert("There must be at least 1 Ingredient");
   }
@@ -786,13 +847,13 @@ function addIngreItems(buttonItem) {
  * removes instruction item in list 
  * @param {object} instruList list of instructions
  */
-function removeInstruItem(instruList){
+function removeInstruItem(instruList) {
   // If the instruction list has more than 1 instruction 
-  if(instruList.children.length > 1){
+  if (instruList.children.length > 1) {
     // Remove the last instruction 
     instruList.removeChild(instruList.children[instruList.children.length - 1]);
   }
-  else{
+  else {
     // Alert the user 
     alert("There must be at least 1 procedure");
   }
