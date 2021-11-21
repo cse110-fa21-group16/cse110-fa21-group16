@@ -28,8 +28,6 @@ Chosen option: Zest for name and a lemon for logo, because it makes our app look
 
 ## Pros and Cons of the Options <!-- optional -->
 
-{example | description | pointer to more information | …} <!-- optional -->
-
 ### Powell with chef's hat for logo
 * 
 * Good, because it's related to our team's logo
