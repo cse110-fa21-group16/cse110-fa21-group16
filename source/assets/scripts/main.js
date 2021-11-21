@@ -148,7 +148,7 @@ async function fetchFeaRecipeArray() {
         // fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
         .then((response) => response.json())
         .then((data) => {
-          feaRecipeArray = data["recipes"];
+          feaRecipeArray = data;
           localStorage.setItem("feaRecipeArray", JSON.stringify(feaRecipeArray));
           resolve(true);
         }).catch(() => reject(false));
