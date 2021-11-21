@@ -1,12 +1,12 @@
-# Decision on whether to make our app. a single-page web app.
+# Decision on whether to make our app. a single-page web app. (Updated)
 
-* Status: proposed
-* Deciders: TBD <!-- optional -->
-* Date: 2021-11-07
+* Status: accepted
+* Deciders: Everyone
+* Date: 2021-11-16
 
 ## Context and Problem Statement
 
-We're still in the process of deciding whether to make our app a single-page or a multi-page web app (or both)
+We're still in the process of deciding whether to make our app a single-page or a multi-page web app (or both). UPDATE: we've decided to do SPA
 
 ## Decision Drivers <!-- optional -->
 
@@ -21,15 +21,16 @@ We're still in the process of deciding whether to make our app a single-page or 
 
 ## Decision Outcome
 
-Chosen option: TBD
+Chosen option: Single page because it makes our app look more convenient to use
 
 ### Positive Consequences <!-- optional -->
 
-* TBD
+* Easier and faster to use 
+* No need to connect to a new page for navigation
 
 ### Negative Consequences <!-- optional -->
 
-* TBD
+* Might be confusing to implement
 
 ## Pros and Cons of the Options <!-- optional -->
 
