@@ -382,6 +382,7 @@ class AddRecipe extends HTMLElement {
     let picImgPreRead = document.createElement("img");
     picImgPreRead.style.display = "none";
     picImgPreRead.id = "pic-img-pre-read";
+    picImgPreRead.src = "assets/images/noPhoto.jpeg";
     picImgContainer.setAttribute("class", "recipe-image-container");
     picInput.setAttribute("type", "file");
     picInput.setAttribute("accept", "image/*");
