@@ -31,6 +31,7 @@
   - Continue polishing UI design (mobile device compatibility)
 - Team status video
 ## Tasks / ToDo
+- Design team start designing the look and feel of the app for mobile devices
 - Finish adding logo and name to app
 - Evan will be making our team status video
 
