@@ -193,7 +193,7 @@ function createFavRecipeCards() {
       resolve(true);
     }
     $("#favorite-list").innerHTML = "";
-    console.log(favRecipeArray);
+    // console.log(favRecipeArray);
     for (let i = 0; i < 3 && i < favRecipeArray.length; i++) {
       // for (let i = 0; i < 3 && i < feaRecipeArray.length; i++) {            // Test code
       let newFavRecipeCard = document.createElement("recipe-card-fea");
@@ -233,7 +233,7 @@ function createMyRecipeCards() {
     for (let i = 0; i < 2 && i < myRecipeArray.length; i++) {
       // for (let i = 0; i < 2 && i < feaRecipeArray.length; i++) {            // Test code
       let newMyRecipeCard = document.createElement("recipe-card-my");
-      console.log(myRecipeArray);
+      // console.log(myRecipeArray);
       newMyRecipeCard.data = myRecipeArray[i];
       // newFavRecipeCard.data = feaRecipeArray[i];                          // Test code
 
@@ -290,7 +290,7 @@ function createFavRecipePage() {
   return new Promise((resolve) => {
     $("#favorite-page-list").innerHTML = "";
     favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray")); // update to new array
-    console.log(favRecipeArray);
+    // console.log(favRecipeArray);
     for (let i = 0; i < favRecipeArray.length; i++) {
       let newFavRecipeCard = document.createElement("recipe-card-featured-pg");
       newFavRecipeCard.data = favRecipeArray[i];
@@ -529,8 +529,8 @@ function bindEscKey() {
    * creating an infinite loop
    */
   window.addEventListener("popstate", (event) => {
-    console.log(event.state);
-    console.log(history);
+    // console.log(event.state);
+    // console.log(history);
 
     // if event.state == null then just navigate to home
     if (event.state != undefined) {

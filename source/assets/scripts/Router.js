@@ -60,7 +60,7 @@
       // 3. Next, if statePopped is false and window.location.hash does NOT match the
       // hash that you just made, use history.pushState() to add the current state
       // and URL + hash to history
-      console.log(statePopped);
+      // console.log(statePopped);
       if (statePopped !== true && window.location.hash !== hash) {
         let curr_state = {'page': page};
         history.pushState(curr_state, '', window.location.origin+window.location.pathname+hash);
