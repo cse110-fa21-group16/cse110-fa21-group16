@@ -165,7 +165,7 @@ async function fetchFeaRecipeArray() {
 function createFeaRecipeCards() {
   return new Promise((resolve) => {
     $("#featured-list").innerHTML = "";
-    let index = Math.round(Math.random() * 25);
+    let index = Math.round(Math.random() * 5);
     for (let i = index; i < index + 3; i++) {
       let newFeaRecipeCard = document.createElement("recipe-card-fea");
       newFeaRecipeCard.data = feaRecipeArray[i];
@@ -542,7 +542,7 @@ function bindEscKey() {
    * Handling global error
    * Reload the page if an error occured
    */
-  window.addEventListener("error", () => {
-    window.location.reload();
-  })
+  // window.addEventListener("error", () => {
+  //   window.location.reload();
+  // })
 }

@@ -1,3 +1,5 @@
+import { $, router, loadMain } from "../scripts/main.js";
+
 class NutritionPage extends HTMLElement {
     constructor() {
         super();
@@ -84,7 +86,6 @@ class NutritionPage extends HTMLElement {
          .grid-container {
            display: grid;
            grid-template-columns: 100%;
-           max-width: 21%;
            background-color: rgb(48, 90, 80);
            padding: 10px;
            margin: auto;
@@ -98,7 +99,7 @@ class NutritionPage extends HTMLElement {
            justify-content: space-between;
            background-color: rgba(255, 255, 255, 0.8);
            padding: 20px;
-           font-size: 30px;
+           font-size: 20px;
            text-align: center;
            grid-column-start: 1;
            border-bottom: 1px solid black;
@@ -137,7 +138,7 @@ class NutritionPage extends HTMLElement {
            #back{
              font-size: x-large;
              margin-left: 5px;
-             width: 25%;
+             width: 100%;
              height: 48px;
              background-color: rgb(48, 90, 80);
              border: none;
@@ -152,6 +153,7 @@ class NutritionPage extends HTMLElement {
         
         // root element to attach everything to
         let page = document.createElement("article");
+        console.log(data);
 
         ///////////////////////////////////////////////////////////////////////////////
         ///////////////////////// Creating the header section /////////////////////////
@@ -208,141 +210,160 @@ class NutritionPage extends HTMLElement {
         facts.classList.add("facts");
         let gridContainer = document.createElement("div");
         gridContainer.classList.add("grid-container");
+        
+        let requiredData = ["calories", "fat", "carbohydrates", "sugar", "cholesterol", "sodium", "srotein", "fiber", "copper", "iron", "calcium"];
+        // loop thru the data array and put every nutrtition on
+        for (let i = 0; i < data.length; i++) {
+          let dataName = data[i]["name"];
+          let dataAmount = data[i]["amount"];
+          let unit = data[i]["unit"];
+          if (!(requiredData.includes(dataName.toLowerCase()))) continue; // exclude nutritions that are not needed
+          let item = document.createElement("div");
+          let nutrition = document.createElement("div");
+          let amount = document.createElement("span");
+          item.classList.add("item");
+          nutrition.classList.add(`${dataName.toLowerCase()}`);
+          nutrition.innerHTML = dataName;
+          amount.innerHTML = dataAmount+ " " + unit;
+          item.appendChild(nutrition);
+          item.appendChild(amount);
+          gridContainer.appendChild(item);
+        }
 
         // calories
-        let calories = document.createElement("div");
-        calories.classList.add("item");
-        let caloriesDiv = document.createElement("div");
-        caloriesDiv.classList.add("calories");
-        caloriesDiv.innerHTML = "Calories";
-        let caloriesSpan = document.createElement("span");
-        caloriesSpan.innerHTML = "100";
+        // let calories = document.createElement("div");
+        // calories.classList.add("item");
+        // let caloriesDiv = document.createElement("div");
+        // caloriesDiv.classList.add("calories");
+        // caloriesDiv.innerHTML = "Calories";
+        // let caloriesSpan = document.createElement("span");
+        // caloriesSpan.innerHTML = "100";
 
-        calories.appendChild(caloriesDiv);
-        calories.appendChild(caloriesSpan);
+        // calories.appendChild(caloriesDiv);
+        // calories.appendChild(caloriesSpan);
 
         // sat-fat
-        let satFat = document.createElement("div");
-        satFat.classList.add("item");
-        let satFatDiv = document.createElement("div");
-        satFatDiv.classList.add("sat-fat");
-        satFatDiv.innerHTML = "Total Fat";
-        let satFatSpan = document.createElement("span");
-        satFatSpan.innerHTML = "100";
+        // let satFat = document.createElement("div");
+        // satFat.classList.add("item");
+        // let satFatDiv = document.createElement("div");
+        // satFatDiv.classList.add("sat-fat");
+        // satFatDiv.innerHTML = "Total Fat";
+        // let satFatSpan = document.createElement("span");
+        // satFatSpan.innerHTML = "100";
 
-        satFat.appendChild(satFatDiv);
-        satFat.appendChild(satFatSpan);
+        // satFat.appendChild(satFatDiv);
+        // satFat.appendChild(satFatSpan);
 
         // trans-fat
-        let transFat = document.createElement("div");
-        transFat.classList.add("item");
-        let transFatDiv = document.createElement("div");
-        transFatDiv.classList.add("trans-fat");
-        transFatDiv.innerHTML = "Trans Fat";
-        let transFatSpan = document.createElement("span");
-        transFatSpan.innerHTML = "100";
+        // let transFat = document.createElement("div");
+        // transFat.classList.add("item");
+        // let transFatDiv = document.createElement("div");
+        // transFatDiv.classList.add("trans-fat");
+        // transFatDiv.innerHTML = "Trans Fat";
+        // let transFatSpan = document.createElement("span");
+        // transFatSpan.innerHTML = "100";
 
-        transFat.appendChild(transFatDiv);
-        transFat.appendChild(transFatSpan);
+        // transFat.appendChild(transFatDiv);
+        // transFat.appendChild(transFatSpan);
 
         // cholesterol
-        let cholesterol = document.createElement("div");
-        cholesterol.classList.add("item");
-        let cholesterolDiv = document.createElement("div");
-        cholesterolDiv.classList.add("cholesterol");
-        cholesterolDiv.innerHTML = "Cholesterol";
-        let cholesterolSpan = document.createElement("span");
-        cholesterolSpan.innerHTML = "100";
+        // let cholesterol = document.createElement("div");
+        // cholesterol.classList.add("item");
+        // let cholesterolDiv = document.createElement("div");
+        // cholesterolDiv.classList.add("cholesterol");
+        // cholesterolDiv.innerHTML = "Cholesterol";
+        // let cholesterolSpan = document.createElement("span");
+        // cholesterolSpan.innerHTML = "100";
 
-        cholesterol.appendChild(cholesterolDiv);
-        cholesterol.appendChild(cholesterolSpan);
+        // cholesterol.appendChild(cholesterolDiv);
+        // cholesterol.appendChild(cholesterolSpan);
 
         // sodium
-        let sodium = document.createElement("div");
-        sodium.classList.add("item");
-        let sodiumDiv = document.createElement("div");
-        sodiumDiv.classList.add("sodium");
-        sodiumDiv.innerHTML = "Sodium";
-        let sodiumSpan = document.createElement("span");
-        sodiumSpan.innerHTML = "100";
+        // let sodium = document.createElement("div");
+        // sodium.classList.add("item");
+        // let sodiumDiv = document.createElement("div");
+        // sodiumDiv.classList.add("sodium");
+        // sodiumDiv.innerHTML = "Sodium";
+        // let sodiumSpan = document.createElement("span");
+        // sodiumSpan.innerHTML = "100";
 
-        sodium.appendChild(sodiumDiv);
-        sodium.appendChild(sodiumSpan);
+        // sodium.appendChild(sodiumDiv);
+        // sodium.appendChild(sodiumSpan);
 
         // carbohydrate
-        let carbohydrate = document.createElement("div");
-        carbohydrate.classList.add("item");
-        let carbohydrateDiv = document.createElement("div");
-        carbohydrateDiv.classList.add("carbohydrate");
-        carbohydrateDiv.innerHTML = "Carbohydrate";
-        let carbohydrateSpan = document.createElement("span");
-        carbohydrateSpan.innerHTML = "100";
+        // let carbohydrate = document.createElement("div");
+        // carbohydrate.classList.add("item");
+        // let carbohydrateDiv = document.createElement("div");
+        // carbohydrateDiv.classList.add("carbohydrate");
+        // carbohydrateDiv.innerHTML = "Carbohydrate";
+        // let carbohydrateSpan = document.createElement("span");
+        // carbohydrateSpan.innerHTML = "100";
 
-        carbohydrate.appendChild(carbohydrateDiv);
-        carbohydrate.appendChild(carbohydrateSpan);
+        // carbohydrate.appendChild(carbohydrateDiv);
+        // carbohydrate.appendChild(carbohydrateSpan);
 
         // fiber
-        let fiber = document.createElement("div");
-        fiber.classList.add("item");
-        let fiberDiv = document.createElement("div");
-        fiberDiv.classList.add("fiber");
-        fiberDiv.innerHTML = "Dietary Fiber";
-        let fiberSpan = document.createElement("span");
-        fiberSpan.innerHTML = "100";
+        // let fiber = document.createElement("div");
+        // fiber.classList.add("item");
+        // let fiberDiv = document.createElement("div");
+        // fiberDiv.classList.add("fiber");
+        // fiberDiv.innerHTML = "Dietary Fiber";
+        // let fiberSpan = document.createElement("span");
+        // fiberSpan.innerHTML = "100";
 
-        fiber.appendChild(fiberDiv);
-        fiber.appendChild(fiberSpan);
+        // fiber.appendChild(fiberDiv);
+        // fiber.appendChild(fiberSpan);
 
         // sugars
-        let sugars = document.createElement("div");
-        sugars.classList.add("item");
-        let sugarsDiv = document.createElement("div");
-        sugarsDiv.classList.add("sugar");
-        sugarsDiv.innerHTML = "Total Sugars";
-        let sugarsSpan = document.createElement("span");
-        sugarsSpan.innerHTML = "100";
+        // let sugars = document.createElement("div");
+        // sugars.classList.add("item");
+        // let sugarsDiv = document.createElement("div");
+        // sugarsDiv.classList.add("sugar");
+        // sugarsDiv.innerHTML = "Total Sugars";
+        // let sugarsSpan = document.createElement("span");
+        // sugarsSpan.innerHTML = "100";
 
 
-        sugars.appendChild(sugarsDiv);
-        sugars.appendChild(sugarsSpan);
+        // sugars.appendChild(sugarsDiv);
+        // sugars.appendChild(sugarsSpan);
 
         // protein
-        let protein = document.createElement("div");
-        protein.classList.add("item");
-        let proteinDiv = document.createElement("div");
-        proteinDiv.classList.add("protein");
-        proteinDiv.innerHTML = "Protein";
-        let proteinSpan = document.createElement("span");
-        proteinSpan.innerHTML = "100";
+        // let protein = document.createElement("div");
+        // protein.classList.add("item");
+        // let proteinDiv = document.createElement("div");
+        // proteinDiv.classList.add("protein");
+        // proteinDiv.innerHTML = "Protein";
+        // let proteinSpan = document.createElement("span");
+        // proteinSpan.innerHTML = "100";
 
 
-        protein.appendChild(proteinDiv);
-        protein.appendChild(proteinSpan);
+        // protein.appendChild(proteinDiv);
+        // protein.appendChild(proteinSpan);
 
         // vitamins
-        let vitamins = document.createElement("div");
-        vitamins.classList.add("item");
-        let vitaminsDiv = document.createElement("div");
-        vitaminsDiv.classList.add("vitamins");
-        vitaminsDiv.innerHTML = "Vitamins";
-        let vitaminsSpan = document.createElement("span");
-        vitaminsSpan.innerHTML = "100";
+        // let vitamins = document.createElement("div");
+        // vitamins.classList.add("item");
+        // let vitaminsDiv = document.createElement("div");
+        // vitaminsDiv.classList.add("vitamins");
+        // vitaminsDiv.innerHTML = "Vitamins";
+        // let vitaminsSpan = document.createElement("span");
+        // vitaminsSpan.innerHTML = "100";
 
-        vitamins.appendChild(vitaminsDiv);
-        vitamins.appendChild(vitaminsSpan);
+        // vitamins.appendChild(vitaminsDiv);
+        // vitamins.appendChild(vitaminsSpan);
 
         // append all divs to grid-container
 
-        gridContainer.appendChild(calories);
-        gridContainer.appendChild(satFat);
-        gridContainer.appendChild(transFat);
-        gridContainer.appendChild(cholesterol);
-        gridContainer.appendChild(sodium);
-        gridContainer.appendChild(carbohydrate);
-        gridContainer.appendChild(fiber);
-        gridContainer.appendChild(sugars);
-        gridContainer.appendChild(protein);
-        gridContainer.appendChild(vitamins);
+        // gridContainer.appendChild(calories);
+        // gridContainer.appendChild(satFat);
+        // gridContainer.appendChild(transFat);
+        // gridContainer.appendChild(cholesterol);
+        // gridContainer.appendChild(sodium);
+        // gridContainer.appendChild(carbohydrate);
+        // gridContainer.appendChild(fiber);
+        // gridContainer.appendChild(sugars);
+        // gridContainer.appendChild(protein);
+        // gridContainer.appendChild(vitamins);
 
         facts.appendChild(gridContainer);
         
@@ -369,7 +390,10 @@ class NutritionPage extends HTMLElement {
         // Action Buttons
         let backButton = document.createElement("button");
         backButton.setAttribute("id", "back");
-        backButton.innerHTML = "Go Back";
+        backButton.innerHTML = "Back";
+        backButton.addEventListener("click", () => {
+          backToView();
+        })
 
         // Append Buttons to Div
         actionButtons.appendChild(backButton);
@@ -390,6 +414,21 @@ class NutritionPage extends HTMLElement {
         this.shadow.appendChild(styling);
         this.shadow.appendChild(page);
     }
+}
+
+function backToView() {
+  $("#view-nutrition-page").classList.remove("main-shown");
+  $("#view-nutrition-page").innerHTML = "";
+  loadMain();
+  if ($("#featured-page").classList.contains("shown")) {
+      router.navigate("ToFeaturedPage");
+  }
+  else if ($("#favorite-page").classList.contains("shown")) {
+      router.navigate("ToFavoritePage");
+  }
+  else {
+      router.navigate("home");
+  }
 }
 
 // define the "nutrition-page" element using this class

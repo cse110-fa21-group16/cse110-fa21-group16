@@ -279,13 +279,16 @@ class ViewFeaRecipe extends HTMLElement {
         const cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
 
-        const toNutPage = document.createElement("button");
-        toNutPage.textContent = "Nutrition Facts";
+        const toNutritionPage = document.createElement("button");
+        toNutritionPage.textContent = "Nutrition Facts";
+        toNutritionPage.addEventListener("click", () => {
+            viewNutrition(data["nutrition"]["nutrients"]);
+        })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
-        leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(toNutritionPage);
 
         // right-main
         const rightMainSec = document.createElement("section");
@@ -451,6 +454,19 @@ function changeHeart(data, cardObj) {
         cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
         addFav(data);
     }
+}
+
+/**
+ * View nutrition facts about the selected recipe
+ * @returns void
+ */
+function viewNutrition(data) {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    $("#view-nutrition-page").classList.add("main-shown");
+    const nutritionPage = document.createElement("nutrition-page");
+    nutritionPage.data = data;
+    $("#view-nutrition-page").appendChild(nutritionPage);
 }
 
 /**
