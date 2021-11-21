@@ -55,11 +55,17 @@ export function getStepsArray(data) {
 export function getIngre(data) {
     let listHtml = "<ol>";
     let ingreArray = data.extendedIngredients;
+
     for (let i of ingreArray) {
         let ingreName = i.name;
         let ingreAmount = i.amount;
         let ingreUnit = i.unit;
-        let newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount} ${ingreUnit}</li>`;
+        let newIngreList;
+        if (typeof ingreAmount === "string") {
+            newIngreList = `<li><p>${ingreName}</p> - ${Number(ingreAmount).toFixed(2)} ${ingreUnit}</li>`;
+        } else {
+            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount.toFixed(2)} ${ingreUnit}</li>`;
+        }
         listHtml += newIngreList;
     }
     listHtml += "</ol>"
