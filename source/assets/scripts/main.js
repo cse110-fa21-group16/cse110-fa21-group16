@@ -394,6 +394,10 @@ function setButtonListen() {
  * @returns void
  */
 export function loadLanding() {
+  $("#add-recipe-page").classList.remove("main-shown");
+  $("#add-recipe-page").innerHTML = "";
+  $("#delete-page").classList.remove("main-shown");
+  $("#delete-page").innerHTML = "";
   $("#featured-recipes").classList.add("shown");
   $("#favorite-recipes").classList.add("shown");
   $("#my-recipes").classList.add("shown");
@@ -421,6 +425,8 @@ export function leaveLanding() {
  * @returns void
  */
 export function loadFeatured() {
+  $("#view-nutrition-page").classList.remove("main-shown");
+  $("#view-nutrition-page").innerHTML = "";
   $("#featured-page").classList.add("shown");
   createFeaRecipePage();
 }
@@ -440,6 +446,8 @@ export function leaveFeatured() {
  * @returns void
  */
 export function loadFavorite() {
+  $("#view-nutrition-page").classList.remove("main-shown");
+  $("#view-nutrition-page").innerHTML = "";
   $("#favorite-page").classList.add("shown");
   createFavRecipePage();
 }
@@ -460,6 +468,10 @@ export function leaveFavorite() {
  * @returns void
  */
 export function loadMyRecipe() {
+  $("#add-recipe-page").classList.remove("main-shown");
+  $("#add-recipe-page").innerHTML = "";
+  $("#delete-page").classList.remove("main-shown");
+  $("#delete-page").innerHTML = "";
   $("#my-page").classList.add("shown");
   createMyRecipePage();
 }
