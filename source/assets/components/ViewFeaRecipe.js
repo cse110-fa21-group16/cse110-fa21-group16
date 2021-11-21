@@ -282,7 +282,7 @@ class ViewFeaRecipe extends HTMLElement {
         const toNutritionPage = document.createElement("button");
         toNutritionPage.textContent = "Nutrition Facts";
         toNutritionPage.addEventListener("click", () => {
-            viewNutrition(data["nutrition"]["nutrients"]);
+            viewNutrition(data);
         })
 
         leftMainSec.appendChild(recipeImg);

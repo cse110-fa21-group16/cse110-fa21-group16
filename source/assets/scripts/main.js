@@ -22,6 +22,8 @@ export const router = new Router(function () {
   $("#view-recipe-page").innerHTML = "";
   $("#delete-page").classList.remove("main-shown");
   $("#delete-page").innerHTML = "";
+  $("#view-nutrition-page").classList.remove("main-shown");
+  $("#view-nutrition-page").innerHTML = "";
   loadMain();
   loadLanding();
 });
