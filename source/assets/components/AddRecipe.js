@@ -40,6 +40,26 @@ class AddRecipe extends HTMLElement {
          justify-content: center;
          /* border: 1px solid orange; */
        }
+
+       #logo-sec {
+        width: 33%;
+        height: 90px;
+        display: flex;
+        }
+
+       #logo-sec > a > img {
+          height: 100%;
+          width: 125%;
+          object-fit: cover;
+        }
+
+        #title-sec {
+          display: flex;
+        }
+
+        #holder-sec {
+          width: 33%;
+        }
        
        .header-div {
          background-color: rgb(48, 90, 80);
@@ -342,24 +362,39 @@ class AddRecipe extends HTMLElement {
     ///////////////////////////////////////////////////////////////////////////////
     ///////////////////////// creating the header section /////////////////////////
     ///////////////////////////////////////////////////////////////////////////////
+    let logoSec = document.createElement("section");
+    let titleSec = document.createElement("section");
+    let holderSec = document.createElement("section");
+    logoSec.setAttribute("id", "logo-sec");
+    titleSec.setAttribute("id", "title-sec");
+    holderSec.setAttribute("id", "holder-sec");
+    
     let header = document.createElement("header");
     let headerDiv = document.createElement("div");
     let headerHomeLink = document.createElement("a");
     let headerTitle = document.createElement("h1");
     let headerPlaceholder = document.createElement("h1");
+    let headerLogo = document.createElement("img");
 
     headerDiv.setAttribute("class", "header-div");
     headerHomeLink.setAttribute("class", "home-link");
-    headerHomeLink.setAttribute("href", "index.html");
-    headerHomeLink.innerHTML = "LOGO";
+    headerHomeLink.setAttribute("href", "./");
+    headerLogo.setAttribute("src", "./assets/images/logo-temp.png");
+    headerLogo.setAttribute("class", "logo-img");
+
     headerTitle.setAttribute("class", "header-title");
     headerTitle.innerHTML = "ADD RECIPE";
     headerPlaceholder.setAttribute("class", "header-placeholder");
     headerPlaceholder.innerHTML = "HOLDER";
 
-    headerDiv.appendChild(headerHomeLink);
-    headerDiv.appendChild(headerTitle);
-    headerDiv.appendChild(headerPlaceholder);
+    logoSec.appendChild(headerHomeLink);
+    titleSec.appendChild(headerTitle);
+    holderSec.appendChild(headerPlaceholder);
+    headerHomeLink.appendChild(headerLogo);
+
+    headerDiv.appendChild(logoSec);
+    headerDiv.appendChild(titleSec);
+    headerDiv.appendChild(holderSec);
     header.appendChild(headerDiv);
 
     /////////////////////////////////////////////////////////////////////////////////////////

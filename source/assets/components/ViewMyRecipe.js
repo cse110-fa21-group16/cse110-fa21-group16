@@ -9,8 +9,8 @@ class ViewMyRecipe extends HTMLElement {
     }
 
     set data(data) {
-        const styleElem = document.createElement("style");
-        const styles = `
+        let styleElem = document.createElement("style");
+        let styles = `
         /* root css style */
         * {
             color: #305A50;
@@ -36,6 +36,26 @@ class ViewMyRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+        }
+
+        #logo-sec {
+            width: 33%;
+            height: 90px;
+            display: flex;
+        }
+
+        #logo-sec > a > img {
+            height: 100%;
+            width: 125%;
+            object-fit: cover;
+        }
+
+        #title-sec {
+            display: flex;
+        }
+
+        #holder-sec {
+            width: 33%;
         }
 
         #header-title {
@@ -218,53 +238,67 @@ class ViewMyRecipe extends HTMLElement {
         `;
         styleElem.innerHTML = styles;
 
-        const card = document.createElement("article");
+        let card = document.createElement("article");
 
         // header
-        const header = document.createElement("header");
-        const headerHomeLink = document.createElement("a");
-        const headerTitle = document.createElement("h1");
-        const headerPlaceholder = document.createElement("h1");
+        let logoSec = document.createElement("section");
+        let titleSec = document.createElement("section");
+        let holderSec = document.createElement("section");
+        logoSec.setAttribute("id", "logo-sec");
+        titleSec.setAttribute("id", "title-sec");
+        holderSec.setAttribute("id", "holder-sec");
+
+        let header = document.createElement("header");
+        let headerHomeLink = document.createElement("a");
+        let headerTitle = document.createElement("h1");
+        let headerPlaceholder = document.createElement("h1");
+        let headerLogo = document.createElement("img");
 
         headerHomeLink.id = "home-link";
-        headerHomeLink.setAttribute("href", "index.html");
-        headerHomeLink.innerHTML = "LOGO";
+        headerHomeLink.setAttribute("href", "./");
+        headerLogo.setAttribute("src", "./assets/images/logo-temp.png");
+        headerLogo.setAttribute("class", "logo-img");
+
         headerTitle.id = "header-title";
         headerTitle.innerHTML = "VIEW RECIPE";
         headerPlaceholder.id = "header-placeholder";
         headerPlaceholder.innerHTML = "HOLDER";
 
-        header.appendChild(headerHomeLink);
-        header.appendChild(headerTitle);
-        header.appendChild(headerPlaceholder);
+        logoSec.appendChild(headerHomeLink);
+        titleSec.appendChild(headerTitle);
+        holderSec.appendChild(headerPlaceholder);
+        headerHomeLink.appendChild(headerLogo);
+        header.appendChild(logoSec);
+        header.appendChild(titleSec);
+        header.appendChild(holderSec);
 
         // main
-        const main = document.createElement("main");
+        let main = document.createElement("main");
 
         // main-header
-        const mainHeaderSec = document.createElement("section");
+        let mainHeaderSec = document.createElement("section");
         mainHeaderSec.id = "main-header";
-        const recipeTitle = document.createElement("h1");
+        let recipeTitle = document.createElement("h1");
         recipeTitle.textContent = getTitle(data);
 
 
         mainHeaderSec.appendChild(recipeTitle);
 
         // left-main
-        const leftMainSec = document.createElement("section");
+        let leftMainSec = document.createElement("section");
         leftMainSec.id = "left-main";
 
-        const recipeImg = document.createElement("img");
+        let recipeImg = document.createElement("img");
         recipeImg.src = getImgUrl(data);
         recipeImg.alt = getTitle(data);
 
-        const timeLabel = document.createElement("h2");
+        let timeLabel = document.createElement("h2");
         timeLabel.textContent = "Time: ";
 
-        const cookTime = document.createElement("p");
+        let cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
 
-        const toNutPage = document.createElement("button");
+        let toNutPage = document.createElement("button");
         toNutPage.textContent = "Nutrition Facts";
 
         leftMainSec.appendChild(recipeImg);
@@ -273,13 +307,13 @@ class ViewMyRecipe extends HTMLElement {
         leftMainSec.appendChild(toNutPage);
 
         // right-main
-        const rightMainSec = document.createElement("section");
+        let rightMainSec = document.createElement("section");
         rightMainSec.id = "right-main";
 
-        const stepsTitle = document.createElement("h2");
+        let stepsTitle = document.createElement("h2");
         stepsTitle.textContent = "Procedure and steps: ";
 
-        const stepsSec = document.createElement("section");
+        let stepsSec = document.createElement("section");
         stepsSec.id = "steps-list";
         stepsSec.innerHTML = getSteps(data);
 
@@ -287,14 +321,14 @@ class ViewMyRecipe extends HTMLElement {
         rightMainSec.appendChild(stepsSec);
 
         // main-footer
-        const mainFooterSec = document.createElement("section");
+        let mainFooterSec = document.createElement("section");
         mainFooterSec.id = "main-footer";
 
-        const backButton = document.createElement("button");
+        let backButton = document.createElement("button");
         backButton.textContent = "Back";
         backButton.addEventListener("click", myRecipeToLand);
 
-        const editButton = document.createElement("button");
+        let editButton = document.createElement("button");
         editButton.textContent = "Edit";
         editButton.addEventListener("click", (e) => {
             myRecipeToEdit(data);
@@ -311,16 +345,16 @@ class ViewMyRecipe extends HTMLElement {
 
 
         // aside
-        const aside = document.createElement("aside");
+        let aside = document.createElement("aside");
 
         // ingre-aside
-        const ingreAside = document.createElement("section");
+        let ingreAside = document.createElement("section");
         ingreAside.id = "ingre-aside";
 
-        const ingreLabel = document.createElement("h2");
+        let ingreLabel = document.createElement("h2");
         ingreLabel.textContent = "Ingredients: ";
 
-        const ingreListSec = document.createElement("section");
+        let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
         ingreListSec.innerHTML = getIngre(data);
 
@@ -328,18 +362,18 @@ class ViewMyRecipe extends HTMLElement {
         ingreAside.appendChild(ingreListSec);
 
         // diet-aside
-        const dietAside = document.createElement("section");
+        let dietAside = document.createElement("section");
         dietAside.id = "diet-aside";
 
-        const dietLabel = document.createElement("h2");
+        let dietLabel = document.createElement("h2");
         dietLabel.textContent = "Diet Restriction: ";
 
         // vegan-check
-        const veganSec = document.createElement("div");
+        let veganSec = document.createElement("div");
         veganSec.classList.add("diet-check");
         veganSec.id = "vegan-check";
 
-        const veganImg = document.createElement("img");
+        let veganImg = document.createElement("img");
         if (getVegan(data)) {
             veganImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -347,18 +381,18 @@ class ViewMyRecipe extends HTMLElement {
             veganImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const veganLabel = document.createElement("span");
+        let veganLabel = document.createElement("span");
         veganLabel.textContent = "Vegan";
 
         veganSec.appendChild(veganImg);
         veganSec.appendChild(veganLabel);
 
         // dairy-check
-        const dairySec = document.createElement("div");
+        let dairySec = document.createElement("div");
         dairySec.classList.add("diet-check");
         dairySec.id = "dairy-check";
 
-        const dairyImg = document.createElement("img");
+        let dairyImg = document.createElement("img");
         if (getDairy(data)) {
             dairyImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -366,18 +400,18 @@ class ViewMyRecipe extends HTMLElement {
             dairyImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const dairyLabel = document.createElement("span");
+        let dairyLabel = document.createElement("span");
         dairyLabel.textContent = "Dairy free";
 
         dairySec.appendChild(dairyImg);
         dairySec.appendChild(dairyLabel);
 
         // gluten-check
-        const glutenSec = document.createElement("div");
+        let glutenSec = document.createElement("div");
         glutenSec.classList.add("diet-check");
         glutenSec.id = "gluten-check";
 
-        const glutenImg = document.createElement("img");
+        let glutenImg = document.createElement("img");
         if (getGluten(data)) {
             glutenImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -385,18 +419,18 @@ class ViewMyRecipe extends HTMLElement {
             glutenImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const glutenLabel = document.createElement("span");
+        let glutenLabel = document.createElement("span");
         glutenLabel.textContent = "Gluten free";
 
         glutenSec.appendChild(glutenImg);
         glutenSec.appendChild(glutenLabel);
 
         // vegeta-check
-        const vegetaSec = document.createElement("div");
+        let vegetaSec = document.createElement("div");
         vegetaSec.classList.add("diet-check");
         vegetaSec.id = "veget-check";
 
-        const vegetaImg = document.createElement("img");
+        let vegetaImg = document.createElement("img");
         if (getVegeta(data)) {
             vegetaImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -404,7 +438,7 @@ class ViewMyRecipe extends HTMLElement {
             vegetaImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const vegetaLabel = document.createElement("span");
+        let vegetaLabel = document.createElement("span");
         vegetaLabel.textContent = "Vegetarian";
 
         vegetaSec.appendChild(vegetaImg);

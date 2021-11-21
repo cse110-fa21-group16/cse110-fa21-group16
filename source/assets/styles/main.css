@@ -5,6 +5,7 @@
   --bg-color: #ffffff;
   --header-font-color: #ffffff;
   --major-color: #305a50;
+  /* --major-color: rgb(61, 209, 122); */
 }
 
 /* web font */
@@ -49,11 +50,32 @@ header {
   width: 100%;
 }
 
+#web-info {
+  width: 33%;
+  height: 90px;
+  display: flex;
+}
+
 #web-info > a {
   color: var(--header-font-color);
   font-size: 30px;
-  margin: 0px 0px 0px 20px;
   text-decoration: none;
+}
+
+#web-info > a > img {
+  height: 100%;
+  width: 125%;
+  object-fit: cover;
+}
+
+#app-name {
+  height: 100%;
+}
+
+#app-name > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #web-info > h1 {
@@ -61,6 +83,12 @@ header {
   display: inline-block;
   font-size: 30px;
   margin: 0px 0px 0px 20px;
+}
+
+#head-buttons {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #head-buttons > button {
