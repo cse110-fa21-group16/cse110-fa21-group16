@@ -59,7 +59,7 @@ export function getIngre(data) {
         let ingreName = i.name;
         let ingreAmount = i.amount;
         let ingreUnit = i.unit;
-        let newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount} ${ingreUnit}</li>`;
+        let newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount.toFixed(2)} ${ingreUnit}</li>`;
         listHtml += newIngreList;
     }
     listHtml += "</ol>"
