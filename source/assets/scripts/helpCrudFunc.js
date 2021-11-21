@@ -1,10 +1,16 @@
 // helpCrudFunc.js
+let nextMyRecipeID = JSON.parse(localStorage.getItem("nextMyRecipeID"));
+let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
+let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 
 /**
  * Determine wether the recipe is in favRecipeArray
  * @returns bool
  */
 export function checkFav(recipeTitle) {
+    if (favRecipeArray === null || favRecipeArray.length === 0) {
+        favRecipeArray = [];
+    }
     for (let i of favRecipeArray) {
         if (i.title == recipeTitle) {
             return true;
@@ -46,9 +52,19 @@ export function addFav(data) {
 * @returns void
 */
 export function addMy(data) {
+    
+    if (nextMyRecipeID == null) {
+        nextMyRecipeID = 0;
+    }
+
+    if (myRecipeArray == null) {
+        myRecipeArray = [];
+    }
+
     data["id"] = nextMyRecipeID;
     nextMyRecipeID += 1;
     myRecipeArray.push(data);
+    console.log(myRecipeArray.length);
     localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
 }

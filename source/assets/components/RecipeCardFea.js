@@ -1,3 +1,4 @@
+import { $, leaveMain, router } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
 class RecipeCardFea extends HTMLElement {
@@ -95,10 +96,19 @@ class RecipeCardFea extends HTMLElement {
     const checkButton = document.createElement("button");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", () => {
-      viewRecipe(data);
+
+    // bind check button to router
+    checkButton.addEventListener("click", (e) => {
+      let page = recipeTitle.innerHTML;
+      page = page.replace(/&amp;/g, "");
+      // console.log(page);
+      // if (e.path[0].nodeName == "B") return;
+      router.navigate(page);
     });
 
+    // checkButton.addEventListener("click", (e) => {
+    //   viewRecipe(data);
+    // });
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);
@@ -109,7 +119,7 @@ class RecipeCardFea extends HTMLElement {
  * Load Featured Recipe Page
  * @returns void
  */
-function viewRecipe(data) {
+export function viewRecipe(data) {
   $("#view-recipe-page").classList.add("main-shown");
   const viewRecipePage = document.createElement("view-fea-recipe");
   viewRecipePage.data = data;

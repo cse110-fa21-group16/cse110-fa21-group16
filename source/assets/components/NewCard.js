@@ -1,3 +1,6 @@
+import { $ } from "../scripts/main.js";
+import { leaveMain } from "../scripts/main.js";
+
 class NewCard extends HTMLElement {
   constructor() {
     super();

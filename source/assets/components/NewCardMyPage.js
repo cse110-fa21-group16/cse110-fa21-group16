@@ -1,3 +1,5 @@
+import { $, leaveMain } from "../scripts/main.js";
+
 class NewCardMyPage extends HTMLElement {
   constructor() {
     super();

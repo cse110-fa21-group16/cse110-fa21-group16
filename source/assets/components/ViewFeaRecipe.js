@@ -1,3 +1,4 @@
+import { $, loadMain, loadFeatured, loadFavorite, loadLanding, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
@@ -278,13 +279,16 @@ class ViewFeaRecipe extends HTMLElement {
         const cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
 
-        const toNutPage = document.createElement("button");
-        toNutPage.textContent = "Nutrition Facts";
+        const toNutritionPage = document.createElement("button");
+        toNutritionPage.textContent = "Nutrition Facts";
+        toNutritionPage.addEventListener("click", () => {
+            viewNutrition(data);
+        })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
-        leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(toNutritionPage);
 
         // right-main
         const rightMainSec = document.createElement("section");
@@ -453,6 +457,19 @@ function changeHeart(data, cardObj) {
 }
 
 /**
+ * View nutrition facts about the selected recipe
+ * @returns void
+ */
+function viewNutrition(data) {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    $("#view-nutrition-page").classList.add("main-shown");
+    const nutritionPage = document.createElement("nutrition-page");
+    nutritionPage.data = data;
+    $("#view-nutrition-page").appendChild(nutritionPage);
+}
+
+/**
  * Leave Featured Recipe Page to landing page
  * @returns void
  */
@@ -461,13 +478,13 @@ function feaRecipeToLand() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     if ($("#featured-page").classList.contains("shown")) {
-        loadFeatured();
+        router.navigate("ToFeaturedPage");
     }
     else if ($("#favorite-page").classList.contains("shown")) {
-        loadFavorite();
+        router.navigate("ToFavoritePage");
     }
     else {
-        loadLanding();
+        router.navigate("home");
     }
 }
 

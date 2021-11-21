@@ -5,7 +5,7 @@
  * @returns string
  */
 export function getImgUrl(data) {
-    if (data.image) return data.image;
+    if (data && data.image) return data.image;
     return "assets/images/noPhoto.jpeg";
 }
 
@@ -15,8 +15,8 @@ export function getImgUrl(data) {
  * @returns string
  */
 export function getTitle(data) {
-    if (data.title) return data.title;
-    return null;
+    if (data && data.title) return data.title;
+    return "";
 }
 
 
@@ -25,7 +25,7 @@ export function getTitle(data) {
  * @returns string
  */
 export function getTime(data) {
-    if (data.readyInMinutes) return data.readyInMinutes;
+    if (data && data.readyInMinutes) return data.readyInMinutes;
     return null;
 }
 
@@ -35,7 +35,7 @@ export function getTime(data) {
  * @returns string
  */
 export function getSteps(data) {
-    if (data.instructions) return data.instructions;
+    if (data && data.instructions) return data.instructions;
     return null;
 }
 
@@ -44,7 +44,7 @@ export function getSteps(data) {
  * @returns string
  */
 export function getStepsArray(data) {
-    if (data.instructionsArray) return data.instructionsArray;
+    if (data && data.instructionsArray) return data.instructionsArray;
     return [];
 }
 

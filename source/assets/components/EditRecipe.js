@@ -1,3 +1,4 @@
+import { $, router } from "../scripts/main.js";
 import { updateMy } from "../scripts/helpCrudFunc.js";
 import { getTitle, getStepsArray, getIngreArray } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
@@ -663,15 +664,16 @@ class EditRecipe extends HTMLElement {
     actionButtons.appendChild(deleteButton);
     actionButtons.appendChild(cancelButton);
 
-    cancelButton.addEventListener("click", () => {
-      leaveEdit(data);
+    cancelButton.addEventListener("click", (e) => {
+      // if (e.path[0].nodeName == "B") return;
+      router.navigate(data["id"]);
     });
 
     deleteButton.addEventListener("click", () => {
       toDelete(data);
     });
 
-    submitButton.addEventListener("click", () => {
+    submitButton.addEventListener("click", (e) => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;
@@ -706,6 +708,8 @@ class EditRecipe extends HTMLElement {
       inputData["id"] = data["id"];
       
       updateMy(inputData);
+      // if (e.path[0].nodeName == "B") return;
+      // router.navigate(data["id"]);
       leaveEdit(inputData);
     });
 
