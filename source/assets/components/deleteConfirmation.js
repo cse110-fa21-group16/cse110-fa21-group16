@@ -111,12 +111,14 @@ function deleteRecipe(data) {
     $("#delete-page").innerHTML = "";
     loadMain();
     if ($("#my-page").classList.contains("shown")) {
-        // router.navigate("ToMyRecipePage");
-        window.history.back();
+        let currState = {"page": "ToMyRecipePage"};
+        history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
+        router.navigate("ToMyRecipePage", true);
     }
     else {
-        // router.navigate("home");
-        window.history.back();
+        let currState = {"page": "home"};
+        history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
+        router.navigate("home", true);
     }
 }
 
