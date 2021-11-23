@@ -46,7 +46,7 @@ class ViewMyRecipe extends HTMLElement {
 
         #logo-sec > a > img {
             height: 100%;
-            width: 125%;
+            width: 125px;
             object-fit: cover;
         }
 
