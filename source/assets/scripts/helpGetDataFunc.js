@@ -44,9 +44,7 @@ export function getSteps(data) {
  * @returns string
  */
  export function getFeaturedSteps(data) {
-    if (data && data["analyzedInstructions"]) {
-        return data["analyzedInstructions"];
-    }
+    if (data && data.analyzedInstructions) return data.analyzedInstructions;
     return null;
 }
 
