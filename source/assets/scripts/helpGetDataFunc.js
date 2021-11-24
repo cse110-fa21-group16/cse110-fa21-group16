@@ -40,6 +40,17 @@ export function getSteps(data) {
 }
 
 /**
+ * Get the steps of recipe
+ * @returns string
+ */
+ export function getFeaturedSteps(data) {
+    if (data && data["analyzedInstructions"]) {
+        return data["analyzedInstructions"];
+    }
+    return null;
+}
+
+/**
  * Get the steps of recipe (Array)
  * @returns string
  */

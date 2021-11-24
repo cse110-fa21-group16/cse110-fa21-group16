@@ -1,6 +1,6 @@
 import { $, loadMain, loadFeatured, loadFavorite, loadLanding, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
-import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
+import { getImgUrl, getTitle, getTime, getSteps, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 class ViewFeaRecipe extends HTMLElement {
@@ -331,10 +331,25 @@ class ViewFeaRecipe extends HTMLElement {
 
         let stepsTitle = document.createElement("h2");
         stepsTitle.textContent = "Procedure and steps: ";
+        // stepsSec.innerHTML = getSteps(data);
 
         let stepsSec = document.createElement("section");
         stepsSec.id = "steps-list";
-        stepsSec.innerHTML = getSteps(data);
+        let instructionArray = getFeaturedSteps(data);
+        let instructionOrderedList = document.createElement("ol");
+
+        // Loop through steps within the analyzedInstructions index
+        for (let i = 0; i < instructionArray.length; i++) {
+            let instructionItem = instructionArray[i]["steps"];
+            for (let j = 0; j < instructionItem.length; j++) {
+                let instructionStep = document.createElement("li");
+                instructionStep.innerHTML = instructionItem[j]["step"];
+                instructionOrderedList.appendChild(instructionStep);
+            }
+        }
+
+        stepsSec.appendChild(instructionOrderedList);
+
         if (stepsSec.innerHTML == '') {
             stepsSec.innerHTML = 'OOOPS! The recipe does not contain any procedure or steps. Please start using your imagination!'
         }
