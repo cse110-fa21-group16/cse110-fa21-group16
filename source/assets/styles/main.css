@@ -128,7 +128,7 @@ main {
   align-items: center;
   display: flex;
   flex-flow: row nowrap;
-  margin: 20px 0px 50px 0px;
+  margin: 20px 0 50px 0;
 }
 
 #cancel-search-button {
@@ -136,7 +136,7 @@ main {
   border: 1px solid #ccccd8;
   background-color: #fff;
   border-radius: 14px;
-  color: #305A50;
+  color: #305a50;
   cursor: pointer;
   font-size: 18px;
   padding: 4px 26px;
@@ -149,7 +149,7 @@ main {
 }
 
 #search-type {
-  outline:none;
+  outline: none;
   width: 120px;
   border: 1px solid #ccccd8;
   border-top-left-radius: 10px;
@@ -194,7 +194,6 @@ h2.item-title {
   font-weight: bold;
   text-decoration: none;
 }
-
 
 button.item-title:hover {
   color: #c0392b;
