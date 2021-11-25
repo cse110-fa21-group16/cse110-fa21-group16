@@ -23,14 +23,34 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+      - name: Checkout source
+        uses: actions/checkout@v2
 
+      - name: Checkout docs
+        uses: actions/checkout@v2
+        with:
+          repository: cse110-fa21-group16/cse110-fa21-group16.github.io
+          path: docs
+          token: ${{ secrets.PUSH_TOKEN }}
+          
       # Runs a single command using the runners shell
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
           source_dir: ./source/assets/scripts
           recurse: true
-          output_dir: ./docs
+          output_dir: docs/docs
           template: minami
-          front_page: README.md
+          front_page: docs/README.md
+          
+      - name: Commit and push documentation
+        run: |
+          cd docs
+          git add -A
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Added documentation for app."
+          git push https://$USERNAME:$REPO_KEY@github.com/cse110-fa21-group16/cse110-fa21-group16.github.io main
+        env:
+          REPO_KEY: ${{ secrets.PUSH_TOKEN }}
+          USERNAME: github-actions[bot]
