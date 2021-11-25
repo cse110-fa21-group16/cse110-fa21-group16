@@ -31,8 +31,8 @@ jobs:
         with:
           repository: cse110-fa21-group16/cse110-fa21-group16.github.io
           path: docs
-          token: ${{ secrets.GITHUB_TOKEN }}
-#           token: ${{ secrets.PUSH_TOKEN }}
+#           token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PUSH_TOKEN }}
           
       # Runs a single command using the runners shell
       - name: Build
@@ -53,6 +53,6 @@ jobs:
           git commit -m "Added documentation for app."
           git push https://$USERNAME:$REPO_KEY@github.com/cse110-fa21-group16/cse110-fa21-group16.github.io main
         env:
-          REPO_KEY: ${{ secrets.GITHUB_TOKEN }}
-#           REPO_KEY: ${{ secrets.PUSH_TOKEN }}
+#           REPO_KEY: ${{ secrets.GITHUB_TOKEN }}
+          REPO_KEY: ${{ secrets.PUSH_TOKEN }}
           USERNAME: github-actions[bot]
