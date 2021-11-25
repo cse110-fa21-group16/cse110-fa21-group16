@@ -32,7 +32,8 @@ class NewCard extends HTMLElement {
   
       article:hover {
         box-shadow:0px 1px 17px -8px #000;
-      }  
+        cursor: pointer;
+      } 
     `;
     styleElem.innerHTML = styles;
 
@@ -42,7 +43,7 @@ class NewCard extends HTMLElement {
     checkButton.src = "assets/images/icons/add.svg";
     checkButton.width = "50";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", addNewRecipe);
+    card.addEventListener("click", addNewRecipe);
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);
