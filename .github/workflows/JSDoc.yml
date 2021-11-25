@@ -37,7 +37,7 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./source/assets/scripts
+          source_dir: ./source/assets
           recurse: true
           output_dir: docs/docs
           template: minami
@@ -52,11 +52,6 @@ jobs:
           git commit -m "Added documentation for app."
           git push https://$USERNAME:$REPO_KEY@github.com/cse110-fa21-group16/cse110-fa21-group16.github.io main
           
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          deploy_key: ${{ secrets.PUSH_TOKEN }}
-          publish_dir: docs/docs
         env:
           REPO_KEY: ${{ secrets.PUSH_TOKEN }}
           USERNAME: github-actions[bot]
