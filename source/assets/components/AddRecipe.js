@@ -1,12 +1,24 @@
 import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
 import { addMy } from "../scripts/helpCrudFunc.js";
 
+/**
+ * This is the component for the Add Recipe Page
+ * @class
+ */
 class AddRecipe extends HTMLElement {
+  /**
+   * Each component has its own shadow root
+   * @constructor
+   */
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * The data needed to populate the materials are passed in as "data".
+   * Add page will have nothing for data
+   */
   set data(data) {
     let styling = document.createElement("style");
     let styles =
