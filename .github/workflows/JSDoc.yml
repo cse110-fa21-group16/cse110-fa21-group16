@@ -29,7 +29,7 @@ jobs:
       - name: Build
         uses: andstor/jsdoc-action@v1
         with:
-          source_dir: ./source/scripts
+          source_dir: ../source/scripts
           recurse: true
           output_dir: ../docs
           template: minami
