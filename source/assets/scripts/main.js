@@ -16,6 +16,7 @@ export const router = new Router(function () {
   leaveFeatured();
   leaveFavorite();
   leaveMyRecipe();
+  leaveSearchPage();
   $("#add-recipe-page").classList.remove("main-shown");
   $("#add-recipe-page").innerHTML = "";
   $("#view-recipe-page").classList.remove("main-shown");
@@ -110,6 +111,7 @@ async function init() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     leaveLanding();
+    leaveSearchPage();
     loadFeatured();
   });
 
@@ -118,6 +120,7 @@ async function init() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     leaveLanding();
+    leaveSearchPage();
     loadFavorite();
   });
 
@@ -126,7 +129,19 @@ async function init() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     leaveLanding();
+    leaveSearchPage();
     loadMyRecipe();
+  })
+
+  router.addPage("ToSearchPage", () => {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    loadMain();
+    leaveLanding();
+    leaveFavorite();
+    leaveFeatured();
+    leaveMyRecipe();
+    loadSearchPage();
   })
 
   setButtonListen();
@@ -386,6 +401,148 @@ function setButtonListen() {
     if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
+
+  $("#search-button").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    router.navigate("ToSearchPage");
+  });
+
+  $("#cancel-search-button").addEventListener("click", (e) => {
+    if (e.path[0].nodeName == "B") return;
+    $("#search-type").selectedIndex = 0;
+    $("#search-input").value = "";
+    router.navigate("home");
+  });
+
+  $("#search-input").addEventListener("input", () => {
+    createSearch();
+  })
+
+  $("#search-type").addEventListener("change", () => {
+    createSearch();
+  })
+}
+
+
+/**
+ * Implement search feature
+ * @returns void
+ */
+function createSearch() {
+  let inputVal = $("#search-input").value.toUpperCase();
+  console.log(inputVal);
+  let index = $("#search-type").selectedIndex;
+  let searchType = $("#search-type").options[index].value;
+
+  if (searchType == "all") {
+    createSearchFea(inputVal);
+    createSearchFav(inputVal);
+    createSearchMy(inputVal);
+  }
+  else if (searchType == "featured") {
+    $("#search-favorite").classList.remove("shown");
+    $("#search-my").classList.remove("shown");
+    createSearchFea(inputVal);
+  }
+  else if (searchType == "favorite") {
+    $("#search-featured").classList.remove("shown");
+    $("#search-my").classList.remove("shown");
+    createSearchFav(inputVal);
+  }
+  else {
+    $("#search-favorite").classList.remove("shown");
+    $("#search-featured").classList.remove("shown");
+    createSearchMy(inputVal);
+  }
+}
+
+
+/**
+ * create featured recipe after search
+ * @returns void
+ */
+function createSearchFea(inputVal) {
+  $("#search-featured").classList.add("shown");
+  $("#featured-search-list").innerHTML = "";
+  for (let i = 0; i < feaRecipeArray.length; i++) {
+    if (feaRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
+      let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
+      newFeaRecipeCard.data = feaRecipeArray[i];
+      $("#featured-search-list").appendChild(newFeaRecipeCard);
+    }
+  }
+  if (!$("#featured-search-list").childNodes.length) {
+    $("#search-featured").classList.remove("shown");
+  }
+}
+
+/**
+ * create favorite recipe after search
+ * @returns void
+ */
+ function createSearchFav(inputVal) {
+  $("#search-favorite").classList.add("shown");
+  $("#favorite-search-list").innerHTML = "";
+  for (let i = 0; i < favRecipeArray.length; i++) {
+    if (favRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
+      let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
+      newFeaRecipeCard.data = favRecipeArray[i];
+      $("#favorite-search-list").appendChild(newFeaRecipeCard);
+    }
+  }
+  if (!$("#favorite-search-list").childNodes.length) {
+    $("#search-favorite").classList.remove("shown");
+  }
+}
+
+/**
+ * create my recipe after search
+ * @returns void
+ */
+ function createSearchMy(inputVal) {
+  $("#search-my").classList.add("shown");
+  $("#my-search-list").innerHTML = "";
+  for (let i = 0; i < myRecipeArray.length; i++) {
+    console.log(myRecipeArray[i].title); 
+    if (myRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
+      let newFeaRecipeCard = document.createElement("recipe-card-my-my-page");
+      newFeaRecipeCard.data = myRecipeArray[i];
+      $("#my-search-list").appendChild(newFeaRecipeCard);
+    }
+  }
+  if (!$("#my-search-list").childNodes.length) {
+    $("#search-my").classList.remove("shown");
+  }
+}
+
+
+
+
+/**
+ * Load search page
+ * @returns void
+ */
+function loadSearchPage() {
+  $("#view-nutrition-page").classList.remove("main-shown");
+  $("#view-nutrition-page").innerHTML = "";
+  $("#search-recipes").classList.add("shown");
+  createSearch();
+}
+
+
+/**
+* Leave search page
+* @returns void
+*/
+export function leaveSearchPage() {
+  $("#search-recipes").classList.remove("shown");
+  $("#featured-search-list").innerHTML = "";
+  $("#search-featured").classList.remove("shown");
+  $("#featured-search-list").innerHTML = "";
+  $("#search-favorite").classList.remove("shown");
+  $("#favorite-search-list").innerHTML = "";
+  $("#search-my").classList.remove("shown");
+  $("#my-search-list").innerHTML = "";
 }
 
 
