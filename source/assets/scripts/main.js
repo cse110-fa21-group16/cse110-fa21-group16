@@ -31,8 +31,8 @@ export const router = new Router(function () {
 window.addEventListener("DOMContentLoaded", init);
 
 /**
- * Initial and load page
- * @returns a Promise of fetched data
+ * Initialize and load page.
+ * @returns Void
  */
 async function init() {
   let fetchSuccessful = await fetchFeaRecipeArray();
@@ -59,7 +59,7 @@ async function init() {
     return;
   }
 
-  // Routing for every card in feaReicpeArray
+  // Routing view for every card in feaReicpeArray
   for (let i = 0; i < feaRecipeArray.length; i++ ) {
     let page = feaRecipeArray[i]["title"];
     page = page.replace(/&/g, ""); // replace all ampersand in string
@@ -74,7 +74,7 @@ async function init() {
     });
   }
 
-  // Routing for every card in myRecipeArray
+  // Routing view for every card in myRecipeArray
   // Since we're allowing duplicate name, we'll use id to distinguish them
   for (let i = 0; i < myRecipeArray.length; i++) {
     // Routing for viewing/checking out recipe
@@ -90,17 +90,6 @@ async function init() {
       $("#view-recipe-page").appendChild(viewRecipePage);
       leaveMain();
     });
-
-    // Routing for editing a recipe
-    // router.addPage(myRecipeArray[i]["id"]+"Edit", () => {
-    //   myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update the array
-    //   $("#view-recipe-page").classList.remove("main-shown");
-    //   $("#view-recipe-page").innerHTML = "";
-    //   let editRecipePage = document.createElement("edit-recipe");
-    //   editRecipePage.data = myRecipeArray[i];
-    //   $("#add-recipe-page").appendChild(editRecipePage);
-    //   $("#add-recipe-page").classList.add("main-shown");
-    // });
   }
 
 
@@ -353,8 +342,8 @@ export function createMyRecipePage() {
 
 
 /**
- * Set event listener for all title button
- * @returns void
+ * Set event listener for all title button.
+ * @returns Void
  */
 function setButtonListen() {
   $("#to-feature-page").addEventListener("click", (e) => {
@@ -390,8 +379,8 @@ function setButtonListen() {
 
 
 /**
- * Load landing page
- * @returns void
+ * Load landing page.
+ * @returns Void
  */
 export function loadLanding() {
   $("#add-recipe-page").classList.remove("main-shown");
@@ -408,8 +397,8 @@ export function loadLanding() {
 
 
 /**
-* Leave landing page
-* @returns void
+* Leave landing page.
+* @returns Void
 */
 export function leaveLanding() {
   $("#featured-recipes").classList.remove("shown");
@@ -421,8 +410,8 @@ export function leaveLanding() {
 }
 
 /**
- * Load featured page
- * @returns void
+ * Load featured page.
+ * @returns Void
  */
 export function loadFeatured() {
   $("#view-nutrition-page").classList.remove("main-shown");
@@ -433,8 +422,8 @@ export function loadFeatured() {
 
 
 /**
-* Leave featured page
-* @returns void
+* Leave featured page.
+* @returns Void
 */
 export function leaveFeatured() {
   $("#featured-page").classList.remove("shown");
@@ -442,8 +431,8 @@ export function leaveFeatured() {
 }
 
 /**
- * Load favorite page
- * @returns void
+ * Load favorite page.
+ * @returns Void
  */
 export function loadFavorite() {
   $("#view-nutrition-page").classList.remove("main-shown");
@@ -454,8 +443,8 @@ export function loadFavorite() {
 
 
 /**
-* Leave favorite page
-* @returns void
+* Leave favorite page.
+* @returns Void
 */
 export function leaveFavorite() {
   $("#favorite-page").classList.remove("shown");
@@ -464,8 +453,8 @@ export function leaveFavorite() {
 
 
 /**
- * Load my recipe page
- * @returns void
+ * Load my recipe page.
+ * @returns Void
  */
 export function loadMyRecipe() {
   $("#add-recipe-page").classList.remove("main-shown");
@@ -478,8 +467,8 @@ export function loadMyRecipe() {
 
 
 /**
-* Leave my recipe page
-* @returns void
+* Leave my recipe page.
+* @returns Void
 */
 export function leaveMyRecipe() {
   $("#my-page").classList.remove("shown");
@@ -488,8 +477,8 @@ export function leaveMyRecipe() {
 
 
 /**
-* Load main page (like to add page)
-* @returns void
+* Load main page (like to add page).
+* @returns Void
 */
 export function loadMain() {
   $("#main-header").classList.add("main-shown");
@@ -499,8 +488,8 @@ export function loadMain() {
 
 
 /**
-* Leave main page (like to add page)
-* @returns void
+* Leave main page (like to add page).
+* @returns Void
 */
 export function leaveMain() {
   $("#main-header").classList.remove("main-shown");
@@ -519,6 +508,7 @@ export function leaveMain() {
  * Credit: Lab 7 skeleton, Tai's implementation of skeleton
  * If the escape key is pressed, use your router to navigate() to the 'home'
  * page. This will let us go back to the home page from the detailed page.
+ * @returns Void
  */
 function bindEscKey() {
   document.addEventListener("keydown", (event) => {
@@ -529,10 +519,11 @@ function bindEscKey() {
 }
 
 /**
- * Credit: Lab 7 skeleton, Tai's implementation of skeleton
+ * Credit: Lab 7 skeleton, Tai's implementation of skeleton.
  * Binds the 'popstate' event on the window (which fires when the back &
  * forward buttons are pressed) so the navigation will continue to work 
  * as expected.
+ * @returns Void
  */
  function bindPopstate() {
   /**
@@ -541,9 +532,6 @@ function bindEscKey() {
    * creating an infinite loop
    */
   window.addEventListener("popstate", (event) => {
-    // console.log(event.state);
-    // console.log(history);
-
     // if event.state == null then just navigate to home
     if (event.state != undefined) {
       router.navigate(event.state["page"], true);

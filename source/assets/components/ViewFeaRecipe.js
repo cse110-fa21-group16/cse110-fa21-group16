@@ -1,14 +1,26 @@
-import { $, loadMain, loadFeatured, loadFavorite, loadLanding, router } from "../scripts/main.js";
+import { $, loadMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the View Featured Recipe Page.
+ * @class
+ */
 class ViewFeaRecipe extends HTMLElement {
+    /**
+     * Attach the shadowroot which contains the View Recipe Page materials.
+     * @constructor
+     */
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
     }
 
+    /**
+     * The data needed to populate the materials are passed in as "data".
+     * @param {Object} data a JSON data object contains information to populate this component.
+     */
     set data(data) {
         let styleElem = document.createElement("style");
         let styles = `
@@ -294,7 +306,7 @@ class ViewFeaRecipe extends HTMLElement {
         }
 
         heartImg.addEventListener("click", () => {
-            changeHeart(data, heartImg);
+            this.changeHeart(data, heartImg);
         });
 
         mainHeaderSec.appendChild(recipeTitle);
@@ -317,7 +329,7 @@ class ViewFeaRecipe extends HTMLElement {
         let toNutritionPage = document.createElement("button");
         toNutritionPage.textContent = "Nutrition Facts";
         toNutritionPage.addEventListener("click", () => {
-            viewNutrition(data);
+            this.viewNutrition(data);
         })
 
         leftMainSec.appendChild(recipeImg);
@@ -348,7 +360,7 @@ class ViewFeaRecipe extends HTMLElement {
 
         let backButton = document.createElement("button");
         backButton.textContent = "Back";
-        backButton.addEventListener("click", feaRecipeToLand);
+        backButton.addEventListener("click", this.feaRecipeToLand);
 
         mainFooterSec.appendChild(backButton);
 
@@ -474,55 +486,57 @@ class ViewFeaRecipe extends HTMLElement {
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
     }
+
+    /**
+     * Toggles on and off the heart based on favorite.
+     * @param {Object} data a JSON data object contains information to keep track of which recipe is being added to favorites.
+     * @param {HTMLElement} cardObj an HTML element that contains the heart image.
+     * @return Void
+     */
+    changeHeart(data, cardObj) {
+        if (checkFav(getTitle(data))) {
+            cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+            rmFav(getTitle(data));
+        }
+        else {
+            cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
+            addFav(data);
+        }
+    }
+
+    /**
+     * View nutrition facts about the selected recipe.
+     * @param {Object} data a JSON data object contains information to load the nutrition page.
+     * @returns Void
+     */
+    viewNutrition(data) {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        $("#view-nutrition-page").classList.add("main-shown");
+        const nutritionPage = document.createElement("nutrition-page");
+        nutritionPage.data = data;
+        $("#view-nutrition-page").appendChild(nutritionPage);
+    }
+
+    /**
+     * Leave Featured Recipe Page to landing page using router object.
+     * @returns Void
+     */
+    feaRecipeToLand() {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        loadMain();
+        if ($("#featured-page").classList.contains("shown")) {
+            router.navigate("ToFeaturedPage");
+        }
+        else if ($("#favorite-page").classList.contains("shown")) {
+            router.navigate("ToFavoritePage");
+        }
+        else {
+            router.navigate("home");
+        }
+    }
 }
 
-/**
- * Toggles on and off the heart based on favorite
- * @returns void
- */
-function changeHeart(data, cardObj) {
-    if (checkFav(getTitle(data))) {
-        cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
-        rmFav(getTitle(data));
-    }
-    else {
-        cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
-        addFav(data);
-    }
-}
-
-/**
- * View nutrition facts about the selected recipe
- * @returns void
- */
-function viewNutrition(data) {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    $("#view-nutrition-page").classList.add("main-shown");
-    const nutritionPage = document.createElement("nutrition-page");
-    nutritionPage.data = data;
-    $("#view-nutrition-page").appendChild(nutritionPage);
-}
-
-/**
- * Leave Featured Recipe Page to landing page
- * @returns void
- */
-function feaRecipeToLand() {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    loadMain();
-    if ($("#featured-page").classList.contains("shown")) {
-        router.navigate("ToFeaturedPage");
-    }
-    else if ($("#favorite-page").classList.contains("shown")) {
-        router.navigate("ToFavoritePage");
-    }
-    else {
-        router.navigate("home");
-    }
-}
-
-
-
+// Define the "view-fea-recipe" element using this class.
 customElements.define("view-fea-recipe", ViewFeaRecipe);

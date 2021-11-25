@@ -2,12 +2,24 @@ import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the View My Recipe Page.
+ * @class
+ */
 class ViewMyRecipe extends HTMLElement {
+    /**
+     * Attach the shadowroot which contains the View Recipe Page materials.
+     * @constructor
+     */
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
     }
 
+    /**
+     * The data needed to populate the materials are passed in as "data".
+     * @param {Object} data a JSON data object contains information to populate this component.
+     */
     set data(data) {
         let styleElem = document.createElement("style");
         let styles = `
@@ -298,13 +310,13 @@ class ViewMyRecipe extends HTMLElement {
         let cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
 
-        let toNutPage = document.createElement("button");
-        toNutPage.textContent = "Nutrition Facts";
+        // let toNutPage = document.createElement("button");
+        // toNutPage.textContent = "Nutrition Facts";
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
-        leftMainSec.appendChild(toNutPage);
+        // leftMainSec.appendChild(toNutPage);
 
         // right-main
         let rightMainSec = document.createElement("section");
@@ -326,12 +338,12 @@ class ViewMyRecipe extends HTMLElement {
 
         let backButton = document.createElement("button");
         backButton.textContent = "Back";
-        backButton.addEventListener("click", myRecipeToLand);
+        backButton.addEventListener("click", this.myRecipeToLand);
 
         let editButton = document.createElement("button");
         editButton.textContent = "Edit";
         editButton.addEventListener("click", (e) => {
-            myRecipeToEdit(data);
+            this.myRecipeToEdit(data);
         });
 
 
@@ -460,35 +472,37 @@ class ViewMyRecipe extends HTMLElement {
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
     }
-}
 
-/**
- * Leave Featured Recipe Page to landing page
- * @returns void
- */
-function myRecipeToLand() {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    loadMain();
-    if ($("#my-page").classList.contains("shown")) {
-        router.navigate("ToMyRecipePage");
+    /**
+     * Leave View My Recipe Page to landing page.
+     * @returns Void
+     */
+    myRecipeToLand() {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        loadMain();
+        if ($("#my-page").classList.contains("shown")) {
+            router.navigate("ToMyRecipePage");
+        }
+        else {
+            router.navigate("home");
+        }
     }
-    else {
-        router.navigate("home");
+
+    /**
+     * Leave View My Recipe Page to edit page.
+     * @param {Object} data a JSON data object contains information to populate this component.
+     * @returns Void
+     */
+    myRecipeToEdit(data) {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        let editRecipePage = document.createElement("edit-recipe");
+        editRecipePage.data = data;
+        $("#add-recipe-page").appendChild(editRecipePage);
+        $("#add-recipe-page").classList.add("main-shown");
     }
 }
 
-/**
- * Leave Featured Recipe Page to edit page
- * @returns void
- */
-function myRecipeToEdit(data) {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    let editRecipePage = document.createElement("edit-recipe");
-    editRecipePage.data = data;
-    $("#add-recipe-page").appendChild(editRecipePage);
-    $("#add-recipe-page").classList.add("main-shown");
-}
-
+// Define the "view-fea-recipe" element using this class.
 customElements.define("view-my-recipe", ViewMyRecipe);
