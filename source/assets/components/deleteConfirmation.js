@@ -1,12 +1,24 @@
-import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.js";
+import { $, loadMain, router } from "../scripts/main.js";
 import { rmMy } from "../scripts/helpCrudFunc.js";
 
+/**
+ * This is the component for the Delete Confirmation Page.
+ * @class
+ */
 class DeleteConfirmation extends HTMLElement {
+    /**
+     * Attach shadowroot which contains the confirmation page.
+     * @constructor
+     */
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
     }
 
+    /**
+     * The data needed to populate the materials are passed in as "data".
+     * @param {Object} data a JSON data object contains information to keep track of which recipe is being deleted.
+     */
     set data(data) {
         const styleElem = document.createElement("style");
         const styles = `
@@ -86,11 +98,11 @@ class DeleteConfirmation extends HTMLElement {
         buttons.appendChild(noButton);
 
         yesButton.addEventListener("click", () => {
-            deleteRecipe(data);
+            this.deleteRecipe(data);
         });
 
         noButton.addEventListener("click", () => {
-            backToView(data);
+            this.backToView(data);
         });
 
         card.appendChild(warn);
@@ -99,41 +111,43 @@ class DeleteConfirmation extends HTMLElement {
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
     }
-}
 
-/**
- * Delete recipes and return to main page
- * @returns void
- */
-function deleteRecipe(data) {
-    rmMy(data);
-    $("#delete-page").classList.remove("main-shown");
-    $("#delete-page").innerHTML = "";
-    loadMain();
-    if ($("#my-page").classList.contains("shown")) {
-        let currState = {"page": "ToMyRecipePage"};
-        history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
-        router.navigate("ToMyRecipePage", true);
+    /**
+     * Delete recipes and return to main page
+     * @param {Object} data a JSON data object contains information to keep track of which recipe is being deleted
+     * @returns Void
+     */
+    deleteRecipe(data) {
+        rmMy(data);
+        $("#delete-page").classList.remove("main-shown");
+        $("#delete-page").innerHTML = "";
+        loadMain();
+        if ($("#my-page").classList.contains("shown")) {
+            let currState = {"page": "ToMyRecipePage"};
+            history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
+            router.navigate("ToMyRecipePage", true);
+        }
+        else {
+            let currState = {"page": "home"};
+            history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
+            router.navigate("home", true);
+        }
     }
-    else {
-        let currState = {"page": "home"};
-        history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
-        router.navigate("home", true);
+
+    /**
+     * Do not delete recipes and return to view page.
+     * @param {Object} data a JSON data object contains information to load back the view recipe page.
+     * @returns Void
+     */
+    backToView(data) {
+        $("#delete-page").classList.remove("main-shown");
+        $("#delete-page").innerHTML = "";
+        let editRecipePage = document.createElement("edit-recipe");
+        editRecipePage.data = data;
+        $("#add-recipe-page").appendChild(editRecipePage);
+        $("#add-recipe-page").classList.add("main-shown");
     }
 }
 
-
-/**
- * Do not delete recipes and return to view page
- * @returns void
- */
-function backToView(data) {
-    $("#delete-page").classList.remove("main-shown");
-    $("#delete-page").innerHTML = "";
-    let editRecipePage = document.createElement("edit-recipe");
-    editRecipePage.data = data;
-    $("#add-recipe-page").appendChild(editRecipePage);
-    $("#add-recipe-page").classList.add("main-shown");
-}
-
+// Define the "delete-confirmation" element using this class.
 customElements.define("delete-confirmation", DeleteConfirmation);

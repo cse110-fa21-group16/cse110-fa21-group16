@@ -1,8 +1,9 @@
 // helpGetDataFunc.js
 
 /**
- * Get the image of recipe
- * @returns string
+ * Get the image of recipe.
+ * @param {Object} data a JSON data object contains information of image.
+ * @returns String
  */
 export function getImgUrl(data) {
     if (data && data.image) return data.image;
@@ -11,8 +12,9 @@ export function getImgUrl(data) {
 
 
 /**
- * Get the title of recipe
- * @returns string
+ * Get the title of recipe.
+ * @param {Object} data a JSON data object contains information of title.
+ * @returns String
  */
 export function getTitle(data) {
     if (data && data.title) return data.title;
@@ -21,8 +23,9 @@ export function getTitle(data) {
 
 
 /**
- * Get the cooking time of recipe
- * @returns string
+ * Get the cooking time of recipe.
+ * @param {Object} data a JSON data object contains information of cook time.
+ * @returns String
  */
 export function getTime(data) {
     if (data && data.readyInMinutes) return data.readyInMinutes;
@@ -31,8 +34,9 @@ export function getTime(data) {
 
 
 /**
- * Get the steps of recipe
- * @returns string
+ * Get the steps of recipe.
+ * @param {Object} data a JSON data object contains information of instructions string.
+ * @returns String
  */
 export function getSteps(data) {
     if (data && data.instructions) return data.instructions;
@@ -40,8 +44,9 @@ export function getSteps(data) {
 }
 
 /**
- * Get the steps of recipe
- * @returns string
+ * Get the steps of recipe (Array).
+ * @param {Object} data a JSON data object contains information of instructions array.
+ * @returns Array
  */
  export function getFeaturedSteps(data) {
     if (data && data.analyzedInstructions) return data.analyzedInstructions;
@@ -49,8 +54,9 @@ export function getSteps(data) {
 }
 
 /**
- * Get the steps of recipe (Array)
- * @returns string
+ * Get the steps of recipe (Array).
+ * @param {Object} data a JSON data object contains information of instructions array.
+ * @returns Array
  */
 export function getStepsArray(data) {
     if (data && data.instructionsArray) return data.instructionsArray;
@@ -58,8 +64,9 @@ export function getStepsArray(data) {
 }
 
 /**
- * Get the ingredients of recipe
- * @returns string
+ * Get the ingredients of recipe.
+ * @param {Object} data a JSON data object contains information of ingredients string.
+ * @returns String
  */
 export function getIngre(data) {
     let listHtml = "<ol>";
@@ -84,8 +91,9 @@ export function getIngre(data) {
 
 
 /**
- * Get the ingredients of recipe (Array)
- * @returns string
+ * Get the ingredients of recipe (Array).
+ * @param {Object} data a JSON data object contains information of ingredients array.
+ * @returns Array
  */
 export function getIngreArray(data) {
     if (data.extendedIngredients) return data.extendedIngredients;
@@ -93,8 +101,9 @@ export function getIngreArray(data) {
 }
 
 /**
- * Get the vegetarian of recipe
- * @returns bool
+ * Get the vegetarian of recipe.
+ * @param {Object} data a JSON data object contains information of Vegetarian boolean.
+ * @returns Boolean
  */
 export function getVegeta(data) {
     if (data.vegetarian) return data.vegetarian;
@@ -104,7 +113,8 @@ export function getVegeta(data) {
 
 /**
  * Get the vegan of recipe
- * @returns bool
+ * @param {Object} data a JSON data object contains information of Vegan boolean.
+ * @returns Boolean
  */
 export function getVegan(data) {
     if (data.vegan) return data.vegan;
@@ -113,7 +123,8 @@ export function getVegan(data) {
 
 /**
  * Get the glutenFree of recipe
- * @returns bool
+ * @param {Object} data a JSON data object contains information of GlutenFree boolean.
+ * @returns Boolean
  */
 export function getGluten(data) {
     if (data.glutenFree) return data.glutenFree;
@@ -122,7 +133,8 @@ export function getGluten(data) {
 
 /**
  * Get the dairyFree of recipe
- * @returns bool
+ * @param {Object} data a JSON data object contains information of DairyFree boolean.
+ * @returns Boolean
  */
 export function getDairy(data) {
     if (data.dairyFree) return data.dairyFree;

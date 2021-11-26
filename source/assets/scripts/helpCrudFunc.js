@@ -4,8 +4,9 @@ let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 
 /**
- * Determine wether the recipe is in favRecipeArray
- * @returns bool
+ * Determine wether the recipe is in favRecipeArray.
+ * @param {String} recipeTitle title string of a recipe.
+ * @returns Boolean
  */
 export function checkFav(recipeTitle) {
     if (favRecipeArray === null || favRecipeArray.length === 0) {
@@ -21,9 +22,10 @@ export function checkFav(recipeTitle) {
 
 
 /**
-* Remove the recipe from the favRecipeArray
-* @returns void
-*/
+ * Remove the recipe from the favRecipeArray
+ * @param {String} recipeTitle title string of a recipe.
+ * @returns Void
+ */
 export function rmFav(recipeTitle) {
     let i = 0;
     for (; i < favRecipeArray.length; i++) {
@@ -38,9 +40,10 @@ export function rmFav(recipeTitle) {
 
 
 /**
-* Add the recipe to the favRecipeArray
-* @returns void
-*/
+ * Add the recipe to the favRecipeArray.
+ * @param {Object} data a JSON data object contains information of a recipe.
+ * @returns Void
+ */
 export function addFav(data) {
     favRecipeArray.push(data);
     localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray));
@@ -48,9 +51,10 @@ export function addFav(data) {
 
 
 /**
-* Add the recipe to the myRecipeArray
-* @returns void
-*/
+ * Add the recipe to the myRecipeArray.
+ * @param {Object} data a JSON data object contains information of a recipe.
+ * @returns Void
+ */
 export function addMy(data) {
     
     if (nextMyRecipeID == null) {
@@ -71,9 +75,10 @@ export function addMy(data) {
 
 
 /**
-* Updata the recipe to the myRecipeArray
-* @returns void
-*/
+ * Updata the recipe to the myRecipeArray
+ * @param {Object} data a JSON data object contains information of a recipe.
+ * @returns Void
+ */
 export function updateMy(data) {
     let i = 0;
     for (; i < myRecipeArray.length; i++) {
@@ -86,9 +91,10 @@ export function updateMy(data) {
 }
 
 /**
-* Remove the recipe to the myRecipeArray
-* @returns void
-*/
+ * Remove the recipe to the myRecipeArray
+ * @param {Object} data a JSON data object contains information of a recipe.
+ * @returns Void
+ */
 export function rmMy(data) {
     let i = 0;
     for (; i < myRecipeArray.length; i++) {

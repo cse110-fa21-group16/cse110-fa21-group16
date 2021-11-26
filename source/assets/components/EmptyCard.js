@@ -1,4 +1,12 @@
+/**
+ * This is the component for the Empty Card element.
+ * @class
+ */
 class EmptyCard extends HTMLElement {
+  /**
+   * Create an empty recipe card.
+   * @constructor
+   */
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
@@ -36,4 +44,5 @@ class EmptyCard extends HTMLElement {
   }
 }
 
+// Define the "empty-card" element using this class.
 customElements.define("empty-card", EmptyCard);

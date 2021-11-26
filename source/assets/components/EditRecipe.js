@@ -3,12 +3,24 @@ import { updateMy } from "../scripts/helpCrudFunc.js";
 import { getTitle, getStepsArray, getIngreArray, getImgUrl } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the Edit Recipe Page.
+ * @class
+ */
 class EditRecipe extends HTMLElement {
+  /**
+   * Attach shadowroot which contains the edit page materials.
+   * @constructor
+   */
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * The data needed to populate the materials are passed in as "data".
+   * @param {Object} data a JSON data object contains information to populate this component.
+   */
   set data(data) {
     let styling = document.createElement("style");
     let styles =
@@ -501,7 +513,7 @@ class EditRecipe extends HTMLElement {
     optionGlutten.setAttribute("id", "glutten");
     optionGlutten.setAttribute("name", "glutten");
     optionGluttenLabel.setAttribute("for", "glutten");
-    optionGluttenLabel.innerHTML = "Glutten free";
+    optionGluttenLabel.innerHTML = "Gluten free";
     if (getGluten(data)) {
       optionGlutten.setAttribute("checked", "");
     }
@@ -637,10 +649,10 @@ class EditRecipe extends HTMLElement {
 
     // Add/Remove Button Click Events
     addIngredient.addEventListener("click", () => {
-      addIngreItems(addIngredient);
+      this.addIngreItems(addIngredient);
     });
     removeIngredient.addEventListener("click", () => {
-      removeIngreItem(ingredientGeneralDiv);
+      this.removeIngreItem(ingredientGeneralDiv);
     })
 
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -689,7 +701,7 @@ class EditRecipe extends HTMLElement {
     procedureDivList.appendChild(addInstruction);
 
     addInstruction.addEventListener("click", () => {
-      addInstruItems(procedureList);
+      this.addInstruItems(procedureList);
     });
 
     // Remove Instruction Button 
@@ -701,7 +713,7 @@ class EditRecipe extends HTMLElement {
     procedureDivList.appendChild(removeInstruction);
     // Remove Button Click Event 
     removeInstruction.addEventListener("click", () => {
-      removeInstruItem(procedureList);
+      this.removeInstruItem(procedureList);
     });
 
 
@@ -751,16 +763,16 @@ class EditRecipe extends HTMLElement {
     actionButtons.appendChild(deleteButton);
     actionButtons.appendChild(submitButton);
 
-    cancelButton.addEventListener("click", (e) => {
+    cancelButton.addEventListener("click", () => {
       // if (e.path[0].nodeName == "B") return;
       router.navigate(data["id"]);
     });
 
     deleteButton.addEventListener("click", () => {
-      toDelete(data);
+      this.toDelete(data);
     });
 
-    submitButton.addEventListener("click", (e) => {
+    submitButton.addEventListener("click", () => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;
@@ -802,16 +814,10 @@ class EditRecipe extends HTMLElement {
       imgCanvas.height = picImgPreRead.height;
 
       imgContext.drawImage(picImgPreRead, 0, 0, picImgPreRead.width, picImgPreRead.height);
-
-
       inputData["image"] = imgCanvas.toDataURL("image/jpeg");
 
-
-
       updateMy(inputData);
-      // if (e.path[0].nodeName == "B") return;
-      // router.navigate(data["id"]);
-      leaveEdit(inputData);
+      this.leaveEdit(inputData);
     });
 
     // Append Div to footer 
@@ -831,138 +837,158 @@ class EditRecipe extends HTMLElement {
     this.shadow.appendChild(styling);
     this.shadow.appendChild(page);
   }
-}
 
-/**
- * removes ingredient div in DOM
- * @param {object} ingreList list of ingredient
- */
-function removeIngreItem(ingreList) {
-  // Add and remove buttons are part of the ingredient list 
-  // If the ingredient list contains more than 1 ingredient 
-  // and the 2 buttons 
-  if (ingreList.children.length > 3) {
-    // Remove the last ingredient
-    ingreList.removeChild(ingreList.children[ingreList.children.length - 3]);
-  } else {
-    // Alert the user 
-    alert("There must be at least 1 Ingredient");
+  /**
+   * Removes ingredient div in DOM
+   * @param {object} ingreList list of ingredients
+   */
+  removeIngreItem(ingreList) {
+    // Add and remove buttons are part of the ingredient list 
+    // If the ingredient list contains more than 1 ingredient 
+    // and the 2 buttons 
+    if (ingreList.children.length > 3) {
+      // Remove the last ingredient
+      ingreList.removeChild(ingreList.children[ingreList.children.length - 3]);
+    } else {
+      // Alert the user 
+      alert("There must be at least 1 Ingredient");
+    }
+  }
+
+  /**
+   * Add an ingredient to the bottom of ingredients list
+   * @param {HTMLElement} buttonItem the + button element to add on top of it
+   */
+  addIngreItems(buttonItem) {
+    let ingredientListDiv = document.createElement("div");
+    ingredientListDiv.setAttribute("class", "ingredients-list-div");
+  
+    let ingredientColumn = document.createElement("div"); // ingredient column
+    let ingredientColumnTitle = document.createElement("h2");
+    let ingredientColumnInput = document.createElement("textarea");
+    ingredientColumn.setAttribute("class", "ingredient-column");
+    ingredientColumnTitle.setAttribute("class", "title");
+    ingredientColumnTitle.innerHTML = "Ingredient:";
+    ingredientColumnInput.setAttribute("class", "ingredients-item");
+  
+    ingredientColumn.appendChild(ingredientColumnTitle);
+    ingredientColumn.appendChild(ingredientColumnInput);
+  
+    let amountColumn = document.createElement("div"); // amount column
+    let amountColumnTitle = document.createElement("h2");
+    let amountColumnInput = document.createElement("input");
+  
+    amountColumn.setAttribute("class", "amount-column");
+    amountColumnTitle.setAttribute("class", "title");
+    amountColumnTitle.innerHTML = "Amount:";
+    amountColumnInput.setAttribute("class", "amount-item");
+    amountColumnInput.setAttribute("type", "number");
+    amountColumnInput.setAttribute("value", "1");
+  
+    amountColumn.appendChild(amountColumnTitle);
+    amountColumn.appendChild(amountColumnInput);
+  
+    let unitColumn = document.createElement("div"); // unit column
+    let unitColumnTitle = document.createElement("h2");
+    unitColumn.setAttribute("class", "unit-column");
+    unitColumnTitle.setAttribute("class", "title");
+    unitColumnTitle.innerHTML = "Unit:";
+  
+    let unitColumnInput = document.createElement("select");
+    let unitDefault = document.createElement("option");
+    let unitGrams = document.createElement("option");
+    let unitKilograms = document.createElement("option");
+    let unitPounds = document.createElement("option");
+    let unitTablespoons = document.createElement("option");
+    let unitCups = document.createElement("option");
+    unitDefault.setAttribute("value", "");
+    unitGrams.setAttribute("value", "grams");
+    unitKilograms.setAttribute("value", "kgs");
+    unitPounds.setAttribute("value", "lbs");
+    unitTablespoons.setAttribute("value", "tbps");
+    unitCups.setAttribute("value", "cups");
+    unitDefault.innerHTML = "Select unit";
+    unitGrams.innerHTML = "grams";
+    unitKilograms.innerHTML = "kgs";
+    unitPounds.innerHTML = "lbs";
+    unitTablespoons.innerHTML = "tbps";
+    unitCups.innerHTML = "cups";
+    unitColumnInput.setAttribute("class", "unit-item");
+    unitColumnInput.appendChild(unitDefault);
+    unitColumnInput.appendChild(unitGrams);
+    unitColumnInput.appendChild(unitKilograms);
+    unitColumnInput.appendChild(unitPounds);
+    unitColumnInput.appendChild(unitTablespoons);
+    unitColumnInput.appendChild(unitCups);
+  
+    unitColumn.appendChild(unitColumnTitle);
+    unitColumn.appendChild(unitColumnInput);
+  
+    ingredientListDiv.appendChild(ingredientColumn);
+    ingredientListDiv.appendChild(amountColumn);
+    ingredientListDiv.appendChild(unitColumn);
+    buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
+  }
+
+  /**
+   * Removes the bottom instruction item in list 
+   * @param {object} instruList list of instructions
+   * @returns Void
+   */
+  removeInstruItem(instruList) {
+    // If the instruction list has more than 1 instruction 
+    if (instruList.children.length > 1) {
+      // Remove the last instruction 
+      instruList.removeChild(instruList.children[instruList.children.length - 1]);
+    }
+    else {
+      // Alert the user 
+      alert("There must be at least 1 procedure");
+    }
+  }
+
+  /**
+   * Add an instruction to instructions list
+   * @param {HTMLElement} olItem an ordered HTML list element
+   * @returns Void
+   */
+  addInstruItems(olItem) {
+    let procedureListItem = document.createElement("li");
+    let procedureListText = document.createElement("textarea");
+    procedureListText.setAttribute("class", "step-item");
+  
+    procedureListItem.appendChild(procedureListText);
+    olItem.appendChild(procedureListItem);
+  }
+
+  /**
+   * Leave the edit page action
+   * @param {Object} data a JSON object of data to load the view page after edit
+   * @returns Void
+   */
+  leaveEdit(data) {
+    $("#add-recipe-page").classList.remove("main-shown");
+    $("#add-recipe-page").innerHTML = "";
+    $("#view-recipe-page").classList.add("main-shown");
+    const viewRecipePage = document.createElement("view-my-recipe");
+    viewRecipePage.data = data;
+    $("#view-recipe-page").appendChild(viewRecipePage);
+  }
+
+  /**
+   * Load delete confirmation page with passed in data
+   * @param {Object} data a JSON object of data to load the delete page
+   * @returns Void
+   */
+  toDelete(data) {
+    $("#add-recipe-page").classList.remove("main-shown");
+    $("#add-recipe-page").innerHTML = "";
+    $("#delete-page").classList.add("main-shown");
+    const deletePage = document.createElement("delete-confirmation");
+    deletePage.data = data;
+    $("#delete-page").appendChild(deletePage);
   }
 }
 
-function addIngreItems(buttonItem) {
-  let ingredientListDiv = document.createElement("div");
-  ingredientListDiv.setAttribute("class", "ingredients-list-div");
-
-  let ingredientColumn = document.createElement("div"); // ingredient column
-  let ingredientColumnTitle = document.createElement("h2");
-  let ingredientColumnInput = document.createElement("textarea");
-  ingredientColumn.setAttribute("class", "ingredient-column");
-  ingredientColumnTitle.setAttribute("class", "title");
-  ingredientColumnTitle.innerHTML = "Ingredient:";
-  ingredientColumnInput.setAttribute("class", "ingredients-item");
-
-  ingredientColumn.appendChild(ingredientColumnTitle);
-  ingredientColumn.appendChild(ingredientColumnInput);
-
-  let amountColumn = document.createElement("div"); // amount column
-  let amountColumnTitle = document.createElement("h2");
-  let amountColumnInput = document.createElement("input");
-
-  amountColumn.setAttribute("class", "amount-column");
-  amountColumnTitle.setAttribute("class", "title");
-  amountColumnTitle.innerHTML = "Amount:";
-  amountColumnInput.setAttribute("class", "amount-item");
-  amountColumnInput.setAttribute("type", "number");
-  amountColumnInput.setAttribute("value", "1");
-
-  amountColumn.appendChild(amountColumnTitle);
-  amountColumn.appendChild(amountColumnInput);
-
-  let unitColumn = document.createElement("div"); // unit column
-  let unitColumnTitle = document.createElement("h2");
-  unitColumn.setAttribute("class", "unit-column");
-  unitColumnTitle.setAttribute("class", "title");
-  unitColumnTitle.innerHTML = "Unit:";
-
-  let unitColumnInput = document.createElement("select");
-  let unitDefault = document.createElement("option");
-  let unitGrams = document.createElement("option");
-  let unitKilograms = document.createElement("option");
-  let unitPounds = document.createElement("option");
-  let unitTablespoons = document.createElement("option");
-  let unitCups = document.createElement("option");
-  unitDefault.setAttribute("value", "");
-  unitGrams.setAttribute("value", "grams");
-  unitKilograms.setAttribute("value", "kgs");
-  unitPounds.setAttribute("value", "lbs");
-  unitTablespoons.setAttribute("value", "tbps");
-  unitCups.setAttribute("value", "cups");
-  unitDefault.innerHTML = "Select unit";
-  unitGrams.innerHTML = "grams";
-  unitKilograms.innerHTML = "kgs";
-  unitPounds.innerHTML = "lbs";
-  unitTablespoons.innerHTML = "tbps";
-  unitCups.innerHTML = "cups";
-  unitColumnInput.setAttribute("class", "unit-item");
-  unitColumnInput.appendChild(unitDefault);
-  unitColumnInput.appendChild(unitGrams);
-  unitColumnInput.appendChild(unitKilograms);
-  unitColumnInput.appendChild(unitPounds);
-  unitColumnInput.appendChild(unitTablespoons);
-  unitColumnInput.appendChild(unitCups);
-
-  unitColumn.appendChild(unitColumnTitle);
-  unitColumn.appendChild(unitColumnInput);
-
-  ingredientListDiv.appendChild(ingredientColumn);
-  ingredientListDiv.appendChild(amountColumn);
-  ingredientListDiv.appendChild(unitColumn);
-  buttonItem.parentNode.insertBefore(ingredientListDiv, buttonItem);
-}
-
-/**
- * removes instruction item in list 
- * @param {object} instruList list of instructions
- */
-function removeInstruItem(instruList) {
-  // If the instruction list has more than 1 instruction 
-  if (instruList.children.length > 1) {
-    // Remove the last instruction 
-    instruList.removeChild(instruList.children[instruList.children.length - 1]);
-  }
-  else {
-    // Alert the user 
-    alert("There must be at least 1 procedure");
-  }
-}
-
-function addInstruItems(olItem) {
-  let procedureListItem = document.createElement("li");
-  let procedureListText = document.createElement("textarea");
-  procedureListText.setAttribute("class", "step-item");
-
-  procedureListItem.appendChild(procedureListText);
-  olItem.appendChild(procedureListItem);
-}
-
-function leaveEdit(data) {
-  $("#add-recipe-page").classList.remove("main-shown");
-  $("#add-recipe-page").innerHTML = "";
-  $("#view-recipe-page").classList.add("main-shown");
-  const viewRecipePage = document.createElement("view-my-recipe");
-  viewRecipePage.data = data;
-  $("#view-recipe-page").appendChild(viewRecipePage);
-}
-
-function toDelete(data) {
-  $("#add-recipe-page").classList.remove("main-shown");
-  $("#add-recipe-page").innerHTML = "";
-  $("#delete-page").classList.add("main-shown");
-  const deletePage = document.createElement("delete-confirmation");
-  deletePage.data = data;
-  $("#delete-page").appendChild(deletePage);
-}
-
-// define the "edit-recipe" element using this class
+// Define the "edit-recipe" element using this class
 customElements.define("edit-recipe", EditRecipe);
