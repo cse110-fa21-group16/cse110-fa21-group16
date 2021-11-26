@@ -502,7 +502,7 @@ function createSearchFea(inputVal) {
   if (filters.length > 0) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
-        if (item[filters[i]] == false) {
+        if (item[filters[i]] === false) {
             return false;
         }
       }
@@ -540,7 +540,7 @@ function createSearchFea(inputVal) {
   if (filters.length > 0) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
-        if (item[filters[i]] == false) {
+        if (item[filters[i]] === false) {
             return false;
         }
       }
@@ -579,7 +579,7 @@ function createSearchFea(inputVal) {
   if (filters.length > 0) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
-        if (item[filters[i]] == false) {
+        if (item[filters[i]] === false) {
             return false;
         }
       }
