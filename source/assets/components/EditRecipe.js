@@ -763,7 +763,7 @@ class EditRecipe extends HTMLElement {
     actionButtons.appendChild(deleteButton);
     actionButtons.appendChild(submitButton);
 
-    cancelButton.addEventListener("click", (e) => {
+    cancelButton.addEventListener("click", () => {
       // if (e.path[0].nodeName == "B") return;
       router.navigate(data["id"]);
     });
@@ -772,7 +772,7 @@ class EditRecipe extends HTMLElement {
       this.toDelete(data);
     });
 
-    submitButton.addEventListener("click", (e) => {
+    submitButton.addEventListener("click", () => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;

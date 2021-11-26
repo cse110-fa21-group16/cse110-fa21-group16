@@ -48,6 +48,16 @@ export function getSteps(data) {
  * @param {Object} data a JSON data object contains information of instructions array.
  * @returns Array
  */
+ export function getFeaturedSteps(data) {
+    if (data && data.analyzedInstructions) return data.analyzedInstructions;
+    return null;
+}
+
+/**
+ * Get the steps of recipe (Array).
+ * @param {Object} data a JSON data object contains information of instructions array.
+ * @returns Array
+ */
 export function getStepsArray(data) {
     if (data && data.instructionsArray) return data.instructionsArray;
     return [];

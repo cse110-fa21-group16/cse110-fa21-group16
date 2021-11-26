@@ -1,4 +1,4 @@
-import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.js";
+import { $, loadMain, router } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
@@ -342,7 +342,7 @@ class ViewMyRecipe extends HTMLElement {
 
         let editButton = document.createElement("button");
         editButton.textContent = "Edit";
-        editButton.addEventListener("click", (e) => {
+        editButton.addEventListener("click", () => {
             this.myRecipeToEdit(data);
         });
 

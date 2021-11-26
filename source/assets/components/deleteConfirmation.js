@@ -1,4 +1,4 @@
-import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.js";
+import { $, loadMain, router } from "../scripts/main.js";
 import { rmMy } from "../scripts/helpCrudFunc.js";
 
 /**

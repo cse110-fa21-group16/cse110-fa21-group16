@@ -100,7 +100,7 @@ class RecipeCardMy extends HTMLElement {
     card.appendChild(checkButton);
 
     // bind check button to router
-    checkButton.addEventListener("click", (e) => {
+    checkButton.addEventListener("click", () => {
       // console.log(e.path[0].nodeName);
       // if (e.path[0].nodeName == "B") return;
       router.navigate(data["id"]);
