@@ -35,10 +35,10 @@
             <a href="./">
                 <img class="logo-img" src="assets/images/logo-temp.png" />
             </a>
-            
+
         </section>
         <div id="app-name">
-            <img class="logo-img" src="assets/images/logo-temp-3.png"/>
+            <img class="logo-img" src="assets/images/logo-temp-3.png" />
         </div>
         <section id="head-buttons">
             <button id="search-button">SEARCH</button>
@@ -47,6 +47,19 @@
     </header>
 
     <main class="main-shown" id="main-main">
+        <section class="main-item" id="search-recipes">
+            <div id="search-recipes-div">
+                <select id="search-type">
+                    <option value="all" selected="selected">All</option>
+                    <option value="featured">Featured</option>
+                    <option value="favorite">Favorite</option>
+                    <option value="my">My</option>
+                </select>
+                <input type="search" id="search-input" name="search" />
+                <button id="cancel-search-button">Cancel</button>
+            </div>
+        </section>
+
         <section class="main-item shown" id="featured-recipes">
             <div class="main-item-title">
                 <button class="item-title" id="to-feature-page">Featured Recipes of the Day</button>
@@ -98,6 +111,30 @@
                 <button class="item-title" id="my-page-to-landing">My Recipes</button>
             </div>
             <div class="recipes-page-list" id="my-page-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="search-featured">
+            <div class="main-item-title">
+                <h2 class="item-title">Featured Recipes of the Day</h2>
+            </div>
+            <div class="recipes-search-list" id="featured-search-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="search-favorite">
+            <div class="main-item-title">
+                <h2 class="item-title">Favorites</h2>
+            </div>
+            <div class="recipes-search-list" id="favorite-search-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="search-my">
+            <div class="main-item-title">
+                <h2 class="item-title">My Recipes</h2>
+            </div>
+            <div class="recipes-search-list" id="my-search-list">
             </div>
         </section>
     </main>

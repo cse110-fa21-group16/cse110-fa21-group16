@@ -533,6 +533,7 @@ class ViewFeaRecipe extends HTMLElement {
         $("#view-nutrition-page").appendChild(nutritionPage);
     }
 
+
     /**
      * Leave Featured Recipe Page to landing page using router object.
      * @returns Void
@@ -546,7 +547,10 @@ class ViewFeaRecipe extends HTMLElement {
         }
         else if ($("#favorite-page").classList.contains("shown")) {
             router.navigate("ToFavoritePage");
-        }
+        } 
+        else if ($("#search-featured").classList.contains("shown")) {
+            router.navigate("ToSearchPage");
+        } 
         else {
             router.navigate("home");
         }
