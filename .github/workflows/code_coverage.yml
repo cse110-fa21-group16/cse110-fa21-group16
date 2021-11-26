@@ -1,15 +1,13 @@
-name: codacy-coverage-reporter
+name: code-coverage
 
 on: ["push"]
 
 jobs:
-  codacy-coverage-reporter:
+  code-coverage:
     runs-on: ubuntu-latest
-    name: codacy-coverage-reporter
+    name: code-coverage
     steps:
-      - uses: actions/checkout@v2
-      - name: Run codacy-coverage-reporter
-        uses: codacy/codacy-coverage-reporter-action@v1
+      - uses: ziishaned/jest-reporter-action@v0.0.1
         with:
-          api-token: ${{ secrets.CODACY_API_TOKEN }}
-          coverage-reports: cobertura.xml
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          test-command: "yarn jest --coverage"
