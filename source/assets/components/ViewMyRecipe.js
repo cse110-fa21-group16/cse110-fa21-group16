@@ -473,6 +473,9 @@ function myRecipeToLand() {
     if ($("#my-page").classList.contains("shown")) {
         router.navigate("ToMyRecipePage");
     }
+    else if ($("#search-my").classList.contains("shown")) {
+        router.navigate("ToSearchPage");
+    }
     else {
         router.navigate("home");
     }

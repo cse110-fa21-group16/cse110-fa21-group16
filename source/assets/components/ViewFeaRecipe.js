@@ -533,6 +533,9 @@ function feaRecipeToLand() {
     else if ($("#favorite-page").classList.contains("shown")) {
         router.navigate("ToFavoritePage");
     }
+    else if ($("#search-featured").classList.contains("shown")) {
+        router.navigate("ToSearchPage");
+    }
     else {
         router.navigate("home");
     }
