@@ -162,7 +162,7 @@ main {
 }
 
 #search-input {
-  outline:none;
+  outline: none;
   background-image: url("../images/icons/search.png");
   background-position: 8px 8px;
   background-repeat: no-repeat;
@@ -217,8 +217,6 @@ button.item-title:hover {
   flex-flow: row wrap;
   justify-content: center;
 }
-
-
 
 /* footer */
 footer {
