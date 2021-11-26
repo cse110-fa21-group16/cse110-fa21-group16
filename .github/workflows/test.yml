@@ -14,4 +14,9 @@ jobs:
       run: npm ci
         
     - name: Run Jest Puppeteer
-      run: npm run test __test__/ui.test.js
+      run: npm run test --coverage __test__/ui.test.js
+      
+    - name: Generating Coverage Report
+    - uses: romeovs/lcov-reporter-action@v0.2.16
+      with:
+        lcov-file: ./coverage/lcov.info
