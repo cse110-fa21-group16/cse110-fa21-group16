@@ -414,8 +414,8 @@ function setButtonListen() {
 
 
 /**
- * Implement search feature
- * @returns void
+ * Implement search feature.
+ * @returns Void
  */
 function createSearch() {
   let inputVal = $("#search-input").value.toUpperCase();
@@ -447,8 +447,9 @@ function createSearch() {
 
 
 /**
- * create featured recipe after search
- * @returns void
+ * Create featured recipe after search.
+ * @param {String} inputVal the input string for search query.
+ * @returns Void
  */
 function createSearchFea(inputVal) {
   $("#search-featured").classList.add("shown");
@@ -466,8 +467,9 @@ function createSearchFea(inputVal) {
 }
 
 /**
- * create favorite recipe after search
- * @returns void
+ * Create favorite recipe after search.
+ * @param {String} inputVal the input string for search query.
+ * @returns Void
  */
  function createSearchFav(inputVal) {
   $("#search-favorite").classList.add("shown");
@@ -485,8 +487,9 @@ function createSearchFea(inputVal) {
 }
 
 /**
- * create my recipe after search
- * @returns void
+ * Create my recipe after search.
+ * @param {String} inputVal the input string for search query.
+ * @returns Void
  */
  function createSearchMy(inputVal) {
   $("#search-my").classList.add("shown");
@@ -508,8 +511,8 @@ function createSearchFea(inputVal) {
 
 
 /**
- * Load search page
- * @returns void
+ * Load search page.
+ * @returns Void
  */
 function loadSearchPage() {
   $("#view-nutrition-page").classList.remove("main-shown");
@@ -520,8 +523,8 @@ function loadSearchPage() {
 
 
 /**
-* Leave search page
-* @returns void
+* Leave search page.
+* @returns Void
 */
 export function leaveSearchPage() {
   $("#search-recipes").classList.remove("shown");
