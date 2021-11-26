@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     name: code-coverage
     steps:
-      - uses: ziishaned/jest-reporter-action@v0.0.1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
