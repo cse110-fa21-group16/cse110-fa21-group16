@@ -510,6 +510,7 @@ function createSearchFea(inputVal) {
     });
   }
 
+  // Populate section with filtered result
   searchResult.forEach((item) => {
     let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
     newFeaRecipeCard.data = item;
@@ -532,11 +533,11 @@ function createSearchFea(inputVal) {
   $("#favorite-search-list").innerHTML = "";
   for (let i = 0; i < favRecipeArray.length; i++) {
     if (favRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
-      searchResult.push(favRecipeArray[i]);
+      searchResult.push(favRecipeArray[i]); // Original search result
     }
   }
 
-  // Apply filter
+  // Apply filter to search result
   if (filters.length > 0) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
@@ -548,6 +549,7 @@ function createSearchFea(inputVal) {
     });
   }
 
+  // Populate section with filtered result
   searchResult.forEach((item) => {
     let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
     newFeaRecipeCard.data = item;
@@ -571,11 +573,11 @@ function createSearchFea(inputVal) {
   for (let i = 0; i < myRecipeArray.length; i++) {
     console.log(myRecipeArray[i].title); 
     if (myRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
-      searchResult.push(myRecipeArray[i]);
+      searchResult.push(myRecipeArray[i]); // Original search result
     }
   }
 
-  // Apply filter
+  // Apply filter to search result
   if (filters.length > 0) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
@@ -587,6 +589,7 @@ function createSearchFea(inputVal) {
     });
   }
 
+  // Populate section with filtered result
   searchResult.forEach((item) => {
     let newFeaRecipeCard = document.createElement("recipe-card-my-my-page");
     newFeaRecipeCard.data = item;
