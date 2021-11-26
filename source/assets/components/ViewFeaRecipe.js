@@ -1,6 +1,10 @@
 import { $, loadMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
+<<<<<<< HEAD
 import { getImgUrl, getTitle, getTime, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
+=======
+import { getImgUrl, getTitle, getTime, getSteps, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
+>>>>>>> 2f36edb5324c0f032253a06e88c6de8967e13248
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 /**
@@ -343,11 +347,11 @@ class ViewFeaRecipe extends HTMLElement {
 
         let stepsTitle = document.createElement("h2");
         stepsTitle.textContent = "Procedure and steps: ";
+        // stepsSec.innerHTML = getSteps(data);
 
         let stepsSec = document.createElement("section");
         // stepsSec.innerHTML = getSteps(data);
         stepsSec.id = "steps-list";
-
         let instructionArray = getFeaturedSteps(data);
         let instructionOrderedList = document.createElement("ol");
 
@@ -534,6 +538,7 @@ class ViewFeaRecipe extends HTMLElement {
         $("#view-nutrition-page").appendChild(nutritionPage);
     }
 
+
     /**
      * Leave Featured Recipe Page to landing page using router object.
      * @returns Void
@@ -547,7 +552,10 @@ class ViewFeaRecipe extends HTMLElement {
         }
         else if ($("#favorite-page").classList.contains("shown")) {
             router.navigate("ToFavoritePage");
-        }
+        } 
+        else if ($("#search-featured").classList.contains("shown")) {
+            router.navigate("ToSearchPage");
+        } 
         else {
             router.navigate("home");
         }
