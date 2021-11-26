@@ -1,10 +1,6 @@
 import { $, loadMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
-<<<<<<< HEAD
 import { getImgUrl, getTitle, getTime, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
-=======
-import { getImgUrl, getTitle, getTime, getSteps, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
->>>>>>> 2f36edb5324c0f032253a06e88c6de8967e13248
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 /**
