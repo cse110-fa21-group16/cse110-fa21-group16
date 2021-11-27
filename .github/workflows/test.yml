@@ -20,9 +20,10 @@ jobs:
 #     - uses: romeovs/lcov-reporter-action@v0.2.16
 #       with:
 #         lcov-file: ./coverage/lcov.info
+    - run: yarm install 
     - uses: mattallty/jest-github-action@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        test-command: npm run --coverage --json --outputFile=jest.results.json
+#       with:
+#         test-command: npm run --coverage --json --outputFile=jest.results.json
 
