@@ -27,6 +27,5 @@ jobs:
       - uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         test-command: npm run --coverage --json --outputFile=jest.results.json
-
+        with:
+          test-command: npm run --coverage
