@@ -15,7 +15,7 @@
   "scripts": {
     "build": "npm install",
     "test": "jest",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage --json --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json"
   },
   "jest": {
     "preset": "jest-puppeteer",
