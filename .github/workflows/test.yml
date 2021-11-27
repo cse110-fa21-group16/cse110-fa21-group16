@@ -1,4 +1,4 @@
-name: Testing/Coverage
+name: Testing and Coverage
 
 on:
   push:
