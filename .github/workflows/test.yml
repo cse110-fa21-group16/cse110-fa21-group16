@@ -11,21 +11,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
-      - name: Run Jest Puppeteer
-        working-directory: __test__
-        run: npm run coverage
+      # - name: Run Jest Puppeteer
+      #   working-directory: __test__
+      #   run: npm run coverage
 
       #     - uses: romeovs/lcov-reporter-action@v0.2.16
       #       with:
       #         lcov-file: ./coverage/lcov.info
-      - run: yarn install
+      - name: Run Jest Puppeteer
+        run: yarn jest --coverage --json --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json
       - uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          test-command: npm run --coverage
