@@ -15,7 +15,7 @@ jobs:
         
     - name: Run Jest Puppeteer
       working-directory: __test__
-      run: npm run coverage
+      run: npm run test
       
     - uses: romeovs/lcov-reporter-action@v0.2.16
       with:
