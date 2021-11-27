@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build": "npm install",
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "jest": {
     "preset": "jest-puppeteer",
