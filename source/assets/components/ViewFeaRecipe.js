@@ -521,7 +521,7 @@ class ViewFeaRecipe extends HTMLElement {
                 console.log(requestBody);
             });
             
-            this.convertUnit(requestBody);
+            let converting = async () => await this.convertUnit(requestBody);
             // console.log(requestBody);
             // console.log(ingredientsOL[i].querySelector("select"));
         }
@@ -588,7 +588,10 @@ class ViewFeaRecipe extends HTMLElement {
      * @returns a Promise of fetched data
      */
     async convertUnit(dataToConvert) {
-        return await this.fetchConvertUnit(dataToConvert);
+        return new Promise((resolve) => {
+            this.fetchConvertUnit(dataToConvert);
+            resolve();
+        })
     }
 
     async fetchConvertUnit(dataToConvert) {
