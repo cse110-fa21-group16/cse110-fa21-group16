@@ -14,6 +14,6 @@ exports.handler = async (event, context) => {
     // event.queryStringParameters.ingredientName
     return {
         statusCode: 200,
-        body: "connected"
+        body: event.queryStringParameters.ingredientName
     }
 };
