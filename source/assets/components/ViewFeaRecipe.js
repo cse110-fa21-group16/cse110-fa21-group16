@@ -588,8 +588,7 @@ class ViewFeaRecipe extends HTMLElement {
      * @returns a Promise of fetched data
      */
     async convertUnit(dataToConvert) {
-        await this.fetchConvertUnit(dataToConvert);
-        return;
+        return await this.fetchConvertUnit(dataToConvert);
     }
 
     async fetchConvertUnit(dataToConvert) {
