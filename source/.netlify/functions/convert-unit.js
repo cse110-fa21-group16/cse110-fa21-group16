@@ -18,20 +18,20 @@ exports.handler = async (event, context) => {
     console.log(sourceAmount);
     console.log(sourceUnit);
     console.log(targetUnit);
-    const API_Endpoint = `https://api.spoonacular.com/recipes/convert?ingredientName=${ingredientName}&sourceAmount=${sourceAmount}&sourceUnit=${sourceUnit}&targetUnit=${targetUnit}s&apiKey=${APIKey}`
+    const API_Endpoint = `https://api.spoonacular.com/recipes/convert?ingredientName=${ingredientName}&sourceAmount=${sourceAmount}&sourceUnit=${sourceUnit}&targetUnit=${targetUnit}&apiKey=${APIKey}`
 
-    return {
-        statusCode: 200,
-        body: `${ingredientName}, ${sourceAmount}, ${sourceUnit}, ${targetUnit}`
-    }
-    // return new Promise((resolve, reject) => {
-    //     fetch(API_Endpoint)
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         resolve({
-    //             statusCode: 200,
-    //             body: JSON.stringify(data)
-    //         })
-    //     }).catch(error => reject(false));
-    // });
+    // return {
+    //     statusCode: 200,
+    //     body: `${ingredientName}, ${sourceAmount}, ${sourceUnit}, ${targetUnit}`
+    // }
+    return new Promise((resolve, reject) => {
+        fetch(API_Endpoint)
+        .then(res => res.json())
+        .then(data => {
+            resolve({
+                statusCode: 200,
+                body: JSON.stringify(data)
+            })
+        }).catch(error => reject(false));
+    });
 };
