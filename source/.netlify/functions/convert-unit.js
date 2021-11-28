@@ -11,8 +11,9 @@ const API_Endpoint = `https://api.spoonacular.com/recipes/informationBulk?ids=63
  * @returns 
  */
 exports.handler = async (event, context) => {
+    // event.queryStringParameters.ingredientName
     return {
         statusCode: 200,
-        body: event.queryStringParameters.ingredientName
+        body: "connected"
     }
 };

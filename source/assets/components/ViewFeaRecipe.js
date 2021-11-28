@@ -628,9 +628,11 @@ class ViewFeaRecipe extends HTMLElement {
                 sourceAmount: dataToConvert.sourceAmount,
                 sourceUnit: dataToConvert.sourceUnit,
                 targetUnit: dataToConvert.targetUnit
-            }))
+            }), {
+                mode: "no-cors"
+            })
             .then((response) => {
-                console.log(response.json());
+                console.log(response);
                 resolve(true);
             }).catch(() => reject(false));
         });
