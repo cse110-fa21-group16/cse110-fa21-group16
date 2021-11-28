@@ -513,16 +513,17 @@ class ViewFeaRecipe extends HTMLElement {
             requestBody["sourceAmount"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("amount");
             requestBody["sourceUnit"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("unit");
       
-            dropdown.addEventListener("change", () => {
+            dropdown.addEventListener("change", async () => {
                 requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;  
                 if (dropdown.options[dropdown.selectedIndex].value == "Select") {
                     requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
                 }
+                await this.fetchConvertUnit(requestBody);
                 // console.log(requestBody);
             });
             
-            let converting = async () => await this.convertUnit(requestBody);
-            converting();
+            // let converting = async () => 
+            // converting();
             // console.log(requestBody);
             // console.log(ingredientsOL[i].querySelector("select"));
         }
