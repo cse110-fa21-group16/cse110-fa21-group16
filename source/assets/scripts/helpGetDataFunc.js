@@ -134,7 +134,7 @@ export function getIngre(data) {
                         <option value="lb">lbs</option>
                         <option value="tsp">teaspoons</option>
                         <option value="cup">cups</option>
-                    </select> : <span id="converted-result"></span> 
+                    </select> : <span id="converted-result"></span>
                 </p></li>`;
         }
         listHtml += newIngreList;
