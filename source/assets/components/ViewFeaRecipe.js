@@ -620,7 +620,7 @@ class ViewFeaRecipe extends HTMLElement {
         // });
 
         return new Promise((resolve, reject) => {
-            fetch("https://61a34bb0cca43b0007e09268--unruffled-lichterman-185ae7.netlify.app/.netlify/functions/convert-unit?" + new URLSearchParams({
+            fetch("./.netlify/functions/convert-unit?" + new URLSearchParams({
                 ingredientName: dataToConvert.ingredientName,
                 sourceAmount: dataToConvert.sourceAmount,
                 sourceUnit: dataToConvert.sourceUnit,
