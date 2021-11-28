@@ -3,6 +3,8 @@ import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime, getFeaturedSteps, getIngreFea } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
+let convertedData;
+
 /**
  * This is the component for the View Featured Recipe Page.
  * @class
@@ -520,15 +522,14 @@ class ViewFeaRecipe extends HTMLElement {
                 }
                 // await this.fetchConvertUnit(requestBody);
                 // console.log(requestBody);
-                let convertedData;
-                let convertInit = async (dataToConvert, storage) => {
-                    let convertSuccess = await this.fetchConvertUnit(dataToConvert, storage);
+                let convertInit = async (dataToConvert) => {
+                    let convertSuccess = await this.fetchConvertUnit(dataToConvert);
                     if (!convertSuccess) {
                         console.log("Convert Sucess");
                         return;
                     }
                 }
-                convertInit(requestBody, convertedData);
+                convertInit(requestBody);
                 console.log(convertedData);
             });
         }
@@ -630,8 +631,8 @@ class ViewFeaRecipe extends HTMLElement {
             })
             .then((response) => response.json())
             .then((data) => {
-                storage = data;
-                console.log(data);
+                convertedData = data;
+                // console.log(data);
                 resolve(true);
             }).catch(() => reject(false));
         });
