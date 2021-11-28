@@ -518,11 +518,10 @@ class ViewFeaRecipe extends HTMLElement {
                 if (dropdown.options[dropdown.selectedIndex].value == "Select") {
                     requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
                 }
-                await this.convertUnit(requestBody);
                 console.log(requestBody);
             });
             
-            
+            this.convertUnit(requestBody);
             // console.log(requestBody);
             // console.log(ingredientsOL[i].querySelector("select"));
         }
@@ -589,8 +588,14 @@ class ViewFeaRecipe extends HTMLElement {
      * @returns a Promise of fetched data
      */
     async convertUnit(dataToConvert) {
-        return new Promise((resolve) => {
+        await this.fetchConvertUnit(dataToConvert);
+        return;
+    }
+
+    async fetchConvertUnit(dataToConvert) {
+        return new Promise((resolve, reject) => {
             fetch("./.netlify/functions/convert-unit", {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
