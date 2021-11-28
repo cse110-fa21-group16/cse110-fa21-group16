@@ -623,7 +623,7 @@ class ViewFeaRecipe extends HTMLElement {
         // });
 
         return new Promise((resolve, reject) => {
-            fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit?" + new URLSearchParams({
+            fetch("https://61a34577a4ef520007bbb00b--unruffled-lichterman-185ae7.netlify.app/.netlify/functions/convert-unit?" + new URLSearchParams({
                 ingredientName: dataToConvert.ingredientName,
                 sourceAmount: dataToConvert.sourceAmount,
                 sourceUnit: dataToConvert.sourceUnit,
@@ -631,9 +631,8 @@ class ViewFeaRecipe extends HTMLElement {
             }), {
                 mode: "no-cors"
             })
-            .then((response) => {
-                response.json();
-            }).then((data) => {
+            .then((response) => response.json())
+            .then((data) => {
                 console.log(data);
                 resolve(true);
             }).catch(() => reject(false));
