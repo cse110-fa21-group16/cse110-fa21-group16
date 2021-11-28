@@ -3,8 +3,6 @@ import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime, getFeaturedSteps, getIngreFea } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
-let convertedData;
-
 /**
  * This is the component for the View Featured Recipe Page.
  * @class
@@ -507,7 +505,8 @@ class ViewFeaRecipe extends HTMLElement {
         this.shadow.appendChild(card);
         // console.log(ingreListSec.querySelector("li[id='1']").querySelector("p[id='amount']").getAttribute("unit"));
         let ingredientsOL = ingreListSec.querySelector("ol").querySelectorAll("li");
-        console.log(ingredientsOL);
+
+        // Loop thru ol and parse the necessary parameters
         for (let i = 0; i < ingredientsOL.length; i++) {
             let requestBody = {};
             let dropdown = ingredientsOL[i].querySelector("select");
@@ -520,8 +519,6 @@ class ViewFeaRecipe extends HTMLElement {
                 if (dropdown.options[dropdown.selectedIndex].value == "Select") {
                     requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
                 }
-                // await this.fetchConvertUnit(requestBody);
-                // console.log(requestBody);
                 let convertInit = async (dataToConvert, locationObject) => {
                     let convertSuccess = await this.fetchConvertUnit(dataToConvert, locationObject);
                     if (!convertSuccess) {
@@ -529,11 +526,9 @@ class ViewFeaRecipe extends HTMLElement {
                         return;
                     }
                 }
-                convertInit(requestBody, ingredientsOL[i]);
-                console.log(convertedData);
+                convertInit(requestBody, ingredientsOL[i]); // Call the netlify function for API call
             });
         }
-        
     }
 
     /**
@@ -591,48 +586,22 @@ class ViewFeaRecipe extends HTMLElement {
     }
     
     /**
-     * 
-     * @param {Object} dataToConvert JSON object
-     * @returns a Promise of fetched data
+     * Make a GET call to the netlify function using provided parameters, which would then
+     * returns the converted result from spoonacular API.
+     * @param {Object} dataToConvert JSON object contains parsed unit conversion data.
+     * @param {HTMLElement} locationObject HTML element contain the location to display result.
+     * @returns a Promise of fetched data.
      */
-    async convertUnit(dataToConvert) {
-        return new Promise((resolve) => {
-            this.fetchConvertUnit(dataToConvert);
-            resolve();
-        })
-    }
-
     async fetchConvertUnit(dataToConvert, locationObject) {
-        // return new Promise((resolve, reject) => {
-        //     // fetch("./.netlify/functions/convert-unit", {
-        //     fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit", {
-        //     // fetch("https://api.spoonacular.com/recipes/convert?ingredientName=jalapenos&sourceAmount=1&sourceUnit=kg&targetUnit=kgs&apiKey=c99e76cd4f364ab1b5389041271a1db8", {
-        //         method: "POST",
-        //         mode: "no-cors",
-        //         headers: {
-        //             "Content-Type": "application/json"
-        //         },
-        //         body: dataToConvert
-        //     })
-        //     .then((response) => {
-        //         console.log(response.json());
-        //         resolve(true);
-        //     }).catch(() => reject(false));
-        // });
-
         return new Promise((resolve, reject) => {
             fetch("./.netlify/functions/convert-unit?" + new URLSearchParams({
                 ingredientName: dataToConvert.ingredientName,
                 sourceAmount: dataToConvert.sourceAmount,
                 sourceUnit: dataToConvert.sourceUnit,
                 targetUnit: dataToConvert.targetUnit
-            }), {
-                mode: "no-cors"
-            })
+            }))
             .then((response) => response.json())
             .then((data) => {
-                convertedData = data;
-                // console.log(data);
                 locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
                 console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
                 resolve(true);

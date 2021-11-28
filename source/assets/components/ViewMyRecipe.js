@@ -385,46 +385,6 @@ class ViewMyRecipe extends HTMLElement {
         let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
         ingreListSec.innerHTML = getIngre(data);
-        
-        const gramList = ingreListSec.children[0].children;
-        [...gramList].forEach((listItem, index) =>{
-            let gramButton = listItem.children[listItem.children.length - 2]
-            let ozButton = listItem.children[listItem.children.length - 1];
-            let ingreName = data.extendedIngredients[index].name;
-            let ingreAmount = data.extendedIngredients[index].amount;
-            let ingreUnit = data.extendedIngredients[index].unit;
-            
-            if(gramButton !== undefined){
-                gramButton.addEventListener('click', () =>{
-                    gramButton.disabled = true;
-                    fetch("./.netlify/functions/convert-unit.js")
-                    // fetch('./.netlify/functions/convert-unit')
-                    // fetch(`https://api.spoonacular.com/recipes/convert?apiKey=${apiKey}&ingredientName=${ingreName}&sourceAmount=${ingreAmount}&sourceUnit=${ingreUnit}&targetUnit=grams`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const elements = data.answer.split(" ");
-                        const grams = document.createElement("p");
-                        grams.innerHTML = `- ${elements[elements.length - 2]} ${elements[elements.length - 1]}`;
-                        listItem.children[1].remove();
-                        listItem.insertBefore(grams, listItem.children[listItem.children.length - 2]);
-                    });
-                });
-            }
-            if(ozButton !== undefined){
-                ozButton.addEventListener('click', () =>{
-                    ozButton.disabled = true;
-                    fetch(`https://api.spoonacular.com/recipes/convert?apiKey=${apiKey}&ingredientName=${ingreName}&sourceAmount=${ingreAmount}&sourceUnit=${ingreUnit}&targetUnit=ounces`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const elements = data.answer.split(" ");
-                        const grams = document.createElement("p");
-                        grams.innerHTML = `- ${elements[elements.length - 2]} ${elements[elements.length - 1]}`;
-                        listItem.children[1].remove();
-                        listItem.insertBefore(grams, listItem.children[listItem.children.length - 2]);
-                    });
-                })
-            }
-        });
 
         ingreAside.appendChild(ingreLabel);
         ingreAside.appendChild(ingreListSec);

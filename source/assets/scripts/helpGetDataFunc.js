@@ -75,34 +75,16 @@ export function getIngre(data) {
     for (let i of ingreArray) {
         let ingreName = i.name;
         let ingreAmount = i.amount;
-        // let ingreUnit = i.measures.us.unitLong;
         let ingreUnit = i.unit;
         let newIngreList;
         
         if(typeof ingreAmount === "string"){
             ingreAmount = Number(ingreAmount).toFixed(2);
-        }
-        // let serving = ["grams", "kgs", "lbs", "tbsp", "cups"]
-        if(serving.includes(ingreUnit)){
-            // newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount} ${ingreUnit}</p>
-            // <button class="button convert-grams">g</button>
-            // <button class="button convert-oz">oz</button></li>`;
-
-        newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount} ${ingreUnit}</p>
-        <p>Convert to 
-            <select id="unit-type">
-                <option value="Select" selected="selected">Select</option>
-                <option value="grams">grams</option>
-                <option value="kgs">kgs</option>
-                <option value="tbsps">tbsps</option>
-                <option value="lb">lb</option>
-            </select>
-        </p></li>`;
+            newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount} ${ingreUnit}</p>`;
         }
         else{
             newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount.toFixed(2)} ${ingreUnit}</p></li>`;
         }
-        
         listHtml += newIngreList;
     }
     listHtml += "</ol>"
@@ -122,7 +104,6 @@ export function getIngre(data) {
     for (let i = 0; i < ingreArray.length; i++) {
         let ingreName = ingreArray[i].name;
         let ingreAmount = ingreArray[i].amount;
-        // let ingreUnit = i.measures.us.unitLong;
         let ingreUnit = ingreArray[i].unit;
         let newIngreList;
         
@@ -134,8 +115,10 @@ export function getIngre(data) {
                         <option value="Select" selected="selected">Select</option>
                         <option value="grams">grams</option>
                         <option value="kgs">kgs</option>
-                        <option value="tbsps">tbsps</option>
-                        <option value="lb">lb</option>
+                        <option value="tbsps">tablespoons</option>
+                        <option value="lb">lbs</option>
+                        <option value="tsp">teaspoons</option>
+                        <option value="cup">cups</option>
                     </select>
                 </p></li>`;
         }
@@ -147,8 +130,10 @@ export function getIngre(data) {
                         <option value="Select" selected="selected">Select</option>
                         <option value="grams">grams</option>
                         <option value="kgs">kgs</option>
-                        <option value="tbsps">tbsps</option>
-                        <option value="lb">lb</option>
+                        <option value="tbsps">tablespoons</option>
+                        <option value="lb">lbs</option>
+                        <option value="tsp">teaspoons</option>
+                        <option value="cup">cups</option>
                     </select> : <span id="converted-result"></span> 
                 </p></li>`;
         }
