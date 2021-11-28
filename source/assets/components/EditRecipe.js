@@ -41,7 +41,7 @@ class EditRecipe extends HTMLElement {
         article {
           width: 70vw;
           box-shadow: 0px 0px 15px #888888;
-          margin: 10px 0px 90px 10px;
+          margin: 10px 0px 90px 0px;
         }
          
          /*****************************************
@@ -346,6 +346,7 @@ class EditRecipe extends HTMLElement {
           font-size: 20px;
           margin: 20px;
           padding: 5px 40px;
+          min-width: 150px;
          }
          
          #delete-edit,
@@ -427,7 +428,12 @@ class EditRecipe extends HTMLElement {
     let picTitle = document.createElement("textarea");
     picSection.setAttribute("class", "picture");
     picTitle.setAttribute("id", "recipe-name");
-    picTitle.innerHTML = getTitle(data);
+    if (getTitle(data) == "") {
+      picTitle.placeholder = "Recipe Name";
+    }
+    else {
+      picTitle.innerHTML = getTitle(data);
+    }
 
     let picImgContainer = document.createElement("div");
     let picInput = document.createElement("input");
@@ -606,6 +612,26 @@ class EditRecipe extends HTMLElement {
       unitPounds.setAttribute("value", "lbs");
       unitTablespoons.setAttribute("value", "tbps");
       unitCups.setAttribute("value", "cups");
+      switch (ingreArr[i].unit) {
+        case "":
+          unitDefault.setAttribute("selected", "selected");
+          break;
+        case "grams":
+          unitGrams.setAttribute("selected", "selected");
+          break;
+        case "kgs":
+          unitKilograms.setAttribute("selected", "selected");
+          break;
+        case "lbs":
+          unitPounds.setAttribute("selected", "selected");
+          break;
+        case "tbps":
+          unitTablespoons.setAttribute("selected", "selected");
+          break;
+        case "cups":
+          unitCups.setAttribute("selected", "selected");
+          break;
+      }
       unitDefault.innerHTML = "Select unit";
       unitGrams.innerHTML = "grams";
       unitKilograms.innerHTML = "kgs";
@@ -613,7 +639,6 @@ class EditRecipe extends HTMLElement {
       unitTablespoons.innerHTML = "tbps";
       unitCups.innerHTML = "cups";
       unitColumnInput.setAttribute("class", "unit-item");
-      unitColumnInput.value = ingreArr[i].unit;
       unitColumnInput.appendChild(unitDefault);
       unitColumnInput.appendChild(unitGrams);
       unitColumnInput.appendChild(unitKilograms);
@@ -862,7 +887,7 @@ class EditRecipe extends HTMLElement {
   addIngreItems(buttonItem) {
     let ingredientListDiv = document.createElement("div");
     ingredientListDiv.setAttribute("class", "ingredients-list-div");
-  
+
     let ingredientColumn = document.createElement("div"); // ingredient column
     let ingredientColumnTitle = document.createElement("h2");
     let ingredientColumnInput = document.createElement("textarea");
@@ -870,30 +895,30 @@ class EditRecipe extends HTMLElement {
     ingredientColumnTitle.setAttribute("class", "title");
     ingredientColumnTitle.innerHTML = "Ingredient:";
     ingredientColumnInput.setAttribute("class", "ingredients-item");
-  
+
     ingredientColumn.appendChild(ingredientColumnTitle);
     ingredientColumn.appendChild(ingredientColumnInput);
-  
+
     let amountColumn = document.createElement("div"); // amount column
     let amountColumnTitle = document.createElement("h2");
     let amountColumnInput = document.createElement("input");
-  
+
     amountColumn.setAttribute("class", "amount-column");
     amountColumnTitle.setAttribute("class", "title");
     amountColumnTitle.innerHTML = "Amount:";
     amountColumnInput.setAttribute("class", "amount-item");
     amountColumnInput.setAttribute("type", "number");
     amountColumnInput.setAttribute("value", "1");
-  
+
     amountColumn.appendChild(amountColumnTitle);
     amountColumn.appendChild(amountColumnInput);
-  
+
     let unitColumn = document.createElement("div"); // unit column
     let unitColumnTitle = document.createElement("h2");
     unitColumn.setAttribute("class", "unit-column");
     unitColumnTitle.setAttribute("class", "title");
     unitColumnTitle.innerHTML = "Unit:";
-  
+
     let unitColumnInput = document.createElement("select");
     let unitDefault = document.createElement("option");
     let unitGrams = document.createElement("option");
@@ -920,10 +945,10 @@ class EditRecipe extends HTMLElement {
     unitColumnInput.appendChild(unitPounds);
     unitColumnInput.appendChild(unitTablespoons);
     unitColumnInput.appendChild(unitCups);
-  
+
     unitColumn.appendChild(unitColumnTitle);
     unitColumn.appendChild(unitColumnInput);
-  
+
     ingredientListDiv.appendChild(ingredientColumn);
     ingredientListDiv.appendChild(amountColumn);
     ingredientListDiv.appendChild(unitColumn);
@@ -956,7 +981,7 @@ class EditRecipe extends HTMLElement {
     let procedureListItem = document.createElement("li");
     let procedureListText = document.createElement("textarea");
     procedureListText.setAttribute("class", "step-item");
-  
+
     procedureListItem.appendChild(procedureListText);
     olItem.appendChild(procedureListItem);
   }

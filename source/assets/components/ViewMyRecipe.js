@@ -178,6 +178,22 @@ class ViewMyRecipe extends HTMLElement {
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
         }
+        #ingre-list button{
+            background-color: transparent;
+            border: rgb(34,139,34) 1px solid;
+            border-radius: 4px;
+            color: rgb(34,139,34);
+            
+            cursor: pointer;
+            font-size: 12px;
+            
+            padding: .2em .8em;
+            margin: 0 .2em;
+        }
+        #ingre-list button:hover{
+            background: white;
+            color: #305a50;
+        }
 
         /* main-footer */
         #main-footer{
@@ -313,11 +329,11 @@ class ViewMyRecipe extends HTMLElement {
         // let toNutPage = document.createElement("button");
         // toNutPage.textContent = "Nutrition Facts";
         
-        var speechSynthesis = window.speechSynthesis;
+        let speechSynthesis = window.speechSynthesis;
         let textToSpeech = document.createElement("button");
         textToSpeech.textContent = "TTS";
         textToSpeech.addEventListener("click", () => {
-            this.playTextToSpeech();
+            this.playTextToSpeech(speechSynthesis);
         })
 
         leftMainSec.appendChild(recipeImg);
@@ -514,11 +530,13 @@ class ViewMyRecipe extends HTMLElement {
         $("#add-recipe-page").classList.add("main-shown");
     }
 
+
     /**
-     * TTS for each step in the recipe page
+     * Play the instruction step by step
+     * @param{Object} speechSynthesis a speech Object 
      * @returns Void
      */
-    playTextToSpeech() {
+    playTextToSpeech(speechSynthesis) {
         let recipeText = this.shadowRoot.querySelector("#steps-list");
         recipeText = recipeText.querySelectorAll("li");
         let i = 0;
@@ -539,6 +557,7 @@ class ViewMyRecipe extends HTMLElement {
         });            
     }
 }
+
 
 // Define the "view-fea-recipe" element using this class.
 customElements.define("view-my-recipe", ViewMyRecipe);

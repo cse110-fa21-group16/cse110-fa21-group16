@@ -65,7 +65,7 @@ class NewCard extends HTMLElement {
   addNewRecipe() {
     leaveMain();
     let addRecipePage = document.createElement("add-recipe");
-    addRecipePage.data = {};
+    addRecipePage.data = JSON.parse(localStorage.getItem("draftMyRecipe"));
     $("#add-recipe-page").appendChild(addRecipePage);
     $("#add-recipe-page").classList.add("main-shown");
   }
