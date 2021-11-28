@@ -632,7 +632,9 @@ class ViewFeaRecipe extends HTMLElement {
                 mode: "no-cors"
             })
             .then((response) => {
-                console.log(response);
+                response.json();
+            }).then((data) => {
+                console.log(data);
                 resolve(true);
             }).catch(() => reject(false));
         });
