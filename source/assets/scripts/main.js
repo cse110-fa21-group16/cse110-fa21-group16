@@ -7,6 +7,7 @@ let nextMyRecipeID = JSON.parse(localStorage.getItem("nextMyRecipeID"));
 let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
+let draftMyRecipe = JSON.parse(localStorage.getItem("draftMyRecipe"))
 let filters = [];
 
 /**
@@ -62,7 +63,7 @@ async function init() {
   }
 
   // Routing view for every card in feaReicpeArray
-  for (let i = 0; i < feaRecipeArray.length; i++ ) {
+  for (let i = 0; i < feaRecipeArray.length; i++) {
     let page = feaRecipeArray[i]["title"];
     page = page.replace(/&/g, ""); // replace all ampersand in string
     router.addPage(page, () => {
@@ -194,6 +195,7 @@ function createFavRecipeCards() {
 
     if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
+      localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray));
       $("#favorite-recipes").classList.remove("shown");
       resolve(true);
     }
@@ -226,10 +228,17 @@ function createMyRecipeCards() {
 
     if (nextMyRecipeID == null) {
       nextMyRecipeID = 0;
+      localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     }
 
     if (myRecipeArray == null) {
       myRecipeArray = [];
+      localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+    }
+
+    if (draftMyRecipe == null) {
+      draftMyRecipe = {};
+      localStorage.setItem("draftMyRecipe", JSON.stringify(draftMyRecipe));
     }
 
     $("#my-list").innerHTML = "";
@@ -256,7 +265,7 @@ function createMyRecipeCards() {
         $("#view-recipe-page").appendChild(viewRecipePage);
         leaveMain();
       });
-  
+
       $("#my-list").appendChild(newMyRecipeCard);
     }
     if (myRecipeArray.length < 2) {
@@ -321,10 +330,17 @@ export function createMyRecipePage() {
 
     if (nextMyRecipeID == null) {
       nextMyRecipeID = 0;
+      localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     }
 
     if (myRecipeArray == null) {
       myRecipeArray = [];
+      localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+    }
+
+    if (draftMyRecipe == null) {
+      draftMyRecipe = {};
+      localStorage.setItem("draftMyRecipe", JSON.stringify(draftMyRecipe));
     }
 
     $("#my-page-list").innerHTML = "";
@@ -346,7 +362,7 @@ export function createMyRecipePage() {
         $("#view-recipe-page").appendChild(viewRecipePage);
         leaveMain();
       });
-  
+
       $("#my-page-list").appendChild(newMyRecipeCard);
     }
     let addNewCard = document.createElement("new-card-my-page");
@@ -367,7 +383,7 @@ function setButtonListen() {
     router.navigate("ToFeaturedPage");
   });
 
-  $("#feature-page-to-landing").addEventListener("click", (e) =>{
+  $("#feature-page-to-landing").addEventListener("click", (e) => {
     if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
@@ -503,7 +519,7 @@ function createSearchFea(inputVal) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
         if (item[filters[i]] === false) {
-            return false;
+          return false;
         }
       }
       return true;
@@ -516,7 +532,7 @@ function createSearchFea(inputVal) {
     newFeaRecipeCard.data = item;
     $("#featured-search-list").appendChild(newFeaRecipeCard);
   });
-  
+
   if (!$("#featured-search-list").childNodes.length) {
     $("#search-featured").classList.remove("shown");
   }
@@ -527,7 +543,7 @@ function createSearchFea(inputVal) {
  * @param {String} inputVal the input string for search query.
  * @returns Void
  */
- function createSearchFav(inputVal) {
+function createSearchFav(inputVal) {
   let searchResult = [];
   $("#search-favorite").classList.add("shown");
   $("#favorite-search-list").innerHTML = "";
@@ -542,7 +558,7 @@ function createSearchFea(inputVal) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
         if (item[filters[i]] === false) {
-            return false;
+          return false;
         }
       }
       return true;
@@ -566,12 +582,12 @@ function createSearchFea(inputVal) {
  * @param {String} inputVal the input string for search query.
  * @returns Void
  */
- function createSearchMy(inputVal) {
+function createSearchMy(inputVal) {
   let searchResult = [];
   $("#search-my").classList.add("shown");
   $("#my-search-list").innerHTML = "";
   for (let i = 0; i < myRecipeArray.length; i++) {
-    console.log(myRecipeArray[i].title); 
+    console.log(myRecipeArray[i].title);
     if (myRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
       searchResult.push(myRecipeArray[i]); // Original search result
     }
@@ -582,7 +598,7 @@ function createSearchFea(inputVal) {
     searchResult = searchResult.filter((item) => {
       for (let i = 0; i < filters.length; i++) {
         if (item[filters[i]] === false) {
-            return false;
+          return false;
         }
       }
       return true;
@@ -775,7 +791,7 @@ function bindEscKey() {
  * as expected.
  * @returns Void
  */
- function bindPopstate() {
+function bindPopstate() {
   /**
    * IMPORTANT: Pass in the boolean true as the second argument in navigate() here
    * so your navigate() function does not add your going back action to the history,

@@ -49,7 +49,7 @@ class NewCardMyPage extends HTMLElement {
     checkButton.src = "assets/images/icons/add.svg";
     checkButton.width = "50";
     card.appendChild(checkButton);
-    checkButton.addEventListener("click", this.addNewRecipe);
+    card.addEventListener("click", this.addNewRecipe);
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);
@@ -62,7 +62,7 @@ class NewCardMyPage extends HTMLElement {
   addNewRecipe() {
     leaveMain();
     let addRecipePage = document.createElement("add-recipe");
-    addRecipePage.data = {};
+    addRecipePage.data = JSON.parse(localStorage.getItem("draftMyRecipe"));
     $("#add-recipe-page").appendChild(addRecipePage);
     $("#add-recipe-page").classList.add("main-shown");
   }

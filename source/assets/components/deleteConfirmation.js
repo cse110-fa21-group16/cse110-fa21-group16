@@ -64,10 +64,19 @@ class DeleteConfirmation extends HTMLElement {
             min-width: 120px;
             padding: 5px 20px;
         }
+
+        #delete-yes {
+            color: #c0392b;
+        }
         
-        button:hover {
+        #delete-no:hover {
             border: 1px solid #313131;
-            background: darkgreen;
+            background: rgb(48, 90, 80);
+            color: white;
+        }
+
+        #delete-yes:hover {
+            background: #c0392b;
             color: white;
         }
         `;
@@ -123,13 +132,13 @@ class DeleteConfirmation extends HTMLElement {
         $("#delete-page").innerHTML = "";
         loadMain();
         if ($("#my-page").classList.contains("shown")) {
-            let currState = {"page": "ToMyRecipePage"};
-            history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
+            let currState = { "page": "ToMyRecipePage" };
+            history.replaceState(currState, "", window.location.origin + window.location.pathname + `#Deleted${data["id"]}`)
             router.navigate("ToMyRecipePage", true);
         }
         else {
-            let currState = {"page": "home"};
-            history.replaceState(currState, "", window.location.origin+window.location.pathname+`#Deleted${data["id"]}`)
+            let currState = { "page": "home" };
+            history.replaceState(currState, "", window.location.origin + window.location.pathname + `#Deleted${data["id"]}`)
             router.navigate("home", true);
         }
     }
