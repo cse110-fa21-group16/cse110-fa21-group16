@@ -14,6 +14,10 @@ exports.handler = async (event, context) => {
     let sourceAmount = event.queryStringParameters.sourceAmount;
     let sourceUnit = event.queryStringParameters.sourceUnit;
     let targetUnit = event.queryStringParameters.targetUnit;
+    console.log(ingredientName);
+    console.log(sourceAmount);
+    console.log(sourceUnit);
+    console.log(targetUnit);
     const API_Endpoint = `https://api.spoonacular.com/recipes/convert?ingredientName=${ingredientName}&sourceAmount=${sourceAmount}&sourceUnit=${sourceUnit}&targetUnit=${targetUnit}s&apiKey=${APIKey}`
 
     // return {
@@ -21,7 +25,7 @@ exports.handler = async (event, context) => {
     //     body: event.queryStringParameters.ingredientName
     // }
     return new Promise((resolve, reject) => {
-        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=639487&apiKey=${APIKey}&includeNutrition=true`)
+        fetch(API_Endpoint)
         .then(res => res.json())
         .then(data => {
             resolve({
