@@ -1,5 +1,7 @@
 import { $, loadMain, loadLanding, loadMyRecipe } from "../scripts/main.js";
 import { addMy } from "../scripts/helpCrudFunc.js";
+import { getTitle, getStepsArray, getIngreArray, getImgUrl } from "../scripts/helpGetDataFunc.js";
+import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 /**
  * This is the component for the Add Recipe Page
@@ -39,7 +41,7 @@ class AddRecipe extends HTMLElement {
       article {
         width: 70vw;
         box-shadow: 0px 0px 15px #888888;
-        margin: 10px 0px 90px 10px;
+        margin: 10px 0px 90px 0px;
       }
        
        /*****************************************
@@ -333,6 +335,7 @@ class AddRecipe extends HTMLElement {
        
        /* Standard style for submit and delete buttons */
        #submit-edit,
+       #save-edit,
        #cancel-edit {
         border: 1px solid #ccccd8;
         background-color: #fff;
@@ -342,13 +345,14 @@ class AddRecipe extends HTMLElement {
         font-size: 20px;
         margin: 20px;
         padding: 5px 40px;
+        min-width: 150px;
        }
 
        #cancel-edit {
         color: #c0392b;
        }
 
-       
+       #save-edit:hover,
        #submit-edit:hover {
         border: 1px solid #313131;
         background: rgb(48, 90, 80);
@@ -380,7 +384,7 @@ class AddRecipe extends HTMLElement {
     logoSec.setAttribute("id", "logo-sec");
     titleSec.setAttribute("id", "title-sec");
     holderSec.setAttribute("id", "holder-sec");
-    
+
     let header = document.createElement("header");
     let headerDiv = document.createElement("div");
     let headerHomeLink = document.createElement("a");
@@ -422,14 +426,29 @@ class AddRecipe extends HTMLElement {
     let picTitle = document.createElement("textarea");
     picSection.setAttribute("class", "picture");
     picTitle.setAttribute("id", "recipe-name");
-    picTitle.placeholder = "Recipe Name";
+    if (JSON.stringify(data) === "{}") {
+      picTitle.placeholder = "Recipe Name";
+    }
+    else {
+      if (getTitle(data) == "") {
+        picTitle.placeholder = "Recipe Name";
+      }
+      else {
+        picTitle.innerHTML = getTitle(data);
+      }
+    }
 
     let picImgContainer = document.createElement("div");
     let picInput = document.createElement("input");
     let picImgPreRead = document.createElement("img");
-    picImgPreRead.style.display = "none";
+    picImgPreRead.style.display = "block";
     picImgPreRead.id = "pic-img-pre-read";
-    picImgPreRead.src = "assets/images/noPhoto.jpeg";
+    if (JSON.stringify(data) === "{}") {
+      picImgPreRead.src = "assets/images/noPhoto.jpeg";
+    }
+    else {
+      picImgPreRead.src = getImgUrl(data);
+    }
     picImgContainer.setAttribute("class", "recipe-image-container");
     picInput.setAttribute("type", "file");
     picInput.setAttribute("accept", "image/*");
@@ -530,6 +549,21 @@ class AddRecipe extends HTMLElement {
 
     dietSection.appendChild(dietDiv);
 
+    if (JSON.stringify(data) !== "{}") {
+      if (getVegan(data)) {
+        optionVegan.setAttribute("checked", "");
+      }
+      if (getDairy(data)) {
+        optionDairy.setAttribute("checked", "");
+      }
+      if (getGluten(data)) {
+        optionGlutten.setAttribute("checked", "");
+      }
+      if (getVegeta(data)) {
+        optionVegetarian.setAttribute("checked", "");
+      }
+    }
+
     ////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////// creating the main > ingred. section //////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -539,30 +573,171 @@ class AddRecipe extends HTMLElement {
     let ingredientGeneralDiv = document.createElement("div");
     ingredientGeneralDiv.setAttribute("class", "ingredients-general-div");
 
-    let ingredientListDiv = document.createElement("div");
-    ingredientListDiv.setAttribute("class", "ingredients-list-div");
+    if (JSON.stringify(data) === "{}") {
+      let ingredientListDiv = document.createElement("div");
+      ingredientListDiv.setAttribute("class", "ingredients-list-div");
 
-    let ingredientColumn = document.createElement("div"); // ingredient column
-    let ingredientColumnTitle = document.createElement("h2");
-    let ingredientColumnInput = document.createElement("textarea");
-    ingredientColumn.setAttribute("class", "ingredient-column");
-    ingredientColumnTitle.setAttribute("class", "title");
-    ingredientColumnTitle.innerHTML = "Ingredient:";
-    ingredientColumnInput.setAttribute("class", "ingredients-item");
+      let ingredientColumn = document.createElement("div"); // ingredient column
+      let ingredientColumnTitle = document.createElement("h2");
+      let ingredientColumnInput = document.createElement("textarea");
+      ingredientColumn.setAttribute("class", "ingredient-column");
+      ingredientColumnTitle.setAttribute("class", "title");
+      ingredientColumnTitle.innerHTML = "Ingredient:";
+      ingredientColumnInput.setAttribute("class", "ingredients-item");
 
-    ingredientColumn.appendChild(ingredientColumnTitle);
-    ingredientColumn.appendChild(ingredientColumnInput);
+      ingredientColumn.appendChild(ingredientColumnTitle);
+      ingredientColumn.appendChild(ingredientColumnInput);
 
-    let amountColumn = document.createElement("div"); // amount column
-    let amountColumnTitle = document.createElement("h2");
-    let amountColumnInput = document.createElement("input");
+      let amountColumn = document.createElement("div"); // amount column
+      let amountColumnTitle = document.createElement("h2");
+      let amountColumnInput = document.createElement("input");
 
-    amountColumn.setAttribute("class", "amount-column");
-    amountColumnTitle.setAttribute("class", "title");
-    amountColumnTitle.innerHTML = "Amount:";
-    amountColumnInput.setAttribute("class", "amount-item");
-    amountColumnInput.setAttribute("type", "number");
-    amountColumnInput.setAttribute("value", "1");
+      amountColumn.setAttribute("class", "amount-column");
+      amountColumnTitle.setAttribute("class", "title");
+      amountColumnTitle.innerHTML = "Amount:";
+      amountColumnInput.setAttribute("class", "amount-item");
+      amountColumnInput.setAttribute("type", "number");
+      amountColumnInput.setAttribute("value", "1");
+
+      amountColumn.appendChild(amountColumnTitle);
+      amountColumn.appendChild(amountColumnInput);
+
+      let unitColumn = document.createElement("div"); // unit column
+      let unitColumnTitle = document.createElement("h2");
+      unitColumn.setAttribute("class", "unit-column");
+      unitColumnTitle.setAttribute("class", "title");
+      unitColumnTitle.innerHTML = "Unit:";
+
+      let unitColumnInput = document.createElement("select");
+      let unitDefault = document.createElement("option");
+      let unitGrams = document.createElement("option");
+      let unitKilograms = document.createElement("option");
+      let unitPounds = document.createElement("option");
+      let unitTablespoons = document.createElement("option");
+      let unitCups = document.createElement("option");
+      unitDefault.setAttribute("value", "");
+      unitGrams.setAttribute("value", "grams");
+      unitKilograms.setAttribute("value", "kgs");
+      unitPounds.setAttribute("value", "lbs");
+      unitTablespoons.setAttribute("value", "tbps");
+      unitCups.setAttribute("value", "cups");
+      unitDefault.innerHTML = "Select unit";
+      unitGrams.innerHTML = "grams";
+      unitKilograms.innerHTML = "kgs";
+      unitPounds.innerHTML = "lbs";
+      unitTablespoons.innerHTML = "tbps";
+      unitCups.innerHTML = "cups";
+      unitColumnInput.setAttribute("class", "unit-item");
+      unitColumnInput.appendChild(unitDefault);
+      unitColumnInput.appendChild(unitGrams);
+      unitColumnInput.appendChild(unitKilograms);
+      unitColumnInput.appendChild(unitPounds);
+      unitColumnInput.appendChild(unitTablespoons);
+      unitColumnInput.appendChild(unitCups);
+
+      unitColumn.appendChild(unitColumnTitle);
+      unitColumn.appendChild(unitColumnInput);
+
+      ingredientListDiv.appendChild(ingredientColumn);
+      ingredientListDiv.appendChild(amountColumn);
+      ingredientListDiv.appendChild(unitColumn);
+      ingredientGeneralDiv.appendChild(ingredientListDiv);
+    }
+    else {
+      let ingreArr = getIngreArray(data);
+      for (let i = 0; i < ingreArr.length; i++) {
+        let ingredientListDiv = document.createElement("div");
+        ingredientListDiv.setAttribute("class", "ingredients-list-div");
+
+        let ingredientColumn = document.createElement("div"); // ingredient column
+        let ingredientColumnTitle = document.createElement("h2");
+        let ingredientColumnInput = document.createElement("textarea");
+        ingredientColumn.setAttribute("class", "ingredient-column");
+        ingredientColumnTitle.setAttribute("class", "title");
+        ingredientColumnTitle.innerHTML = "Ingredient:";
+        ingredientColumnInput.setAttribute("class", "ingredients-item");
+        ingredientColumnInput.innerHTML = ingreArr[i].name;
+
+        ingredientColumn.appendChild(ingredientColumnTitle);
+        ingredientColumn.appendChild(ingredientColumnInput);
+
+        let amountColumn = document.createElement("div"); // amount column
+        let amountColumnTitle = document.createElement("h2");
+        let amountColumnInput = document.createElement("input");
+
+        amountColumn.setAttribute("class", "amount-column");
+        amountColumnTitle.setAttribute("class", "title");
+        amountColumnTitle.innerHTML = "Amount:";
+        amountColumnInput.setAttribute("class", "amount-item");
+        amountColumnInput.setAttribute("type", "number");
+        amountColumnInput.value = ingreArr[i].amount;
+
+        amountColumn.appendChild(amountColumnTitle);
+        amountColumn.appendChild(amountColumnInput);
+
+        let unitColumn = document.createElement("div"); // unit column
+        let unitColumnTitle = document.createElement("h2");
+        unitColumn.setAttribute("class", "unit-column");
+        unitColumnTitle.setAttribute("class", "title");
+        unitColumnTitle.innerHTML = "Unit:";
+
+        let unitColumnInput = document.createElement("select");
+        let unitDefault = document.createElement("option");
+        let unitGrams = document.createElement("option");
+        let unitKilograms = document.createElement("option");
+        let unitPounds = document.createElement("option");
+        let unitTablespoons = document.createElement("option");
+        let unitCups = document.createElement("option");
+        unitDefault.setAttribute("value", "");
+        unitGrams.setAttribute("value", "grams");
+        unitKilograms.setAttribute("value", "kgs");
+        unitPounds.setAttribute("value", "lbs");
+        unitTablespoons.setAttribute("value", "tbps");
+        unitCups.setAttribute("value", "cups");
+        switch (ingreArr[i].unit) {
+          case "":
+            unitDefault.setAttribute("selected", "selected");
+            break;
+          case "grams":
+            unitGrams.setAttribute("selected", "selected");
+            break;
+          case "kgs":
+            unitKilograms.setAttribute("selected", "selected");
+            break;
+          case "lbs":
+            unitPounds.setAttribute("selected", "selected");
+            break;
+          case "tbps":
+            unitTablespoons.setAttribute("selected", "selected");
+            break;
+          case "cups":
+            unitCups.setAttribute("selected", "selected");
+            break;
+        }
+        unitDefault.innerHTML = "Select unit";
+        unitGrams.innerHTML = "grams";
+        unitKilograms.innerHTML = "kgs";
+        unitPounds.innerHTML = "lbs";
+        unitTablespoons.innerHTML = "tbps";
+        unitCups.innerHTML = "cups";
+        unitColumnInput.setAttribute("class", "unit-item");
+        unitColumnInput.appendChild(unitDefault);
+        unitColumnInput.appendChild(unitGrams);
+        unitColumnInput.appendChild(unitKilograms);
+        unitColumnInput.appendChild(unitPounds);
+        unitColumnInput.appendChild(unitTablespoons);
+        unitColumnInput.appendChild(unitCups);
+
+        unitColumn.appendChild(unitColumnTitle);
+        unitColumn.appendChild(unitColumnInput);
+
+        ingredientListDiv.appendChild(ingredientColumn);
+        ingredientListDiv.appendChild(amountColumn);
+        ingredientListDiv.appendChild(unitColumn);
+        ingredientGeneralDiv.appendChild(ingredientListDiv);
+      }
+    }
+
 
     let addIngredient = document.createElement("button");
     addIngredient.setAttribute("class", "add-instruction");
@@ -575,50 +750,6 @@ class AddRecipe extends HTMLElement {
     removeIngredient.setAttribute("id", "remove-ingredient");
     removeIngredient.textContent = "-";
 
-    amountColumn.appendChild(amountColumnTitle);
-    amountColumn.appendChild(amountColumnInput);
-
-    let unitColumn = document.createElement("div"); // unit column
-    let unitColumnTitle = document.createElement("h2");
-    unitColumn.setAttribute("class", "unit-column");
-    unitColumnTitle.setAttribute("class", "title");
-    unitColumnTitle.innerHTML = "Unit:";
-
-    let unitColumnInput = document.createElement("select");
-    let unitDefault = document.createElement("option");
-    let unitGrams = document.createElement("option");
-    let unitKilograms = document.createElement("option");
-    let unitPounds = document.createElement("option");
-    let unitTablespoons = document.createElement("option");
-    let unitCups = document.createElement("option");
-    unitDefault.setAttribute("value", "");
-    unitGrams.setAttribute("value", "grams");
-    unitKilograms.setAttribute("value", "kgs");
-    unitPounds.setAttribute("value", "lbs");
-    unitTablespoons.setAttribute("value", "tbps");
-    unitCups.setAttribute("value", "cups");
-    unitDefault.innerHTML = "Select unit";
-    unitGrams.innerHTML = "grams";
-    unitKilograms.innerHTML = "kgs";
-    unitPounds.innerHTML = "lbs";
-    unitTablespoons.innerHTML = "tbps";
-    unitCups.innerHTML = "cups";
-    unitColumnInput.setAttribute("class", "unit-item");
-    unitColumnInput.appendChild(unitDefault);
-    unitColumnInput.appendChild(unitGrams);
-    unitColumnInput.appendChild(unitKilograms);
-    unitColumnInput.appendChild(unitPounds);
-    unitColumnInput.appendChild(unitTablespoons);
-    unitColumnInput.appendChild(unitCups);
-
-    unitColumn.appendChild(unitColumnTitle);
-    unitColumn.appendChild(unitColumnInput);
-
-    ingredientListDiv.appendChild(ingredientColumn);
-    ingredientListDiv.appendChild(amountColumn);
-    ingredientListDiv.appendChild(unitColumn);
-
-    ingredientGeneralDiv.appendChild(ingredientListDiv);
     ingredientGeneralDiv.appendChild(addIngredient);
     ingredientGeneralDiv.appendChild(removeIngredient);
     ingredientSection.appendChild(ingredientGeneralDiv);
@@ -653,15 +784,29 @@ class AddRecipe extends HTMLElement {
     let procedureList = document.createElement("ol");
     procedureList.setAttribute("class", "step-list");
 
-    // Initialize 3 steps 
-    for (let i = 0; i < 3; i++) {
+    if (JSON.stringify(data) === "{}") {
+      // Initialize 3 steps 
+      for (let i = 0; i < 3; i++) {
 
-      let procedureListItem = document.createElement("li");
-      let procedureListText = document.createElement("textarea");
-      procedureListText.setAttribute("class", "step-item");
+        let procedureListItem = document.createElement("li");
+        let procedureListText = document.createElement("textarea");
+        procedureListText.setAttribute("class", "step-item");
 
-      procedureListItem.appendChild(procedureListText);
-      procedureList.appendChild(procedureListItem);
+        procedureListItem.appendChild(procedureListText);
+        procedureList.appendChild(procedureListItem);
+      }
+    }
+    else {
+      let stepsArr = getStepsArray(data);
+      for (let i = 0; i < stepsArr.length; i++) {
+        let procedureListItem = document.createElement("li");
+        let procedureListText = document.createElement("textarea");
+        procedureListText.setAttribute("class", "step-item");
+        procedureListText.innerHTML = stepsArr[i];
+
+        procedureListItem.appendChild(procedureListText);
+        procedureList.appendChild(procedureListItem);
+      }
     }
 
     // Append Procedure List ol to steps div 
@@ -722,19 +867,23 @@ class AddRecipe extends HTMLElement {
     // Action Buttons
     let submitButton = document.createElement("button");
     let cancelButton = document.createElement("button");
+    let saveButton = document.createElement("button");
 
     submitButton.setAttribute("id", "submit-edit");
     cancelButton.setAttribute("id", "cancel-edit");
+    saveButton.setAttribute("id", "save-edit");
+    saveButton.innerHTML = "Save"
     submitButton.innerHTML = "Submit";
     cancelButton.innerHTML = "Cancel";
 
     // Append Buttons to Div
     actionButtons.appendChild(cancelButton);
+    actionButtons.appendChild(saveButton);
     actionButtons.appendChild(submitButton);
 
     cancelButton.addEventListener("click", this.leaveAdd);
 
-    submitButton.addEventListener("click", () => {
+    saveButton.addEventListener("click", () => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;
@@ -779,7 +928,56 @@ class AddRecipe extends HTMLElement {
 
       inputData["image"] = imgCanvas.toDataURL("image/jpeg");
 
+      localStorage.setItem("draftMyRecipe", JSON.stringify(inputData));
+      this.leaveAdd();
+    });
+
+    submitButton.addEventListener("click", () => {
+      let inputData = {};
+      inputData["title"] = picTitle.value;
+      inputData["vegetarian"] = optionVegetarian.checked;
+      inputData["vegan"] = optionVegan.checked;
+      inputData["glutenFree"] = optionGlutten.checked;
+      inputData["dairyFree"] = optionDairy.checked;
+
+      inputData["extendedIngredients"] = [];
+      let ingreItemList = ingredientGeneralDiv.getElementsByClassName("ingredients-item");
+      let amountList = ingredientGeneralDiv.getElementsByClassName("amount-item");
+      let unitList = ingredientGeneralDiv.getElementsByClassName("unit-item");
+      for (let i = 0; i < ingreItemList.length; i++) {
+        let newIngreInfo = {}
+        newIngreInfo["name"] = ingreItemList[i].value;
+        newIngreInfo["amount"] = amountList[i].value;
+        newIngreInfo["unit"] = unitList[i].value;
+        inputData["extendedIngredients"].push(newIngreInfo);
+      }
+
+      let instruList = procedureList.getElementsByClassName("step-item");
+      let listHtml = "<ol>";
+      let instruArray = [];
+      for (let i of instruList) {
+        let newInstruList = `<li>${i.value}</li>`;
+        listHtml += newInstruList;
+        instruArray.push(i.value);
+      }
+      listHtml += "</ol>"
+      inputData["instructions"] = listHtml;
+      inputData["instructionsArray"] = instruArray;
+
+      // Using canvas to compress image
+      let imgCanvas = document.createElement("canvas");
+      let imgContext = imgCanvas.getContext("2d");
+
+      imgCanvas.width = picImgPreRead.width;
+      imgCanvas.height = picImgPreRead.height;
+
+      imgContext.drawImage(picImgPreRead, 0, 0, picImgPreRead.width, picImgPreRead.height);
+
+
+      inputData["image"] = imgCanvas.toDataURL("image/jpeg");
+
       addMy(inputData);
+      localStorage.setItem("draftMyRecipe", "{}");
       this.leaveAdd();
     });
 
@@ -825,7 +1023,7 @@ class AddRecipe extends HTMLElement {
   addIngreItems(buttonItem) {
     let ingredientListDiv = document.createElement("div");
     ingredientListDiv.setAttribute("class", "ingredients-list-div");
-  
+
     let ingredientColumn = document.createElement("div"); // ingredient column
     let ingredientColumnTitle = document.createElement("h2");
     let ingredientColumnInput = document.createElement("textarea");
@@ -833,30 +1031,30 @@ class AddRecipe extends HTMLElement {
     ingredientColumnTitle.setAttribute("class", "title");
     ingredientColumnTitle.innerHTML = "Ingredient:";
     ingredientColumnInput.setAttribute("class", "ingredients-item");
-  
+
     ingredientColumn.appendChild(ingredientColumnTitle);
     ingredientColumn.appendChild(ingredientColumnInput);
-  
+
     let amountColumn = document.createElement("div"); // amount column
     let amountColumnTitle = document.createElement("h2");
     let amountColumnInput = document.createElement("input");
-  
+
     amountColumn.setAttribute("class", "amount-column");
     amountColumnTitle.setAttribute("class", "title");
     amountColumnTitle.innerHTML = "Amount:";
     amountColumnInput.setAttribute("class", "amount-item");
     amountColumnInput.setAttribute("type", "number");
     amountColumnInput.setAttribute("value", "1");
-  
+
     amountColumn.appendChild(amountColumnTitle);
     amountColumn.appendChild(amountColumnInput);
-  
+
     let unitColumn = document.createElement("div"); // unit column
     let unitColumnTitle = document.createElement("h2");
     unitColumn.setAttribute("class", "unit-column");
     unitColumnTitle.setAttribute("class", "title");
     unitColumnTitle.innerHTML = "Unit:";
-  
+
     let unitColumnInput = document.createElement("select");
     let unitDefault = document.createElement("option");
     let unitGrams = document.createElement("option");
@@ -883,10 +1081,10 @@ class AddRecipe extends HTMLElement {
     unitColumnInput.appendChild(unitPounds);
     unitColumnInput.appendChild(unitTablespoons);
     unitColumnInput.appendChild(unitCups);
-  
+
     unitColumn.appendChild(unitColumnTitle);
     unitColumn.appendChild(unitColumnInput);
-  
+
     ingredientListDiv.appendChild(ingredientColumn);
     ingredientListDiv.appendChild(amountColumn);
     ingredientListDiv.appendChild(unitColumn);
@@ -919,7 +1117,7 @@ class AddRecipe extends HTMLElement {
     let procedureListItem = document.createElement("li");
     let procedureListText = document.createElement("textarea");
     procedureListText.setAttribute("class", "step-item");
-  
+
     procedureListItem.appendChild(procedureListText);
     olItem.appendChild(procedureListItem);
   }
