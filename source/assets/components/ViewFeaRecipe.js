@@ -518,10 +518,11 @@ class ViewFeaRecipe extends HTMLElement {
                 if (dropdown.options[dropdown.selectedIndex].value == "Select") {
                     requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
                 }
-                console.log(requestBody);
+                // console.log(requestBody);
             });
             
             let converting = async () => await this.convertUnit(requestBody);
+            converting();
             // console.log(requestBody);
             // console.log(ingredientsOL[i].querySelector("select"));
         }
@@ -597,6 +598,7 @@ class ViewFeaRecipe extends HTMLElement {
     async fetchConvertUnit(dataToConvert) {
         return new Promise((resolve, reject) => {
             fetch("./.netlify/functions/convert-unit", {
+            // fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
