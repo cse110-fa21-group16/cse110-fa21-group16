@@ -37,6 +37,7 @@ class ViewFeaRecipe extends HTMLElement {
             display: flex;
             flex-flow: row wrap;
             margin: 10px 0px 90px 0px;
+            
         }
 
 
@@ -49,6 +50,7 @@ class ViewFeaRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+            
         }
 
         #logo-sec {

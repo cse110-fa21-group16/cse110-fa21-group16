@@ -14,6 +14,7 @@
   src: url("../fonts/Poppins/Poppins-Regular.ttf");
 }
 
+
 /* root css style */
 * {
   box-sizing: border-box;
@@ -50,15 +51,29 @@ header {
   width: 100%;
 }
 
+@media (max-width: 600px)
+{
+  header {
+    width: 600px;
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+    height: 90px;
+    justify-content: space-between;
+  }
+}
+
 #web-info {
   width: 33%;
   height: 90px;
   display: flex;
 }
 
+
+
 #web-info > a {
   color: var(--header-font-color);
-  font-size: 30px;
+  font-size: 50px;
   text-decoration: none;
 }
 
@@ -66,6 +81,26 @@ header {
   height: 100%;
   width: 125px;
   object-fit: cover;
+}
+
+@media (max-width: 600px)
+{
+  #web-info {
+    width: 100px;
+    height: 90px;
+    display: flex;
+  }
+
+  #web-info > a {
+    width: 100px;
+  }
+
+  #web-info > a > img {
+    height: 100%;
+    width: 120%;
+    padding-left: 40px;
+    object-fit: cover;
+  }
 }
 
 #app-name {
@@ -78,10 +113,28 @@ header {
   object-fit: cover;
 }
 
+@media (max-width: 600px)
+{
+  #app-name {
+    height: 100%;
+    position:relative;
+    left: 30px;
+  }
+
+  #app-name > img {
+    height: 100%;
+    padding-right: 40px;
+    object-fit:cover; 
+   
+
+  }
+}
+
+
 #web-info > h1 {
   color: var(--header-font-color);
   display: inline-block;
-  font-size: 30px;
+  font-size: 50px;
   margin: 0px 0px 0px 20px;
 }
 
@@ -91,21 +144,30 @@ header {
   justify-content: flex-end;
 }
 
-#head-buttons > button {
-  background-color: #ffffff;
-  border: 1px solid #ccccd8;
-  border-radius: 14px;
-  color: var(--major-color);
-  cursor: pointer;
-  font-size: 18px;
-  margin: 0px 20px 0px 0px;
-  min-width: 120px;
-  padding: 3px 20px;
+#head-buttons > #search-button {
+  width:8%;
+  padding-right: 10px;
 }
 
 #head-buttons > button:hover {
   border: 1px solid #313131;
 }
+
+@media (max-width: 600px)
+{
+  #head-buttons {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #head-buttons > #search-button {
+    margin: 0px 20px 0px 0px;
+    min-width: 75px;
+    padding: 2px 20px; 
+  }
+}
+
 
 /* main  */
 main {
@@ -115,6 +177,7 @@ main {
   flex-flow: column nowrap;
   padding: 40px 20px;
   width: 100%;
+  
 }
 
 .main-item {
@@ -233,8 +296,10 @@ button.item-title:hover {
 }
 
 .arrow-img {
-  margin: 0px 10px;
+  margin: 0px 10px; 
 }
+
+
 
 .recipes-list {
   display: flex;
