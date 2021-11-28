@@ -1,6 +1,6 @@
 import { $, loadMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
-import { getImgUrl, getTitle, getTime, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
+import { getImgUrl, getTitle, getTime, getFeaturedSteps, getIngreFea } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 /**
@@ -358,6 +358,7 @@ class ViewFeaRecipe extends HTMLElement {
                 let instructionStep = document.createElement("li");
                 instructionStep.innerHTML = instructionItem[j]["step"];
                 instructionOrderedList.appendChild(instructionStep);
+                
             }
         }
 
@@ -398,7 +399,8 @@ class ViewFeaRecipe extends HTMLElement {
 
         let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
-        ingreListSec.innerHTML = getIngre(data);
+        ingreListSec.innerHTML = getIngreFea(data);
+
 
         ingreAside.appendChild(ingreLabel);
         ingreAside.appendChild(ingreListSec);
@@ -501,6 +503,32 @@ class ViewFeaRecipe extends HTMLElement {
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
+        // console.log(ingreListSec.querySelector("li[id='1']").querySelector("p[id='amount']").getAttribute("unit"));
+        let ingredientsOL = ingreListSec.querySelector("ol").querySelectorAll("li");
+
+        // Loop thru ol and parse the necessary parameters
+        for (let i = 0; i < ingredientsOL.length; i++) {
+            let requestBody = {};
+            let dropdown = ingredientsOL[i].querySelector("select");
+            requestBody["ingredientName"] = ingredientsOL[i].querySelector("p[id='name']").getAttribute("name");
+            requestBody["sourceAmount"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("amount");
+            requestBody["sourceUnit"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("unit");
+      
+            dropdown.addEventListener("change", async () => {
+                requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;  
+                if (dropdown.options[dropdown.selectedIndex].value == "Select") {
+                    requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
+                }
+                let convertInit = async (dataToConvert, locationObject) => {
+                    let convertSuccess = await this.fetchConvertUnit(dataToConvert, locationObject);
+                    if (!convertSuccess) {
+                        console.log("Convert Sucess");
+                        return;
+                    }
+                }
+                convertInit(requestBody, ingredientsOL[i]); // Call the netlify function for API call
+            });
+        }
     }
 
     /**
@@ -555,6 +583,30 @@ class ViewFeaRecipe extends HTMLElement {
         else {
             router.navigate("home");
         }
+    }
+    
+    /**
+     * Make a GET call to the netlify function using provided parameters, which would then
+     * returns the converted result from spoonacular API.
+     * @param {Object} dataToConvert JSON object contains parsed unit conversion data.
+     * @param {HTMLElement} locationObject HTML element contain the location to display result.
+     * @returns a Promise of fetched data.
+     */
+    async fetchConvertUnit(dataToConvert, locationObject) {
+        return new Promise((resolve, reject) => {
+            fetch("./.netlify/functions/convert-unit?" + new URLSearchParams({
+                ingredientName: dataToConvert.ingredientName,
+                sourceAmount: dataToConvert.sourceAmount,
+                sourceUnit: dataToConvert.sourceUnit,
+                targetUnit: dataToConvert.targetUnit
+            }))
+            .then((response) => response.json())
+            .then((data) => {
+                locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
+                console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
+                resolve(true);
+            }).catch(() => reject(false));
+        });
     }
 }
 

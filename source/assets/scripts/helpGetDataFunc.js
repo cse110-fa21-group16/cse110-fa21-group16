@@ -77,10 +77,65 @@ export function getIngre(data) {
         let ingreAmount = i.amount;
         let ingreUnit = i.unit;
         let newIngreList;
-        if (typeof ingreAmount === "string") {
-            newIngreList = `<li><p>${ingreName}</p> - ${Number(ingreAmount).toFixed(2)} ${ingreUnit}</li>`;
-        } else {
-            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount.toFixed(2)} ${ingreUnit}</li>`;
+        
+        if(typeof ingreAmount === "string"){
+            ingreAmount = Number(ingreAmount).toFixed(2);
+            newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount} ${ingreUnit}</p>`;
+        }
+        else{
+            newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount.toFixed(2)} ${ingreUnit}</p></li>`;
+        }
+        listHtml += newIngreList;
+    }
+    listHtml += "</ol>"
+
+    return listHtml;
+}
+
+/**
+ * Get the ingredients of recipe.
+ * @param {Object} data a JSON data object contains information of ingredients string.
+ * @returns String
+ */
+ export function getIngreFea(data) {
+    let listHtml = "<ol>";
+    let ingreArray = data.extendedIngredients;
+
+    for (let i = 0; i < ingreArray.length; i++) {
+        let ingreName = ingreArray[i].name;
+        let ingreAmount = ingreArray[i].amount;
+        let ingreUnit = ingreArray[i].unit;
+        let newIngreList;
+        
+        if(typeof ingreAmount === "string"){
+            newIngreList = `<li id=${i}><p id="name" name="${ingreName}">${ingreName}</p><p id="amount" amount="${Number(ingreAmount).toFixed(2)}" unit="${ingreUnit}"> 
+            - ${Number(ingreAmount).toFixed(2)} ${ingreUnit}</p>
+                <p>Convert to 
+                    <select id="unit-type">
+                        <option value="Select" selected="selected">Select</option>
+                        <option value="grams">grams</option>
+                        <option value="kgs">kgs</option>
+                        <option value="tbsps">tablespoons</option>
+                        <option value="lb">lbs</option>
+                        <option value="tsp">teaspoons</option>
+                        <option value="cup">cups</option>
+                    </select>
+                </p></li>`;
+        }
+        else{
+            newIngreList = `<li id=${i}><p id="name" name="${ingreName}">${ingreName}</p><p id="amount" amount="${Number(ingreAmount).toFixed(2)}" unit="${ingreUnit}"> 
+            - ${ingreAmount.toFixed(2)} ${ingreUnit}</p>
+                <p>Convert to 
+                    <select id="unit-type">
+                        <option value="Select" selected="selected">Select</option>
+                        <option value="grams">grams</option>
+                        <option value="kgs">kgs</option>
+                        <option value="tbsps">tablespoons</option>
+                        <option value="lb">lbs</option>
+                        <option value="tsp">teaspoons</option>
+                        <option value="cup">cups</option>
+                    </select> : <span id="converted-result"></span>
+                </p></li>`;
         }
         listHtml += newIngreList;
     }
