@@ -605,19 +605,32 @@ class ViewFeaRecipe extends HTMLElement {
     }
 
     async fetchConvertUnit(dataToConvert) {
+        // return new Promise((resolve, reject) => {
+        //     // fetch("./.netlify/functions/convert-unit", {
+        //     fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit", {
+        //     // fetch("https://api.spoonacular.com/recipes/convert?ingredientName=jalapenos&sourceAmount=1&sourceUnit=kg&targetUnit=kgs&apiKey=c99e76cd4f364ab1b5389041271a1db8", {
+        //         method: "POST",
+        //         mode: "no-cors",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: dataToConvert
+        //     })
+        //     .then((response) => {
+        //         console.log(response.json());
+        //         resolve(true);
+        //     }).catch(() => reject(false));
+        // });
+
         return new Promise((resolve, reject) => {
-            // fetch("./.netlify/functions/convert-unit", {
-            fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit", {
-            // fetch("https://api.spoonacular.com/recipes/convert?ingredientName=jalapenos&sourceAmount=1&sourceUnit=kg&targetUnit=kgs&apiKey=c99e76cd4f364ab1b5389041271a1db8", {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: dataToConvert
-            })
+            fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit?" + new URLSearchParams({
+                ingredientName: dataToConvert.ingredientName,
+                sourceAmount: dataToConvert.sourceAmount,
+                sourceUnit: dataToConvert.sourceUnit,
+                targetUnit: dataToConvert.targetUnit
+            }))
             .then((response) => {
-                response.json();
+                console.log(response.json());
                 resolve(true);
             }).catch(() => reject(false));
         });
