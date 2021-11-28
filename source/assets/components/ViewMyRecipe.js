@@ -312,11 +312,18 @@ class ViewMyRecipe extends HTMLElement {
 
         // let toNutPage = document.createElement("button");
         // toNutPage.textContent = "Nutrition Facts";
+        var speechSynthesis = window.speechSynthesis;
+        let textToSpeech = document.createElement("button");
+        textToSpeech.textContent = "TTS";
+        textToSpeech.addEventListener("click", () => {
+            this.playTextToSpeech();
+        })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
         // leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(textToSpeech);
 
         // right-main
         let rightMainSec = document.createElement("section");
@@ -505,7 +512,14 @@ class ViewMyRecipe extends HTMLElement {
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");
     }
+
+    playTextToSpeech() {
+        let recipeText = this.shadowRoot.querySelector("#steps-list");
+        let speechText = new SpeechSynthesisUtterance(recipeText.textContent);
+        speechSynthesis.speak(speechText);
+    }
 }
+
 
 // Define the "view-fea-recipe" element using this class.
 customElements.define("view-my-recipe", ViewMyRecipe);
