@@ -530,15 +530,11 @@ class ViewMyRecipe extends HTMLElement {
                 i++;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
                 speechSynthesis.speak(speechText);
-                console.log(i);
-
             }
             if (event.key == "ArrowLeft" && i > 0) {
                 i--;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
                 speechSynthesis.speak(speechText);
-                console.log(i);
-
             }
         });            
     }
