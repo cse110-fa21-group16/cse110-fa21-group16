@@ -11,23 +11,5 @@ const API_Endpoint = `https://api.spoonacular.com/recipes/informationBulk?ids=63
  * @returns 
  */
 exports.handler = async (event, context) => {
-    console.log(event);
-    if (localStorage.getItem("fetchedData") === null) {
-        return new Promise((resolve, reject) => {
-            fetch(API_Endpoint)
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem("fetchedData", JSON.stringify(data));
-                resolve({
-                    statusCode: 200,
-                    body: JSON.stringify(data)
-                })
-            }).catch(error => reject(false));
-        });
-    } else {
-        return {
-            statusCode: 200,
-            body: JSON.stringify(JSON.parse(localStorage.getItem("fetchedData")))
-        }
-    }
+    console.log(event.body);
 };

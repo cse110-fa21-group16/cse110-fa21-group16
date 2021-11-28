@@ -1,6 +1,6 @@
 import { $, loadMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
-import { getImgUrl, getTitle, getTime, getIngre, getFeaturedSteps } from "../scripts/helpGetDataFunc.js";
+import { getImgUrl, getTitle, getTime, getFeaturedSteps, getIngreFea } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 /**
@@ -399,7 +399,8 @@ class ViewFeaRecipe extends HTMLElement {
 
         let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
-        ingreListSec.innerHTML = getIngre(data);
+        ingreListSec.innerHTML = getIngreFea(data);
+
 
         ingreAside.appendChild(ingreLabel);
         ingreAside.appendChild(ingreListSec);
@@ -502,6 +503,29 @@ class ViewFeaRecipe extends HTMLElement {
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
+        // console.log(ingreListSec.querySelector("li[id='1']").querySelector("p[id='amount']").getAttribute("unit"));
+        let ingredientsOL = ingreListSec.querySelector("ol").querySelectorAll("li");
+        console.log(ingredientsOL);
+        for (let i = 0; i < ingredientsOL.length; i++) {
+            let requestBody = {};
+            let dropdown = ingredientsOL[i].querySelector("select");
+            requestBody["ingredientName"] = ingredientsOL[i].querySelector("p[id='name']").getAttribute("name");
+            requestBody["sourceAmount"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("amount");
+            requestBody["sourceUnit"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("unit");
+      
+            dropdown.addEventListener("change", () => {
+                requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;  
+                if (dropdown.options[dropdown.selectedIndex].value == "Select") {
+                    requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
+                }
+                console.log(requestBody);
+            });
+            
+            
+            // console.log(requestBody);
+            // console.log(ingredientsOL[i].querySelector("select"));
+        }
+        
     }
 
     /**
@@ -556,6 +580,27 @@ class ViewFeaRecipe extends HTMLElement {
         else {
             router.navigate("home");
         }
+    }
+    
+    /**
+     * 
+     * @param {Object} dataToConvert JSON object
+     * @returns a Promise of fetched data
+     */
+    async convertUnit(dataToConvert) {
+        return new Promise((resolve) => {
+            fetch("./.netlify/functions/convert-unit", {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: dataToConvert
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                resolve(true);
+            }).catch(() => reject(false));
+        });
     }
 }
 
