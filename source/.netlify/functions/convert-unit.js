@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
     //     body: event.queryStringParameters.ingredientName
     // }
     return new Promise((resolve, reject) => {
-        fetch(API_Endpoint)
+        fetch(`https://api.spoonacular.com/recipes/informationBulk?ids=639487&apiKey=${APIKey}&includeNutrition=true`)
         .then(res => res.json())
         .then(data => {
             resolve({
