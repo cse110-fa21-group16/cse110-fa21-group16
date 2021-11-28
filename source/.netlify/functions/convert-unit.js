@@ -13,6 +13,6 @@ const API_Endpoint = `https://api.spoonacular.com/recipes/informationBulk?ids=63
 exports.handler = async (event, context) => {
     return {
         statusCode: 200,
-        body: JSON.stringify(event.body)
+        body: event.body
     }
 };
