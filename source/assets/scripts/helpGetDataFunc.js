@@ -83,10 +83,10 @@ export function getIngre(data) {
         }
         let serving = ["grams", "kgs", "lbs", "tbsp", "cups"]
         if(serving.includes(ingreUnit)){
-            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount} ${ingreUnit}<button class="button convert-grams">g</button><button class="button convert-mill">ml</button></li>`;
+            newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount} ${ingreUnit}</p><button class="button convert-grams">g</button><button class="button convert-oz">oz</button></li>`;
         }
         else{
-            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount} ${ingreUnit}</li>`;
+            newIngreList = `<li><p>${ingreName}</p><p> - ${ingreAmount} ${ingreUnit}</p></li>`;
         }
         
         listHtml += newIngreList;
