@@ -332,10 +332,18 @@ class ViewFeaRecipe extends HTMLElement {
             this.viewNutrition(data);
         })
 
+        var speechSynthesis = window.speechSynthesis;
+        let textToSpeech = document.createElement("button");
+        textToSpeech.textContent = "TTS";
+        textToSpeech.addEventListener("click", () => {
+            this.playTextToSpeech();
+        })
+
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
         leftMainSec.appendChild(toNutritionPage);
+        leftMainSec.appendChild(textToSpeech);
 
         // right-main
         let rightMainSec = document.createElement("section");
@@ -555,6 +563,27 @@ class ViewFeaRecipe extends HTMLElement {
         else {
             router.navigate("home");
         }
+    }
+
+    playTextToSpeech() {
+        let recipeText = this.shadowRoot.querySelector("#steps-list");
+        recipeText = recipeText.querySelectorAll("li");
+        let i = 0;
+        let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+        speechSynthesis.speak(speechText);
+        console.log(i);
+        window.addEventListener('keydown', function(event) {
+            if (event.key == "ArrowRight" && i < recipeText.length - 1) {
+                i++;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.speak(speechText);
+            }
+            if (event.key == "ArrowLeft" && i > 0) {
+                i--;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.speak(speechText);
+            }
+        });            
     }
 }
 
