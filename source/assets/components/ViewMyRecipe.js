@@ -397,7 +397,9 @@ class ViewMyRecipe extends HTMLElement {
             if(gramButton !== undefined){
                 gramButton.addEventListener('click', () =>{
                     gramButton.disabled = true;
-                    fetch(`https://api.spoonacular.com/recipes/convert?apiKey=${apiKey}&ingredientName=${ingreName}&sourceAmount=${ingreAmount}&sourceUnit=${ingreUnit}&targetUnit=grams`)
+                    fetch("./.netlify/functions/convert-unit.js")
+                    // fetch('./.netlify/functions/convert-unit')
+                    // fetch(`https://api.spoonacular.com/recipes/convert?apiKey=${apiKey}&ingredientName=${ingreName}&sourceAmount=${ingreAmount}&sourceUnit=${ingreUnit}&targetUnit=grams`)
                     .then(response => response.json())
                     .then(data => {
                         const elements = data.answer.split(" ");

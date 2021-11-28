@@ -148,8 +148,8 @@ async function init() {
 async function fetchFeaRecipeArray() {
   return new Promise((resolve, reject) => {
     if (feaRecipeArray == null) {
-      //fetch("./.netlify/functions/fetch-data")
-        fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
+      fetch("./.netlify/functions/fetch-data")
+        //fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
         .then((response) => response.json())
         .then((data) => {
           feaRecipeArray = data;
