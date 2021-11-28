@@ -1,6 +1,6 @@
 describe("Test for add recipe", () => {
   beforeAll(async () => {
-    await page.goto("https://unruffled-lichterman-185ae7.netlify.app/index.html");
+    await page.goto("https://unruffled-lichterman-185ae7.netlify.app");
     await page.waitForTimeout(1500);
   });
 
@@ -102,7 +102,7 @@ describe("Test for add recipe", () => {
       console.log("!!delete step button fail!!");
       testResult = false;
     }
-    // continue add ingredients
+    // continue add steps
     for(let i=0; i<stepList.length; i++){
       await stepList[i].type(((i+1)*10101).toString());
     }
@@ -117,21 +117,75 @@ describe("Test for add recipe", () => {
     cards = await myPageList.$$("recipe-card-my-my-page");
     for(let i=0; i<cards.length; i++){
       let cardRoot = await cards[i].getProperty("shadowRoot");
+      let title = await cardRoot.$(".title");
+      title = await title.getProperty("innerText");
+      title = title['_remoteObject'].value;
+      // check title in my recipe
+      if(title != "random recipe"){
+        console.log("card title mismatch");
+        console.log(title);
+        testResult = false;
+      }
+
+      // click on check button
       let button = await cardRoot.$("button");
-      await button.click;
+      await button.click();
+      // check title
       let viewCard = await page.$("view-my-recipe");
       let viewCardRoot = await viewCard.getProperty("shadowRoot");
-      let title = await viewCardRoot.$("#main-header");
+      title = await viewCardRoot.$("#main-header");
       title = await title.$("h1");
       title = await title.getProperty("innerText");
+      title = title['_remoteObject'].value;
       if(title != "random recipe"){
-        console.log("title mismatch");
+        console.log("view card title mismatch");
         testResult = false;
+      }
+      // check steps
+      let stepList = await viewCardRoot.$("#steps-list");
+      stepList = await stepList.$$("li");
+      for(let k=0; k<stepList.length; k++){
+        let step = await stepList[k].getProperty("innerText");
+        step = step['_remoteObject'].value;
+        if(step != ((k+1)*10101).toString()){
+          console.log("steps mismatch");
+          testResult = false;
+        }
+      }
+
+      // check ingredients
+      let ingredientList = await viewCardRoot.$("#ingre-list");
+      ingredientList = await ingredientList.$$("li");
+      for(let k=0; k<ingredientList.length; k++){
+        let ingredient = await ingredientList[k].getProperty("innerText");
+        ingredient = ingredient['_remoteObject'].value;
+        let rightIngre = (k*100).toString()+"\n\n- ";
+        rightIngre += k.toFixed(2).toString()+" kgs";
+        if(ingredient != rightIngre){
+          console.log("ingredient mismatch");
+          testResult = false;
+        }
+      }
+
+      // check diet
+      let dietList = await viewCardRoot.$$(".diet-check");
+      for(let k=0; k<dietList.length; k++){
+        let dietPic = await dietList[k].$eval("img", (img) => {
+          return img.getAttribute("src");
+        });
+        if(dietPic != "assets/images/icons/fillCheck.svg"){
+          console.log("diet selection mismatch");
+          testResult = false;
+        }
       }
     }
 
 
 
+    // await page.screenshot({
+    //   path: "./screenshot.png",
+    //   fullPage: true
+    // });
 
 
 
