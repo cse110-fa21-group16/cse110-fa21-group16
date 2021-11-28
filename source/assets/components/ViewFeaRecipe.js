@@ -522,14 +522,14 @@ class ViewFeaRecipe extends HTMLElement {
                 }
                 // await this.fetchConvertUnit(requestBody);
                 // console.log(requestBody);
-                let convertInit = async (dataToConvert) => {
-                    let convertSuccess = await this.fetchConvertUnit(dataToConvert);
+                let convertInit = async (dataToConvert, locationObject) => {
+                    let convertSuccess = await this.fetchConvertUnit(dataToConvert, locationObject);
                     if (!convertSuccess) {
                         console.log("Convert Sucess");
                         return;
                     }
                 }
-                convertInit(requestBody);
+                convertInit(requestBody, ingredientsOL[i]);
                 console.log(convertedData);
             });
         }
@@ -602,7 +602,7 @@ class ViewFeaRecipe extends HTMLElement {
         })
     }
 
-    async fetchConvertUnit(dataToConvert, storage) {
+    async fetchConvertUnit(dataToConvert, locationObject) {
         // return new Promise((resolve, reject) => {
         //     // fetch("./.netlify/functions/convert-unit", {
         //     fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit", {
@@ -633,6 +633,8 @@ class ViewFeaRecipe extends HTMLElement {
             .then((data) => {
                 convertedData = data;
                 // console.log(data);
+                locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
+                console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
                 resolve(true);
             }).catch(() => reject(false));
         });
