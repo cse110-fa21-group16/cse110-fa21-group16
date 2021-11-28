@@ -176,6 +176,39 @@ main {
   padding: 4px 20px 4px 40px;
 }
 
+#filter-section {
+  width: 100%;
+}
+
+#filter-section > summary {
+  color: var(--major-color);
+  font-size: 18px;
+}
+
+#filter-recipes-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: var(--major-color);
+  font-size: 18px;
+}
+
+#vegan-filter {
+  transform: scale(1.5);
+}
+
+#dairy-filter {
+  transform: scale(1.5);
+}
+
+#gluten-filter {
+  transform: scale(1.5);
+}
+
+#vegetarian-filter {
+  transform: scale(1.5);
+}
+
 button.item-title {
   background-color: #ffffff;
   border: 0px;
