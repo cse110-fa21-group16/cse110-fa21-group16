@@ -358,6 +358,7 @@ class ViewFeaRecipe extends HTMLElement {
                 let instructionStep = document.createElement("li");
                 instructionStep.innerHTML = instructionItem[j]["step"];
                 instructionOrderedList.appendChild(instructionStep);
+                
             }
         }
 

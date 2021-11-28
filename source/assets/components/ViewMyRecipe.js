@@ -178,6 +178,22 @@ class ViewMyRecipe extends HTMLElement {
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
         }
+        #ingre-list button{
+            background-color: transparent;
+            border: rgb(34,139,34) 1px solid;
+            border-radius: 4px;
+            color: rgb(34,139,34);
+            
+            cursor: pointer;
+            font-size: 12px;
+            
+            padding: .2em .8em;
+            margin: 0 .2em;
+        }
+        #ingre-list button:hover{
+            background: white;
+            color: #305a50;
+        }
 
         /* main-footer */
         #main-footer{
@@ -369,6 +385,21 @@ class ViewMyRecipe extends HTMLElement {
         let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
         ingreListSec.innerHTML = getIngre(data);
+        
+        const gramList = ingreListSec.children[0].children;
+        [...gramList].forEach((listItem, index) =>{
+            let gramButton = listItem.children[1]
+            let millButton = listItem.children[2];
+            let ingreName = data.extendedIngredients[index].name;
+            let ingreAmount = data.extendedIngredients[index].amount;
+            let ingreUnit = data.extendedIngredients[index].unit;
+            console.log(gramButton);
+            if(gramButton !== undefined){
+                gramButton.addEventListener('click', () =>{
+                    alert('hello');
+                });
+            }
+        });
 
         ingreAside.appendChild(ingreLabel);
         ingreAside.appendChild(ingreListSec);
@@ -505,7 +536,10 @@ class ViewMyRecipe extends HTMLElement {
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");
     }
+
+   
 }
+
 
 // Define the "view-fea-recipe" element using this class.
 customElements.define("view-my-recipe", ViewMyRecipe);

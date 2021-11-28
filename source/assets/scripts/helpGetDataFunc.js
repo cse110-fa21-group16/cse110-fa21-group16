@@ -77,11 +77,18 @@ export function getIngre(data) {
         let ingreAmount = i.amount;
         let ingreUnit = i.unit;
         let newIngreList;
-        if (typeof ingreAmount === "string") {
-            newIngreList = `<li><p>${ingreName}</p> - ${Number(ingreAmount).toFixed(2)} ${ingreUnit}</li>`;
-        } else {
-            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount.toFixed(2)} ${ingreUnit}</li>`;
+        
+        if(typeof ingreAmount === "string"){
+            ingreAmount = Number(ingreAmount).toFixed(2);
         }
+        let serving = ["grams", "kgs", "lbs", "tbsp", "cups"]
+        if(serving.includes(ingreUnit)){
+            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount} ${ingreUnit}<button class="button convert-grams">g</button><button class="button convert-mill">ml</button></li>`;
+        }
+        else{
+            newIngreList = `<li><p>${ingreName}</p> - ${ingreAmount} ${ingreUnit}</li>`;
+        }
+        
         listHtml += newIngreList;
     }
     listHtml += "</ol>"
