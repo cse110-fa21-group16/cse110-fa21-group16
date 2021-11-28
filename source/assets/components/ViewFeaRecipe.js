@@ -518,6 +518,7 @@ class ViewFeaRecipe extends HTMLElement {
                 if (dropdown.options[dropdown.selectedIndex].value == "Select") {
                     requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
                 }
+                await this.convertUnit(requestBody);
                 console.log(requestBody);
             });
             
