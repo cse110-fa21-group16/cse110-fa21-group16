@@ -520,20 +520,17 @@ class ViewFeaRecipe extends HTMLElement {
                 }
                 // await this.fetchConvertUnit(requestBody);
                 // console.log(requestBody);
-                let convertInit = async (dataToConvert) => {
-                    let convertSuccess = await this.fetchConvertUnit(dataToConvert);
+                let convertedData;
+                let convertInit = async (dataToConvert, storage) => {
+                    let convertSuccess = await this.fetchConvertUnit(dataToConvert, storage);
                     if (!convertSuccess) {
                         console.log("Convert Sucess");
                         return;
                     }
                 }
-                convertInit(requestBody);
+                convertInit(requestBody, convertedData);
+                console.log(convertedData);
             });
-            
-            // let converting = async () => 
-            // converting();
-            // console.log(requestBody);
-            // console.log(ingredientsOL[i].querySelector("select"));
         }
         
     }
@@ -604,7 +601,7 @@ class ViewFeaRecipe extends HTMLElement {
         })
     }
 
-    async fetchConvertUnit(dataToConvert) {
+    async fetchConvertUnit(dataToConvert, storage) {
         // return new Promise((resolve, reject) => {
         //     // fetch("./.netlify/functions/convert-unit", {
         //     fetch("https://61a3341b937dd20007a1038b--unruffled-lichterman-185ae7.netlify.app//.netlify/functions/convert-unit", {
@@ -623,7 +620,7 @@ class ViewFeaRecipe extends HTMLElement {
         // });
 
         return new Promise((resolve, reject) => {
-            fetch("./.netlify/functions/convert-unit?" + new URLSearchParams({
+            fetch("https://61a34bb0cca43b0007e09268--unruffled-lichterman-185ae7.netlify.app/.netlify/functions/convert-unit?" + new URLSearchParams({
                 ingredientName: dataToConvert.ingredientName,
                 sourceAmount: dataToConvert.sourceAmount,
                 sourceUnit: dataToConvert.sourceUnit,
@@ -633,6 +630,7 @@ class ViewFeaRecipe extends HTMLElement {
             })
             .then((response) => response.json())
             .then((data) => {
+                storage = data;
                 console.log(data);
                 resolve(true);
             }).catch(() => reject(false));
