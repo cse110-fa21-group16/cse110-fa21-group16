@@ -332,11 +332,11 @@ class ViewFeaRecipe extends HTMLElement {
             this.viewNutrition(data);
         })
 
-        var speechSynthesis = window.speechSynthesis;
+        let speechSynthesis = window.speechSynthesis;
         let textToSpeech = document.createElement("button");
         textToSpeech.textContent = "TTS";
         textToSpeech.addEventListener("click", () => {
-            this.playTextToSpeech();
+            this.playTextToSpeech(speechSynthesis);
         })
 
         leftMainSec.appendChild(recipeImg);
@@ -565,7 +565,7 @@ class ViewFeaRecipe extends HTMLElement {
         }
     }
 
-    playTextToSpeech() {
+    playTextToSpeech(speechSynthesis) {
         let recipeText = this.shadowRoot.querySelector("#steps-list");
         recipeText = recipeText.querySelectorAll("li");
         let i = 0;
