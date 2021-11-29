@@ -180,7 +180,7 @@ header {
   }
 
   #head-buttons > #search-button {
-    margin: 0px 35px 0px 0px;
+    margin-right: 35px;
     min-width: 90px;
     padding: 2px 20px;
   }
@@ -298,7 +298,8 @@ main {
     cursor: pointer;
     font-size: 13px;
     width: 70px;
-    padding: 0px 10px 0px 10px;
+    padding-right: 10px;
+    padding-left: 10px;
   }
 }
 
