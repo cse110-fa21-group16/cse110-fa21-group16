@@ -328,11 +328,19 @@ class ViewMyRecipe extends HTMLElement {
 
         // let toNutPage = document.createElement("button");
         // toNutPage.textContent = "Nutrition Facts";
+        
+        let speechSynthesis = window.speechSynthesis;
+        let textToSpeech = document.createElement("button");
+        textToSpeech.textContent = "TTS";
+        textToSpeech.addEventListener("click", () => {
+            this.playTextToSpeech(speechSynthesis);
+        })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
         // leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(textToSpeech);
 
         // right-main
         let rightMainSec = document.createElement("section");
@@ -522,7 +530,32 @@ class ViewMyRecipe extends HTMLElement {
         $("#add-recipe-page").classList.add("main-shown");
     }
 
-   
+
+    /**
+     * Play the instruction step by step
+     * @param{Object} speechSynthesis a speech Object 
+     * @returns Void
+     */
+    playTextToSpeech(speechSynthesis) {
+        let recipeText = this.shadowRoot.querySelector("#steps-list");
+        recipeText = recipeText.querySelectorAll("li");
+        let i = 0;
+        let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+        speechSynthesis.speak(speechText);
+        console.log(i);
+        window.addEventListener('keydown', function(event) {
+            if (event.key == "ArrowRight" && i < recipeText.length - 1) {
+                i++;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.speak(speechText);
+            }
+            if (event.key == "ArrowLeft" && i > 0) {
+                i--;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.speak(speechText);
+            }
+        });            
+    }
 }
 
 
