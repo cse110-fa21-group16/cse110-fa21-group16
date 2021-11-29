@@ -14,7 +14,6 @@
   src: url("../fonts/Poppins/Poppins-Regular.ttf");
 }
 
-
 /* root css style */
 * {
   box-sizing: border-box;
@@ -51,8 +50,7 @@ header {
   width: 100%;
 }
 
-@media (max-width: 480px)
-{
+@media (max-width: 480px) {
   header {
     width: 480px;
     align-items: center;
@@ -69,7 +67,6 @@ header {
   display: flex;
 }
 
-
 #web-info > a {
   color: var(--header-font-color);
   font-size: 50px;
@@ -82,8 +79,7 @@ header {
   object-fit: cover;
 }
 
-@media (max-width: 480px)
-{
+@media (max-width: 480px) {
   #web-info {
     width: 100px;
     height: 90px;
@@ -112,23 +108,19 @@ header {
   object-fit: cover;
 }
 
-@media (max-width: 480px)
-{
+@media (max-width: 480px) {
   #app-name {
     height: 100%;
-    position:relative;
+    position: relative;
     left: 30px;
   }
 
   #app-name > img {
     height: 100%;
     padding-right: 40px;
-    object-fit:cover; 
-   
-
+    object-fit: cover;
   }
 }
-
 
 #web-info > h1 {
   color: var(--header-font-color);
@@ -144,7 +136,7 @@ header {
 }
 
 #head-buttons > #search-button {
-  width:8%;
+  width: 8%;
   padding-right: 10px;
 }
 
@@ -152,8 +144,21 @@ header {
   border: 1px solid #313131;
 }
 
-@media (max-width: 480px)
-{
+@media (max-width: 480px) {
+  #head-buttons {
+    width: 33%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #head-buttons > #search-button {
+    margin: 0px 20px 0px 0px;
+    min-width: 75px;
+    padding: 2px 20px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 750px) {
   #head-buttons {
     width: 30%;
     display: flex;
@@ -162,11 +167,24 @@ header {
 
   #head-buttons > #search-button {
     margin: 0px 20px 0px 0px;
-    min-width: 75px;
-    padding: 2px 20px; 
+    min-width: 90px;
+    padding: 2px 20px;
   }
 }
 
+@media (min-width: 751px) {
+  #head-buttons {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #head-buttons > #search-button {
+    margin: 0px 35px 0px 0px;
+    min-width: 90px;
+    padding: 2px 20px;
+  }
+}
 
 /* main  */
 main {
@@ -176,7 +194,6 @@ main {
   flex-flow: column nowrap;
   padding: 40px 20px;
   width: 100%;
-  
 }
 
 .main-item {
@@ -194,7 +211,7 @@ main {
 }
 
 #cancel-search-button {
-  margin-left: 60px;
+  margin-left: 15px;
   border: 1px solid #ccccd8;
   background-color: #fff;
   border-radius: 14px;
@@ -209,7 +226,6 @@ main {
   background: darkgreen;
   color: white;
 }
-
 
 #search-type {
   outline: none;
@@ -239,20 +255,63 @@ main {
   padding: 4px 20px 4px 40px;
 }
 
-@media (max-width: 480px)
-{
-
+@media (max-width: 300px) {
   #search-recipes-div {
     align-items: center;
     display: flex;
     flex-flow: row nowrap;
-    width: 100vw;
+    margin-left: 55px;
   }
-
 
   #search-type {
     outline: none;
-    width: 20vw;
+    width: 72px;
+    border: 1px solid #ccccd8;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    color: var(--major-color);
+    resize: none;
+    font-size: 8px;
+    padding: 4px 5px;
+  }
+
+  #search-input {
+    outline: none;
+    border: 1px solid #ccccd8;
+    background-position: 3px 3px;
+    width: 180px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: var(--major-color);
+    resize: none;
+    font-size: 8px;
+    padding: 4px 20px 4px 40px;
+  }
+
+  #cancel-search-button {
+    margin-left: 2px;
+    border: 1px solid #ccccd8;
+    background-color: #fff;
+    border-radius: 14px;
+    color: #305a50;
+    cursor: pointer;
+    font-size: 13px;
+    width: 70px;
+    padding: 0px 10px 0px 10px;
+  }
+}
+
+@media (min-width: 301px) and (max-width: 500px) {
+  #search-recipes-div {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #search-type {
+    outline: none;
+    width: 72px;
     border: 1px solid #ccccd8;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -263,10 +322,10 @@ main {
     padding: 4px 5px;
   }
 
-   #search-input {
+  #search-input {
     outline: none;
     border: 1px solid #ccccd8;
-    width: 50vw;
+    width: 180px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     color: var(--major-color);
@@ -282,22 +341,63 @@ main {
     border-radius: 14px;
     color: #305a50;
     cursor: pointer;
-    font-size: 18px;
-    width: 28vw;
+    font-size: 15px;
+    width: 101px;
     padding-left: 20px;
-  } 
-  
+  }
+}
+
+@media (min-width: 501px) and (max-width: 1000px) {
+  #search-recipes-div {
+    align-items: center;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  #search-type {
+    outline: none;
+    width: 20vw;
+    border: 1px solid #ccccd8;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    text-align: center;
+    color: var(--major-color);
+    resize: none;
+    font-size: 18px;
+    padding: 4px 5px;
+  }
+
+  #search-input {
+    outline: none;
+    border: 1px solid #ccccd8;
+    width: 50vw;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: var(--major-color);
+    resize: none;
+    font-size: 18px;
+    padding: 4px 20px 4px 40px;
+  }
+
+  #cancel-search-button {
+    margin-left: 15px;
+    border: 1px solid #ccccd8;
+    background-color: #fff;
+    border-radius: 14px;
+    color: #305a50;
+    cursor: pointer;
+    font-size: 18px;
+    padding-left: 20px;
+  }
 }
 
 #filter-section {
   width: 100%;
-  
 }
 
 #filter-section > summary {
   color: var(--major-color);
   font-size: 18px;
-
 }
 
 #filter-recipes-div {
@@ -310,7 +410,6 @@ main {
 
 #vegan-filter {
   transform: scale(1.5);
-  
 }
 
 #dairy-filter {
@@ -325,40 +424,147 @@ main {
   transform: scale(1.5);
 }
 
-@media (max-width: 480px)
-{
+@media (max-width: 300px) {
   #filter-section {
-    width: 100vw;
-    
+    width: 100%;
+    margin-left: 45px;
   }
-  
+
   #filter-section > summary {
-    color: var(--major-color);
-    font-size: 18px;
-  }
-  
-  #filter-recipes-div {
-    width: 100vw;
-    display: flex;
-    justify-content: space-around;
     color: var(--major-color);
     font-size: 10px;
   }
-  
+
+  #filter-recipes-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: var(--major-color);
+    font-size: 8px;
+  }
+
   #vegan-filter {
-    transform: scale(1.0);
+    transform: scale(1);
   }
-  
+
   #dairy-filter {
-    transform: scale(1.0);
+    transform: scale(1);
   }
-  
+
   #gluten-filter {
-    transform: scale(1.0);
+    transform: scale(1);
   }
-  
+
   #vegetarian-filter {
-    transform: scale(1.0);
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 301px) and (max-width: 390px) {
+  #filter-section {
+    width: 100%;
+    margin-left: 5px;
+  }
+
+  #filter-section > summary {
+    color: var(--major-color);
+    font-size: 13px;
+  }
+
+  #filter-recipes-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: var(--major-color);
+    font-size: 8px;
+  }
+
+  #vegan-filter {
+    transform: scale(1);
+  }
+
+  #dairy-filter {
+    transform: scale(1);
+  }
+
+  #gluten-filter {
+    transform: scale(1);
+  }
+
+  #vegetarian-filter {
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 391px) and (max-width: 500px) {
+  #filter-section {
+    width: 100%;
+    margin-left: 5px;
+  }
+
+  #filter-section > summary {
+    color: var(--major-color);
+    font-size: 13px;
+  }
+
+  #filter-recipes-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: var(--major-color);
+    font-size: 8px;
+  }
+
+  #vegan-filter {
+    transform: scale(1);
+  }
+
+  #dairy-filter {
+    transform: scale(1);
+  }
+
+  #gluten-filter {
+    transform: scale(1);
+  }
+
+  #vegetarian-filter {
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 501px) and (max-width: 800px) {
+  #filter-section {
+    width: 100%;
+    margin-left: 5px;
+  }
+
+  #filter-section > summary {
+    color: var(--major-color);
+    font-size: 15px;
+  }
+
+  #filter-recipes-div {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    color: var(--major-color);
+    font-size: 13px;
+  }
+
+  #vegan-filter {
+    transform: scale(1.2);
+  }
+
+  #dairy-filter {
+    transform: scale(1.2);
+  }
+
+  #gluten-filter {
+    transform: scale(1.2);
+  }
+
+  #vegetarian-filter {
+    transform: scale(1.2);
   }
 }
 
@@ -371,8 +577,6 @@ button.item-title {
   font-weight: bold;
   text-decoration: none;
 }
-
-
 
 h2.item-title {
   background-color: #ffffff;
@@ -388,7 +592,7 @@ button.item-title:hover {
 }
 
 .arrow-img {
-  margin: 0px 10px; 
+  margin: 0px 10px;
 }
 
 .recipes-list {
