@@ -66,7 +66,7 @@ describe("Test for add recipe", () => {
     let ingredientList = await newingredientSec.$$(".ingredients-list-div");
     
     // testing add and delete ingredient button
-    if(ingredientList.length != 5){
+    if(ingredientList.length !== 5){
       console.log("!!add ingredient button fail!!");
       testResult = false;
     }
@@ -74,14 +74,14 @@ describe("Test for add recipe", () => {
     await delIngredient.click();
     await delIngredient.click();
     ingredientList = await newingredientSec.$$(".ingredients-list-div");
-    if(ingredientList.length != 2){
+    if(ingredientList.length !== 2){
       console.log("!!delete ingredient button fail!!");
       testResult = false;
     }
     // final testing to make sure there are 3 ingredient block
     await addIngredient.click();
     ingredientList = await newingredientSec.$$(".ingredients-list-div");
-    if(ingredientList.length != 3){
+    if(ingredientList.length !== 3){
       console.log("!!add or delete ingredient button fail!!");
       testResult = false;
     }
@@ -109,7 +109,7 @@ describe("Test for add recipe", () => {
     let stepList = await stepSec.$$(".step-item");
     
     // testing add and delete procedures button
-    if(stepList.length != 6){
+    if(stepList.length !== 6){
       console.log("!!add step button fail!!");
       testResult = false;
     }
@@ -117,7 +117,7 @@ describe("Test for add recipe", () => {
     await delStep.click();
     await delStep.click();
     stepList = await stepSec.$$(".step-item");
-    if(stepList.length != 3){
+    if(stepList.length !== 3){
       console.log("!!delete step button fail!!");
       testResult = false;
     }
