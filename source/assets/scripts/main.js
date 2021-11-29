@@ -379,42 +379,42 @@ export function createMyRecipePage() {
  */
 function setButtonListen() {
   $("#to-feature-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFeaturedPage");
   });
 
   $("#feature-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
   $("#to-favorite-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFavoritePage");
   });
 
   $("#favorite-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
   $("#to-my-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToMyRecipePage");
   });
 
   $("#my-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
   $("#search-button").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToSearchPage");
   });
 
   $("#cancel-search-button").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+    // if (e.path[0].nodeName == "B") return;
     $("#search-type").selectedIndex = 0;
     $("#search-input").value = "";
     router.navigate("home");
