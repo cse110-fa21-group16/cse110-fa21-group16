@@ -142,7 +142,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
       // console.log(recipeTitle.innerHTML);
       let page = recipeTitle.innerHTML;
       page = page.replace(/&amp;/g, "");
-      if (e.path[0].nodeName == "B") return;
+      // if (e.path[0].nodeName == "B") return;
       router.navigate(page);
     });
 
