@@ -299,7 +299,7 @@ class NutritionPage extends HTMLElement {
     let amountArray = this.shadowRoot.querySelectorAll("#amount-serving");
     calculateBtn.addEventListener("click", () => {
       amountArray.forEach((item) => {
-        if (input.value !== "") {
+        if (input.value !== "" && input.value > 0) {
           item.innerHTML = (item.getAttribute("baseAmount") * input.value).toFixed(2);
         }
       });
