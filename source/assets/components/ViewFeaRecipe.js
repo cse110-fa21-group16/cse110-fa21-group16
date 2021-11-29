@@ -152,6 +152,10 @@ class ViewFeaRecipe extends HTMLElement {
             padding: 5px 20px;
         }
         
+        #tts-btn {
+            margin-top: 10px;
+        }
+
         #left-main > button:hover {
             border: 1px solid #313131;
             background: darkgreen;
@@ -180,6 +184,11 @@ class ViewFeaRecipe extends HTMLElement {
             font-size: 17px;
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
+        }
+
+        #steps-list > ol > li:hover {
+            cursor: pointer;
+            font-weight: bold;
         }
 
         /* main-footer */
@@ -334,7 +343,8 @@ class ViewFeaRecipe extends HTMLElement {
 
         let speechSynthesis = window.speechSynthesis;
         let textToSpeech = document.createElement("button");
-        textToSpeech.textContent = "TTS";
+        textToSpeech.setAttribute("id", "tts-btn");
+        textToSpeech.textContent = "Text-To-Speech";
         textToSpeech.addEventListener("click", () => {
             this.playTextToSpeech(speechSynthesis);
         })
@@ -364,9 +374,13 @@ class ViewFeaRecipe extends HTMLElement {
             let instructionItem = instructionArray[i]["steps"];
             for (let j = 0; j < instructionItem.length; j++) {
                 let instructionStep = document.createElement("li");
-                instructionStep.innerHTML = instructionItem[j]["step"];
+                instructionStep.innerHTML = `Step ${j+1}: ` + instructionItem[j]["step"];
+                instructionStep.addEventListener("click", () => {
+                    let speechText = new SpeechSynthesisUtterance(instructionStep.innerHTML);
+                    speechSynthesis.cancel();
+                    speechSynthesis.speak(speechText); 
+                })
                 instructionOrderedList.appendChild(instructionStep);
-                
             }
         }
 
@@ -605,16 +619,23 @@ class ViewFeaRecipe extends HTMLElement {
         let i = 0;
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
-        console.log(i);
         window.addEventListener('keydown', function(event) {
             if (event.key == "ArrowRight" && i < recipeText.length - 1) {
                 i++;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
                 speechSynthesis.speak(speechText);
             }
             if (event.key == "ArrowLeft" && i > 0) {
                 i--;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+
+            if (event.key == "Control" && i >= 0 && i <= recipeText.length - 1) {
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
                 speechSynthesis.speak(speechText);
             }
         });    
