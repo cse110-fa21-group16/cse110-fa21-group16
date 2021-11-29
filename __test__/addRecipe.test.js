@@ -1,7 +1,26 @@
 describe("Test for add recipe", () => {
+  jest.setTimeout(30000);
   beforeAll(async () => {
-    await page.goto("https://unruffled-lichterman-185ae7.netlify.app");
-    await page.waitForTimeout(1500);
+    // await page.goto("https://unruffled-lichterman-185ae7.netlify.app");
+    await page.goto("https://unruffled-lichterman-185ae7.netlify.app/");
+    let storage;
+    let data = await page.evaluate(() => {
+      storage = window.localStorage;
+      let storedData = JSON.parse(storage.getItem("feaRecipeArray"));
+      return storedData;
+    });
+        
+    while (data === null) {
+      data = await page.evaluate(() => {
+        storage = window.localStorage;
+        let storedData = JSON.parse(storage.getItem("feaRecipeArray"));
+        return storedData;
+      });
+    }
+
+    if (data.length == 10) {
+      console.log("Data added!");
+    }
   });
 
   it("check add recipe in my page", async () => {
@@ -15,7 +34,7 @@ describe("Test for add recipe", () => {
 
     // record how many card in the list
     let cards = await myPageList.$$("new-card-my-page, recipe-card-my-my-page");
-    console.log("before add card num:" + cards.length);
+    // console.log("before add card num:" + cards.length);
 
     let myCard = await myPageList.$("new-card-my-page");
     let myCardRoot = await myCard.getProperty("shadowRoot");
