@@ -1,4 +1,5 @@
 // main.js
+// adding dummy comment
 import { Router } from "./Router.js";
 
 export const $ = (selector) => document.querySelector(selector);
