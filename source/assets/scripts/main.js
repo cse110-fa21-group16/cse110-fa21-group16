@@ -1,4 +1,5 @@
 // main.js
+// adding dummy comment
 import { Router } from "./Router.js";
 
 export const $ = (selector) => document.querySelector(selector);
@@ -378,42 +379,42 @@ export function createMyRecipePage() {
  * @returns Void
  */
 function setButtonListen() {
-  $("#to-feature-page").addEventListener("click", (e) => {
+  $("#to-feature-page").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFeaturedPage");
   });
 
-  $("#feature-page-to-landing").addEventListener("click", (e) => {
+  $("#feature-page-to-landing").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#to-favorite-page").addEventListener("click", (e) => {
+  $("#to-favorite-page").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFavoritePage");
   });
 
-  $("#favorite-page-to-landing").addEventListener("click", (e) => {
+  $("#favorite-page-to-landing").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#to-my-page").addEventListener("click", (e) => {
+  $("#to-my-page").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("ToMyRecipePage");
   });
 
-  $("#my-page-to-landing").addEventListener("click", (e) => {
+  $("#my-page-to-landing").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#search-button").addEventListener("click", (e) => {
+  $("#search-button").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     router.navigate("ToSearchPage");
   });
 
-  $("#cancel-search-button").addEventListener("click", (e) => {
+  $("#cancel-search-button").addEventListener("click", () => {
     // if (e.path[0].nodeName == "B") return;
     $("#search-type").selectedIndex = 0;
     $("#search-input").value = "";

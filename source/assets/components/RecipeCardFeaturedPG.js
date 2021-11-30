@@ -137,7 +137,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
     card.appendChild(checkButton);
 
     // bind check button to router
-    checkButton.addEventListener("click", (e) => {
+    checkButton.addEventListener("click", () => {
       // console.log(e.path[0].nodeName);
       // console.log(recipeTitle.innerHTML);
       let page = recipeTitle.innerHTML;
