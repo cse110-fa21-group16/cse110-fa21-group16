@@ -578,6 +578,7 @@ class ViewFeaRecipe extends HTMLElement {
     viewNutrition(data) {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
         $("#view-nutrition-page").classList.add("main-shown");
         const nutritionPage = document.createElement("nutrition-page");
         nutritionPage.data = data;
@@ -592,6 +593,7 @@ class ViewFeaRecipe extends HTMLElement {
     feaRecipeToLand() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
         loadMain();
         if ($("#featured-page").classList.contains("shown")) {
             router.navigate("ToFeaturedPage");
