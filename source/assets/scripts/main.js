@@ -779,6 +779,7 @@ export function leaveMain() {
 function bindEscKey() {
   document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
+      speechSynthesis.cancel();
       router.navigate("home");
     }
   });
