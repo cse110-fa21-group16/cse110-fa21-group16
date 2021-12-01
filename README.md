@@ -43,3 +43,9 @@ After creating a recipe, users can edit or update their own recipes. They can ch
 Finally, whenever users decide to delete recipes, they can do so. As a user updates a page, there is a button at the **bottom center** saying "delete". Clicking on this button allows the user to remove the recipe that they created. However, there is a delete confirmation just to make sure the user really wants to delete the recipe.
 
 # Features
+In addition to the CRUD functionality, below is a list of additional features that make Zest truly unique 
+- Search and filtering
+- Favoriting recipes
+- Ingredient unit conversions 
+- Recipe draft saving
+
