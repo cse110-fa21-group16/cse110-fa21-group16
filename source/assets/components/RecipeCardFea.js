@@ -111,6 +111,7 @@ class RecipeCardFea extends HTMLElement {
 
     // bind check button to router
     checkButton.addEventListener("click", () => {
+      speechSynthesis.cancel();
       let page = recipeTitle.innerHTML;
       page = page.replace(/&amp;/g, "");
       router.navigate(page);

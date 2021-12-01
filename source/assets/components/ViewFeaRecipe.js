@@ -616,6 +616,7 @@ class ViewFeaRecipe extends HTMLElement {
      * @returns Void
      */
     playTextToSpeech(speechSynthesis) {
+        speechSynthesis.cancel();
         let recipeText = this.shadowRoot.querySelector("#steps-list");
         recipeText = recipeText.querySelectorAll("li");
         let i = 0;

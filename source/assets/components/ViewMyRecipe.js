@@ -536,8 +536,10 @@ class ViewMyRecipe extends HTMLElement {
      * @returns Void
      */
      playTextToSpeech(speechSynthesis) {
+        speechSynthesis.cancel();
         let recipeText = this.shadowRoot.querySelector("#steps-list");
         recipeText = recipeText.querySelectorAll("li");
+        console.log(recipeText);
         let i = 0;
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
