@@ -945,11 +945,13 @@ class AddRecipe extends HTMLElement {
       let amountList = ingredientGeneralDiv.getElementsByClassName("amount-item");
       let unitList = ingredientGeneralDiv.getElementsByClassName("unit-item");
       for (let i = 0; i < ingreItemList.length; i++) {
-        let newIngreInfo = {}
-        newIngreInfo["name"] = ingreItemList[i].value;
-        newIngreInfo["amount"] = amountList[i].value;
-        newIngreInfo["unit"] = unitList[i].value;
-        inputData["extendedIngredients"].push(newIngreInfo);
+        if (ingreItemList[i].value != "") {
+          let newIngreInfo = {}
+          newIngreInfo["name"] = ingreItemList[i].value;
+          newIngreInfo["amount"] = amountList[i].value;
+          newIngreInfo["unit"] = unitList[i].value;
+          inputData["extendedIngredients"].push(newIngreInfo);
+        }
       }
 
       let instruList = procedureList.getElementsByClassName("step-item");

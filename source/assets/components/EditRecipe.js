@@ -810,20 +810,28 @@ class EditRecipe extends HTMLElement {
       let amountList = ingredientGeneralDiv.getElementsByClassName("amount-item");
       let unitList = ingredientGeneralDiv.getElementsByClassName("unit-item");
       for (let i = 0; i < ingreItemList.length; i++) {
-        let newIngreInfo = {}
-        newIngreInfo["name"] = ingreItemList[i].value;
-        newIngreInfo["amount"] = amountList[i].value;
-        newIngreInfo["unit"] = unitList[i].value;
-        inputData["extendedIngredients"].push(newIngreInfo);
+        if (ingreItemList[i].value != "") {
+          let newIngreInfo = {}
+          newIngreInfo["name"] = ingreItemList[i].value;
+          newIngreInfo["amount"] = amountList[i].value;
+          newIngreInfo["unit"] = unitList[i].value;
+          inputData["extendedIngredients"].push(newIngreInfo);
+        }
       }
 
       let instruList = procedureList.getElementsByClassName("step-item");
       let listHtml = "<ol>";
       let instruArray = [];
-      for (let i of instruList) {
-        let newInstruList = `<li>${i.value}</li>`;
-        listHtml += newInstruList;
-        instruArray.push(i.value);
+      let nonEmptyIndex = 0;
+      let trueIndex = 0;
+      while (trueIndex < instruList.length) {
+        if (instruList[trueIndex].value != "") {
+          let newInstruList = `<li>Step ${nonEmptyIndex+1}: ${instruList[trueIndex].value}</li>`;
+          listHtml += newInstruList;
+          instruArray.push(instruList[trueIndex].value);
+          nonEmptyIndex++;
+        }
+        trueIndex++;
       }
       listHtml += "</ol>"
       inputData["instructions"] = listHtml;
