@@ -118,7 +118,7 @@ class EditRecipe extends HTMLElement {
           }
           .header-div h1 {
             color: white;
-            font-size: 4vw;
+            font-size: 5vw;
           }
     
         }
@@ -153,6 +153,7 @@ class EditRecipe extends HTMLElement {
          .picture {
            width: 98%;
            display: flex;
+           flex-direction: column;
            justify-content: space-between;
            align-items: center;
            margin: 2em 0;
@@ -168,7 +169,7 @@ class EditRecipe extends HTMLElement {
            outline: none;
            resize: none;
            text-align: center;
-           width: 50%;
+           width: 100%;
          }
          
          #recipe-name:hover{
@@ -189,7 +190,7 @@ class EditRecipe extends HTMLElement {
         @media (max-width: 480px) {
 
           .origin {
-            width: 70%;
+            width: 100%;
             display: grid;
             justify-content: center;
             grid-template-columns: 100%;
@@ -198,21 +199,21 @@ class EditRecipe extends HTMLElement {
 
           .picture {
             width: 100vw;
-            position:relative;
-            right:55px;
+            position: relative;
+            flex-direction: column;
             /* border: 1px solid black; */
           }
 
           #recipe-name {
             border: 1px solid #ccccd8;
             border-radius: 14px;
-            font-size: 3vw;
+            font-size: 12vw;
             height: 30%;
             margin: 0 10px;
             outline: none;
             resize: none;
             text-align: center;
-            width: 50%;
+            width: 95vw;
           }
 
         }
@@ -295,10 +296,14 @@ class EditRecipe extends HTMLElement {
         }
 
         @media (max-width: 480px) {
+          .instructions {
+            /* border: 1px solid blue; */
+            width: 98vw;
+            position: relative;
+          }
+
           .procedures {
-            position:relative;
-            right: 65px;
-            width:95vw;  
+            position: relative;
             /* border: 1px solid greenyellow; */
           }
 
@@ -385,16 +390,13 @@ class EditRecipe extends HTMLElement {
          @media (max-width: 480px) {
            .ingredients {
              width: 98vw;
-             position:relative;
-             right:55px;
+             position: relative;
            }
 
            .ingredients-list-div {
             display: grid;
             grid-template-columns: 50% 20% 27.5%;
-            width: 100vw;
             position: relative;
-            right: 20px;  
           }
 
           .ingredients-item {
@@ -404,7 +406,7 @@ class EditRecipe extends HTMLElement {
             padding-top: 5px;
             padding-left: 5px;
             resize: none;
-            font-size: 15px;
+            font-size: 12px;
           }
 
           .amount-item {
@@ -414,7 +416,7 @@ class EditRecipe extends HTMLElement {
             border-radius: 10px;
             padding-top: 5px;
             padding-left: 5px;
-            font-size: 15px;
+            font-size: 12px;
           }
         
           .unit-item {
@@ -423,12 +425,7 @@ class EditRecipe extends HTMLElement {
             border-radius: 10px;
             padding-top: 5px;
             padding-left: 5px;
-            font-size: 15px;
-          }
-          
-          .unit-column > .title{
-            padding-left: 20px; 
-            font-size: 12px;  
+            font-size: 12px;
           }
           
           .ingredient-column > .title {
@@ -438,8 +435,28 @@ class EditRecipe extends HTMLElement {
           .amount-column > .title{
             font-size:12px;
           }
+
+          .unit-column > .title{
+            padding-left: 20px; 
+            font-size: 12px;  
+          }
          }
          
+         @media (min-width: 481px) and (max-width: 960px) {
+          .ingredient-column > .title {
+            font-size: 14px;
+          }
+
+          .amount-column > .title{
+            font-size: 14px;
+          }
+
+          .unit-column > .title{
+            padding-left: 20px; 
+            font-size: 14px;  
+          }
+         }
+
          /*****************************************
           *****************************************
           Style for footer section in article
@@ -520,9 +537,9 @@ class EditRecipe extends HTMLElement {
            border-radius: 14px;
            color: #305A50;
            cursor: pointer;
-           font-size: 20px;
+           font-size: 14px;
            margin: 20px;
-           padding: 5px 10px;
+           padding: 10px 15px;
           }
 
           #delete-edit,
@@ -536,6 +553,21 @@ class EditRecipe extends HTMLElement {
             color: white;
          }
         
+        }
+
+        @media (min-width: 481px) and (max-width: 1024px) {
+          #submit-edit,
+          #delete-edit,
+          #cancel-edit {
+           border: 1px solid #ccccd8;
+           background-color: #fff;
+           border-radius: 14px;
+           color: #305A50;
+           cursor: pointer;
+           font-size: 14px;
+           margin: 20px;
+           padding: 10px 15px;
+          }
         }
         `;
 
