@@ -11,7 +11,7 @@
 - [x] Andy Chen
 - [x] Daniel Pak
 - [x] Edwin Lau-mack
-- [ ] Evan Puzon
+- [x] Evan Puzon
 - [x] Gavin Zhou
 - [x] Hao Yuan
 - [x] Jose Santana-sosa
