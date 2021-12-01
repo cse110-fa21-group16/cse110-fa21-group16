@@ -1,5 +1,5 @@
 describe("Test for add recipe", () => {
-  jest.setTimeout(30000);
+  jest.setTimeout(100000);
   beforeAll(async () => {
     await page.goto("https://unruffled-lichterman-185ae7.netlify.app",{"waitUntil" : "networkidle0"});
 
@@ -16,7 +16,7 @@ describe("Test for add recipe", () => {
     // record how many card in the list
     let cards = await myPageList.$$("new-card-my-page, recipe-card-my-my-page");
 
-    for(let cardNum = 0; cardNum<10; cardNum++){
+    for(let cardNum = 0; cardNum<5; cardNum++){
       let myCard = await myPageList.$("new-card-my-page");
       let myCardRoot = await myCard.getProperty("shadowRoot");
       let plus = await myCardRoot.$("img");
