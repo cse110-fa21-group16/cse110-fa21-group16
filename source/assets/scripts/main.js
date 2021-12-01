@@ -32,6 +32,7 @@ export const router = new Router(function () {
 });
 
 window.addEventListener("DOMContentLoaded", init);
+speechSynthesis.cancel();
 
 /**
  * Initialize and load page.
