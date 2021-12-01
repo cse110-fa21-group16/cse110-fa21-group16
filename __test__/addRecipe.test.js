@@ -1,5 +1,3 @@
-//import { ExecutionContext } from "puppeteer";
-
 describe("Test for add recipe", () => {
   jest.setTimeout(30000);
   beforeAll(async () => {
@@ -12,16 +10,11 @@ describe("Test for add recipe", () => {
 
   // adding card and check for add/delete ingredient and produce
   it("check and add recipe in my page", async () => {
-    // await page.screenshot({
-    //   path: "./3rightafterclickadd.png",
-    //   fullPage: true
-    // });
     // if anything is wrong, change testResult to false;
     let testResult = true;
     let myPageList = await page.$("#my-page-list");
     // record how many card in the list
     let cards = await myPageList.$$("new-card-my-page, recipe-card-my-my-page");
-    // console.log("before add card num:" + cards.length);
 
     for(let cardNum = 0; cardNum<10; cardNum++){
       let myCard = await myPageList.$("new-card-my-page");
@@ -89,7 +82,6 @@ describe("Test for add recipe", () => {
         await unit.select("kgs");
       }
 
-
       // add procedures
       let stepSec = await addPageRoot.$(".steps-div");
       let addStep = await stepSec.$(".add-instruction");
@@ -117,10 +109,6 @@ describe("Test for add recipe", () => {
         await stepList[i].type(((i+1)*10101).toString());
       }
 
-      // await page.screenshot({
-      //   path: "./screenshot/4beforesubmit.png",
-      //   fullPage: true
-      // });
       // submit the recipe
       let submit = await addPageRoot.$("#submit-edit");
       await submit.click();
@@ -128,14 +116,6 @@ describe("Test for add recipe", () => {
 
     cards = await myPageList.$$("new-card-my-page, recipe-card-my-my-page");
     console.log("after add card num:" + cards.length);
-
-    // await page.screenshot({
-    //   path: "./screenshot.png",
-    //   fullPage: true
-    // });
-
-
-
     expect(testResult).toBe(true);
   });
 
@@ -143,11 +123,6 @@ describe("Test for add recipe", () => {
   it("check recipes just added", async () => {
     // if anything is wrong, change testResult to false;
     let testResult = true;
-
-    // await page.screenshot({
-    //   path: "./screenshot/5checkingbeforeclick.png",
-    //   fullPage: true
-    // });
 
     let myPageList = await page.$("#my-page-list");
     let cards = await myPageList.$$("recipe-card-my-my-page");
@@ -162,13 +137,8 @@ describe("Test for add recipe", () => {
       // check title in my recipe
       if(title != "random recipe"){
         console.log("card title mismatch");
-        console.log(title);
         testResult = false;
       }
-      await page.screenshot({
-        path: "./screenshot/" + (6+i).toString() +"checkingbeforeclick.png",
-        fullPage: true
-      });
 
       // click on check button
       let button = await cardRoot.$("button");
@@ -268,6 +238,7 @@ describe("Test for add recipe", () => {
       if(cardNum-1 != cards.length){
         testResult = false;
       }
+      cardNum-=1;
     }
     if(!testResult){
       console.log("delete card failed")
@@ -277,11 +248,10 @@ describe("Test for add recipe", () => {
   });
   
       
-  // await page.screenshot({
-  //   path: "./screenshot/1.png",
-  //   fullPage: true
-  // });
-
+    // await page.screenshot({
+    //   path: "./screenshot.png",
+    //   fullPage: true
+    // });
 });
 
 
