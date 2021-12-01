@@ -49,3 +49,7 @@ In addition to the CRUD functionality, below is a list of additional features th
 - Ingredient unit conversions 
 - Recipe draft saving
 
+# Credits 
+<p align="center">
+    <a href="https://spoonacular.com/food-api">Spoonacular API</a>
+</a>
