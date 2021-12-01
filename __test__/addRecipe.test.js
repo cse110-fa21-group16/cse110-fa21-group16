@@ -206,7 +206,7 @@ describe("Test for add recipe", () => {
     // record number of cards
     let cardNum = cards.length;
     //deleting recipe one by one
-    while(cards.length != 0){
+    while(cards.length !== 0){
       // click into the recipe
       let cardRoot = await cards[0].getProperty("shadowRoot");
       let button = await cardRoot.$("button");
