@@ -955,10 +955,16 @@ class AddRecipe extends HTMLElement {
       let instruList = procedureList.getElementsByClassName("step-item");
       let listHtml = "<ol>";
       let instruArray = [];
-      for (let i of instruList) {
-        let newInstruList = `<li>${i.value}</li>`;
-        listHtml += newInstruList;
-        instruArray.push(i.value);
+      let nonEmptyIndex = 0;
+      let trueIndex = 0;
+      while (trueIndex < instruList.length) {
+        if (instruList[trueIndex].value != "") {
+          let newInstruList = `<li>Step ${nonEmptyIndex+1}: ${instruList[trueIndex].value}</li>`;
+          listHtml += newInstruList;
+          instruArray.push(instruList[trueIndex].value);
+          nonEmptyIndex++;
+        }
+        trueIndex++;
       }
       listHtml += "</ol>"
       inputData["instructions"] = listHtml;

@@ -616,13 +616,14 @@ class ViewFeaRecipe extends HTMLElement {
      * @returns Void
      */
     playTextToSpeech(speechSynthesis) {
-        speechSynthesis.cancel();
         let recipeText = this.shadowRoot.querySelector("#steps-list");
         recipeText = recipeText.querySelectorAll("li");
         let i = 0;
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
-        window.addEventListener('keydown', function(event) {
+        let featuredView = document.querySelector("#view-recipe-page").children[0];
+        featuredView.addEventListener('keydown', function(event) {
+            console.log("FeaRecipePage");
             if (event.key == "ArrowRight" && i < recipeText.length - 1) {
                 i++;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);

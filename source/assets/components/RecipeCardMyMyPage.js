@@ -100,10 +100,8 @@ class RecipeCardMyMyPage extends HTMLElement {
     card.appendChild(checkButton);
 
     // bind check button
-    checkButton.addEventListener("click", (e) => {
-      console.log(e.path[0].nodeName);
+    checkButton.addEventListener("click", () => {
       speechSynthesis.cancel();
-      // if (e.path[0].nodeName == "B") return;
       router.navigate(data["id"]);
     });
 

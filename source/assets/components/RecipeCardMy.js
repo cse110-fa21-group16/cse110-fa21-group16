@@ -101,8 +101,6 @@ class RecipeCardMy extends HTMLElement {
 
     // bind check button to router
     checkButton.addEventListener("click", () => {
-      // console.log(e.path[0].nodeName);
-      // if (e.path[0].nodeName == "B") return;
       speechSynthesis.cancel();
       router.navigate(data["id"]);
     });
