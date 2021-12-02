@@ -1,5 +1,5 @@
 // nutrition_facts.test.js
-import { calculateServing } from '../source/assets/components/NutritionPage.js';
+import { calculateServing } from "../source/assets/scripts/helpGetDataFunc.js";
 //const functions = require('../source/assets/components/NutritionPage.js');
 
 test('test nutrition fact conversion, serving size 1', () => {
