@@ -300,10 +300,21 @@ class NutritionPage extends HTMLElement {
     calculateBtn.addEventListener("click", () => {
       amountArray.forEach((item) => {
         if (input.value !== "" && input.value > 0) {
-          item.innerHTML = (item.getAttribute("baseAmount") * input.value).toFixed(2);
+          item.innerHTML = this.calculateServing(item.getAttribute("baseAmount"), input.value);
         }
       });
     });
+  }
+
+  /**
+   * This function calculates the nutrition facts of some number servings based on the provided 
+   * base amount of 1 serving and the desired number of servings.
+   * @param {*} baseAmount a number representing the base amount of 1 serving
+   * @param {*} multiplier a desired number of serving to multiply the baseAmount with
+   * @returns Number 
+   */
+   calculateServing(baseAmount, multiplier) {
+    return (baseAmount * multiplier).toFixed(2);
   }
 
   /**
