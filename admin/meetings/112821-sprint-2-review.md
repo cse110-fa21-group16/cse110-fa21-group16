@@ -11,7 +11,7 @@
 - [x] Andy Chen
 - [x] Daniel Pak
 - [x] Edwin Lau-mack
-- [ ] Evan Puzon
+- [x] Evan Puzon
 - [x] Gavin Zhou
 - [x] Hao Yuan
 - [x] Jose Santana-sosa
@@ -76,6 +76,11 @@ Hao Yuan:
 - look at website features, find bugs on it
 - see scaling, try to make it more consistent
 - testing
+
+Evan Puzon:
+- conversion feature using spoonacular api
+- bug finding and trying to break the site
+- remove ingredients and remove procedures features as well for crud from last week
 
 ## To DO
 - Finish Everything by Thursday

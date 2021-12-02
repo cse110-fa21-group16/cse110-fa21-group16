@@ -125,6 +125,7 @@ class ViewMyRecipe extends HTMLElement {
         }
 
         #main-header > h1 {
+            width: 55%;
             line-height: 35px;
             font-size: 30px;
             margin: 0px 30px;
@@ -373,14 +374,20 @@ class ViewMyRecipe extends HTMLElement {
 
         let cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
-
-        // let toNutPage = document.createElement("button");
-        // toNutPage.textContent = "Nutrition Facts";
+        
+        let speechSynthesis = window.speechSynthesis;
+        let textToSpeech = document.createElement("button");
+        textToSpeech.setAttribute("id", "tts-btn");
+        textToSpeech.textContent = "Text-To-Speech";
+        textToSpeech.addEventListener("click", () => {
+            this.playTextToSpeech(speechSynthesis);
+        })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
         // leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(textToSpeech);
 
         // right-main
         let rightMainSec = document.createElement("section");
@@ -565,6 +572,7 @@ class ViewMyRecipe extends HTMLElement {
     myRecipeToLand() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
         loadMain();
         if ($("#my-page").classList.contains("shown")) {
             router.navigate("ToMyRecipePage");
@@ -589,6 +597,41 @@ class ViewMyRecipe extends HTMLElement {
         editRecipePage.data = data;
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");
+    }
+
+    /**
+     * Play the instruction step by step
+     * @param{Object} speechSynthesis a speech Object 
+     * @returns Void
+     */
+     playTextToSpeech(speechSynthesis) {
+        let recipeText = this.shadowRoot.querySelector("#steps-list");
+        recipeText = recipeText.querySelectorAll("li");
+        let i = 0;
+        let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+        speechSynthesis.speak(speechText);
+        let myRecipeView = document.querySelector("#view-recipe-page").children[0];
+        myRecipeView.addEventListener('keydown', function(event) {
+            console.log("MyRecipePage");
+            if (event.key == "ArrowRight" && i < recipeText.length - 1) {
+                i++;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+            if (event.key == "ArrowLeft" && i > 0) {
+                i--;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+
+            if (event.key == "Control" && i >= 0 && i <= recipeText.length - 1) {
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+        });         
     }
 }
 

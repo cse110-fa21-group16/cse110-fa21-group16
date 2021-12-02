@@ -979,10 +979,6 @@ class EditRecipe extends HTMLElement {
     });
 
     deleteButton.addEventListener("click", () => {
-      this.toDelete(data);
-    });
-
-    submitButton.addEventListener("click", () => {
       let inputData = {};
       inputData["title"] = picTitle.value;
       inputData["vegetarian"] = optionVegetarian.checked;
@@ -1009,6 +1005,61 @@ class EditRecipe extends HTMLElement {
         let newInstruList = `<li>${i.value}</li>`;
         listHtml += newInstruList;
         instruArray.push(i.value);
+      }
+      listHtml += "</ol>"
+      inputData["instructions"] = listHtml;
+      inputData["instructionsArray"] = instruArray;
+
+      inputData["id"] = data["id"];
+
+      // Using canvas to compress image
+      let imgCanvas = document.createElement("canvas");
+      let imgContext = imgCanvas.getContext("2d");
+
+      imgCanvas.width = picImgPreRead.width;
+      imgCanvas.height = picImgPreRead.height;
+
+      imgContext.drawImage(picImgPreRead, 0, 0, picImgPreRead.width, picImgPreRead.height);
+      inputData["image"] = imgCanvas.toDataURL("image/jpeg");
+
+      this.toDelete(inputData);
+    });
+
+    submitButton.addEventListener("click", () => {
+      let inputData = {};
+      inputData["title"] = picTitle.value;
+      inputData["vegetarian"] = optionVegetarian.checked;
+      inputData["vegan"] = optionVegan.checked;
+      inputData["glutenFree"] = optionGlutten.checked;
+      inputData["dairyFree"] = optionDairy.checked;
+
+      inputData["extendedIngredients"] = [];
+      let ingreItemList = ingredientGeneralDiv.getElementsByClassName("ingredients-item");
+      let amountList = ingredientGeneralDiv.getElementsByClassName("amount-item");
+      let unitList = ingredientGeneralDiv.getElementsByClassName("unit-item");
+      for (let i = 0; i < ingreItemList.length; i++) {
+        if (ingreItemList[i].value != "") {
+          let newIngreInfo = {}
+          newIngreInfo["name"] = ingreItemList[i].value;
+          newIngreInfo["amount"] = amountList[i].value;
+          newIngreInfo["unit"] = unitList[i].value;
+          inputData["extendedIngredients"].push(newIngreInfo);
+        }
+      }
+
+      let instruList = procedureList.getElementsByClassName("step-item");
+      let listHtml = "<ol>";
+      let instruArray = [];
+      let nonEmptyIndex = 0;
+      let trueIndex = 0;
+      while (trueIndex < instruList.length) {
+        if (instruList[trueIndex].value != "") {
+          let newInstruList = `<li>Step ${nonEmptyIndex+1}: ${instruList[trueIndex].value}</li>`;
+          listHtml += newInstruList;
+          instruArray.push(instruList[trueIndex].value);
+          nonEmptyIndex++;
+        }
+        trueIndex++;
       }
       listHtml += "</ol>"
       inputData["instructions"] = listHtml;
