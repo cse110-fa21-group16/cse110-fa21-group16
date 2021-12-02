@@ -19,10 +19,7 @@ jobs:
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Installing dependencies
-        run: npm ci
-    
+    steps: 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout source
         uses: actions/checkout@v2
@@ -36,7 +33,8 @@ jobs:
           
       # Runs a single command using the runners shell
       - name: Build
-        uses: andstor/jsdoc-action@v1
+        uses: andstor/jsdoc-action@v1.2.0
+#         uses: andstor/jsdoc-action@v1
         with:
           source_dir: ./source/assets
           recurse: true
