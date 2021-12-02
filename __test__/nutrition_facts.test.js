@@ -7,7 +7,7 @@ test('test nutrition fact conversion, serving size 1', () => {
 });
 
 test('test nutrition fact conversion, serving size 1', () => {
-    expect(calculateServing(33.90, 1)).toBe(33.90);
+    expect(calculateServing(33.91, 1)).toBe(33.91);
 });
 
 test('test nutrition fact conversion, serving size 2', () => {
@@ -15,7 +15,7 @@ test('test nutrition fact conversion, serving size 2', () => {
 });
 
 test('test nutrition fact conversion, serving size 2', () => {
-    expect(calculateServing(33.90, 2)).toBe(67.80);
+    expect(calculateServing(33.91, 2)).toBe(67.82);
 });
 
 test('test nutrition fact conversion, serving size 5', () => {
