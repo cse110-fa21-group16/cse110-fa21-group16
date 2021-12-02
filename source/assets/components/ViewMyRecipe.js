@@ -108,6 +108,7 @@ class ViewMyRecipe extends HTMLElement {
         }
 
         #main-header > h1 {
+            width: 55%;
             line-height: 35px;
             font-size: 30px;
             margin: 0px 30px;

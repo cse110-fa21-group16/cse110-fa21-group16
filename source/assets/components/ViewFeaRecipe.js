@@ -112,6 +112,7 @@ class ViewFeaRecipe extends HTMLElement {
             line-height: 35px;
             font-size: 30px;
             margin: 0px 30px;
+            width: 50%;
         }
 
         #main-header > img {
