@@ -172,7 +172,7 @@ class ViewFeaRecipe extends HTMLElement {
         @media (max-width: 480px) {
             #left-main > button {
                 position:relative;
-                bottom: 20px;
+                // bottom: 20px;
             }
         }
 
@@ -398,7 +398,6 @@ class ViewFeaRecipe extends HTMLElement {
                 let instructionStep = document.createElement("li");
                 instructionStep.innerHTML = instructionItem[j]["step"];
                 instructionOrderedList.appendChild(instructionStep);
-                
             }
         }
 
