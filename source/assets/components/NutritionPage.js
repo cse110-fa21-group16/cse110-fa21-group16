@@ -313,7 +313,7 @@ class NutritionPage extends HTMLElement {
    * @param {*} multiplier a desired number of serving to multiply the baseAmount with
    * @returns Number 
    */
-   calculateServing(baseAmount, multiplier) {
+  calculateServing(baseAmount, multiplier) {
     return (baseAmount * multiplier).toFixed(2);
   }
 
