@@ -58,7 +58,7 @@ class ViewMyRecipe extends HTMLElement {
 
         #logo-sec > a > img {
             height: 100%;
-            width: 125px;
+            width: 100px;
             object-fit: cover;
         }
 
@@ -82,7 +82,7 @@ class ViewMyRecipe extends HTMLElement {
         #home-link {
             color: white;
             font-size: 2vw;
-            margin: 0px 0px 0px 20px;
+            // margin: 0px 0px 0px 20px;
             text-decoration: none;
         }
 
@@ -252,7 +252,7 @@ class ViewMyRecipe extends HTMLElement {
             display: flex;
             flex: 1 1 25%;
             flex-flow: column nowrap;
-            padding-bottom: 60px;
+            // padding-bottom: 60px;
         }
 
     
@@ -285,6 +285,24 @@ class ViewMyRecipe extends HTMLElement {
             width: 20px;
             height: 20px;
         }
+
+        #show-ingre-btn {
+            display: none;
+        }
+        @media (max-width: 680px) {
+            #show-ingre-btn {
+                width: 100%;
+                height: 70px;
+                display: block;
+                background-color: white;
+                object-fit: contain;
+            }
+
+            #show-ingre-btn:hover {
+                cursor: pointer;
+            }
+        }
+        
         `;
         styleElem.innerHTML = styles;
 
@@ -503,9 +521,26 @@ class ViewMyRecipe extends HTMLElement {
         aside.appendChild(ingreAside);
         aside.appendChild(dietAside);
 
+        let showIngre = document.createElement("img");
+        showIngre.setAttribute("id", "show-ingre-btn");
+        showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+        showIngre.addEventListener("click", () => {
+            if (ingreAside.style.display != "none" && dietAside.style.display != "none") {  
+                ingreAside.style.display = "none";
+                dietAside.style.display = "none";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-down.png");
+            } else {
+                ingreAside.style.display = "block";
+                dietAside.style.display = "block";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+            }
+        });
+
+        aside.appendChild(showIngre)
+
         card.appendChild(header);
-        card.appendChild(main);
         card.appendChild(aside);
+        card.appendChild(main);
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
