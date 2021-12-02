@@ -1,4 +1,5 @@
 // main.js
+// adding dummy comment
 import { Router } from "./Router.js";
 
 export const $ = (selector) => document.querySelector(selector);
@@ -7,6 +8,8 @@ let nextMyRecipeID = JSON.parse(localStorage.getItem("nextMyRecipeID"));
 let feaRecipeArray = JSON.parse(localStorage.getItem("feaRecipeArray"));
 let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
+let draftMyRecipe = JSON.parse(localStorage.getItem("draftMyRecipe"))
+let filters = [];
 
 /**
  * Creating a router object. The constructor's function is the "home" function
@@ -16,6 +19,7 @@ export const router = new Router(function () {
   leaveFeatured();
   leaveFavorite();
   leaveMyRecipe();
+  leaveSearchPage();
   $("#add-recipe-page").classList.remove("main-shown");
   $("#add-recipe-page").innerHTML = "";
   $("#view-recipe-page").classList.remove("main-shown");
@@ -29,10 +33,11 @@ export const router = new Router(function () {
 });
 
 window.addEventListener("DOMContentLoaded", init);
+speechSynthesis.cancel();
 
 /**
- * Initial and load page
- * @returns a Promise of fetched data
+ * Initialize and load page.
+ * @returns Void
  */
 async function init() {
   let fetchSuccessful = await fetchFeaRecipeArray();
@@ -59,8 +64,8 @@ async function init() {
     return;
   }
 
-  // Routing for every card in feaReicpeArray
-  for (let i = 0; i < feaRecipeArray.length; i++ ) {
+  // Routing view for every card in feaReicpeArray
+  for (let i = 0; i < feaRecipeArray.length; i++) {
     let page = feaRecipeArray[i]["title"];
     page = page.replace(/&/g, ""); // replace all ampersand in string
     router.addPage(page, () => {
@@ -74,7 +79,7 @@ async function init() {
     });
   }
 
-  // Routing for every card in myRecipeArray
+  // Routing view for every card in myRecipeArray
   // Since we're allowing duplicate name, we'll use id to distinguish them
   for (let i = 0; i < myRecipeArray.length; i++) {
     // Routing for viewing/checking out recipe
@@ -90,17 +95,6 @@ async function init() {
       $("#view-recipe-page").appendChild(viewRecipePage);
       leaveMain();
     });
-
-    // Routing for editing a recipe
-    // router.addPage(myRecipeArray[i]["id"]+"Edit", () => {
-    //   myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray")); // update the array
-    //   $("#view-recipe-page").classList.remove("main-shown");
-    //   $("#view-recipe-page").innerHTML = "";
-    //   let editRecipePage = document.createElement("edit-recipe");
-    //   editRecipePage.data = myRecipeArray[i];
-    //   $("#add-recipe-page").appendChild(editRecipePage);
-    //   $("#add-recipe-page").classList.add("main-shown");
-    // });
   }
 
 
@@ -110,6 +104,7 @@ async function init() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     leaveLanding();
+    leaveSearchPage();
     loadFeatured();
   });
 
@@ -118,6 +113,7 @@ async function init() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     leaveLanding();
+    leaveSearchPage();
     loadFavorite();
   });
 
@@ -126,7 +122,19 @@ async function init() {
     $("#view-recipe-page").innerHTML = "";
     loadMain();
     leaveLanding();
+    leaveSearchPage();
     loadMyRecipe();
+  })
+
+  router.addPage("ToSearchPage", () => {
+    $("#view-recipe-page").classList.remove("main-shown");
+    $("#view-recipe-page").innerHTML = "";
+    loadMain();
+    leaveLanding();
+    leaveFavorite();
+    leaveFeatured();
+    leaveMyRecipe();
+    loadSearchPage();
   })
 
   setButtonListen();
@@ -145,7 +153,7 @@ async function fetchFeaRecipeArray() {
   return new Promise((resolve, reject) => {
     if (feaRecipeArray == null) {
       fetch("./.netlify/functions/fetch-data")
-        // fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
+        //fetch("https://api.spoonacular.com/recipes/random?apiKey=...&number=30")
         .then((response) => response.json())
         .then((data) => {
           feaRecipeArray = data;
@@ -189,6 +197,7 @@ function createFavRecipeCards() {
 
     if (favRecipeArray === null || favRecipeArray.length === 0) {
       favRecipeArray = [];
+      localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray));
       $("#favorite-recipes").classList.remove("shown");
       resolve(true);
     }
@@ -221,10 +230,17 @@ function createMyRecipeCards() {
 
     if (nextMyRecipeID == null) {
       nextMyRecipeID = 0;
+      localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     }
 
     if (myRecipeArray == null) {
       myRecipeArray = [];
+      localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+    }
+
+    if (draftMyRecipe == null) {
+      draftMyRecipe = {};
+      localStorage.setItem("draftMyRecipe", JSON.stringify(draftMyRecipe));
     }
 
     $("#my-list").innerHTML = "";
@@ -251,7 +267,7 @@ function createMyRecipeCards() {
         $("#view-recipe-page").appendChild(viewRecipePage);
         leaveMain();
       });
-  
+
       $("#my-list").appendChild(newMyRecipeCard);
     }
     if (myRecipeArray.length < 2) {
@@ -316,10 +332,17 @@ export function createMyRecipePage() {
 
     if (nextMyRecipeID == null) {
       nextMyRecipeID = 0;
+      localStorage.setItem("nextMyRecipeID", JSON.stringify(nextMyRecipeID));
     }
 
     if (myRecipeArray == null) {
       myRecipeArray = [];
+      localStorage.setItem("myRecipeArray", JSON.stringify(myRecipeArray));
+    }
+
+    if (draftMyRecipe == null) {
+      draftMyRecipe = {};
+      localStorage.setItem("draftMyRecipe", JSON.stringify(draftMyRecipe));
     }
 
     $("#my-page-list").innerHTML = "";
@@ -341,7 +364,7 @@ export function createMyRecipePage() {
         $("#view-recipe-page").appendChild(viewRecipePage);
         leaveMain();
       });
-  
+
       $("#my-page-list").appendChild(newMyRecipeCard);
     }
     let addNewCard = document.createElement("new-card-my-page");
@@ -353,45 +376,279 @@ export function createMyRecipePage() {
 
 
 /**
- * Set event listener for all title button
- * @returns void
+ * Set event listener for all title button.
+ * @returns Void
  */
 function setButtonListen() {
-  $("#to-feature-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#to-feature-page").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFeaturedPage");
   });
 
-  $("#feature-page-to-landing").addEventListener("click", (e) =>{
-    if (e.path[0].nodeName == "B") return;
+  $("#feature-page-to-landing").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#to-favorite-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#to-favorite-page").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFavoritePage");
   });
 
-  $("#favorite-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#favorite-page-to-landing").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#to-my-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#to-my-page").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToMyRecipePage");
   });
 
-  $("#my-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#my-page-to-landing").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
+  });
+
+  $("#search-button").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
+    router.navigate("ToSearchPage");
+  });
+
+  $("#cancel-search-button").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
+    $("#search-type").selectedIndex = 0;
+    $("#search-input").value = "";
+    router.navigate("home");
+  });
+
+  $("#search-input").addEventListener("input", () => {
+    createSearch();
+  });
+
+  $("#search-type").addEventListener("change", () => {
+    createSearch();
+  });
+
+  $("#vegan-filter").addEventListener("change", () => {
+    if ($("#vegan-filter").checked === true) {
+      filters.push("vegan");
+    } else {
+      filters.splice(filters.indexOf("vegan"), 1);
+    }
+    createSearch();
+  });
+
+  $("#dairy-filter").addEventListener("change", () => {
+    if ($("#dairy-filter").checked === true) {
+      filters.push("dairyFree");
+    } else {
+      filters.splice(filters.indexOf("dairyFree"), 1);
+    }
+    createSearch();
+  });
+
+  $("#gluten-filter").addEventListener("change", () => {
+    if ($("#gluten-filter").checked === true) {
+      filters.push("glutenFree");
+    } else {
+      filters.splice(filters.indexOf("glutenFree"), 1);
+    }
+    createSearch();
+  });
+
+  $("#vegetarian-filter").addEventListener("change", () => {
+    if ($("#vegetarian-filter").checked === true) {
+      filters.push("vegetarian");
+    } else {
+      filters.splice(filters.indexOf("vegetarian"), 1);
+    }
+    createSearch();
   });
 }
 
 
 /**
- * Load landing page
- * @returns void
+ * Implement search feature.
+ * @returns Void
+ */
+function createSearch() {
+  let inputVal = $("#search-input").value.toUpperCase();
+  console.log(inputVal);
+  let index = $("#search-type").selectedIndex;
+  let searchType = $("#search-type").options[index].value;
+
+  if (searchType == "all") {
+    createSearchFea(inputVal);
+    createSearchFav(inputVal);
+    createSearchMy(inputVal);
+  }
+  else if (searchType == "featured") {
+    $("#search-favorite").classList.remove("shown");
+    $("#search-my").classList.remove("shown");
+    createSearchFea(inputVal);
+  }
+  else if (searchType == "favorite") {
+    $("#search-featured").classList.remove("shown");
+    $("#search-my").classList.remove("shown");
+    createSearchFav(inputVal);
+  }
+  else {
+    $("#search-favorite").classList.remove("shown");
+    $("#search-featured").classList.remove("shown");
+    createSearchMy(inputVal);
+  }
+}
+
+
+/**
+ * Create featured recipe after search.
+ * @param {String} inputVal the input string for search query.
+ * @returns Void
+ */
+function createSearchFea(inputVal) {
+  let searchResult = [];
+  $("#search-featured").classList.add("shown");
+  $("#featured-search-list").innerHTML = "";
+  for (let i = 0; i < feaRecipeArray.length; i++) {
+    if (feaRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
+      searchResult.push(feaRecipeArray[i]); // Original search result
+    }
+  }
+
+  // Apply filter to search result
+  if (filters.length > 0) {
+    searchResult = searchResult.filter((item) => {
+      for (let i = 0; i < filters.length; i++) {
+        if (item[filters[i]] === false) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+
+  // Populate section with filtered result
+  searchResult.forEach((item) => {
+    let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
+    newFeaRecipeCard.data = item;
+    $("#featured-search-list").appendChild(newFeaRecipeCard);
+  });
+
+  if (!$("#featured-search-list").childNodes.length) {
+    $("#search-featured").classList.remove("shown");
+  }
+}
+
+/**
+ * Create favorite recipe after search.
+ * @param {String} inputVal the input string for search query.
+ * @returns Void
+ */
+function createSearchFav(inputVal) {
+  let searchResult = [];
+  $("#search-favorite").classList.add("shown");
+  $("#favorite-search-list").innerHTML = "";
+  for (let i = 0; i < favRecipeArray.length; i++) {
+    if (favRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
+      searchResult.push(favRecipeArray[i]); // Original search result
+    }
+  }
+
+  // Apply filter to search result
+  if (filters.length > 0) {
+    searchResult = searchResult.filter((item) => {
+      for (let i = 0; i < filters.length; i++) {
+        if (item[filters[i]] === false) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+
+  // Populate section with filtered result
+  searchResult.forEach((item) => {
+    let newFeaRecipeCard = document.createElement("recipe-card-featured-pg");
+    newFeaRecipeCard.data = item;
+    $("#favorite-search-list").appendChild(newFeaRecipeCard);
+  });
+
+  if (!$("#favorite-search-list").childNodes.length) {
+    $("#search-favorite").classList.remove("shown");
+  }
+}
+
+/**
+ * Create my recipe after search.
+ * @param {String} inputVal the input string for search query.
+ * @returns Void
+ */
+function createSearchMy(inputVal) {
+  let searchResult = [];
+  $("#search-my").classList.add("shown");
+  $("#my-search-list").innerHTML = "";
+  for (let i = 0; i < myRecipeArray.length; i++) {
+    console.log(myRecipeArray[i].title);
+    if (myRecipeArray[i].title.toUpperCase().indexOf(inputVal) > -1) {
+      searchResult.push(myRecipeArray[i]); // Original search result
+    }
+  }
+
+  // Apply filter to search result
+  if (filters.length > 0) {
+    searchResult = searchResult.filter((item) => {
+      for (let i = 0; i < filters.length; i++) {
+        if (item[filters[i]] === false) {
+          return false;
+        }
+      }
+      return true;
+    });
+  }
+
+  // Populate section with filtered result
+  searchResult.forEach((item) => {
+    let newFeaRecipeCard = document.createElement("recipe-card-my-my-page");
+    newFeaRecipeCard.data = item;
+    $("#my-search-list").appendChild(newFeaRecipeCard);
+  });
+
+  if (!$("#my-search-list").childNodes.length) {
+    $("#search-my").classList.remove("shown");
+  }
+}
+
+/**
+ * Load search page.
+ * @returns Void
+ */
+function loadSearchPage() {
+  $("#view-nutrition-page").classList.remove("main-shown");
+  $("#view-nutrition-page").innerHTML = "";
+  $("#search-recipes").classList.add("shown");
+  createSearch();
+}
+
+/**
+* Leave search page.
+* @returns Void
+*/
+export function leaveSearchPage() {
+  $("#search-recipes").classList.remove("shown");
+  $("#featured-search-list").innerHTML = "";
+  $("#search-featured").classList.remove("shown");
+  $("#featured-search-list").innerHTML = "";
+  $("#search-favorite").classList.remove("shown");
+  $("#favorite-search-list").innerHTML = "";
+  $("#search-my").classList.remove("shown");
+  $("#my-search-list").innerHTML = "";
+}
+
+
+/**
+ * Load landing page.
+ * @returns Void
  */
 export function loadLanding() {
   $("#add-recipe-page").classList.remove("main-shown");
@@ -408,8 +665,8 @@ export function loadLanding() {
 
 
 /**
-* Leave landing page
-* @returns void
+* Leave landing page.
+* @returns Void
 */
 export function leaveLanding() {
   $("#featured-recipes").classList.remove("shown");
@@ -421,8 +678,8 @@ export function leaveLanding() {
 }
 
 /**
- * Load featured page
- * @returns void
+ * Load featured page.
+ * @returns Void
  */
 export function loadFeatured() {
   $("#view-nutrition-page").classList.remove("main-shown");
@@ -433,8 +690,8 @@ export function loadFeatured() {
 
 
 /**
-* Leave featured page
-* @returns void
+* Leave featured page.
+* @returns Void
 */
 export function leaveFeatured() {
   $("#featured-page").classList.remove("shown");
@@ -442,8 +699,8 @@ export function leaveFeatured() {
 }
 
 /**
- * Load favorite page
- * @returns void
+ * Load favorite page.
+ * @returns Void
  */
 export function loadFavorite() {
   $("#view-nutrition-page").classList.remove("main-shown");
@@ -454,8 +711,8 @@ export function loadFavorite() {
 
 
 /**
-* Leave favorite page
-* @returns void
+* Leave favorite page.
+* @returns Void
 */
 export function leaveFavorite() {
   $("#favorite-page").classList.remove("shown");
@@ -464,8 +721,8 @@ export function leaveFavorite() {
 
 
 /**
- * Load my recipe page
- * @returns void
+ * Load my recipe page.
+ * @returns Void
  */
 export function loadMyRecipe() {
   $("#add-recipe-page").classList.remove("main-shown");
@@ -478,8 +735,8 @@ export function loadMyRecipe() {
 
 
 /**
-* Leave my recipe page
-* @returns void
+* Leave my recipe page.
+* @returns Void
 */
 export function leaveMyRecipe() {
   $("#my-page").classList.remove("shown");
@@ -488,8 +745,8 @@ export function leaveMyRecipe() {
 
 
 /**
-* Load main page (like to add page)
-* @returns void
+* Load main page (like to add page).
+* @returns Void
 */
 export function loadMain() {
   $("#main-header").classList.add("main-shown");
@@ -499,8 +756,8 @@ export function loadMain() {
 
 
 /**
-* Leave main page (like to add page)
-* @returns void
+* Leave main page (like to add page).
+* @returns Void
 */
 export function leaveMain() {
   $("#main-header").classList.remove("main-shown");
@@ -519,31 +776,31 @@ export function leaveMain() {
  * Credit: Lab 7 skeleton, Tai's implementation of skeleton
  * If the escape key is pressed, use your router to navigate() to the 'home'
  * page. This will let us go back to the home page from the detailed page.
+ * @returns Void
  */
 function bindEscKey() {
   document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
+      speechSynthesis.cancel();
       router.navigate("home");
     }
   });
 }
 
 /**
- * Credit: Lab 7 skeleton, Tai's implementation of skeleton
+ * Credit: Lab 7 skeleton, Tai's implementation of skeleton.
  * Binds the 'popstate' event on the window (which fires when the back &
  * forward buttons are pressed) so the navigation will continue to work 
  * as expected.
+ * @returns Void
  */
- function bindPopstate() {
+function bindPopstate() {
   /**
    * IMPORTANT: Pass in the boolean true as the second argument in navigate() here
    * so your navigate() function does not add your going back action to the history,
    * creating an infinite loop
    */
   window.addEventListener("popstate", (event) => {
-    // console.log(event.state);
-    // console.log(history);
-
     // if event.state == null then just navigate to home
     if (event.state != undefined) {
       router.navigate(event.state["page"], true);

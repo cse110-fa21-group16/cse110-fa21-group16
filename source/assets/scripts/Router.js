@@ -1,12 +1,18 @@
 // router.js
 // Credit: Lab 7 skeleton, Tai's implementation of skeleton
 
+/**
+ * This is the Router class which contains routing functions for each page/component.
+ * This is where the navigation functions are stored and occured.
+ * @class
+ */
  export class Router {
     static routes = {};
   
     /**
      * Sets up the home function, the page name should always be 'home', which
      * is why no page name variable is passed in.
+     * @contstructor
      * @param {Function} homeFunc The function to run to set the home route
      *                            visually
      */
@@ -53,7 +59,6 @@
         hash = "#" + page;
       }
       
-      
       // console.log("window.location.hash: " + window.location.hash);
       // console.log("hash: " + hash);
       
@@ -68,7 +73,5 @@
   
       // 4. Finally, call the stored function for the given page
       this[page]();
-      
-      // console.log(history.length);
     }
   }

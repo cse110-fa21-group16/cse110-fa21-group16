@@ -5,6 +5,7 @@
   --bg-color: #ffffff;
   --header-font-color: #ffffff;
   --major-color: #305a50;
+  /* --major-color: rgb(61, 209, 122); */
 }
 
 /* web font */
@@ -49,11 +50,32 @@ header {
   width: 100%;
 }
 
+#web-info {
+  width: 33%;
+  height: 90px;
+  display: flex;
+}
+
 #web-info > a {
   color: var(--header-font-color);
   font-size: 30px;
-  margin: 0px 0px 0px 20px;
   text-decoration: none;
+}
+
+#web-info > a > img {
+  height: 100%;
+  width: 125px;
+  object-fit: cover;
+}
+
+#app-name {
+  height: 100%;
+}
+
+#app-name > img {
+  width: 225px;
+  height: 100%;
+  object-fit: cover;
 }
 
 #web-info > h1 {
@@ -61,6 +83,12 @@ header {
   display: inline-block;
   font-size: 30px;
   margin: 0px 0px 0px 20px;
+}
+
+#head-buttons {
+  width: 33%;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #head-buttons > button {
@@ -96,7 +124,92 @@ main {
   margin: 0px 0px 30px 0px;
 }
 
-.item-title {
+#search-recipes-div {
+  align-items: center;
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 20px 0 50px 0;
+}
+
+#cancel-search-button {
+  margin-left: 60px;
+  border: 1px solid #ccccd8;
+  background-color: #fff;
+  border-radius: 14px;
+  color: #305a50;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px 26px;
+}
+
+#cancel-search-button:hover {
+  border: 1px solid #313131;
+  background: darkgreen;
+  color: white;
+}
+
+#search-type {
+  outline: none;
+  width: 120px;
+  border: 1px solid #ccccd8;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  text-align: center;
+  color: var(--major-color);
+  resize: none;
+  font-size: 18px;
+  padding: 4px 5px;
+}
+
+#search-input {
+  outline: none;
+  background-image: url("../images/icons/search.png");
+  background-position: 8px 8px;
+  background-repeat: no-repeat;
+  border: 1px solid #ccccd8;
+  width: 500px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: var(--major-color);
+  resize: none;
+  font-size: 18px;
+  padding: 4px 20px 4px 40px;
+}
+
+#filter-section {
+  width: 100%;
+}
+
+#filter-section > summary {
+  color: var(--major-color);
+  font-size: 18px;
+}
+
+#filter-recipes-div {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: var(--major-color);
+  font-size: 18px;
+}
+
+#vegan-filter {
+  transform: scale(1.5);
+}
+
+#dairy-filter {
+  transform: scale(1.5);
+}
+
+#gluten-filter {
+  transform: scale(1.5);
+}
+
+#vegetarian-filter {
+  transform: scale(1.5);
+}
+
+button.item-title {
   background-color: #ffffff;
   border: 0px;
   color: var(--major-color);
@@ -106,7 +219,16 @@ main {
   text-decoration: none;
 }
 
-.item-title:hover {
+h2.item-title {
+  background-color: #ffffff;
+  border: 0px;
+  color: var(--major-color);
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+button.item-title:hover {
   color: #c0392b;
 }
 
@@ -121,12 +243,12 @@ main {
   max-width: 80vw;
 }
 
-.recipes-page-list {
+.recipes-page-list,
+.recipes-search-list {
   align-items: center;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  min-height: 61vh;
 }
 
 /* footer */

@@ -1,16 +1,28 @@
-import { $, loadMain, loadLanding, loadMyRecipe, router } from "../scripts/main.js";
+import { $, loadMain, router } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the View My Recipe Page.
+ * @class
+ */
 class ViewMyRecipe extends HTMLElement {
+    /**
+     * Attach the shadowroot which contains the View Recipe Page materials.
+     * @constructor
+     */
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
     }
 
+    /**
+     * The data needed to populate the materials are passed in as "data".
+     * @param {Object} data a JSON data object contains information to populate this component.
+     */
     set data(data) {
-        const styleElem = document.createElement("style");
-        const styles = `
+        let styleElem = document.createElement("style");
+        let styles = `
         /* root css style */
         * {
             color: #305A50;
@@ -36,6 +48,26 @@ class ViewMyRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+        }
+
+        #logo-sec {
+            width: 33%;
+            height: 90px;
+            display: flex;
+        }
+
+        #logo-sec > a > img {
+            height: 100%;
+            width: 125px;
+            object-fit: cover;
+        }
+
+        #title-sec {
+            display: flex;
+        }
+
+        #holder-sec {
+            width: 33%;
         }
 
         #header-title {
@@ -76,6 +108,7 @@ class ViewMyRecipe extends HTMLElement {
         }
 
         #main-header > h1 {
+            width: 55%;
             line-height: 35px;
             font-size: 30px;
             margin: 0px 30px;
@@ -97,13 +130,13 @@ class ViewMyRecipe extends HTMLElement {
 
         #left-main > h2 {
             visibility: hidden;
-            margin: 60px 0px 20px 0px;
+            margin: 10px 0px 20px 0px;
         }
         
         #left-main > p {
             visibility: hidden;
             font-size: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 10px;
         }
 
         #left-main > button {
@@ -145,6 +178,22 @@ class ViewMyRecipe extends HTMLElement {
             font-size: 17px;
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
+        }
+        #ingre-list button{
+            background-color: transparent;
+            border: rgb(34,139,34) 1px solid;
+            border-radius: 4px;
+            color: rgb(34,139,34);
+            
+            cursor: pointer;
+            font-size: 12px;
+            
+            padding: .2em .8em;
+            margin: 0 .2em;
+        }
+        #ingre-list button:hover{
+            background: white;
+            color: #305a50;
         }
 
         /* main-footer */
@@ -218,68 +267,88 @@ class ViewMyRecipe extends HTMLElement {
         `;
         styleElem.innerHTML = styles;
 
-        const card = document.createElement("article");
+        let card = document.createElement("article");
 
         // header
-        const header = document.createElement("header");
-        const headerHomeLink = document.createElement("a");
-        const headerTitle = document.createElement("h1");
-        const headerPlaceholder = document.createElement("h1");
+        let logoSec = document.createElement("section");
+        let titleSec = document.createElement("section");
+        let holderSec = document.createElement("section");
+        logoSec.setAttribute("id", "logo-sec");
+        titleSec.setAttribute("id", "title-sec");
+        holderSec.setAttribute("id", "holder-sec");
+
+        let header = document.createElement("header");
+        let headerHomeLink = document.createElement("a");
+        let headerTitle = document.createElement("h1");
+        let headerPlaceholder = document.createElement("h1");
+        let headerLogo = document.createElement("img");
 
         headerHomeLink.id = "home-link";
-        headerHomeLink.setAttribute("href", "index.html");
-        headerHomeLink.innerHTML = "LOGO";
+        headerHomeLink.setAttribute("href", "./");
+        headerLogo.setAttribute("src", "./assets/images/logo-temp.png");
+        headerLogo.setAttribute("class", "logo-img");
+
         headerTitle.id = "header-title";
         headerTitle.innerHTML = "VIEW RECIPE";
         headerPlaceholder.id = "header-placeholder";
         headerPlaceholder.innerHTML = "HOLDER";
 
-        header.appendChild(headerHomeLink);
-        header.appendChild(headerTitle);
-        header.appendChild(headerPlaceholder);
+        logoSec.appendChild(headerHomeLink);
+        titleSec.appendChild(headerTitle);
+        holderSec.appendChild(headerPlaceholder);
+        headerHomeLink.appendChild(headerLogo);
+        header.appendChild(logoSec);
+        header.appendChild(titleSec);
+        header.appendChild(holderSec);
 
         // main
-        const main = document.createElement("main");
+        let main = document.createElement("main");
 
         // main-header
-        const mainHeaderSec = document.createElement("section");
+        let mainHeaderSec = document.createElement("section");
         mainHeaderSec.id = "main-header";
-        const recipeTitle = document.createElement("h1");
+        let recipeTitle = document.createElement("h1");
         recipeTitle.textContent = getTitle(data);
 
 
         mainHeaderSec.appendChild(recipeTitle);
 
         // left-main
-        const leftMainSec = document.createElement("section");
+        let leftMainSec = document.createElement("section");
         leftMainSec.id = "left-main";
 
-        const recipeImg = document.createElement("img");
+        let recipeImg = document.createElement("img");
         recipeImg.src = getImgUrl(data);
         recipeImg.alt = getTitle(data);
 
-        const timeLabel = document.createElement("h2");
+        let timeLabel = document.createElement("h2");
         timeLabel.textContent = "Time: ";
 
-        const cookTime = document.createElement("p");
+        let cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
-
-        const toNutPage = document.createElement("button");
-        toNutPage.textContent = "Nutrition Facts";
+        
+        let speechSynthesis = window.speechSynthesis;
+        let textToSpeech = document.createElement("button");
+        textToSpeech.setAttribute("id", "tts-btn");
+        textToSpeech.textContent = "Text-To-Speech";
+        textToSpeech.addEventListener("click", () => {
+            this.playTextToSpeech(speechSynthesis);
+        })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
-        leftMainSec.appendChild(toNutPage);
+        // leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(textToSpeech);
 
         // right-main
-        const rightMainSec = document.createElement("section");
+        let rightMainSec = document.createElement("section");
         rightMainSec.id = "right-main";
 
-        const stepsTitle = document.createElement("h2");
+        let stepsTitle = document.createElement("h2");
         stepsTitle.textContent = "Procedure and steps: ";
 
-        const stepsSec = document.createElement("section");
+        let stepsSec = document.createElement("section");
         stepsSec.id = "steps-list";
         stepsSec.innerHTML = getSteps(data);
 
@@ -287,17 +356,17 @@ class ViewMyRecipe extends HTMLElement {
         rightMainSec.appendChild(stepsSec);
 
         // main-footer
-        const mainFooterSec = document.createElement("section");
+        let mainFooterSec = document.createElement("section");
         mainFooterSec.id = "main-footer";
 
-        const backButton = document.createElement("button");
+        let backButton = document.createElement("button");
         backButton.textContent = "Back";
-        backButton.addEventListener("click", myRecipeToLand);
+        backButton.addEventListener("click", this.myRecipeToLand);
 
-        const editButton = document.createElement("button");
+        let editButton = document.createElement("button");
         editButton.textContent = "Edit";
-        editButton.addEventListener("click", (e) => {
-            myRecipeToEdit(data);
+        editButton.addEventListener("click", () => {
+            this.myRecipeToEdit(data);
         });
 
 
@@ -311,16 +380,16 @@ class ViewMyRecipe extends HTMLElement {
 
 
         // aside
-        const aside = document.createElement("aside");
+        let aside = document.createElement("aside");
 
         // ingre-aside
-        const ingreAside = document.createElement("section");
+        let ingreAside = document.createElement("section");
         ingreAside.id = "ingre-aside";
 
-        const ingreLabel = document.createElement("h2");
+        let ingreLabel = document.createElement("h2");
         ingreLabel.textContent = "Ingredients: ";
 
-        const ingreListSec = document.createElement("section");
+        let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
         ingreListSec.innerHTML = getIngre(data);
 
@@ -328,18 +397,18 @@ class ViewMyRecipe extends HTMLElement {
         ingreAside.appendChild(ingreListSec);
 
         // diet-aside
-        const dietAside = document.createElement("section");
+        let dietAside = document.createElement("section");
         dietAside.id = "diet-aside";
 
-        const dietLabel = document.createElement("h2");
+        let dietLabel = document.createElement("h2");
         dietLabel.textContent = "Diet Restriction: ";
 
         // vegan-check
-        const veganSec = document.createElement("div");
+        let veganSec = document.createElement("div");
         veganSec.classList.add("diet-check");
         veganSec.id = "vegan-check";
 
-        const veganImg = document.createElement("img");
+        let veganImg = document.createElement("img");
         if (getVegan(data)) {
             veganImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -347,18 +416,18 @@ class ViewMyRecipe extends HTMLElement {
             veganImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const veganLabel = document.createElement("span");
+        let veganLabel = document.createElement("span");
         veganLabel.textContent = "Vegan";
 
         veganSec.appendChild(veganImg);
         veganSec.appendChild(veganLabel);
 
         // dairy-check
-        const dairySec = document.createElement("div");
+        let dairySec = document.createElement("div");
         dairySec.classList.add("diet-check");
         dairySec.id = "dairy-check";
 
-        const dairyImg = document.createElement("img");
+        let dairyImg = document.createElement("img");
         if (getDairy(data)) {
             dairyImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -366,18 +435,18 @@ class ViewMyRecipe extends HTMLElement {
             dairyImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const dairyLabel = document.createElement("span");
+        let dairyLabel = document.createElement("span");
         dairyLabel.textContent = "Dairy free";
 
         dairySec.appendChild(dairyImg);
         dairySec.appendChild(dairyLabel);
 
         // gluten-check
-        const glutenSec = document.createElement("div");
+        let glutenSec = document.createElement("div");
         glutenSec.classList.add("diet-check");
         glutenSec.id = "gluten-check";
 
-        const glutenImg = document.createElement("img");
+        let glutenImg = document.createElement("img");
         if (getGluten(data)) {
             glutenImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -385,18 +454,18 @@ class ViewMyRecipe extends HTMLElement {
             glutenImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const glutenLabel = document.createElement("span");
+        let glutenLabel = document.createElement("span");
         glutenLabel.textContent = "Gluten free";
 
         glutenSec.appendChild(glutenImg);
         glutenSec.appendChild(glutenLabel);
 
         // vegeta-check
-        const vegetaSec = document.createElement("div");
+        let vegetaSec = document.createElement("div");
         vegetaSec.classList.add("diet-check");
         vegetaSec.id = "veget-check";
 
-        const vegetaImg = document.createElement("img");
+        let vegetaImg = document.createElement("img");
         if (getVegeta(data)) {
             vegetaImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -404,7 +473,7 @@ class ViewMyRecipe extends HTMLElement {
             vegetaImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const vegetaLabel = document.createElement("span");
+        let vegetaLabel = document.createElement("span");
         vegetaLabel.textContent = "Vegetarian";
 
         vegetaSec.appendChild(vegetaImg);
@@ -426,35 +495,78 @@ class ViewMyRecipe extends HTMLElement {
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
     }
-}
 
-/**
- * Leave Featured Recipe Page to landing page
- * @returns void
- */
-function myRecipeToLand() {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    loadMain();
-    if ($("#my-page").classList.contains("shown")) {
-        router.navigate("ToMyRecipePage");
+    /**
+     * Leave View My Recipe Page to landing page.
+     * @returns Void
+     */
+    myRecipeToLand() {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
+        loadMain();
+        if ($("#my-page").classList.contains("shown")) {
+            router.navigate("ToMyRecipePage");
+        }
+        else if ($("#search-my").classList.contains("shown")) {
+            router.navigate("ToSearchPage");
+        }
+        else {
+            router.navigate("home");
+        }
     }
-    else {
-        router.navigate("home");
+
+    /**
+     * Leave View My Recipe Page to edit page.
+     * @param {Object} data a JSON data object contains information to populate this component.
+     * @returns Void
+     */
+    myRecipeToEdit(data) {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        let editRecipePage = document.createElement("edit-recipe");
+        editRecipePage.data = data;
+        $("#add-recipe-page").appendChild(editRecipePage);
+        $("#add-recipe-page").classList.add("main-shown");
+    }
+
+
+    /**
+     * Play the instruction step by step
+     * @param{Object} speechSynthesis a speech Object 
+     * @returns Void
+     */
+     playTextToSpeech(speechSynthesis) {
+        let recipeText = this.shadowRoot.querySelector("#steps-list");
+        recipeText = recipeText.querySelectorAll("li");
+        let i = 0;
+        let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+        speechSynthesis.speak(speechText);
+        let myRecipeView = document.querySelector("#view-recipe-page").children[0];
+        myRecipeView.addEventListener('keydown', function(event) {
+            console.log("MyRecipePage");
+            if (event.key == "ArrowRight" && i < recipeText.length - 1) {
+                i++;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+            if (event.key == "ArrowLeft" && i > 0) {
+                i--;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+
+            if (event.key == "Control" && i >= 0 && i <= recipeText.length - 1) {
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+        });         
     }
 }
 
-/**
- * Leave Featured Recipe Page to edit page
- * @returns void
- */
-function myRecipeToEdit(data) {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    let editRecipePage = document.createElement("edit-recipe");
-    editRecipePage.data = data;
-    $("#add-recipe-page").appendChild(editRecipePage);
-    $("#add-recipe-page").classList.add("main-shown");
-}
 
+// Define the "view-fea-recipe" element using this class.
 customElements.define("view-my-recipe", ViewMyRecipe);

@@ -1,0 +1,30 @@
+name: Testing and Coverage
+
+on:
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install dependencies
+        run: yarn install
+
+      # - name: Run Jest Puppeteer
+      #   working-directory: __test__
+      #   run: npm run coverage
+
+      #     - uses: romeovs/lcov-reporter-action@v0.2.16
+      #       with:
+      #         lcov-file: ./coverage/lcov.info
+      - name: Run Jest Puppeteer
+        run: yarn run coverage
+      - uses: mattallty/jest-github-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          test-command: "npm run coverage"

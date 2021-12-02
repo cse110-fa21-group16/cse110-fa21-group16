@@ -1,12 +1,24 @@
-import { $, leaveMain, router } from "../scripts/main.js";
+import { router } from "../scripts/main.js";
 import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the Featured Recipe Card element in the landing page.
+ * @class
+ */
 class RecipeCardFea extends HTMLElement {
+  /**
+   * Attach the shadowroot which contains the Featured Recipe Card materials.
+   * @constructor
+   */
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * The data needed to populate the materials are passed in as "data".
+   * @param {Object} data a JSON data object contains information to populate this component.
+   */
   set data(data) {
     const styleElem = document.createElement("style");
     const styles = `
@@ -98,34 +110,30 @@ class RecipeCardFea extends HTMLElement {
     card.appendChild(checkButton);
 
     // bind check button to router
-    checkButton.addEventListener("click", (e) => {
+    checkButton.addEventListener("click", () => {
+      speechSynthesis.cancel();
       let page = recipeTitle.innerHTML;
       page = page.replace(/&amp;/g, "");
-      // console.log(page);
-      // if (e.path[0].nodeName == "B") return;
       router.navigate(page);
     });
-
-    // checkButton.addEventListener("click", (e) => {
-    //   viewRecipe(data);
-    // });
 
     this.shadow.appendChild(styleElem);
     this.shadow.appendChild(card);
   }
 }
 
-/**
- * Load Featured Recipe Page
- * @returns void
- */
-export function viewRecipe(data) {
-  $("#view-recipe-page").classList.add("main-shown");
-  const viewRecipePage = document.createElement("view-fea-recipe");
-  viewRecipePage.data = data;
-  $("#view-recipe-page").appendChild(viewRecipePage);
-  leaveMain();
-}
+// /**
+//  * Load Featured Recipe Page
+//  * @param {Object} data a JSON data object contains information to load the view recipe page.
+//  */
+// export function viewRecipe(data) {
+//   $("#view-recipe-page").classList.add("main-shown");
+//   const viewRecipePage = document.createElement("view-fea-recipe");
+//   viewRecipePage.data = data;
+//   $("#view-recipe-page").appendChild(viewRecipePage);
+//   leaveMain();
+// }
 
+// Define the "recipe-card-fea" element using this class.
 customElements.define("recipe-card-fea", RecipeCardFea);
 

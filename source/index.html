@@ -3,12 +3,12 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="description" content="Group16 Recipe Demo" />
-    <meta name="keywords" content="Recipe, Demo" />
+    <meta name="description" content="Zest Recipe Manager" />
+    <meta name="keywords" content="Recipe, Manager" />
     <meta name="author" content="Group16" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Group16 Recipe Demo</title>
-    <link href="assets/images/icons/WEBICON.ico" rel="icon" />
+    <title>Zest</title>
+    <link href="assets/images/icons/zest-ico.png" rel="icon" />
 
     <script src="assets/scripts/Router.js" type="module"></script>
     <script src="assets/components/RecipeCardMy.js" type="module"></script>
@@ -32,16 +32,62 @@
 <body>
     <header class="main-shown" id="main-header">
         <section id="web-info">
-            <a href="index.html">LOGO</a>
-            <h1>Web Name</h1>
+            <a href="./">
+                <img class="logo-img" src="assets/images/logo-temp.png" />
+            </a>
+
         </section>
+        <div id="app-name">
+            <img class="logo-img" src="assets/images/logo-temp-3.png" />
+        </div>
         <section id="head-buttons">
             <button id="search-button">SEARCH</button>
-            <button id="filters-button">Filters</button>
         </section>
     </header>
 
     <main class="main-shown" id="main-main">
+        <section class="main-item" id="search-recipes">
+            <div id="search-recipes-div">
+                <select id="search-type">
+                    <option value="all" selected="selected">All</option>
+                    <option value="featured">Featured</option>
+                    <option value="favorite">Favorite</option>
+                    <option value="my">My</option>
+                </select>
+                <input type="search" id="search-input" name="search" />
+                <button id="cancel-search-button">Cancel</button>
+            </div>
+
+            <details id="filter-section">
+                <summary>
+                    Filter
+                </summary>
+                <div id="filter-recipes-div">
+                    <p>Diet Restriction(s):</p>
+                    <div id="vegan-filter-div">
+                        <input type="checkbox" id="vegan-filter">
+                        <label for="vegan-filter">Vegan</label>
+                    </div>
+                   
+                    <div id="dairy-filter-div">
+                        <input type="checkbox" id="dairy-filter">
+                        <label for="dairy-filter">Dairy Free</label>
+                    </div>
+    
+                    <div id="gluten-filter-div">
+                        <input type="checkbox" id="gluten-filter">
+                        <label for="gluten-filter">Gluten Free</label>
+                    </div>
+                    
+                    <div id="vegetarian-filter-div">
+                        <input type="checkbox" id="vegetarian-filter">
+                        <label for="vegetarian-filter">Vegetarian</label>
+                    </div>
+                </div>
+            </details>
+            
+        </section>
+
         <section class="main-item shown" id="featured-recipes">
             <div class="main-item-title">
                 <button class="item-title" id="to-feature-page">Featured Recipes of the Day</button>
@@ -93,6 +139,30 @@
                 <button class="item-title" id="my-page-to-landing">My Recipes</button>
             </div>
             <div class="recipes-page-list" id="my-page-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="search-featured">
+            <div class="main-item-title">
+                <h2 class="item-title">Featured Recipes of the Day</h2>
+            </div>
+            <div class="recipes-search-list" id="featured-search-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="search-favorite">
+            <div class="main-item-title">
+                <h2 class="item-title">Favorites</h2>
+            </div>
+            <div class="recipes-search-list" id="favorite-search-list">
+            </div>
+        </section>
+
+        <section class="main-item" id="search-my">
+            <div class="main-item-title">
+                <h2 class="item-title">My Recipes</h2>
+            </div>
+            <div class="recipes-search-list" id="my-search-list">
             </div>
         </section>
     </main>

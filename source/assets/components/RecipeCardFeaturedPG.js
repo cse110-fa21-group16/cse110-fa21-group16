@@ -1,13 +1,25 @@
-import { $, leaveMain, router } from "../scripts/main.js";
+import { router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
 import { getImgUrl, getTitle, getTime } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the Featured Recipe Card element in the Featured Recipe Page.
+ * @class
+ */
 class RecipeCardFeaturedPG extends HTMLElement {
+  /**
+   * Attach the shadowroot which contains the Featured Recipe Card materials.
+   * @constructor
+   */
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * The data needed to populate the materials are passed in as "data".
+   * @param {Object} data a JSON data object contains information to populate this component.
+   */
   set data(data) {
     // This is the CSS that you"ll use for your recipe cards
     const styleElem = document.createElement("style");
@@ -100,7 +112,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
     }
 
     heartImg.addEventListener("click", () => {
-      changeHeart(data, heartImg);
+      this.changeHeart(data, heartImg);
     });
 
     card.appendChild(heartImg);
@@ -123,54 +135,53 @@ class RecipeCardFeaturedPG extends HTMLElement {
     checkButton.classList.add("cook");
     checkButton.textContent = "COOK!";
     card.appendChild(checkButton);
-    // checkButton.addEventListener("click", () => {
-    //   viewRecipe(data);
-    // });
 
     // bind check button to router
-    checkButton.addEventListener("click", (e) => {
-      console.log(e.path[0].nodeName);
-      console.log(recipeTitle.innerHTML);
+
+    checkButton.addEventListener("click", () => {
+      speechSynthesis.cancel();
+      // console.log(e.path[0].nodeName);
+      // console.log(recipeTitle.innerHTML);
       let page = recipeTitle.innerHTML;
       page = page.replace(/&amp;/g, "");
-      if (e.path[0].nodeName == "B") return;
+      // if (e.path[0].nodeName == "B") return;
       router.navigate(page);
     });
 
     this.shadowRoot.appendChild(styleElem);
     this.shadowRoot.appendChild(card);
-
   }
+
+  /**
+   * Toggles on and off the heart based on favorite
+   * @param {Object} data a JSON data object contains information to keep track of which recipe is being added to favorites.
+   * @param {HTMLElement} cardObj an HTML element that contains the heart image.
+   * @returns Void
+   */
+  changeHeart(data, cardObj) {
+    if (checkFav(getTitle(data))) {
+      cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+      rmFav(getTitle(data));
+    }
+    else {
+      cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
+      addFav(data);
+    }
+  } 
 }
 
+// /**
+//  * Load Featured Recipe Page
+//  * @returns Void
+//  */
+// function viewRecipe(data) {
+//   $("#view-recipe-page").classList.add("main-shown");
+//   const viewRecipePage = document.createElement("view-fea-recipe");
+//   viewRecipePage.data = data;
+//   $("#view-recipe-page").appendChild(viewRecipePage);
+//   leaveMain();
+// }
 
-/**
- * Toggles on and off the heart based on favorite
- * @returns void
- */
-function changeHeart(data, cardObj) {
-  if (checkFav(getTitle(data))) {
-    cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
-    rmFav(getTitle(data));
-  }
-  else {
-    cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
-    addFav(data);
-  }
-}
-
-/**
- * Load Featured Recipe Page
- * @returns void
- */
-function viewRecipe(data) {
-  $("#view-recipe-page").classList.add("main-shown");
-  const viewRecipePage = document.createElement("view-fea-recipe");
-  viewRecipePage.data = data;
-  $("#view-recipe-page").appendChild(viewRecipePage);
-  leaveMain();
-}
-
-// Define the Class so you can use it as a custom element.
+// Define the "recipe-card-featured-pg" element using this class.
 customElements.define("recipe-card-featured-pg", RecipeCardFeaturedPG);
 

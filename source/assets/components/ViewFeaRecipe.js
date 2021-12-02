@@ -1,17 +1,29 @@
-import { $, loadMain, loadFeatured, loadFavorite, loadLanding, router } from "../scripts/main.js";
+import { $, loadMain, router } from "../scripts/main.js";
 import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
-import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
+import { getImgUrl, getTitle, getTime, getFeaturedSteps, getIngreFea } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the View Featured Recipe Page.
+ * @class
+ */
 class ViewFeaRecipe extends HTMLElement {
+    /**
+     * Attach the shadowroot which contains the View Recipe Page materials.
+     * @constructor
+     */
     constructor() {
         super();
         this.shadow = this.attachShadow({ mode: "open" });
     }
 
+    /**
+     * The data needed to populate the materials are passed in as "data".
+     * @param {Object} data a JSON data object contains information to populate this component.
+     */
     set data(data) {
-        const styleElem = document.createElement("style");
-        const styles = `
+        let styleElem = document.createElement("style");
+        let styles = `
         /* root css style */
         * {
             color: #305A50;
@@ -37,6 +49,26 @@ class ViewFeaRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+        }
+
+        #logo-sec {
+            width: 33%;
+            height: 90px;
+            display: flex;
+        }
+
+        #logo-sec > a > img {
+            height: 100%;
+            width: 125px;
+            object-fit: cover;
+        }
+
+        #title-sec {
+            display: flex;
+        }
+
+        #holder-sec {
+            width: 33%;
         }
 
         #header-title {
@@ -80,6 +112,7 @@ class ViewFeaRecipe extends HTMLElement {
             line-height: 35px;
             font-size: 30px;
             margin: 0px 30px;
+            width: 50%;
         }
 
         #main-header > img {
@@ -120,6 +153,10 @@ class ViewFeaRecipe extends HTMLElement {
             padding: 5px 20px;
         }
         
+        #tts-btn {
+            margin-top: 10px;
+        }
+
         #left-main > button:hover {
             border: 1px solid #313131;
             background: darkgreen;
@@ -148,6 +185,11 @@ class ViewFeaRecipe extends HTMLElement {
             font-size: 17px;
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
+        }
+
+        #steps-list > ol > li:hover {
+            cursor: pointer;
+            font-weight: bold;
         }
 
         /* main-footer */
@@ -221,36 +263,51 @@ class ViewFeaRecipe extends HTMLElement {
         `;
         styleElem.innerHTML = styles;
 
-        const card = document.createElement("article");
+        let card = document.createElement("article");
 
         // header
-        const header = document.createElement("header");
-        const headerHomeLink = document.createElement("a");
-        const headerTitle = document.createElement("h1");
-        const headerPlaceholder = document.createElement("h1");
+        let logoSec = document.createElement("section");
+        let titleSec = document.createElement("section");
+        let holderSec = document.createElement("section");
+        logoSec.setAttribute("id", "logo-sec");
+        titleSec.setAttribute("id", "title-sec");
+        holderSec.setAttribute("id", "holder-sec");
+
+
+        let header = document.createElement("header");
+        let headerHomeLink = document.createElement("a");
+        let headerTitle = document.createElement("h1");
+        let headerPlaceholder = document.createElement("h1");
+        let headerLogo = document.createElement("img");
 
         headerHomeLink.id = "home-link";
-        headerHomeLink.setAttribute("href", "index.html");
-        headerHomeLink.innerHTML = "LOGO";
+        headerHomeLink.setAttribute("href", "./");
+        headerLogo.setAttribute("src", "./assets/images/logo-temp.png");
+        headerLogo.setAttribute("class", "logo-img");
+
         headerTitle.id = "header-title";
         headerTitle.innerHTML = "VIEW RECIPE";
         headerPlaceholder.id = "header-placeholder";
         headerPlaceholder.innerHTML = "HOLDER";
 
-        header.appendChild(headerHomeLink);
-        header.appendChild(headerTitle);
-        header.appendChild(headerPlaceholder);
+        logoSec.appendChild(headerHomeLink);
+        titleSec.appendChild(headerTitle);
+        holderSec.appendChild(headerPlaceholder);
+        headerHomeLink.appendChild(headerLogo);
+        header.appendChild(logoSec);
+        header.appendChild(titleSec);
+        header.appendChild(holderSec);
 
         // main
-        const main = document.createElement("main");
+        let main = document.createElement("main");
 
         // main-header
-        const mainHeaderSec = document.createElement("section");
+        let mainHeaderSec = document.createElement("section");
         mainHeaderSec.id = "main-header";
-        const recipeTitle = document.createElement("h1");
+        let recipeTitle = document.createElement("h1");
         recipeTitle.textContent = getTitle(data);
 
-        const heartImg = document.createElement("img");
+        let heartImg = document.createElement("img");
         if (checkFav(getTitle(data))) {
             heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
         }
@@ -259,47 +316,77 @@ class ViewFeaRecipe extends HTMLElement {
         }
 
         heartImg.addEventListener("click", () => {
-            changeHeart(data, heartImg);
+            this.changeHeart(data, heartImg);
         });
 
         mainHeaderSec.appendChild(recipeTitle);
         mainHeaderSec.appendChild(heartImg);
 
         // left-main
-        const leftMainSec = document.createElement("section");
+        let leftMainSec = document.createElement("section");
         leftMainSec.id = "left-main";
 
-        const recipeImg = document.createElement("img");
+        let recipeImg = document.createElement("img");
         recipeImg.src = getImgUrl(data);
         recipeImg.alt = getTitle(data);
 
-        const timeLabel = document.createElement("h2");
+        let timeLabel = document.createElement("h2");
         timeLabel.textContent = "Time: ";
 
-        const cookTime = document.createElement("p");
+        let cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
 
-        const toNutritionPage = document.createElement("button");
+        let toNutritionPage = document.createElement("button");
         toNutritionPage.textContent = "Nutrition Facts";
         toNutritionPage.addEventListener("click", () => {
-            viewNutrition(data);
+            this.viewNutrition(data);
+        })
+
+        let speechSynthesis = window.speechSynthesis;
+        let textToSpeech = document.createElement("button");
+        textToSpeech.setAttribute("id", "tts-btn");
+        textToSpeech.textContent = "Text-To-Speech";
+        textToSpeech.addEventListener("click", () => {
+            this.playTextToSpeech(speechSynthesis);
         })
 
         leftMainSec.appendChild(recipeImg);
         leftMainSec.appendChild(timeLabel);
         leftMainSec.appendChild(cookTime);
         leftMainSec.appendChild(toNutritionPage);
+        leftMainSec.appendChild(textToSpeech);
 
         // right-main
-        const rightMainSec = document.createElement("section");
+        let rightMainSec = document.createElement("section");
         rightMainSec.id = "right-main";
 
-        const stepsTitle = document.createElement("h2");
+        let stepsTitle = document.createElement("h2");
         stepsTitle.textContent = "Procedure and steps: ";
+        // stepsSec.innerHTML = getSteps(data);
 
-        const stepsSec = document.createElement("section");
+        let stepsSec = document.createElement("section");
+        // stepsSec.innerHTML = getSteps(data);
         stepsSec.id = "steps-list";
-        stepsSec.innerHTML = getSteps(data);
+        let instructionArray = getFeaturedSteps(data);
+        let instructionOrderedList = document.createElement("ol");
+
+        // Loop through steps within the analyzedInstructions index
+        for (let i = 0; i < instructionArray.length; i++) {
+            let instructionItem = instructionArray[i]["steps"];
+            for (let j = 0; j < instructionItem.length; j++) {
+                let instructionStep = document.createElement("li");
+                instructionStep.innerHTML = `Step ${j+1}: ` + instructionItem[j]["step"];
+                instructionStep.addEventListener("click", () => {
+                    let speechText = new SpeechSynthesisUtterance(instructionStep.innerHTML);
+                    speechSynthesis.cancel();
+                    speechSynthesis.speak(speechText); 
+                })
+                instructionOrderedList.appendChild(instructionStep);
+            }
+        }
+
+        stepsSec.appendChild(instructionOrderedList);
+        
         if (stepsSec.innerHTML == '') {
             stepsSec.innerHTML = 'OOOPS! The recipe does not contain any procedure or steps. Please start using your imagination!'
         }
@@ -308,12 +395,12 @@ class ViewFeaRecipe extends HTMLElement {
         rightMainSec.appendChild(stepsSec);
 
         // main-footer
-        const mainFooterSec = document.createElement("section");
+        let mainFooterSec = document.createElement("section");
         mainFooterSec.id = "main-footer";
 
-        const backButton = document.createElement("button");
+        let backButton = document.createElement("button");
         backButton.textContent = "Back";
-        backButton.addEventListener("click", feaRecipeToLand);
+        backButton.addEventListener("click", this.feaRecipeToLand);
 
         mainFooterSec.appendChild(backButton);
 
@@ -324,35 +411,36 @@ class ViewFeaRecipe extends HTMLElement {
 
 
         // aside
-        const aside = document.createElement("aside");
+        let aside = document.createElement("aside");
 
         // ingre-aside
-        const ingreAside = document.createElement("section");
+        let ingreAside = document.createElement("section");
         ingreAside.id = "ingre-aside";
 
-        const ingreLabel = document.createElement("h2");
+        let ingreLabel = document.createElement("h2");
         ingreLabel.textContent = "Ingredients: ";
 
-        const ingreListSec = document.createElement("section");
+        let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
-        ingreListSec.innerHTML = getIngre(data);
+        ingreListSec.innerHTML = getIngreFea(data);
+
 
         ingreAside.appendChild(ingreLabel);
         ingreAside.appendChild(ingreListSec);
 
         // diet-aside
-        const dietAside = document.createElement("section");
+        let dietAside = document.createElement("section");
         dietAside.id = "diet-aside";
 
-        const dietLabel = document.createElement("h2");
+        let dietLabel = document.createElement("h2");
         dietLabel.textContent = "Diet Restriction: ";
 
         // vegan-check
-        const veganSec = document.createElement("div");
+        let veganSec = document.createElement("div");
         veganSec.classList.add("diet-check");
         veganSec.id = "vegan-check";
 
-        const veganImg = document.createElement("img");
+        let veganImg = document.createElement("img");
         if (getVegan(data)) {
             veganImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -360,18 +448,18 @@ class ViewFeaRecipe extends HTMLElement {
             veganImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const veganLabel = document.createElement("span");
+        let veganLabel = document.createElement("span");
         veganLabel.textContent = "Vegan";
 
         veganSec.appendChild(veganImg);
         veganSec.appendChild(veganLabel);
 
         // dairy-check
-        const dairySec = document.createElement("div");
+        let dairySec = document.createElement("div");
         dairySec.classList.add("diet-check");
         dairySec.id = "dairy-check";
 
-        const dairyImg = document.createElement("img");
+        let dairyImg = document.createElement("img");
         if (getDairy(data)) {
             dairyImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -379,18 +467,18 @@ class ViewFeaRecipe extends HTMLElement {
             dairyImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const dairyLabel = document.createElement("span");
+        let dairyLabel = document.createElement("span");
         dairyLabel.textContent = "Dairy free";
 
         dairySec.appendChild(dairyImg);
         dairySec.appendChild(dairyLabel);
 
         // gluten-check
-        const glutenSec = document.createElement("div");
+        let glutenSec = document.createElement("div");
         glutenSec.classList.add("diet-check");
         glutenSec.id = "gluten-check";
 
-        const glutenImg = document.createElement("img");
+        let glutenImg = document.createElement("img");
         if (getGluten(data)) {
             glutenImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -398,18 +486,18 @@ class ViewFeaRecipe extends HTMLElement {
             glutenImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const glutenLabel = document.createElement("span");
+        let glutenLabel = document.createElement("span");
         glutenLabel.textContent = "Gluten free";
 
         glutenSec.appendChild(glutenImg);
         glutenSec.appendChild(glutenLabel);
 
         // vegeta-check
-        const vegetaSec = document.createElement("div");
+        let vegetaSec = document.createElement("div");
         vegetaSec.classList.add("diet-check");
         vegetaSec.id = "veget-check";
 
-        const vegetaImg = document.createElement("img");
+        let vegetaImg = document.createElement("img");
         if (getVegeta(data)) {
             vegetaImg.setAttribute("src", "assets/images/icons/fillCheck.svg");
         }
@@ -417,7 +505,7 @@ class ViewFeaRecipe extends HTMLElement {
             vegetaImg.setAttribute("src", "assets/images/icons/emptyCheck.svg");
         }
 
-        const vegetaLabel = document.createElement("span");
+        let vegetaLabel = document.createElement("span");
         vegetaLabel.textContent = "Vegetarian";
 
         vegetaSec.appendChild(vegetaImg);
@@ -438,56 +526,150 @@ class ViewFeaRecipe extends HTMLElement {
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
+        // console.log(ingreListSec.querySelector("li[id='1']").querySelector("p[id='amount']").getAttribute("unit"));
+        let ingredientsOL = ingreListSec.querySelector("ol").querySelectorAll("li");
+
+        // Loop thru ol and parse the necessary parameters
+        for (let i = 0; i < ingredientsOL.length; i++) {
+            let requestBody = {};
+            let dropdown = ingredientsOL[i].querySelector("select");
+            requestBody["ingredientName"] = ingredientsOL[i].querySelector("p[id='name']").getAttribute("name");
+            requestBody["sourceAmount"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("amount");
+            requestBody["sourceUnit"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("unit");
+      
+            dropdown.addEventListener("change", async () => {
+                requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;  
+                if (dropdown.options[dropdown.selectedIndex].value == "Select") {
+                    requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
+                }
+                let convertInit = async (dataToConvert, locationObject) => {
+                    let convertSuccess = await this.fetchConvertUnit(dataToConvert, locationObject);
+                    if (!convertSuccess) {
+                        console.log("Convert Sucess");
+                        return;
+                    }
+                }
+                convertInit(requestBody, ingredientsOL[i]); // Call the netlify function for API call
+            });
+        }
+    }
+
+    /**
+     * Toggles on and off the heart based on favorite.
+     * @param {Object} data a JSON data object contains information to keep track of which recipe is being added to favorites.
+     * @param {HTMLElement} cardObj an HTML element that contains the heart image.
+     * @return Void
+     */
+    changeHeart(data, cardObj) {
+        if (checkFav(getTitle(data))) {
+            cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+            rmFav(getTitle(data));
+        }
+        else {
+            cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
+            addFav(data);
+        }
+    }
+
+    /**
+     * View nutrition facts about the selected recipe.
+     * @param {Object} data a JSON data object contains information to load the nutrition page.
+     * @returns Void
+     */
+    viewNutrition(data) {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
+        $("#view-nutrition-page").classList.add("main-shown");
+        const nutritionPage = document.createElement("nutrition-page");
+        nutritionPage.data = data;
+        $("#view-nutrition-page").appendChild(nutritionPage);
+    }
+
+
+    /**
+     * Leave Featured Recipe Page to landing page using router object.
+     * @returns Void
+     */
+    feaRecipeToLand() {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
+        loadMain();
+        if ($("#featured-page").classList.contains("shown")) {
+            router.navigate("ToFeaturedPage");
+        }
+        else if ($("#favorite-page").classList.contains("shown")) {
+            router.navigate("ToFavoritePage");
+        } 
+        else if ($("#search-featured").classList.contains("shown")) {
+            router.navigate("ToSearchPage");
+        } 
+        else {
+            router.navigate("home");
+        }
+    }
+
+
+    /**
+     * Play the instruction step by step
+     * @param{Object} speechSynthesis a speech Object 
+     * @returns Void
+     */
+    playTextToSpeech(speechSynthesis) {
+        let recipeText = this.shadowRoot.querySelector("#steps-list");
+        recipeText = recipeText.querySelectorAll("li");
+        let i = 0;
+        let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+        speechSynthesis.speak(speechText);
+        let featuredView = document.querySelector("#view-recipe-page").children[0];
+        featuredView.addEventListener('keydown', function(event) {
+            console.log("FeaRecipePage");
+            if (event.key == "ArrowRight" && i < recipeText.length - 1) {
+                i++;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+            if (event.key == "ArrowLeft" && i > 0) {
+                i--;
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+
+            if (event.key == "Control" && i >= 0 && i <= recipeText.length - 1) {
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+        });    
+    }
+
+    /**
+     * Make a GET call to the netlify function using provided parameters, which would then
+     * returns the converted result from spoonacular API.
+     * @param {Object} dataToConvert JSON object contains parsed unit conversion data.
+     * @param {HTMLElement} locationObject HTML element contain the location to display result.
+     * @returns a Promise of fetched data.
+     */
+    async fetchConvertUnit(dataToConvert, locationObject) {
+        return new Promise((resolve, reject) => {
+            fetch("./.netlify/functions/convert-unit?" + new URLSearchParams({
+                ingredientName: dataToConvert.ingredientName,
+                sourceAmount: dataToConvert.sourceAmount,
+                sourceUnit: dataToConvert.sourceUnit,
+                targetUnit: dataToConvert.targetUnit
+            }))
+            .then((response) => response.json())
+            .then((data) => {
+                locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
+                console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
+                resolve(true);
+            }).catch(() => reject(false));
+        });
     }
 }
 
-/**
- * Toggles on and off the heart based on favorite
- * @returns void
- */
-function changeHeart(data, cardObj) {
-    if (checkFav(getTitle(data))) {
-        cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
-        rmFav(getTitle(data));
-    }
-    else {
-        cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
-        addFav(data);
-    }
-}
-
-/**
- * View nutrition facts about the selected recipe
- * @returns void
- */
-function viewNutrition(data) {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    $("#view-nutrition-page").classList.add("main-shown");
-    const nutritionPage = document.createElement("nutrition-page");
-    nutritionPage.data = data;
-    $("#view-nutrition-page").appendChild(nutritionPage);
-}
-
-/**
- * Leave Featured Recipe Page to landing page
- * @returns void
- */
-function feaRecipeToLand() {
-    $("#view-recipe-page").classList.remove("main-shown");
-    $("#view-recipe-page").innerHTML = "";
-    loadMain();
-    if ($("#featured-page").classList.contains("shown")) {
-        router.navigate("ToFeaturedPage");
-    }
-    else if ($("#favorite-page").classList.contains("shown")) {
-        router.navigate("ToFavoritePage");
-    }
-    else {
-        router.navigate("home");
-    }
-}
-
-
-
+// Define the "view-fea-recipe" element using this class.
 customElements.define("view-fea-recipe", ViewFeaRecipe);

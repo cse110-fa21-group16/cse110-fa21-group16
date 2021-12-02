@@ -1,12 +1,24 @@
-import { $, leaveMain, router } from "../scripts/main.js";
-import {  getTitle } from "../scripts/helpGetDataFunc.js";
+import { router } from "../scripts/main.js";
+import { getTitle, getImgUrl } from "../scripts/helpGetDataFunc.js";
 
+/**
+ * This is the component for the My Recipe Card element in the landing page.
+ * @class
+ */
 class RecipeCardMy extends HTMLElement {
+  /**
+   * Attach the shadowroot which contains the My Recipe Card materials.
+   * @constructor
+   */
   constructor() {
     super();
     this.shadow = this.attachShadow({ mode: "open" });
   }
 
+  /**
+   * The data needed to populate the materials are passed in as "data".
+   * @param {Object} data a JSON data object contains information to populate this component.
+   */
   set data(data) {
     const styleElem = document.createElement("style");
     const styles = `
@@ -71,7 +83,9 @@ class RecipeCardMy extends HTMLElement {
 
     const card = document.createElement("article");
 
-    const recipeImg = document.createElement("div");
+    const recipeImg = document.createElement("img");
+    recipeImg.src = getImgUrl(data);
+    recipeImg.alt = getTitle(data);
     card.appendChild(recipeImg);
 
     // p element - title
@@ -86,9 +100,8 @@ class RecipeCardMy extends HTMLElement {
     card.appendChild(checkButton);
 
     // bind check button to router
-    checkButton.addEventListener("click", (e) => {
-      // console.log(e.path[0].nodeName);
-      // if (e.path[0].nodeName == "B") return;
+    checkButton.addEventListener("click", () => {
+      speechSynthesis.cancel();
       router.navigate(data["id"]);
     });
 
@@ -98,17 +111,17 @@ class RecipeCardMy extends HTMLElement {
 }
 
 
-/**
- * Load My Recipe Page
- * @returns void
- */
- function viewRecipe(data) {
-  $("#view-recipe-page").classList.add("main-shown");
-  const viewRecipePage = document.createElement("view-my-recipe");
-  viewRecipePage.data = data;
-  $("#view-recipe-page").appendChild(viewRecipePage);
-  leaveMain();
-}
+// /**
+//  * Load My Recipe Page
+//  * @returns Void
+//  */
+//  function viewRecipe(data) {
+//   $("#view-recipe-page").classList.add("main-shown");
+//   const viewRecipePage = document.createElement("view-my-recipe");
+//   viewRecipePage.data = data;
+//   $("#view-recipe-page").appendChild(viewRecipePage);
+//   leaveMain();
+// }
 
-
+// Define the "recipe-card-my" element using this class.
 customElements.define("recipe-card-my", RecipeCardMy);
