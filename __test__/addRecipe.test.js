@@ -160,7 +160,7 @@ describe("Test for add recipe", () => {
       for(let k=0; k<stepList.length; k++){
         let step = await stepList[k].getProperty("innerText");
         step = step['_remoteObject'].value;
-        if(step != ((k+1)*10101).toString()){
+        if(step != (`Step ${k+1}: ` +(k+1)*10101).toString()){
           console.log("steps mismatch");
           testResult = false;
         }
