@@ -152,6 +152,7 @@ class AddRecipe extends HTMLElement {
        .picture {
          width: 98%;
          display: flex;
+         flex-direction: column;
          justify-content: space-between;
          align-items: center;
          margin: 2em 0;
@@ -167,7 +168,7 @@ class AddRecipe extends HTMLElement {
          outline: none;
          resize: none;
          text-align: center;
-         width: 50%;
+         width: 100%;
        }
        #recipe-name:hover{
          border: 1px solid #313131;
@@ -523,26 +524,25 @@ class AddRecipe extends HTMLElement {
           padding: 5px;
           margin: 20px 0px;
           justify-content: center;
-          border-style:dotted;
-
         }
 
-       #submit-edit,
-       #save-edit,
-       #cancel-edit {
-        border: 1px solid #ccccd8;
-        background-color: #fff;
-        border-radius: 14px;
-        color: #305A50;
-        cursor: pointer;
-        font-size: 14px;
-        margin: 20px;
-        padding: 10px 15px;
-       }
+        #submit-edit,
+        #save-edit,
+        #cancel-edit {
+          border: 1px solid #ccccd8;
+          background-color: #fff;
+          border-radius: 14px;
+          color: #305A50;
+          cursor: pointer;
+          font-size: 12px;
+          margin: 20px;
+          min-width: 50px;
+          padding: 10px 15px;
+        }
 
         #cancel-edit {
           color: #c0392b;
-         }
+        }
   
          #save-edit:hover,
          #submit-edit:hover {
@@ -564,6 +564,7 @@ class AddRecipe extends HTMLElement {
          font-size: 14px;
          margin: 20px;
          padding: 10px 15px;
+         min-width: 50px;
         }
 
         #cancel-edit {
