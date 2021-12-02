@@ -2,6 +2,10 @@
 import { calculateServing, getTitle, getTime, getSteps, getFeaturedSteps, getStepsArray } from "../source/assets/scripts/helpGetDataFunc.js";
 //const functions = require('../source/assets/components/NutritionPage.js');
 
+/* Tests CalculateServing
+*  This function calculates the nutrition facts of some number servings based on the provided 
+*  base amount of 1 serving and the desired number of servings.*/
+
 test('test nutrition fact conversion, serving size 1', () => {
     expect(calculateServing(858.18, 1)).toBe(858.18);
 });
@@ -35,16 +39,16 @@ test('test nutrition fact conversion, serving size 13', () => {
 });
 
 //invalid input of 0, should result in nutrition facts for serving size 1
-test('test nutrition fact conversion, serving size 0', () => {
+test('test invalid nutrition fact conversion, serving size 0', () => {
     expect(calculateServing(554.32, 0)).toBe(554.32); //cholest
 });
 
 //invalid input of negative number, should result in nutrition facts for serving size 1
-test('test nutrition fact conversion, serving size -3', () => {
+test('test invalid nutrition fact conversion, serving size -3', () => {
     expect(calculateServing(83.44, -3)).toBe(83.44); //cholest
 });
 
-//sampleRecipe data
+/* sampleRecipe data */
 let data = {
     "vegetarian": true,
     "vegan": false,
@@ -3531,19 +3535,21 @@ let data = {
     "spoonacularSourceUrl": "https://spoonacular.com/cinnamon-sugar-fried-apples-639487"
   }
 
-
-
-//test getTitle
+/* Tests getTitle
+*  Get the title of recipe.*/
 test('test getTitle Func', () => {
     expect(getTitle(data)).toBe('Cinnamon Sugar Fried Apples');
 });
-//test getTime
+
+/* Tests getTime
+*  Get the cooking time of recipe.*/
 test('test getTime Func', () => {
     expect(getTime(data)).toBe(60);
 });
 
 let expectedSteps = '<ol><li>Mix all ingredients for batter (flour, salt, granulated sugar, milk, lightly beaten eggs, lemon zest, and melted unsalted butter) in a bowl until smooth. Cover with plastic wrap and set aside to rest for 30 minutes.</li><li>While batter is resting core and slice apples 1 cm thick. Set aside. Start heating oil.</li><li>Dip apple slices in batter, then fry until golden on each side. Drain the apples well on double lined paper towels. Then sprinkle the cinnamon sugar (brown sugar and cinnamon combined) on the slices. Serve immediately.</li></ol>';
-//test getSteps
+/* Tests getSteps
+*  Get the steps of recipe.*/
 test('test getSteps Func', () => {
     expect(getSteps(data)).toBe(expectedSteps);
 });
@@ -3689,11 +3695,15 @@ let expectedFeaturedSteps = [
       ]
     }
   ]
-//test getFeaturedSteps
+
+/* Tests getFeaturedSteps
+*  Get the steps of recipe (Array).*/
 test('test getFeaturedSteps Func', () => {
     expect(getFeaturedSteps(data)).toMatchObject(expectedFeaturedSteps);
 });
-//test getStepsArray
+
+/* Tests getStepsArray
+*  Get the steps of recipe (Array).*/
 test('test getStepsArray Func', () => {
     expect(getStepsArray(data)).toMatchObject([]);
 });
