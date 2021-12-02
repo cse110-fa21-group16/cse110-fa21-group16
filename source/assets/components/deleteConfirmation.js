@@ -99,7 +99,7 @@ class DeleteConfirmation extends HTMLElement {
                 cursor: pointer;
                 font-size: 20px;
                 margin: 0px 30px;
-                min-width: 120px;
+                min-width: 50px;
                 padding: 5px 20px;
             }
                
