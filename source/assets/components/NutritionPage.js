@@ -300,12 +300,11 @@ class NutritionPage extends HTMLElement {
     calculateBtn.addEventListener("click", () => {
       amountArray.forEach((item) => {
         if (input.value !== "" && input.value > 0) {
-          item.innerHTML = this.calculateServing(item.getAttribute("baseAmount"), input.value);
+          item.innerHTML = calculateServing(item.getAttribute("baseAmount"), input.value);
         }
       });
     });
   }
-    
   /**
    * This function calculates the nutrition facts of some number servings based on the provided 
    * base amount of 1 serving and the desired number of servings.
@@ -313,9 +312,10 @@ class NutritionPage extends HTMLElement {
    * @param {*} multiplier a desired number of serving to multiply the baseAmount with
    * @returns Number 
    */
-  calculateServing(baseAmount, multiplier) {
-    return (baseAmount * multiplier).toFixed(2);
-  }
+  // calculateServing(baseAmount, multiplier) {
+  //   return (baseAmount * multiplier).toFixed(2);
+  // }
+  // module.exports = {calculateServing};
 
   /**
    * Load the view recipe page action.
@@ -332,5 +332,9 @@ class NutritionPage extends HTMLElement {
   }
 }
 
+export function calculateServing(baseAmount, multiplier) {
+  return (baseAmount * multiplier).toFixed(2);
+}
+module.exports = {calculateServing};
 // Define the "nutrition-page" element using this class.
 customElements.define("nutrition-page", NutritionPage);
