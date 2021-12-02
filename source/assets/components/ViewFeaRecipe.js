@@ -578,6 +578,7 @@ class ViewFeaRecipe extends HTMLElement {
     viewNutrition(data) {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
         $("#view-nutrition-page").classList.add("main-shown");
         const nutritionPage = document.createElement("nutrition-page");
         nutritionPage.data = data;
@@ -592,6 +593,7 @@ class ViewFeaRecipe extends HTMLElement {
     feaRecipeToLand() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
         loadMain();
         if ($("#featured-page").classList.contains("shown")) {
             router.navigate("ToFeaturedPage");
@@ -619,7 +621,9 @@ class ViewFeaRecipe extends HTMLElement {
         let i = 0;
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
-        window.addEventListener('keydown', function(event) {
+        let featuredView = document.querySelector("#view-recipe-page").children[0];
+        featuredView.addEventListener('keydown', function(event) {
+            console.log("FeaRecipePage");
             if (event.key == "ArrowRight" && i < recipeText.length - 1) {
                 i++;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);

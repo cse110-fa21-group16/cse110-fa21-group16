@@ -33,6 +33,7 @@ export const router = new Router(function () {
 });
 
 window.addEventListener("DOMContentLoaded", init);
+speechSynthesis.cancel();
 
 /**
  * Initialize and load page.
@@ -780,6 +781,7 @@ export function leaveMain() {
 function bindEscKey() {
   document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
+      speechSynthesis.cancel();
       router.navigate("home");
     }
   });

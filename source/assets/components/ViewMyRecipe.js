@@ -325,13 +325,11 @@ class ViewMyRecipe extends HTMLElement {
 
         let cookTime = document.createElement("p");
         cookTime.textContent = `${getTime(data)} min`;
-
-        // let toNutPage = document.createElement("button");
-        // toNutPage.textContent = "Nutrition Facts";
         
         let speechSynthesis = window.speechSynthesis;
         let textToSpeech = document.createElement("button");
-        textToSpeech.textContent = "TTS";
+        textToSpeech.setAttribute("id", "tts-btn");
+        textToSpeech.textContent = "Text-To-Speech";
         textToSpeech.addEventListener("click", () => {
             this.playTextToSpeech(speechSynthesis);
         })
@@ -504,6 +502,7 @@ class ViewMyRecipe extends HTMLElement {
     myRecipeToLand() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
         loadMain();
         if ($("#my-page").classList.contains("shown")) {
             router.navigate("ToMyRecipePage");
@@ -536,25 +535,34 @@ class ViewMyRecipe extends HTMLElement {
      * @param{Object} speechSynthesis a speech Object 
      * @returns Void
      */
-    playTextToSpeech(speechSynthesis) {
+     playTextToSpeech(speechSynthesis) {
         let recipeText = this.shadowRoot.querySelector("#steps-list");
         recipeText = recipeText.querySelectorAll("li");
         let i = 0;
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
-        console.log(i);
-        window.addEventListener('keydown', function(event) {
+        let myRecipeView = document.querySelector("#view-recipe-page").children[0];
+        myRecipeView.addEventListener('keydown', function(event) {
+            console.log("MyRecipePage");
             if (event.key == "ArrowRight" && i < recipeText.length - 1) {
                 i++;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
                 speechSynthesis.speak(speechText);
             }
             if (event.key == "ArrowLeft" && i > 0) {
                 i--;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
                 speechSynthesis.speak(speechText);
             }
-        });            
+
+            if (event.key == "Control" && i >= 0 && i <= recipeText.length - 1) {
+                let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            }
+        });         
     }
 }
 
