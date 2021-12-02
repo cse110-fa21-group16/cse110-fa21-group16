@@ -108,7 +108,7 @@ class ViewMyRecipe extends HTMLElement {
             align-content: flex-start;
             display: flex;
             flex: 1 1 70%;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
             justify-content: center;
             padding: 15px;
         }
@@ -117,10 +117,11 @@ class ViewMyRecipe extends HTMLElement {
         #main-header {
             align-items: center;
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: column nowrap;
             justify-content: center;
             margin: 20px 0px 50px 0px;
             width: 100%;
+            text-align: center;
         }
 
         #main-header > h1 {
@@ -140,8 +141,9 @@ class ViewMyRecipe extends HTMLElement {
         #left-main {
             align-items: center;
             display: flex;
-            flex: 1 1 40%;
+            // flex: 1 1 40%;
             flex-flow: column nowrap;
+            width: 100%;
         }
 
         #left-main > img {
@@ -151,13 +153,13 @@ class ViewMyRecipe extends HTMLElement {
 
         #left-main > h2 {
             visibility: hidden;
-            margin: 10px 0px 20px 0px;
+            // margin: 10px 0px 20px 0px;
         }
         
         #left-main > p {
             visibility: hidden;
             font-size: 20px;
-            margin-bottom: 10px;
+            // margin-bottom: 10px;
         }
 
         #left-main > button {
@@ -200,6 +202,12 @@ class ViewMyRecipe extends HTMLElement {
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
         }
+
+        #steps-list > ol > li:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         #ingre-list button{
             background-color: transparent;
             border: rgb(34,139,34) 1px solid;
@@ -223,7 +231,7 @@ class ViewMyRecipe extends HTMLElement {
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-end;
-            margin: 90px 60px 60px 60px;
+            // margin: 90px 60px 60px 60px;
             width: 100%;
         }
 
@@ -257,7 +265,7 @@ class ViewMyRecipe extends HTMLElement {
 
     
         #ingre-aside {
-            margin: 40px 15px;
+            margin: 15px 15px;
         }
 
         #ingre-aside h2 {
@@ -289,7 +297,7 @@ class ViewMyRecipe extends HTMLElement {
         #show-ingre-btn {
             display: none;
         }
-        @media (max-width: 680px) {
+        @media (max-width: 1091px) {
             #show-ingre-btn {
                 width: 100%;
                 height: 70px;
@@ -406,8 +414,8 @@ class ViewMyRecipe extends HTMLElement {
         mainFooterSec.appendChild(backButton);
         mainFooterSec.appendChild(editButton);
 
-        main.appendChild(mainHeaderSec);
-        main.appendChild(leftMainSec);
+        // main.appendChild(mainHeaderSec);
+        // main.appendChild(leftMainSec);
         main.appendChild(rightMainSec);
         main.appendChild(mainFooterSec);
 
@@ -518,6 +526,8 @@ class ViewMyRecipe extends HTMLElement {
         dietAside.appendChild(glutenSec);
         dietAside.appendChild(vegetaSec);
 
+        // aside.appendChild(mainHeaderSec);
+        // aside.appendChild(leftMainSec);
         aside.appendChild(ingreAside);
         aside.appendChild(dietAside);
 
@@ -539,6 +549,8 @@ class ViewMyRecipe extends HTMLElement {
         aside.appendChild(showIngre)
 
         card.appendChild(header);
+        card.appendChild(mainHeaderSec);
+        card.appendChild(leftMainSec);  
         card.appendChild(aside);
         card.appendChild(main);
 
@@ -578,8 +590,6 @@ class ViewMyRecipe extends HTMLElement {
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");
     }
-
-   
 }
 
 

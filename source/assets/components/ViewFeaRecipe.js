@@ -102,7 +102,7 @@ class ViewFeaRecipe extends HTMLElement {
             align-content: flex-start;
             display: flex;
             flex: 1 1 70%;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
             justify-content: center;
             padding: 15px;
         }
@@ -111,16 +111,17 @@ class ViewFeaRecipe extends HTMLElement {
         #main-header {
             align-items: center;
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: column nowrap;
             justify-content: center;
             margin: 20px 0px 50px 0px;
             width: 100%;
+            text-align: center;
         }
 
         #main-header > h1 {
             line-height: 35px;
             font-size: 30px;
-            margin: 0px 30px;
+            margin: 0px 0px 15px 30px;
         }
 
         #main-header > img {
@@ -132,8 +133,9 @@ class ViewFeaRecipe extends HTMLElement {
         #left-main {
             align-items: center;
             display: flex;
-            flex: 1 1 40%;
+            // flex: 1 1 40%;
             flex-flow: column nowrap;
+            width: 100%;
         }
 
         #left-main > img {
@@ -142,12 +144,12 @@ class ViewFeaRecipe extends HTMLElement {
         }
 
         #left-main > h2 {
-            margin: 60px 0px 20px 0px;
+            // margin: 60px 0px 20px 0px;
         }
         
         #left-main > p {
             font-size: 20px;
-            margin-bottom: 40px;
+            // margin-bottom: 40px;
         }
 
         #left-main > button {
@@ -198,13 +200,18 @@ class ViewFeaRecipe extends HTMLElement {
             text-indent: 0px;
         }
 
+        #steps-list > ol > li:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         /* main-footer */
         #main-footer{
             align-items: center;
             display: flex;
             flex-flow: row nowrap;
             justify-content: flex-end;
-            margin: 90px 60px 60px 60px;
+            // margin: 90px 60px 60px 60px;
             width: 100%;
         }
 
@@ -238,7 +245,7 @@ class ViewFeaRecipe extends HTMLElement {
         }
 
         #ingre-aside {
-            margin: 40px 15px;
+            margin: 15px 15px;
         }
 
         #ingre-aside h2 {
@@ -270,7 +277,7 @@ class ViewFeaRecipe extends HTMLElement {
         #show-ingre-btn {
             display: none;
         }
-        @media (max-width: 680px) {
+        @media (max-width: 1091px) {
             #show-ingre-btn {
                 width: 100%;
                 height: 70px;
@@ -414,8 +421,8 @@ class ViewFeaRecipe extends HTMLElement {
 
         mainFooterSec.appendChild(backButton);
 
-        main.appendChild(mainHeaderSec);
-        main.appendChild(leftMainSec);
+        // main.appendChild(mainHeaderSec);
+        // main.appendChild(leftMainSec);
         main.appendChild(rightMainSec);
         main.appendChild(mainFooterSec);
 
@@ -441,7 +448,7 @@ class ViewFeaRecipe extends HTMLElement {
         // diet-aside
         let dietAside = document.createElement("section");
         dietAside.id = "diet-aside";
-
+        
         let dietLabel = document.createElement("h2");
         dietLabel.textContent = "Diet Restriction: ";
 
@@ -527,6 +534,8 @@ class ViewFeaRecipe extends HTMLElement {
         dietAside.appendChild(glutenSec);
         dietAside.appendChild(vegetaSec);
 
+        // aside.appendChild(mainHeaderSec);
+        // aside.appendChild(leftMainSec);
         aside.appendChild(ingreAside);
         aside.appendChild(dietAside);
 
@@ -548,6 +557,8 @@ class ViewFeaRecipe extends HTMLElement {
         aside.appendChild(showIngre)
 
         card.appendChild(header);
+        card.appendChild(mainHeaderSec);
+        card.appendChild(leftMainSec);
         card.appendChild(aside);
         card.appendChild(main);
 
