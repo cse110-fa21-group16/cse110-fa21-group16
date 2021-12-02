@@ -5,7 +5,6 @@ import { calculateServing, getTitle, getTime, getSteps, getFeaturedSteps, getSte
 /* Tests CalculateServing
 *  This function calculates the nutrition facts of some number servings based on the provided 
 *  base amount of 1 serving and the desired number of servings.*/
-
 test('test nutrition fact conversion, serving size 1', () => {
     expect(calculateServing(858.18, 1)).toBe(858.18);
 });
