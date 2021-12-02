@@ -295,6 +295,7 @@ class NutritionPage extends HTMLElement {
     this.shadow.appendChild(styling);
     this.shadow.appendChild(page);
     // Calculate the nutrition facts based on provided servings
+    // This is the new branch!!!! testing testing!!!
     let amountArray = this.shadowRoot.querySelectorAll("#amount-serving");
     calculateBtn.addEventListener("click", () => {
       amountArray.forEach((item) => {
