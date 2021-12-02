@@ -1,4 +1,5 @@
 // main.js
+// adding dummy comment
 import { Router } from "./Router.js";
 
 export const $ = (selector) => document.querySelector(selector);
@@ -32,6 +33,7 @@ export const router = new Router(function () {
 });
 
 window.addEventListener("DOMContentLoaded", init);
+speechSynthesis.cancel();
 
 /**
  * Initialize and load page.
@@ -378,43 +380,43 @@ export function createMyRecipePage() {
  * @returns Void
  */
 function setButtonListen() {
-  $("#to-feature-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#to-feature-page").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFeaturedPage");
   });
 
-  $("#feature-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#feature-page-to-landing").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#to-favorite-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#to-favorite-page").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToFavoritePage");
   });
 
-  $("#favorite-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#favorite-page-to-landing").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#to-my-page").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#to-my-page").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToMyRecipePage");
   });
 
-  $("#my-page-to-landing").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#my-page-to-landing").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("home");
   });
 
-  $("#search-button").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#search-button").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     router.navigate("ToSearchPage");
   });
 
-  $("#cancel-search-button").addEventListener("click", (e) => {
-    if (e.path[0].nodeName == "B") return;
+  $("#cancel-search-button").addEventListener("click", () => {
+    // if (e.path[0].nodeName == "B") return;
     $("#search-type").selectedIndex = 0;
     $("#search-input").value = "";
     router.navigate("home");
@@ -779,6 +781,7 @@ export function leaveMain() {
 function bindEscKey() {
   document.addEventListener("keydown", (event) => {
     if (event.key == "Escape") {
+      speechSynthesis.cancel();
       router.navigate("home");
     }
   });
