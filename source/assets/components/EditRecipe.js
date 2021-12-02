@@ -523,7 +523,6 @@ class EditRecipe extends HTMLElement {
           .action-buttons {
             display: flex;
             flex-flow: row nowrap;
-            width: 100vw;
             padding: 5px;
             margin: 20px 0px;
             justify-content: center;
@@ -568,6 +567,17 @@ class EditRecipe extends HTMLElement {
            margin: 20px;
            padding: 10px 15px;
           }
+
+          #delete-edit,
+          #cancel-edit {
+           color: #c0392b;
+          }
+
+          #delete-edit:hover,
+          #cancel-edit:hover {
+            background: #c0392b;
+            color: white;
+         }
         }
         `;
 

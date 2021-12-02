@@ -37,8 +37,7 @@ class ViewMyRecipe extends HTMLElement {
             flex-flow: row wrap;
             margin: 10px 0px 90px 0px;
         }
-
-
+        
         /* header */
         article > header {
             align-items: center;
@@ -48,6 +47,7 @@ class ViewMyRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+            border-style:dotted;
         }
 
         #logo-sec {
@@ -86,6 +86,22 @@ class ViewMyRecipe extends HTMLElement {
             text-decoration: none;
         }
 
+        @media (max-width: 480px) {
+            article {
+                box-shadow: 0px 0px 15px #888888;
+                display: flex;
+                flex-flow: row wrap;
+                margin: 10px 0px 90px 0px;
+            }
+
+            #header-title {
+                font-size: 5vw; 
+                position:relative;
+                left: 6vw;
+            }
+
+          }
+
 
         /* main */
         article > main {
@@ -111,6 +127,12 @@ class ViewMyRecipe extends HTMLElement {
             line-height: 35px;
             font-size: 30px;
             margin: 0px 30px;
+        }
+
+        @media (max-width: 480px) {
+            article > main {
+                width: calc(100vw - 480px);
+            }
         }
 
 
@@ -223,7 +245,6 @@ class ViewMyRecipe extends HTMLElement {
             color: white;
         }
 
-
         /* aside */
         article > aside {
             align-items: center;
@@ -234,6 +255,7 @@ class ViewMyRecipe extends HTMLElement {
             padding-bottom: 60px;
         }
 
+    
         #ingre-aside {
             margin: 40px 15px;
         }

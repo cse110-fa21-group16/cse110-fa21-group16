@@ -44,6 +44,13 @@ class AddRecipe extends HTMLElement {
         margin: 10px 0px 90px 0px;
       }
        
+      @media (max-width: 480px) {
+        article {
+          width: 100vw;
+          box-shadow: 0px 0px 15px #888888;
+          margin: 10px 0px 90px 10px;
+        }
+      }
        /*****************************************
         *****************************************
         Style for header section in article
@@ -102,6 +109,19 @@ class AddRecipe extends HTMLElement {
          margin: 0px 0px 0px 20px;
        }
        
+       @media (max-width: 480px) {
+        header {
+          display: flex;
+          justify-content: center;
+          /* border: 1px solid orange; */
+        }
+        .header-div h1 {
+          color: white;
+          font-size: 5vw;
+        }
+  
+      }
+
        /*****************************************
         *****************************************
         Style for main in article 
@@ -163,6 +183,37 @@ class AddRecipe extends HTMLElement {
          width: 260px;
          margin: 10px
        }
+
+       @media (max-width: 480px) {
+
+        .origin {
+          width: 100%;
+          display: grid;
+          justify-content: center;
+          grid-template-columns: 100%;
+          /* border: 1px solid yellow; */
+        }
+
+        .picture {
+          width: 100vw;
+          position: relative;
+          flex-direction: column;
+          /* border: 1px solid black; */
+        }
+
+        #recipe-name {
+          border: 1px solid #ccccd8;
+          border-radius: 14px;
+          font-size: 12vw;
+          height: 30%;
+          margin: 0 10px;
+          outline: none;
+          resize: none;
+          text-align: center;
+          width: 95vw;
+        }
+
+      }
 
        /*****************************************
         Style for instructions section 
@@ -240,6 +291,24 @@ class AddRecipe extends HTMLElement {
           box-shadow:0px 1px 17px -8px #000;
           transform: scale(1.02);
         }
+
+        @media (max-width: 480px) {
+          .instructions {
+            /* border: 1px solid blue; */
+            width: 98vw;
+            position: relative;
+          }
+
+          .procedures {
+            position: relative;
+            /* border: 1px solid greenyellow; */
+          }
+
+          .procedures > .title {
+            font-size: 12px;
+          }
+          
+        }
        
        /*****************************************
         Style for ingredients section 
@@ -312,6 +381,78 @@ class AddRecipe extends HTMLElement {
          grid-template-columns: 50% 50%;
          /* border: 1px solid black; */
        }
+
+       @media (max-width: 480px) {
+        .ingredients {
+          width: 98vw;
+          position: relative;
+        }
+
+        .ingredients-list-div {
+         display: grid;
+         grid-template-columns: 50% 20% 27.5%;
+         position: relative;
+       }
+
+       .ingredients-item {
+         width: 95%;
+         height: 30px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+         resize: none;
+         font-size: 12px;
+       }
+
+       .amount-item {
+         border: 1px solid rgb(118, 118, 118);
+         width: 80%;
+         height: 30px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+         font-size: 12px;
+       }
+     
+       .unit-item {
+         width: 95%;
+         height: 40px;
+         border-radius: 10px;
+         padding-top: 5px;
+         padding-left: 5px;
+         font-size: 12px;
+       }
+       
+       .ingredient-column > .title {
+         font-size: 12px;
+       }
+
+       .amount-column > .title{
+         font-size:12px;
+       }
+
+       .unit-column > .title{
+         padding-left: 20px; 
+         font-size: 12px;  
+       }
+      }
+      
+      @media (min-width: 481px) and (max-width: 960px) {
+        .ingredient-column > .title {
+          font-size: 14px;
+        }
+
+        .amount-column > .title{
+          font-size: 14px;
+        }
+
+        .unit-column > .title{
+          padding-left: 20px; 
+          font-size: 14px;  
+        }
+       }
+
+       
        
        /*****************************************
         *****************************************
@@ -368,6 +509,74 @@ class AddRecipe extends HTMLElement {
          font-size: 20px;
          margin: 5px 0px 10px 0px;
        }
+
+       @media (max-width: 480px) {
+        footer {
+          width: 100vw;
+          display: flex;
+          justify-content: center;
+        }
+
+        .action-buttons {
+          display: flex;
+          width:100vw;
+          padding: 5px;
+          margin: 20px 0px;
+          justify-content: center;
+          border-style:dotted;
+
+        }
+
+       #submit-edit,
+       #save-edit,
+       #cancel-edit {
+        border: 1px solid #ccccd8;
+        background-color: #fff;
+        border-radius: 14px;
+        color: #305A50;
+        cursor: pointer;
+        font-size: 14px;
+        margin: 20px;
+        padding: 10px 15px;
+       }
+
+        #cancel-edit {
+          color: #c0392b;
+         }
+  
+         #save-edit:hover,
+         #submit-edit:hover {
+          border: 1px solid #313131;
+          background: rgb(48, 90, 80);
+          color: white;
+         }      
+      }
+
+      @media (min-width: 481px) and (max-width: 1024px) {
+        #submit-edit,
+        #save-edit,
+        #cancel-edit {
+         border: 1px solid #ccccd8;
+         background-color: #fff;
+         border-radius: 14px;
+         color: #305A50;
+         cursor: pointer;
+         font-size: 14px;
+         margin: 20px;
+         padding: 10px 15px;
+        }
+
+        #cancel-edit {
+          color: #c0392b;
+         }
+  
+         #save-edit:hover,
+         #submit-edit:hover {
+          border: 1px solid #313131;
+          background: rgb(48, 90, 80);
+          color: white;
+         }    
+      }
       `;
 
     styling.innerHTML = styles;

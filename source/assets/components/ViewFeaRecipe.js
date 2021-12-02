@@ -40,7 +40,6 @@ class ViewFeaRecipe extends HTMLElement {
             
         }
 
-
         /* header */
         article > header {
             align-items: center;
@@ -87,6 +86,14 @@ class ViewFeaRecipe extends HTMLElement {
             font-size: 2vw;
             margin: 0px 0px 0px 20px;
             text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            #header-title {
+                font-size: 5vw; 
+                position:relative;
+                left: 6vw;
+            }
         }
 
 
@@ -158,6 +165,13 @@ class ViewFeaRecipe extends HTMLElement {
             border: 1px solid #313131;
             background: darkgreen;
             color: white;
+        }
+
+        @media (max-width: 480px) {
+            #left-main > button {
+                position:relative;
+                bottom: 20px;
+            }
         }
 
         /* right-main */
