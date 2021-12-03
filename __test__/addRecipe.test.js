@@ -115,7 +115,6 @@ describe("Test for add recipe", () => {
     }
 
     cards = await myPageList.$$("new-card-my-page, recipe-card-my-my-page");
-    console.log("after add card num:" + cards.length);
     expect(testResult).toBe(true);
   });
 
