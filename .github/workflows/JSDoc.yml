@@ -32,8 +32,8 @@ jobs:
           token: ${{ secrets.PUSH_TOKEN }}
           
       # Runs a single command using the runners shell
-      - name: Downgrade npm
-        run: npm install -g npm@"7.24.2"
+      - name: npm version
+        run: npm -v
         
       - name: Build
         uses: andstor/jsdoc-action@v1.2.0
@@ -42,7 +42,7 @@ jobs:
           source_dir: ./source/assets
           recurse: true
           output_dir: docs/docs
-          template: minami
+#           template: minami
           front_page: docs/README.md
         
       - name: Commit and push documentation
