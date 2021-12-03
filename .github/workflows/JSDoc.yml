@@ -32,14 +32,8 @@ jobs:
           token: ${{ secrets.PUSH_TOKEN }}
           
       # Runs a single command using the runners shell
-      - name: Clean install
-        run: npm ci
-        
-      - name: Removing package-lock.json
-        run: rm package-lock.json
-        
-      - name: Rerunning npm install
-        run: npm install
+      - name: Check npm
+        run: npm ls
         
       - name: Build
         uses: andstor/jsdoc-action@v1.2.0
