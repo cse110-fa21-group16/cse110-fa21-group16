@@ -35,6 +35,12 @@ jobs:
       - name: Clean install
         run: npm ci
         
+      - name: Removing package-lock.json
+        run: rm package-lock.json
+        
+      - name: Rerunning npm install
+        run: npm install
+        
       - name: Build
         uses: andstor/jsdoc-action@v1.2.0
 #         uses: andstor/jsdoc-action@v1
