@@ -32,8 +32,8 @@ jobs:
           token: ${{ secrets.PUSH_TOKEN }}
           
       # Runs a single command using the runners shell
-      - name: Check npm
-        run: npm ls
+      - name: Downgrade npm
+        run: npm install -g npm@"7.24.2"
         
       - name: Build
         uses: andstor/jsdoc-action@v1.2.0
