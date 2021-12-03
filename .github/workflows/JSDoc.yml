@@ -42,6 +42,9 @@ jobs:
           template: minami
           front_page: docs/README.md
           
+      - name: Audit fix
+        run: npm audit fix
+          
       - name: Commit and push documentation
         run: |
           cd docs
