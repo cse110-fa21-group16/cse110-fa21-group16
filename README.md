@@ -50,6 +50,7 @@ In addition to the CRUD functionality, below is a list of additional features th
 - Search and filtering
 - Favoriting recipes
 - Ingredient unit conversions 
+- Servings calculation
 - Recipe draft saving
 
 # Credits 
