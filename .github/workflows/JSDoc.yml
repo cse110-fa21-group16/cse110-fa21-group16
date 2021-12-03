@@ -32,8 +32,8 @@ jobs:
           token: ${{ secrets.PUSH_TOKEN }}
           
       # Runs a single command using the runners shell
-      - name: npm version
-        run: npm -v
+      - name: Clean install
+        run: npm ci
         
       - name: Build
         uses: andstor/jsdoc-action@v1.2.0
@@ -42,7 +42,7 @@ jobs:
           source_dir: ./source/assets
           recurse: true
           output_dir: docs/docs
-          template: docdash
+          template: minami
           front_page: docs/README.md
         
       - name: Commit and push documentation
