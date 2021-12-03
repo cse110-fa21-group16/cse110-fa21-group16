@@ -7,7 +7,7 @@ import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetData
  * This is the component for the View Featured Recipe Page.
  * @class
  */
-class ViewFeaRecipe extends HTMLElement {
+class ViewFeaRecipeMobile extends HTMLElement {
     /**
      * Attach the shadowroot which contains the View Recipe Page materials.
      * @constructor
@@ -37,8 +37,8 @@ class ViewFeaRecipe extends HTMLElement {
             display: flex;
             flex-flow: row wrap;
             margin: 10px 0px 90px 0px;
+            
         }
-
 
         /* header */
         article > header {
@@ -49,6 +49,7 @@ class ViewFeaRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+            
         }
 
         #logo-sec {
@@ -59,7 +60,7 @@ class ViewFeaRecipe extends HTMLElement {
 
         #logo-sec > a > img {
             height: 100%;
-            width: 125px;
+            width: 100px;
             object-fit: cover;
         }
 
@@ -83,8 +84,16 @@ class ViewFeaRecipe extends HTMLElement {
         #home-link {
             color: white;
             font-size: 2vw;
-            margin: 0px 0px 0px 20px;
+            // margin: 0px 0px 0px 20px;
             text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            #header-title {
+                font-size: 5vw; 
+                position:relative;
+                left: 6vw;
+            }
         }
 
 
@@ -93,7 +102,7 @@ class ViewFeaRecipe extends HTMLElement {
             align-content: flex-start;
             display: flex;
             flex: 1 1 70%;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
             justify-content: center;
             padding: 15px;
         }
@@ -102,30 +111,26 @@ class ViewFeaRecipe extends HTMLElement {
         #main-header {
             align-items: center;
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: column nowrap;
             justify-content: center;
-            margin: 20px 0px 50px 0px;
+            margin: 20px 0px 17px 0px;
             width: 100%;
+            text-align: center;
         }
 
         #main-header > h1 {
             line-height: 35px;
-            font-size: 30px;
-            margin: 0px 30px;
-            width: 50%;
-        }
-
-        #main-header > img {
-            width: 25px;
-            height: 25px;
+            font-size: 23px;
+            margin: 0px 8px 15px 8px;
         }
 
         /* left-main */
         #left-main {
             align-items: center;
             display: flex;
-            flex: 1 1 40%;
+            // flex: 1 1 40%;
             flex-flow: column nowrap;
+            width: 100%;
         }
 
         #left-main > img {
@@ -133,14 +138,19 @@ class ViewFeaRecipe extends HTMLElement {
             width: 260px;
         }
 
-        #left-main > h2 {
-            margin: 60px 0px 20px 0px;
-        }
         
-        #left-main > p {
-            font-size: 20px;
-            margin-bottom: 40px;
+        #time-div > p {
+            display: inline-block;
+            font-size: 18px;
+            margin: 20px 0px 20px 20px;
         }
+
+        #time-div > img {
+            width: 20px;
+            height: 20px;
+            margin: 0px 0px 0px 15px;
+        }
+
 
         #left-main > button {
             background-color: #ffffff;
@@ -153,6 +163,7 @@ class ViewFeaRecipe extends HTMLElement {
             padding: 5px 20px;
         }
         
+        
         #tts-btn {
             margin-top: 10px;
         }
@@ -161,6 +172,13 @@ class ViewFeaRecipe extends HTMLElement {
             border: 1px solid #313131;
             background: darkgreen;
             color: white;
+        }
+
+        @media (max-width: 480px) {
+            #left-main > button {
+                position:relative;
+                // bottom: 20px;
+            }
         }
 
         /* right-main */
@@ -197,8 +215,8 @@ class ViewFeaRecipe extends HTMLElement {
             align-items: center;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: flex-end;
-            margin: 90px 60px 60px 60px;
+            justify-content: center;
+            // margin: 90px 60px 60px 60px;
             width: 100%;
         }
 
@@ -209,7 +227,7 @@ class ViewFeaRecipe extends HTMLElement {
             color: #305a50;
             cursor: pointer;
             font-size: 16px;
-            margin: 0px 20px 0px 0px;
+            margin: 20px 0px;
             min-width: 120px;
             padding: 5px 20px;
         }
@@ -228,11 +246,11 @@ class ViewFeaRecipe extends HTMLElement {
             display: flex;
             flex: 1 1 25%;
             flex-flow: column nowrap;
-            padding-bottom: 60px;
+            margin-top: 30px;
         }
 
         #ingre-aside {
-            margin: 40px 15px;
+            margin: 15px 15px;
         }
 
         #ingre-aside h2 {
@@ -259,6 +277,23 @@ class ViewFeaRecipe extends HTMLElement {
         .diet-check > img {
             width: 20px;
             height: 20px;
+        }
+
+        #show-ingre-btn {
+            display: none;
+        }
+        @media (max-width: 1091px) {
+            #show-ingre-btn {
+                width: 100%;
+                height: 70px;
+                display: block;
+                background-color: white;
+                object-fit: contain;
+            }
+
+            #show-ingre-btn:hover {
+                cursor: pointer;
+            }
         }
         `;
         styleElem.innerHTML = styles;
@@ -307,20 +342,7 @@ class ViewFeaRecipe extends HTMLElement {
         let recipeTitle = document.createElement("h1");
         recipeTitle.textContent = getTitle(data);
 
-        let heartImg = document.createElement("img");
-        if (checkFav(getTitle(data))) {
-            heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
-        }
-        else {
-            heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
-        }
-
-        heartImg.addEventListener("click", () => {
-            this.changeHeart(data, heartImg);
-        });
-
         mainHeaderSec.appendChild(recipeTitle);
-        mainHeaderSec.appendChild(heartImg);
 
         // left-main
         let leftMainSec = document.createElement("section");
@@ -330,11 +352,27 @@ class ViewFeaRecipe extends HTMLElement {
         recipeImg.src = getImgUrl(data);
         recipeImg.alt = getTitle(data);
 
-        let timeLabel = document.createElement("h2");
-        timeLabel.textContent = "Time: ";
+        let timeDiv = document.createElement("div");
+        timeDiv.id = "time-div";
 
         let cookTime = document.createElement("p");
-        cookTime.textContent = `${getTime(data)} min`;
+        cookTime.textContent = `Time: ${getTime(data)} min`;
+
+        let heartImg = document.createElement("img");
+        if (checkFav(getTitle(data))) {
+            heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
+        }
+        else {
+            heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+        }
+
+        timeDiv.appendChild(cookTime);
+        timeDiv.appendChild(heartImg);
+
+
+        heartImg.addEventListener("click", () => {
+            this.changeHeart(data, heartImg);
+        });
 
         let toNutritionPage = document.createElement("button");
         toNutritionPage.textContent = "Nutrition Facts";
@@ -351,8 +389,7 @@ class ViewFeaRecipe extends HTMLElement {
         })
 
         leftMainSec.appendChild(recipeImg);
-        leftMainSec.appendChild(timeLabel);
-        leftMainSec.appendChild(cookTime);
+        leftMainSec.appendChild(timeDiv);
         leftMainSec.appendChild(toNutritionPage);
         leftMainSec.appendChild(textToSpeech);
 
@@ -404,8 +441,8 @@ class ViewFeaRecipe extends HTMLElement {
 
         mainFooterSec.appendChild(backButton);
 
-        main.appendChild(mainHeaderSec);
-        main.appendChild(leftMainSec);
+        // main.appendChild(mainHeaderSec);
+        // main.appendChild(leftMainSec);
         main.appendChild(rightMainSec);
         main.appendChild(mainFooterSec);
 
@@ -517,12 +554,33 @@ class ViewFeaRecipe extends HTMLElement {
         dietAside.appendChild(glutenSec);
         dietAside.appendChild(vegetaSec);
 
+        // aside.appendChild(mainHeaderSec);
+        // aside.appendChild(leftMainSec);
         aside.appendChild(ingreAside);
         aside.appendChild(dietAside);
 
+        let showIngre = document.createElement("img");
+        showIngre.setAttribute("id", "show-ingre-btn");
+        showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+        showIngre.addEventListener("click", () => {
+            if (ingreAside.style.display != "none" && dietAside.style.display != "none") {
+                ingreAside.style.display = "none";
+                dietAside.style.display = "none";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-down.png");
+            } else {
+                ingreAside.style.display = "block";
+                dietAside.style.display = "block";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+            }
+        });
+
+        aside.appendChild(showIngre)
+
         card.appendChild(header);
-        card.appendChild(main);
+        card.appendChild(mainHeaderSec);
+        card.appendChild(leftMainSec);
         card.appendChild(aside);
+        card.appendChild(main);
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
@@ -672,4 +730,4 @@ class ViewFeaRecipe extends HTMLElement {
 }
 
 // Define the "view-fea-recipe" element using this class.
-customElements.define("view-fea-recipe", ViewFeaRecipe);
+customElements.define("view-fea-recipe-mobile", ViewFeaRecipeMobile);

@@ -176,7 +176,15 @@ class DeleteConfirmation extends HTMLElement {
     backToView(data) {
         $("#delete-page").classList.remove("main-shown");
         $("#delete-page").innerHTML = "";
-        let editRecipePage = document.createElement("edit-recipe");
+        let winWide = window.innerWidth;
+        let editRecipePage;
+        if (winWide < 1000) {
+            editRecipePage = document.createElement("edit-recipe-mobile");
+
+        }
+        else {
+            editRecipePage = document.createElement("edit-recipe");
+        }
         editRecipePage.data = data;
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");

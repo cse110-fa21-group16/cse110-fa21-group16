@@ -631,3 +631,12 @@ footer {
 #view-recipe-page {
   width: 90%;
 }
+
+@media (max-width: 500px) {
+  button.item-title {
+    font-size: 20px;
+  }
+  .arrow-img {
+    width: 10px;
+  }
+}
