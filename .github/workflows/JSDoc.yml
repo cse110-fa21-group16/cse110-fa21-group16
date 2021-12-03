@@ -32,6 +32,9 @@ jobs:
           token: ${{ secrets.PUSH_TOKEN }}
           
       # Runs a single command using the runners shell
+      - name: Installing miami template
+        run: npm install minami --production --parseable
+        
       - name: Build
         uses: andstor/jsdoc-action@v1.2.0
 #         uses: andstor/jsdoc-action@v1
@@ -42,8 +45,7 @@ jobs:
           template: minami
           front_page: docs/README.md
           
-      - name: Audit fix
-        run: npm audit fix
+      
           
       - name: Commit and push documentation
         run: |
