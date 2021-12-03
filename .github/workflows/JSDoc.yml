@@ -43,6 +43,7 @@ jobs:
           recurse: true
           output_dir: docs/docs
           template: minami
+          run: npm audit fix
           front_page: docs/README.md
         
       - name: Commit and push documentation
