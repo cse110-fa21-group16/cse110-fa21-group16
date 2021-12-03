@@ -1,5 +1,5 @@
 // nutrition_facts.test.js
-import { calculateServing, getTitle, getTime, getSteps, getFeaturedSteps, getStepsArray } from "../source/assets/scripts/helpGetDataFunc.js";
+import { calculateServing, getTitle, getTime, getSteps, getFeaturedSteps, getStepsArray, getIngreArray, getVegeta, getVegan, getGluten, getDairy } from "../source/assets/scripts/helpGetDataFunc.js";
 //const functions = require('../source/assets/components/NutritionPage.js');
 
 /* Tests CalculateServing
@@ -3706,3 +3706,352 @@ test('test getFeaturedSteps Func', () => {
 test('test getStepsArray Func', () => {
     expect(getStepsArray(data)).toMatchObject([]);
 });
+
+let expectedExtendedIngredients = [
+  {
+    "id": 20081,
+    "aisle": "Baking",
+    "image": "flour.png",
+    "consistency": "solid",
+    "name": "all purpose flour",
+    "nameClean": "wheat flour",
+    "original": "150g All Purpose Flour, sifted",
+    "originalString": "150g All Purpose Flour, sifted",
+    "originalName": "All Purpose Flour, sifted",
+    "amount": 150,
+    "unit": "g",
+    "meta": [
+      "sifted"
+    ],
+    "metaInformation": [
+      "sifted"
+    ],
+    "measures": {
+      "us": {
+        "amount": 5.291,
+        "unitShort": "oz",
+        "unitLong": "ounces"
+      },
+      "metric": {
+        "amount": 150,
+        "unitShort": "g",
+        "unitLong": "grams"
+      }
+    }
+  },
+  {
+    "id": 9003,
+    "aisle": "Produce",
+    "image": "apple.jpg",
+    "consistency": "solid",
+    "name": "apples",
+    "nameClean": "apple",
+    "original": "4 Large Apples",
+    "originalString": "4 Large Apples",
+    "originalName": "Large Apples",
+    "amount": 4,
+    "unit": "",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 4,
+        "unitShort": "",
+        "unitLong": ""
+      },
+      "metric": {
+        "amount": 4,
+        "unitShort": "",
+        "unitLong": ""
+      }
+    }
+  },
+  {
+    "id": 19334,
+    "aisle": "Baking",
+    "image": "light-brown-sugar.jpg",
+    "consistency": "solid",
+    "name": "brown sugar",
+    "nameClean": "golden brown sugar",
+    "original": "1/3 cup Brown Sugar",
+    "originalString": "1/3 cup Brown Sugar",
+    "originalName": "Brown Sugar",
+    "amount": 0.3333333333333333,
+    "unit": "cup",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 0.333,
+        "unitShort": "cups",
+        "unitLong": "cups"
+      },
+      "metric": {
+        "amount": 78.863,
+        "unitShort": "ml",
+        "unitLong": "milliliters"
+      }
+    }
+  },
+  {
+    "id": 2010,
+    "aisle": "Spices and Seasonings",
+    "image": "cinnamon.jpg",
+    "consistency": "solid",
+    "name": "cinnamon",
+    "nameClean": "cinnamon",
+    "original": "1 Tbsp Cinnamon",
+    "originalString": "1 Tbsp Cinnamon",
+    "originalName": "Cinnamon",
+    "amount": 1,
+    "unit": "Tbsp",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 1,
+        "unitShort": "Tbsp",
+        "unitLong": "Tbsp"
+      },
+      "metric": {
+        "amount": 1,
+        "unitShort": "Tbsp",
+        "unitLong": "Tbsp"
+      }
+    }
+  },
+  {
+    "id": 1123,
+    "aisle": "Milk, Eggs, Other Dairy",
+    "image": "egg.png",
+    "consistency": "solid",
+    "name": "eggs",
+    "nameClean": "egg",
+    "original": "2 Eggs, lightly beaten",
+    "originalString": "2 Eggs, lightly beaten",
+    "originalName": "Eggs, lightly beaten",
+    "amount": 2,
+    "unit": "",
+    "meta": [
+      "lightly beaten"
+    ],
+    "metaInformation": [
+      "lightly beaten"
+    ],
+    "measures": {
+      "us": {
+        "amount": 2,
+        "unitShort": "",
+        "unitLong": ""
+      },
+      "metric": {
+        "amount": 2,
+        "unitShort": "",
+        "unitLong": ""
+      }
+    }
+  },
+  {
+    "id": 19335,
+    "aisle": "Baking",
+    "image": "sugar-in-bowl.png",
+    "consistency": "solid",
+    "name": "granulated sugar",
+    "nameClean": "sugar",
+    "original": "2 Tbsp Granulated Sugar",
+    "originalString": "2 Tbsp Granulated Sugar",
+    "originalName": "Granulated Sugar",
+    "amount": 2,
+    "unit": "Tbsp",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 2,
+        "unitShort": "Tbsps",
+        "unitLong": "Tbsps"
+      },
+      "metric": {
+        "amount": 2,
+        "unitShort": "Tbsps",
+        "unitLong": "Tbsps"
+      }
+    }
+  },
+  {
+    "id": 9156,
+    "aisle": "Produce",
+    "image": "zest-lemon.jpg",
+    "consistency": "solid",
+    "name": "lemon zest",
+    "nameClean": "lemon peel",
+    "original": "1/2 Tsp Lemon Zest",
+    "originalString": "1/2 Tsp Lemon Zest",
+    "originalName": "Lemon Zest",
+    "amount": 0.5,
+    "unit": "Tsp",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 0.5,
+        "unitShort": "tsps",
+        "unitLong": "teaspoons"
+      },
+      "metric": {
+        "amount": 0.5,
+        "unitShort": "tsps",
+        "unitLong": "teaspoons"
+      }
+    }
+  },
+  {
+    "id": 1077,
+    "aisle": "Milk, Eggs, Other Dairy",
+    "image": "milk.png",
+    "consistency": "liquid",
+    "name": "milk",
+    "nameClean": "milk",
+    "original": "250ml Milk",
+    "originalString": "250ml Milk",
+    "originalName": "Milk",
+    "amount": 250,
+    "unit": "ml",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 1.057,
+        "unitShort": "cups",
+        "unitLong": "cups"
+      },
+      "metric": {
+        "amount": 250,
+        "unitShort": "ml",
+        "unitLong": "milliliters"
+      }
+    }
+  },
+  {
+    "id": 4582,
+    "aisle": "Oil, Vinegar, Salad Dressing",
+    "image": "vegetable-oil.jpg",
+    "consistency": "liquid",
+    "name": "oil",
+    "nameClean": "cooking oil",
+    "original": "Oil for frying",
+    "originalString": "Oil for frying",
+    "originalName": "Oil for frying",
+    "amount": 16,
+    "unit": "servings",
+    "meta": [
+      "for frying"
+    ],
+    "metaInformation": [
+      "for frying"
+    ],
+    "measures": {
+      "us": {
+        "amount": 16,
+        "unitShort": "servings",
+        "unitLong": "servings"
+      },
+      "metric": {
+        "amount": 16,
+        "unitShort": "servings",
+        "unitLong": "servings"
+      }
+    }
+  },
+  {
+    "id": 2047,
+    "aisle": "Spices and Seasonings",
+    "image": "salt.jpg",
+    "consistency": "solid",
+    "name": "salt",
+    "nameClean": "salt",
+    "original": "1 pinch salt",
+    "originalString": "1 pinch salt",
+    "originalName": "salt",
+    "amount": 1,
+    "unit": "pinch",
+    "meta": [],
+    "metaInformation": [],
+    "measures": {
+      "us": {
+        "amount": 1,
+        "unitShort": "pinch",
+        "unitLong": "pinch"
+      },
+      "metric": {
+        "amount": 1,
+        "unitShort": "pinch",
+        "unitLong": "pinch"
+      }
+    }
+  },
+  {
+    "id": 1145,
+    "aisle": "Milk, Eggs, Other Dairy",
+    "image": "butter-sliced.jpg",
+    "consistency": "solid",
+    "name": "unsalted butter",
+    "nameClean": "unsalted butter",
+    "original": "1 Tbsp Melted Unsalted Butter",
+    "originalString": "1 Tbsp Melted Unsalted Butter",
+    "originalName": "Melted Unsalted Butter",
+    "amount": 1,
+    "unit": "Tbsp",
+    "meta": [
+      "unsalted",
+      "melted"
+    ],
+    "metaInformation": [
+      "unsalted",
+      "melted"
+    ],
+    "measures": {
+      "us": {
+        "amount": 1,
+        "unitShort": "Tbsp",
+        "unitLong": "Tbsp"
+      },
+      "metric": {
+        "amount": 1,
+        "unitShort": "Tbsp",
+        "unitLong": "Tbsp"
+      }
+    }
+  }
+] 
+
+/* Tests getIngreArray
+*  Get the ingredients of recipe (Array).*/
+test('test getIngreArray Func', () => {
+  expect(getIngreArray(data)).toMatchObject(expectedExtendedIngredients);
+});
+
+/* Tests getVegeta
+*  Get the vegetarian of recipe.*/
+test('test getVegeta Func', () => {
+  expect(getVegeta(data)).toBe(true);
+});
+
+/* Tests getVegan
+*  Get the vegan of recipe.*/
+test('test getVegan Func', () => {
+  expect(getVegan(data)).toBe(false);
+});
+
+/* Tests getGluten
+*  Get the glutenFree of recipe.*/
+test('test getGluten Func', () => {
+  expect(getGluten(data)).toBe(false);
+});
+
+/* Tests getDairy
+*  Get the dairyFree of recipe.*/
+test('test getDairy Func', () => {
+  expect(getDairy(data)).toBe(false);
+});
+
