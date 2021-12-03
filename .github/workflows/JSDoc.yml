@@ -42,8 +42,7 @@ jobs:
           source_dir: ./source/assets
           recurse: true
           output_dir: docs/docs
-          template: minami
-          run: npm audit fix
+          template: docdash
           front_page: docs/README.md
         
       - name: Commit and push documentation
