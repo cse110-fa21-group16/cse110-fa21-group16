@@ -127,7 +127,7 @@ class DeleteConfirmation extends HTMLElement {
      * @returns Void
      */
     deleteRecipe(data) {
-        rmMy(data);
+        rmMy(data, JSON.parse(window.localStorage.getItem("myRecipeArray")));
         $("#delete-page").classList.remove("main-shown");
         $("#delete-page").innerHTML = "";
         loadMain();
