@@ -195,3 +195,17 @@ export function getDairy(data) {
     if (data.dairyFree) return data.dairyFree;
     return false;
 }
+
+/**
+ * This function calculates the nutrition facts of some number servings based on the provided 
+ * base amount of 1 serving and the desired number of servings.
+ * @param {*} baseAmount a number representing the base amount of 1 serving
+ * @param {*} multiplier a desired number of serving to multiply the baseAmount with
+ * @returns Number 
+ */
+export function calculateServing(baseAmount, multiplier) {
+    if (multiplier <= 0) {
+        return baseAmount;
+    }
+    return Number((baseAmount * multiplier).toFixed(2));
+}

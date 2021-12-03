@@ -3,8 +3,20 @@
   "version": "1.0.0",
   "description": "This application will keep track of a multitude of recipes that you can use for your own cooking needs",
   "homepage": "https://github.com/cse110-fa21-group16/cse110-fa21-group16#readme",
+  "main": "jest-puppeteer.config.js",
+  "dependencies": {
+    "@babel/runtime": "^7.16.3",
+    "axios": "^0.24.0",
+    "babel-jest": "^27.3.1",
+    "jest": "^27.3.1",
+    "jest-puppeteer": "^6.0.0",
+    "localStorage": "^1.0.4",
+    "node-fetch-commonjs": "^3.0.3",
+    "puppeteer": "^11.0.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
+    "@babel/plugin-transform-runtime": "^7.16.4",
     "@babel/preset-env": "^7.16.4",
     "babel-jest": "^27.3.1",
     "eslint": "^8.2.0",
@@ -20,10 +32,5 @@
   "jest": {
     "preset": "jest-puppeteer",
     "verbose": true
-  },
-  "dependencies": {
-    "axios": "^0.24.0",
-    "localStorage": "^1.0.4",
-    "node-fetch-commonjs": "^3.0.3"
   }
 }
