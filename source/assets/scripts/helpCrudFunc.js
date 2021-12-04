@@ -4,7 +4,7 @@ let myRecipeArray = JSON.parse(localStorage.getItem("myRecipeArray"));
 let favRecipeArray = JSON.parse(localStorage.getItem("favRecipeArray"));
 
 /**
- * Determine wether the recipe is in favRecipeArray.
+ * Determine whether the recipe is in favRecipeArray.
  * @param {String} recipeTitle title string of a recipe.
  * @returns Boolean
  */
