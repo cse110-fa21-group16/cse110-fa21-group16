@@ -147,3 +147,30 @@ test("test2 rmMy function", () => {
     expect(localStorage.getItem('myRecipeArray')).toBe('[]')
     //expected output should be an empty array
 });
+
+//creates an array of 2 elements
+let rmMyRecipeArray3 = [r1,r5];
+//third test removes 1 item from the array of 2 elements
+test("test3 rmMy function", () => {
+    rmMy(r1, rmMyRecipeArray3);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":5}]')
+    //expected output should be [5]
+});
+
+//creates an array of 3 elements
+let rmMyRecipeArray4 = [r1,r2,r5];
+//fourth test removes 1 item from the array of 3 elements
+test("test4 rmMy function", () => {
+    rmMy(r2, rmMyRecipeArray4);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":1},{\"id\":5}]')
+    //expected output [1,5]
+});
+
+//creates an array of 4 elements
+let rmMyRecipeArray5 = [r1,r2,r3,r5];
+//fifth test removes 1 item from the array of 4 elements
+test("test5 rmMy function", () => {
+    rmMy(r3, rmMyRecipeArray5);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":1},{\"id\":2},{\"id\":5}]')
+    //expected output [1,2,5]
+});
