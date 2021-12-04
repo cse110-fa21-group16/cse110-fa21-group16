@@ -174,3 +174,12 @@ test("test5 rmMy function", () => {
     expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":1},{\"id\":2},{\"id\":5}]')
     //expected output [1,2,5]
 });
+
+//creates an array of 2 elements
+let rmMyRecipeArray6 = [r1,r4];
+//sixth test removes last element from teh array of 2 elements
+test("test6 rmMy function", () => {
+    rmMy(r4, rmMyRecipeArray6);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":1}]')
+    //expected output [1]
+});
