@@ -183,3 +183,13 @@ test("test6 rmMy function", () => {
     expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":1}]')
     //expected output [1]
 });
+
+//creates an array of 0 elements
+let rmMyRecipeArray7 = [];
+//seventh test removes element from empty array
+test("test7 rmMy function", () => {
+    rmMy(r1, rmMyRecipeArray7);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[]')
+    //expected output []
+});
+
