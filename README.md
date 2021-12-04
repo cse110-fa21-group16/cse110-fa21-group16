@@ -59,7 +59,20 @@ In addition to the CRUD functionality, below is a list of additional features th
 - Recipe draft saving
 
 # Timeline
-
+- Week 1-6: Research and Design 
+    - [Brainstorm](./specs/brainstorm)
+    - [Project Pitch](./specs/pitch/)
+    - [User Interface](./specs/interface)
+- Week 7: Sprint 1
+    - [Sprint 1 Review](./admin/meetings/111421-sprint-1-review.md)
+    - [Retrospective](./admin/meetings/111421-retrospective.md)
+    - [Status Video](./admin/videos)
+    - [Sprint 2 Setup](./admin/meetings/111621-sprint-2-setup.md)
+- Week 8-9: Sprint 2
+    - [Sprint 2 Review](./adming/meetings/112821-sprint-2-review.md)
+    - [Retrospective](./admin/meetings/112821-sprint-2-retrospective-retrium-screenshot.png)
+    - [Status Video](./admin/videos)
+- Week 10: Bug Fixes and Touch ups 
 
 # Credits 
 <p align="center">
