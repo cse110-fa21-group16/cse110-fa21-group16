@@ -17,6 +17,9 @@ Zest is a **recipe manager application** where users can explore new dishes as w
     <a href="https://cse110-fa21-group16.github.io/index.html">Documentation</a>
 </p>
 
+# Table of Contents 
+[Tech Stack](#tech-stack)
+
 # Tech Stack
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
@@ -50,6 +53,9 @@ In addition to the CRUD functionality, below is a list of additional features th
 - Favoriting recipes
 - Ingredient unit conversions 
 - Recipe draft saving
+
+# Timeline
+
 
 # Credits 
 <p align="center">
