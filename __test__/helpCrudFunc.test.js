@@ -122,3 +122,28 @@ test("test updateMy Function, empty recipe array", () => {
     updateMy(recipe1, myRecipeArray4);
     expect(localStorage.getItem('myRecipeArray')).toBe("[]");
 });
+
+//variables representing ids
+let r1 = {"id": 1};
+let r2 = {"id": 2};
+let r3 = {"id": 3};
+let r4 = {"id": 4};
+let r5 = {"id": 5};
+
+//creates  an array of 5 elements
+let rmMyRecipeArray1 = [r1,r2,r3,r4,r5];
+//first test removes 1 item from the array
+test("test1 rmMy function", () => {
+    rmMy(r1, rmMyRecipeArray1);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":2},{\"id\":3},{\"id\":4},{\"id\":5}]')
+    //expected output should be this [2,3,4,5]
+});
+
+//creates an array of 1 element
+let rmMyRecipeArray2 = [r1];
+//second test to remove 1 item from 1 item array (leaves empty array)
+test("test2 rmMy function", () => {
+    rmMy(r1, rmMyRecipeArray2);
+    expect(localStorage.getItem('myRecipeArray')).toBe('[]')
+    //expected output should be an empty array
+});
