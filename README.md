@@ -19,10 +19,10 @@ Zest is a **recipe manager application** where users can explore new dishes as w
 
 # Table of Contents 
 1. [Tech Stack](#tech-stack) :books:
-2. [CRUD](#crud)
-3. [Features](#features)
-4. [Timeline](#timeline)
-5. [Credits](#credits)
+2. [CRUD](#crud) :collision:
+3. [Features](#features) :eyes:
+4. [Timeline](#timeline) :calendar:
+5. [Credits](#credits) :credit_card:
 
 # Tech Stack
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
