@@ -99,3 +99,26 @@ test("test removing all four favorite recipes", () => {
     let updatedArr = JSON.parse(localStorage.getItem("favRecipeArray"));
     expect(updatedArr.length).toBe(0);
 });
+
+//test for updateMy.
+let recipe1 = {"id":999, "title":"steam rice"};
+let recipe2 = {"id":999, "title":"fried salt"};
+let myRecipeArray3 = [recipe1];
+test("test updateMy Function", () => {
+    updateMy(recipe2, myRecipeArray3);
+    expect(localStorage.getItem('myRecipeArray')).toBe("[{\"id\":999,\"title\":\"fried salt\"}]");
+});
+
+//test for updateMy, update a none exist recipe.
+let recipe3 = {"id":101010, "title":"fried rice"};
+test("test updateMy Function, recipe DNE", () => {
+    updateMy(recipe3, myRecipeArray3);
+    expect(localStorage.getItem('myRecipeArray')).toBe("[{\"id\":999,\"title\":\"fried salt\"}]");
+});
+
+//test for updateMy, update a none exist recipe.
+let myRecipeArray4 = [];
+test("test updateMy Function, empty recipe array", () => {
+    updateMy(recipe1, myRecipeArray4);
+    expect(localStorage.getItem('myRecipeArray')).toBe("[]");
+});
