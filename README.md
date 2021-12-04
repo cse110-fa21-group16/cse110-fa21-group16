@@ -22,7 +22,8 @@ Zest is a **recipe manager application** where users can explore new dishes as w
 2. [CRUD](#crud) :collision:
 3. [Features](#features) :eyes:
 4. [Timeline](#timeline) :calendar:
-5. [Credits](#credits) :credit_card:
+5. [ADRS & Pipeline](#adrs-and-pipeline) :bath:
+6. [Credits](#credits) :credit_card:
 
 # Tech Stack
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -73,6 +74,8 @@ In addition to the CRUD functionality, below is a list of additional features th
     - [Retrospective](./admin/meetings/112821-sprint-2-retrospective-retrium-screenshot.png)
     - [Status Video](./admin/videos)
 - Week 10: Bug Fixes and Touch ups 
+
+# ADRS and Pipeline
 
 # Credits 
 <p align="center">
