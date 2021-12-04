@@ -22,7 +22,6 @@ Zest is a **recipe manager application** where users can explore new dishes as w
 2. [CRUD](#crud) :collision:
 3. [Features](#features) :eyes:
 4. [Timeline](#timeline) :calendar:
-5. [ADRS & Pipeline](#adrs-and-pipeline) :bath:
 6. [Credits](#credits) :credit_card:
 
 # Tech Stack
@@ -65,17 +64,20 @@ In addition to the CRUD functionality, below is a list of additional features th
     - [Project Pitch](./specs/pitch/)
     - [User Interface](./specs/interface)
 - Week 7: Sprint 1
+    - [Assets](./source/assets)
     - [Sprint 1 Review](./admin/meetings/111421-sprint-1-review.md)
     - [Retrospective](./admin/meetings/111421-retrospective.md)
     - [Status Video](./admin/videos)
     - [Sprint 2 Setup](./admin/meetings/111621-sprint-2-setup.md)
 - Week 8-9: Sprint 2
-    - [Sprint 2 Review](./adming/meetings/112821-sprint-2-review.md)
+    - [ADRS](./specs/adrs)
+    - [Pipeline](./admin/cipipeline)
+    - [Testing](./__test__)
+    - [Sprint 2 Review](./admin/meetings/112821-sprint-2-review.md)
     - [Retrospective](./admin/meetings/112821-sprint-2-retrospective-retrium-screenshot.png)
     - [Status Video](./admin/videos)
 - Week 10: Bug Fixes and Touch ups 
 
-# ADRS and Pipeline
 
 # Credits 
 <p align="center">
