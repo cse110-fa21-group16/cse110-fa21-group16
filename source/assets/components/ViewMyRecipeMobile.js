@@ -111,6 +111,7 @@ class ViewMyRecipeMobile extends HTMLElement {
             flex-flow: column wrap;
             justify-content: center;
             padding: 15px;
+            height: 100%;
         }
 
         /* main-header */

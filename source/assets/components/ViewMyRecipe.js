@@ -95,6 +95,7 @@ class ViewMyRecipe extends HTMLElement {
             flex-flow: row wrap;
             justify-content: center;
             padding: 15px;
+            height: 100%;
         }
 
         /* main-header */
