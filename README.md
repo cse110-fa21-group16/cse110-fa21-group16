@@ -12,13 +12,13 @@ Zest is a **recipe manager application** where users can explore new dishes as w
 <p align="center">
     <a href="https://unruffled-lichterman-185ae7.netlify.app/">Zest Official Site</a>
     <br>
-    <a href="admin/team.md">Team 16</a>
-    <br>
     <a href="https://cse110-fa21-group16.github.io/index.html">Documentation</a>
+    <br>
+    <a href="admin/team.md">Team 16</a>
 </p>
 
 # Table of Contents 
-1. [Tech Stack](#tech-stack)
+1. [Tech Stack](#tech-stack) :books:
 2. [CRUD](#crud)
 3. [Features](#features)
 4. [Timeline](#timeline)
