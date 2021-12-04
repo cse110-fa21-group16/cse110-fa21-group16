@@ -116,7 +116,7 @@ test("test updateMy Function, recipe DNE", () => {
     expect(localStorage.getItem('myRecipeArray')).toBe("[{\"id\":999,\"title\":\"fried salt\"}]");
 });
 
-//test for updateMy, update a none exist recipe.
+//test for updateMy, update empty recipe array.
 let myRecipeArray4 = [];
 test("test updateMy Function, empty recipe array", () => {
     updateMy(recipe1, myRecipeArray4);
