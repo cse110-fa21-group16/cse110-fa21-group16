@@ -1,7 +1,7 @@
 describe("Test for featured recipe", () => {
   jest.setTimeout(100000);
   beforeAll(async () => {
-    await page.goto("https://unruffled-lichterman-185ae7.netlify.app");
+    await page.goto("https://zeste.netlify.app");
     
     // wait for fetch local storage
     let data = await page.evaluate(() => {

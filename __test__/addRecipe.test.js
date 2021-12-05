@@ -1,7 +1,7 @@
 describe("Test for add recipe", () => {
   jest.setTimeout(100000);
   beforeAll(async () => {
-    await page.goto("https://unruffled-lichterman-185ae7.netlify.app",{"waitUntil" : "networkidle0"});
+    await page.goto("https://zeste.netlify.app",{"waitUntil" : "networkidle0"});
 
     // clicks bring the page to my page
     let myPageButton = await page.$("#to-my-page");
