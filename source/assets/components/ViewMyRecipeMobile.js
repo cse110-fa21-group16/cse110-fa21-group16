@@ -401,6 +401,16 @@ class ViewMyRecipeMobile extends HTMLElement {
         stepsSec.id = "steps-list";
         stepsSec.innerHTML = getSteps(data);
 
+        let stepOrderedList = stepsSec.querySelector("ol").querySelectorAll("li");
+        for (let i = 0; i < stepOrderedList.length; i++) {
+            stepOrderedList[i].addEventListener("click", () => {
+                let speechText = new SpeechSynthesisUtterance(stepOrderedList[i].innerHTML);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            })
+        }
+
+        
         rightMainSec.appendChild(stepsTitle);
         rightMainSec.appendChild(stepsSec);
 

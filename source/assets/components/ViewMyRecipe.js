@@ -368,6 +368,8 @@ class ViewMyRecipe extends HTMLElement {
             })
         }
 
+        
+
         rightMainSec.appendChild(stepsTitle);
         rightMainSec.appendChild(stepsSec);
 
