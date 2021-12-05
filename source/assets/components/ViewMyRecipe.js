@@ -180,6 +180,12 @@ class ViewMyRecipe extends HTMLElement {
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
         }
+
+        #steps-list > ol > li:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         #ingre-list button{
             background-color: transparent;
             border: rgb(34,139,34) 1px solid;
@@ -352,6 +358,15 @@ class ViewMyRecipe extends HTMLElement {
         let stepsSec = document.createElement("section");
         stepsSec.id = "steps-list";
         stepsSec.innerHTML = getSteps(data);
+
+        let stepOrderedList = stepsSec.querySelector("ol").querySelectorAll("li");
+        for (let i = 0; i < stepOrderedList.length; i++) {
+            stepOrderedList[i].addEventListener("click", () => {
+                let speechText = new SpeechSynthesisUtterance(stepOrderedList[i].innerHTML);
+                speechSynthesis.cancel();
+                speechSynthesis.speak(speechText);
+            })
+        }
 
         rightMainSec.appendChild(stepsTitle);
         rightMainSec.appendChild(stepsSec);
