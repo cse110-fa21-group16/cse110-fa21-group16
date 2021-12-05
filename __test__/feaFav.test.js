@@ -73,7 +73,7 @@ describe("Test for featured recipe", () => {
     await cook.click();
 
     // click the heart
-    let view = await page.$("view-fea-recipe");
+    let view = await page.$("view-fea-recipe") || await page.$("view-fea-recipe-mobile");
     let viewRoot = await view.getProperty("shadowRoot");
     let header = await viewRoot.$("#main-header");
     let heart = await header.$("img");

@@ -145,7 +145,7 @@ class ViewFeaRecipeMobile extends HTMLElement {
             margin: 20px 0px 20px 20px;
         }
 
-        #time-div > img {
+        #main-header> img {
             width: 20px;
             height: 20px;
             margin: 0px 0px 0px 15px;
@@ -367,7 +367,7 @@ class ViewFeaRecipeMobile extends HTMLElement {
         }
 
         timeDiv.appendChild(cookTime);
-        timeDiv.appendChild(heartImg);
+        mainHeaderSec.appendChild(heartImg);
 
 
         heartImg.addEventListener("click", () => {
