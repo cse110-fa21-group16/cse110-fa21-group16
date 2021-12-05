@@ -308,7 +308,7 @@ class ViewFeaRecipe extends HTMLElement {
         recipeTitle.textContent = getTitle(data);
 
         let heartImg = document.createElement("img");
-        if (checkFav(getTitle(data))) {
+        if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
             heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
         }
         else {
@@ -561,7 +561,7 @@ class ViewFeaRecipe extends HTMLElement {
      * @return Void
      */
     changeHeart(data, cardObj) {
-        if (checkFav(getTitle(data))) {
+        if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
             cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
             rmFav(getTitle(data));
         }

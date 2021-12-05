@@ -359,7 +359,7 @@ class ViewFeaRecipeMobile extends HTMLElement {
         cookTime.textContent = `Time: ${getTime(data)} min`;
 
         let heartImg = document.createElement("img");
-        if (checkFav(getTitle(data))) {
+        if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
             heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
         }
         else {
