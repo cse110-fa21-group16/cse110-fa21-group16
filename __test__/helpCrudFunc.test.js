@@ -13,7 +13,7 @@ let data1 = {"id": 3333};
 let data2 = {"id": 2345};
 let nextMyRecipeID = 3;
 let myRecipeArray = [data1, data2];
-test("test1 addMy Function", () => {
+test("test1 addMy function", () => {
     addMy(data, nextMyRecipeID, myRecipeArray);
     expect(localStorage.getItem('nextMyRecipeID')).toBe('4');
     expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":3333},{\"id\":2345},{\"id\":3}]')
@@ -22,7 +22,7 @@ test("test1 addMy Function", () => {
 let data3 = {"id": 7};
 let nextMyRecipeID2 = null;
 let myRecipeArray2 = null;
-test("test2 addMy Function", () => {
+test("test2 addMy function", () => {
     addMy(data3, nextMyRecipeID2, myRecipeArray2);
     expect(localStorage.getItem('nextMyRecipeID')).toBe('1');
     expect(localStorage.getItem('myRecipeArray')).toBe('[{\"id\":0}]')
@@ -193,3 +193,77 @@ test("test7 rmMy function", () => {
     //expected output []
 });
 
+let favRecipeArray8 = ["Chocolate Chip Cookies", "French Toast", "Buffalo Wings", "Chicken Alfredo"];
+//1: checkFav check empty array
+test("test1 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify([]));
+    let count = 0;
+    for (let i of favRecipeArray8) {
+        if (checkFav(i, JSON.parse(localStorage.getItem("favRecipeArray")))) {
+            count++;
+        }
+    }
+    expect(count).toBe(0);
+});
+
+//2: checkFav check null
+test("test2 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify(null));
+    let count = 0;
+    for (let i of favRecipeArray8) {
+        if (checkFav(i, JSON.parse(localStorage.getItem("favRecipeArray")))) {
+            count++;
+        }
+    }
+    expect(count).toBe(0);
+});
+
+//3: checkFav simple check for each recipe in local storage
+test("test3 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray1));
+    let count = 0;
+    for (let i of favRecipeArray8) {
+        if (checkFav(i, JSON.parse(localStorage.getItem("favRecipeArray")))) {
+            count++;
+        }
+    }
+    expect(count).toBe(4);
+});
+
+//4: checkFav check empty array for empty string
+test("test4 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify([]));
+    expect(checkFav("", JSON.parse(localStorage.getItem("favRecipeArray")))).toBe(false);
+});
+
+//5: checkFav check regular array for empty string
+test("test5 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray1));
+    expect(checkFav("", JSON.parse(localStorage.getItem("favRecipeArray")))).toBe(false);
+});
+
+//6: checkFav check empty array for null string
+test("test6 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify([]));
+    expect(checkFav("", JSON.parse(localStorage.getItem("favRecipeArray")))).toBe(false);
+});
+
+//7: checkFav check regular array for null string
+test("test7 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray1));
+    expect(checkFav(null, JSON.parse(localStorage.getItem("favRecipeArray")))).toBe(false);
+});
+
+let favRecipeArrayMistyped = ["Chocolate Chip Cookies ", "F rench Toast", "buffalo wings", "Chicken Alfredo0"];
+//8: checkFav simple check for each recipe in local storage using mistyped searches
+test("test8 checkFav function", () => {
+    localStorage.setItem("favRecipeArray", JSON.stringify(favRecipeArray1));
+    let count = 0;
+    for (let i of favRecipeArrayMistyped) {
+        if (checkFav(i, JSON.parse(localStorage.getItem("favRecipeArray")))) {
+            count++;
+        }
+    }
+    expect(count).toBe(0);
+});
+// spaces at the end, in the middle, lower case, number at end should not turn true
