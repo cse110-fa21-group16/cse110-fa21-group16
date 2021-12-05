@@ -1,5 +1,5 @@
 // nutrition_facts.test.js
-import { calculateServing, getTitle, getTime, getSteps, getFeaturedSteps, getStepsArray, getIngreArray, getVegeta, getVegan, getGluten, getDairy } from "../source/assets/scripts/helpGetDataFunc.js";
+import { calculateServing, getTitle, getTime, getSteps, getFeaturedSteps, getStepsArray, getIngreArray, getVegeta, getVegan, getGluten, getDairy, getIngre, getIngreFea } from "../source/assets/scripts/helpGetDataFunc.js";
 //const functions = require('../source/assets/components/NutritionPage.js');
 
 /* Tests CalculateServing
@@ -4055,3 +4055,169 @@ test('test getDairy Func', () => {
   expect(getDairy(data)).toBe(false);
 });
 
+//test getIngre Func
+//150g all purpose flour; 4 apple; 0.33cup brown sugar; 1Tbsp cinnamon; 2 eggs; 2Tbsp granulated sugar; 0.5Tsp lemon zest; 250ml milk; 16servings oil; 1pinch salt; 1Tbsp unsalted butter; 
+let expectedGetIngre = '<ol><li><p>all purpose flour</p><p> - 150.00 g</p></li><li><p>apples</p><p> - 4.00 </p></li><li><p>brown sugar</p><p> - 0.33 cup</p></li><li><p>cinnamon</p><p> - 1.00 Tbsp</p></li><li><p>eggs</p><p> - 2.00 </p></li><li><p>granulated sugar</p><p> - 2.00 Tbsp</p></li><li><p>lemon zest</p><p> - 0.50 Tsp</p></li><li><p>milk</p><p> - 250.00 ml</p></li><li><p>oil</p><p> - 16.00 servings</p></li><li><p>salt</p><p> - 1.00 pinch</p></li><li><p>unsalted butter</p><p> - 1.00 Tbsp</p></li></ol>';
+
+test('test getIngre Func', () => {
+  expect(getIngre(data)).toBe(expectedGetIngre);
+});
+
+//test getIngreFea Func
+/*
+Similar as getIngre, the data should come from extended ingredients.
+Noticing all amounts in sampleRecipe is num rather than string, then
+we want every ingredient is in form of:
+`<li id=${i}><p id="name" name="${ingreName}">${ingreName}</p><p id="amount" amount="${Number(ingreAmount).toFixed(2)}" unit="${ingreUnit}"> 
+            - ${ingreAmount.toFixed(2)} ${ingreUnit}</p>
+                <p>Convert to 
+                    <select id="unit-type">
+                        <option value="Select" selected="selected">Select</option>
+                        <option value="grams">grams</option>
+                        <option value="kgs">kgs</option>
+                        <option value="tbsps">tablespoons</option>
+                        <option value="lb">lbs</option>
+                        <option value="tsp">teaspoons</option>
+                        <option value="cup">cups</option>
+                    </select> : <span id="converted-result"></span>
+                </p></li>`
+*/
+
+let expectedGetIngreFea =
+`<ol><li id=0><p id=\"name\" name=\"all purpose flour\">all purpose flour</p><p id=\"amount\" amount=\"150.00\" unit=\"g\"> 
+            - 150.00 g</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=1><p id=\"name\" name=\"apples\">apples</p><p id=\"amount\" amount=\"4.00\" unit=\"\"> 
+            - 4.00 </p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=2><p id=\"name\" name=\"brown sugar\">brown sugar</p><p id=\"amount\" amount=\"0.33\" unit=\"cup\"> 
+            - 0.33 cup</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=3><p id=\"name\" name=\"cinnamon\">cinnamon</p><p id=\"amount\" amount=\"1.00\" unit=\"Tbsp\"> 
+            - 1.00 Tbsp</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=4><p id=\"name\" name=\"eggs\">eggs</p><p id=\"amount\" amount=\"2.00\" unit=\"\"> 
+            - 2.00 </p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=5><p id=\"name\" name=\"granulated sugar\">granulated sugar</p><p id=\"amount\" amount=\"2.00\" unit=\"Tbsp\"> 
+            - 2.00 Tbsp</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=6><p id=\"name\" name=\"lemon zest\">lemon zest</p><p id=\"amount\" amount=\"0.50\" unit=\"Tsp\"> 
+            - 0.50 Tsp</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=7><p id=\"name\" name=\"milk\">milk</p><p id=\"amount\" amount=\"250.00\" unit=\"ml\"> 
+            - 250.00 ml</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=8><p id=\"name\" name=\"oil\">oil</p><p id=\"amount\" amount=\"16.00\" unit=\"servings\"> 
+            - 16.00 servings</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=9><p id=\"name\" name=\"salt\">salt</p><p id=\"amount\" amount=\"1.00\" unit=\"pinch\"> 
+            - 1.00 pinch</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li><li id=10><p id=\"name\" name=\"unsalted butter\">unsalted butter</p><p id=\"amount\" amount=\"1.00\" unit=\"Tbsp\"> 
+            - 1.00 Tbsp</p>
+                <p>Convert to 
+                    <select id=\"unit-type\">
+                        <option value=\"Select\" selected=\"selected\">Select</option>
+                        <option value=\"grams\">grams</option>
+                        <option value=\"kgs\">kgs</option>
+                        <option value=\"tbsps\">tablespoons</option>
+                        <option value=\"lb\">lbs</option>
+                        <option value=\"tsp\">teaspoons</option>
+                        <option value=\"cup\">cups</option>
+                    </select> : <span id=\"converted-result\"></span>
+                </p></li></ol>`;
+
+test('test getIngreFea Func', () => {
+  expect(getIngreFea(data)).toBe(expectedGetIngreFea);
+});

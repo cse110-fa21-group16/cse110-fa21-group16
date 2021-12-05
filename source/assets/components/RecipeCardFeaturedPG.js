@@ -104,7 +104,7 @@ class RecipeCardFeaturedPG extends HTMLElement {
     // recipe card favorite button
     const heartImg = document.createElement("img");
     heartImg.classList.add("favorite");
-    if (checkFav(getTitle(data))) {
+    if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
       heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
     }
     else {
@@ -159,13 +159,13 @@ class RecipeCardFeaturedPG extends HTMLElement {
    * @returns Void
    */
   changeHeart(data, cardObj) {
-    if (checkFav(getTitle(data))) {
+    if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
       cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
-      rmFav(getTitle(data));
+      rmFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")));
     }
     else {
       cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
-      addFav(data);
+      addFav(data, JSON.parse(window.localStorage.getItem("favRecipeArray")));
     }
   } 
 }
