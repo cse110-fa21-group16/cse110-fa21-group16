@@ -1,4 +1,5 @@
 import { checkFav, rmFav, addFav, addMy, updateMy, rmMy } from "../source/assets/scripts/helpCrudFunc.js";
+import {getTitle} from "../source/assets/scripts/helpGetDataFunc.js";
 
 global.localStorage = require("localStorage");
 // Example of how to import and use localstorage in jest unit test
@@ -267,3 +268,54 @@ test("test8 checkFav function", () => {
     expect(count).toBe(0);
 });
 // spaces at the end, in the middle, lower case, number at end should not turn true
+
+//unit test 1 of addFav function
+let data1 = {"title": "Glazed pork chops"};
+let data2 = {"title": "Autumn Harvest Quail"};
+let data3 = {"title": "Coconut Crusted Rockfish"};
+let favRecipeArray = [data1, data2];
+
+test("test1 addFav function to check if the size of the fav array is correct when adding a third favorite", () => {
+    addFav(data3, favRecipeArray)
+    let favArray = localStorage.getItem('favRecipeArray');
+    expect(favArray.length).toBe(3);
+});
+
+//unit test 2 of addFav function
+let data1 = {"title": "Glazed pork chops"};
+let favRecipeArray = [];
+
+test("test2 addFav function to add a favorite on an empty favRecipeArray", () => {
+    addFav(data1, favRecipeArray)
+    let favArray = localStorage.getItem('favRecipeArray');
+    expect(favArray.length).toBe(1);
+});
+
+//unit test 3 of addFav function
+let data1 = {"title": "Glazed pork chops"};
+let data2 = {"title": "Autumn Harvest Quail"};
+let data3 = {"title": "Coconut Crusted Rockfish"};
+let data4 = {"title": "Falafel Burgers"};
+let favRecipeArray = [data1, data2, data3];
+
+test("test3 addFav function to check if the title of the last added favorite is correct", () => {
+    addFav(data4, favRecipeArray)
+    let favArray = localStorage.getItem('favRecipeArray');
+    expect(getTitle(favArray.at(-1))).toBe("Falafel Burgers");
+    expect(favArray.length).toBe(4);
+});
+
+//unit test 4 of addFav function
+let favRecipeArray = [];
+
+test("test4 addFav function to add empty data into the favorite recipe array" , () => {
+    addFav("", favRecipeArray);
+    let favArray = localStorage.getItem('favRecipeArray');
+    expect(favArray[0]).toBe("");
+    expect(favArray.length).toBe(1);
+
+})
+
+
+
+
