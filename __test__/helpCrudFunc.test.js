@@ -280,7 +280,7 @@ let favRecipe1 = [fav1, fav2];
 
 test("test1 addFav function to check if the size of the fav array is correct when adding a third favorite", () => {
     addFav(fav3, favRecipe1)
-    let favArray = localStorage.getItem('favRecipeArray');
+    let favArray = JSON.parse(localStorage.getItem('favRecipeArray'));
     expect(favArray.length).toBe(3);
 });
 
@@ -289,7 +289,7 @@ let favRecipe2 = [];
 
 test("test2 addFav function to add a favorite on an empty favRecipeArray", () => {
     addFav(fav1, favRecipe2)
-    let favArray = localStorage.getItem('favRecipeArray');
+    let favArray = JSON.parse(localStorage.getItem('favRecipeArray'));
     expect(favArray.length).toBe(1);
 });
 
@@ -298,8 +298,8 @@ let favRecipe3 = [fav1, fav2, fav3];
 
 test("test3 addFav function to check if the title of the last added favorite is correct", () => {
     addFav(fav4, favRecipe3)
-    let favArray = localStorage.getItem('favRecipeArray');
-    expect(getTitle(favArray.at(-1))).toBe("Falafel Burgers");
+    let favArray = JSON.parse(localStorage.getItem('favRecipeArray'));
+    expect(getTitle(favArray[favArray.length-1])).toBe("Falafel Burgers");
     expect(favArray.length).toBe(4);
 });
 
@@ -307,9 +307,9 @@ test("test3 addFav function to check if the title of the last added favorite is 
 let favRecipe4 = [];
 
 test("test4 addFav function to add empty data into the favorite recipe array" , () => {
-    addFav("", favRecipe4);
-    let favArray = localStorage.getItem('favRecipeArray');
-    expect(favArray[0]).toBe("");
+    addFav("{}", favRecipe4);
+    let favArray = JSON.parse(localStorage.getItem('favRecipeArray'));
+    expect(favArray[0]).toBe("{}");
     expect(favArray.length).toBe(1);
 
 })
