@@ -17,7 +17,7 @@
      *                            visually
      */
     constructor(homeFunc) {
-      this["home"] = homeFunc; // This line is from lab 7
+      this["home"] = homeFunc; // This line is from lab 7.
     }
   
     /**
