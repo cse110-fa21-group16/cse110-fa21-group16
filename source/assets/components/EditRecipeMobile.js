@@ -107,7 +107,7 @@ class EditRecipeMobile extends HTMLElement {
            text-decoration: none;
            color: white;
            font-size: 2vw;
-           margin: 0px 0px 0px 20px;
+          //  margin: 0px 0px 0px 20px;
          }
 
          @media (max-width: 480px) {

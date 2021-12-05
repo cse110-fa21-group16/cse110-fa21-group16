@@ -84,7 +84,7 @@ class ViewFeaRecipe extends HTMLElement {
         #home-link {
             color: white;
             font-size: 2vw;
-            margin: 0px 0px 0px 20px;
+            // margin: 0px 0px 0px 20px;
             text-decoration: none;
         }
 
