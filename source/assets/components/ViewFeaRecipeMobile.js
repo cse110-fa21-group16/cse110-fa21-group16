@@ -619,7 +619,7 @@ class ViewFeaRecipeMobile extends HTMLElement {
      * @return Void
      */
     changeHeart(data, cardObj) {
-        if (checkFav(getTitle(data))) {
+        if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
             cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
             rmFav(getTitle(data));
         }
