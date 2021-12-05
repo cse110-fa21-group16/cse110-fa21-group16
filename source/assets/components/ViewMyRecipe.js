@@ -64,6 +64,7 @@ class ViewMyRecipe extends HTMLElement {
 
         #title-sec {
             display: flex;
+            text-align: center;
         }
 
         #holder-sec {

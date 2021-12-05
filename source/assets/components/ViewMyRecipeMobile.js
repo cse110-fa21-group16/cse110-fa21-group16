@@ -64,6 +64,7 @@ class ViewMyRecipeMobile extends HTMLElement {
 
         #title-sec {
             display: flex;
+            text-align: center;
         }
 
         #holder-sec {
@@ -97,7 +98,7 @@ class ViewMyRecipeMobile extends HTMLElement {
             #header-title {
                 font-size: 5vw; 
                 position:relative;
-                left: 6vw;
+                // left: 6vw;
             }
 
           }
