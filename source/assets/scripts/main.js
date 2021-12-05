@@ -72,7 +72,14 @@ async function init() {
       $("#view-recipe-page").classList.remove("main-shown");
       $("#view-recipe-page").innerHTML = "";
       $("#view-recipe-page").classList.add("main-shown");
-      const viewRecipePage = document.createElement("view-fea-recipe");
+      let winWide = window.innerWidth;
+      let viewRecipePage;
+      if (winWide < 1000) {
+        viewRecipePage = document.createElement("view-fea-recipe-mobile");
+      }
+      else {
+        viewRecipePage = document.createElement("view-fea-recipe");
+      }
       viewRecipePage.data = feaRecipeArray[i];
       $("#view-recipe-page").appendChild(viewRecipePage);
       leaveMain();
@@ -90,7 +97,14 @@ async function init() {
       $("#view-recipe-page").classList.remove("main-shown");
       $("#view-recipe-page").innerHTML = "";
       $("#view-recipe-page").classList.add("main-shown");
-      const viewRecipePage = document.createElement("view-my-recipe");
+      let winWide = window.innerWidth;
+      let viewRecipePage;
+      if (winWide < 1000) {
+        viewRecipePage = document.createElement("view-my-recipe-mobile");
+      }
+      else {
+        viewRecipePage = document.createElement("view-my-recipe");
+      }
       viewRecipePage.data = myRecipeArray[i];
       $("#view-recipe-page").appendChild(viewRecipePage);
       leaveMain();
@@ -262,7 +276,14 @@ function createMyRecipeCards() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
         $("#view-recipe-page").classList.add("main-shown");
-        const viewRecipePage = document.createElement("view-my-recipe");
+        let winWide = window.innerWidth;
+        let viewRecipePage;
+        if (winWide < 1000) {
+          viewRecipePage = document.createElement("view-my-recipe-mobile");
+        }
+        else {
+          viewRecipePage = document.createElement("view-my-recipe");
+        }
         viewRecipePage.data = myRecipeArray[i];
         $("#view-recipe-page").appendChild(viewRecipePage);
         leaveMain();
@@ -359,7 +380,14 @@ export function createMyRecipePage() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
         $("#view-recipe-page").classList.add("main-shown");
-        const viewRecipePage = document.createElement("view-my-recipe");
+        let winWide = window.innerWidth;
+        let viewRecipePage;
+        if (winWide < 1000) {
+          viewRecipePage = document.createElement("view-my-recipe-mobile");
+        }
+        else {
+          viewRecipePage = document.createElement("view-my-recipe");
+        }
         viewRecipePage.data = myRecipeArray[i];
         $("#view-recipe-page").appendChild(viewRecipePage);
         leaveMain();

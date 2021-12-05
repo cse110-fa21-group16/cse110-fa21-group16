@@ -61,7 +61,14 @@ class NewCardMyPage extends HTMLElement {
    */
   addNewRecipe() {
     leaveMain();
-    let addRecipePage = document.createElement("add-recipe");
+    let winWide = window.innerWidth;
+    let addRecipePage;
+    if (winWide < 1000) {
+      addRecipePage = document.createElement("add-recipe-mobile");
+    }
+    else {
+      addRecipePage = document.createElement("add-recipe");
+    }
     addRecipePage.data = JSON.parse(localStorage.getItem("draftMyRecipe"));
     $("#add-recipe-page").appendChild(addRecipePage);
     $("#add-recipe-page").classList.add("main-shown");

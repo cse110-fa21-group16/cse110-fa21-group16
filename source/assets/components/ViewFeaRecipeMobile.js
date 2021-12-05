@@ -1,12 +1,13 @@
 import { $, loadMain, router } from "../scripts/main.js";
-import { getImgUrl, getTitle, getTime, getSteps, getIngre } from "../scripts/helpGetDataFunc.js";
+import { checkFav, rmFav, addFav } from "../scripts/helpCrudFunc.js";
+import { getImgUrl, getTitle, getTime, getFeaturedSteps, getIngreFea } from "../scripts/helpGetDataFunc.js";
 import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetDataFunc.js";
 
 /**
- * This is the component for the View My Recipe Page.
+ * This is the component for the View Featured Recipe Page.
  * @class
  */
-class ViewMyRecipe extends HTMLElement {
+class ViewFeaRecipeMobile extends HTMLElement {
     /**
      * Attach the shadowroot which contains the View Recipe Page materials.
      * @constructor
@@ -36,8 +37,8 @@ class ViewMyRecipe extends HTMLElement {
             display: flex;
             flex-flow: row wrap;
             margin: 10px 0px 90px 0px;
+            
         }
-
 
         /* header */
         article > header {
@@ -48,6 +49,7 @@ class ViewMyRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+            
         }
 
         #logo-sec {
@@ -58,7 +60,7 @@ class ViewMyRecipe extends HTMLElement {
 
         #logo-sec > a > img {
             height: 100%;
-            width: 125px;
+            width: 100px;
             object-fit: cover;
         }
 
@@ -82,8 +84,16 @@ class ViewMyRecipe extends HTMLElement {
         #home-link {
             color: white;
             font-size: 2vw;
-            margin: 0px 0px 0px 20px;
+            // margin: 0px 0px 0px 20px;
             text-decoration: none;
+        }
+
+        @media (max-width: 480px) {
+            #header-title {
+                font-size: 5vw; 
+                position:relative;
+                left: 6vw;
+            }
         }
 
 
@@ -92,36 +102,35 @@ class ViewMyRecipe extends HTMLElement {
             align-content: flex-start;
             display: flex;
             flex: 1 1 70%;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
             justify-content: center;
             padding: 15px;
-            height: 100%;
         }
 
         /* main-header */
         #main-header {
             align-items: center;
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: column nowrap;
             justify-content: center;
-            margin: 20px 0px 50px 0px;
+            margin: 20px 0px 17px 0px;
             width: 100%;
+            text-align: center;
         }
 
         #main-header > h1 {
-            width: 55%;
             line-height: 35px;
-            font-size: 30px;
-            margin: 0px 30px;
+            font-size: 23px;
+            margin: 0px 8px 15px 8px;
         }
-
 
         /* left-main */
         #left-main {
             align-items: center;
             display: flex;
-            flex: 1 1 40%;
+            // flex: 1 1 40%;
             flex-flow: column nowrap;
+            width: 100%;
         }
 
         #left-main > img {
@@ -129,16 +138,19 @@ class ViewMyRecipe extends HTMLElement {
             width: 260px;
         }
 
-        #left-main > h2 {
-            visibility: hidden;
-            margin: 10px 0px 20px 0px;
-        }
         
-        #left-main > p {
-            visibility: hidden;
-            font-size: 20px;
-            margin-bottom: 10px;
+        #time-div > p {
+            display: inline-block;
+            font-size: 18px;
+            margin: 20px 0px 20px 20px;
         }
+
+        #time-div > img {
+            width: 20px;
+            height: 20px;
+            margin: 0px 0px 0px 15px;
+        }
+
 
         #left-main > button {
             background-color: #ffffff;
@@ -151,10 +163,22 @@ class ViewMyRecipe extends HTMLElement {
             padding: 5px 20px;
         }
         
+        
+        #tts-btn {
+            margin-top: 10px;
+        }
+
         #left-main > button:hover {
             border: 1px solid #313131;
             background: darkgreen;
             color: white;
+        }
+
+        @media (max-width: 480px) {
+            #left-main > button {
+                position:relative;
+                // bottom: 20px;
+            }
         }
 
         /* right-main */
@@ -180,21 +204,10 @@ class ViewMyRecipe extends HTMLElement {
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
         }
-        #ingre-list button{
-            background-color: transparent;
-            border: rgb(34,139,34) 1px solid;
-            border-radius: 4px;
-            color: rgb(34,139,34);
-            
+
+        #steps-list > ol > li:hover {
             cursor: pointer;
-            font-size: 12px;
-            
-            padding: .2em .8em;
-            margin: 0 .2em;
-        }
-        #ingre-list button:hover{
-            background: white;
-            color: #305a50;
+            font-weight: bold;
         }
 
         /* main-footer */
@@ -202,8 +215,8 @@ class ViewMyRecipe extends HTMLElement {
             align-items: center;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: flex-end;
-            margin: 90px 60px 60px 60px;
+            justify-content: center;
+            // margin: 90px 60px 60px 60px;
             width: 100%;
         }
 
@@ -214,7 +227,7 @@ class ViewMyRecipe extends HTMLElement {
             color: #305a50;
             cursor: pointer;
             font-size: 16px;
-            margin: 0px 20px 0px 0px;
+            margin: 20px 0px;
             min-width: 120px;
             padding: 5px 20px;
         }
@@ -233,11 +246,11 @@ class ViewMyRecipe extends HTMLElement {
             display: flex;
             flex: 1 1 25%;
             flex-flow: column nowrap;
-            padding-bottom: 60px;
+            margin-top: 30px;
         }
 
         #ingre-aside {
-            margin: 40px 15px;
+            margin: 15px 15px;
         }
 
         #ingre-aside h2 {
@@ -265,6 +278,23 @@ class ViewMyRecipe extends HTMLElement {
             width: 20px;
             height: 20px;
         }
+
+        #show-ingre-btn {
+            display: none;
+        }
+        @media (max-width: 1091px) {
+            #show-ingre-btn {
+                width: 100%;
+                height: 70px;
+                display: block;
+                background-color: white;
+                object-fit: contain;
+            }
+
+            #show-ingre-btn:hover {
+                cursor: pointer;
+            }
+        }
         `;
         styleElem.innerHTML = styles;
 
@@ -277,6 +307,7 @@ class ViewMyRecipe extends HTMLElement {
         logoSec.setAttribute("id", "logo-sec");
         titleSec.setAttribute("id", "title-sec");
         holderSec.setAttribute("id", "holder-sec");
+
 
         let header = document.createElement("header");
         let headerHomeLink = document.createElement("a");
@@ -311,7 +342,6 @@ class ViewMyRecipe extends HTMLElement {
         let recipeTitle = document.createElement("h1");
         recipeTitle.textContent = getTitle(data);
 
-
         mainHeaderSec.appendChild(recipeTitle);
 
         // left-main
@@ -322,11 +352,33 @@ class ViewMyRecipe extends HTMLElement {
         recipeImg.src = getImgUrl(data);
         recipeImg.alt = getTitle(data);
 
-        let timeLabel = document.createElement("h2");
-        timeLabel.textContent = "Time: ";
+        let timeDiv = document.createElement("div");
+        timeDiv.id = "time-div";
 
         let cookTime = document.createElement("p");
-        cookTime.textContent = `${getTime(data)} min`;
+        cookTime.textContent = `Time: ${getTime(data)} min`;
+
+        let heartImg = document.createElement("img");
+        if (checkFav(getTitle(data))) {
+            heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
+        }
+        else {
+            heartImg.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+        }
+
+        timeDiv.appendChild(cookTime);
+        timeDiv.appendChild(heartImg);
+
+
+        heartImg.addEventListener("click", () => {
+            this.changeHeart(data, heartImg);
+        });
+
+        let toNutritionPage = document.createElement("button");
+        toNutritionPage.textContent = "Nutrition Facts";
+        toNutritionPage.addEventListener("click", () => {
+            this.viewNutrition(data);
+        })
 
         let speechSynthesis = window.speechSynthesis;
         let textToSpeech = document.createElement("button");
@@ -337,9 +389,8 @@ class ViewMyRecipe extends HTMLElement {
         })
 
         leftMainSec.appendChild(recipeImg);
-        leftMainSec.appendChild(timeLabel);
-        leftMainSec.appendChild(cookTime);
-        // leftMainSec.appendChild(toNutPage);
+        leftMainSec.appendChild(timeDiv);
+        leftMainSec.appendChild(toNutritionPage);
         leftMainSec.appendChild(textToSpeech);
 
         // right-main
@@ -348,10 +399,34 @@ class ViewMyRecipe extends HTMLElement {
 
         let stepsTitle = document.createElement("h2");
         stepsTitle.textContent = "Procedure and steps: ";
+        // stepsSec.innerHTML = getSteps(data);
 
         let stepsSec = document.createElement("section");
+        // stepsSec.innerHTML = getSteps(data);
         stepsSec.id = "steps-list";
-        stepsSec.innerHTML = getSteps(data);
+        let instructionArray = getFeaturedSteps(data);
+        let instructionOrderedList = document.createElement("ol");
+
+        // Loop through steps within the analyzedInstructions index
+        for (let i = 0; i < instructionArray.length; i++) {
+            let instructionItem = instructionArray[i]["steps"];
+            for (let j = 0; j < instructionItem.length; j++) {
+                let instructionStep = document.createElement("li");
+                instructionStep.innerHTML = `Step ${j + 1}: ` + instructionItem[j]["step"];
+                instructionStep.addEventListener("click", () => {
+                    let speechText = new SpeechSynthesisUtterance(instructionStep.innerHTML);
+                    speechSynthesis.cancel();
+                    speechSynthesis.speak(speechText);
+                })
+                instructionOrderedList.appendChild(instructionStep);
+            }
+        }
+
+        stepsSec.appendChild(instructionOrderedList);
+
+        if (stepsSec.innerHTML == '') {
+            stepsSec.innerHTML = 'OOOPS! The recipe does not contain any procedure or steps. Please start using your imagination!'
+        }
 
         rightMainSec.appendChild(stepsTitle);
         rightMainSec.appendChild(stepsSec);
@@ -362,20 +437,12 @@ class ViewMyRecipe extends HTMLElement {
 
         let backButton = document.createElement("button");
         backButton.textContent = "Back";
-        backButton.addEventListener("click", this.myRecipeToLand);
-
-        let editButton = document.createElement("button");
-        editButton.textContent = "Edit";
-        editButton.addEventListener("click", () => {
-            this.myRecipeToEdit(data);
-        });
-
+        backButton.addEventListener("click", this.feaRecipeToLand);
 
         mainFooterSec.appendChild(backButton);
-        mainFooterSec.appendChild(editButton);
 
-        main.appendChild(mainHeaderSec);
-        main.appendChild(leftMainSec);
+        // main.appendChild(mainHeaderSec);
+        // main.appendChild(leftMainSec);
         main.appendChild(rightMainSec);
         main.appendChild(mainFooterSec);
 
@@ -392,7 +459,8 @@ class ViewMyRecipe extends HTMLElement {
 
         let ingreListSec = document.createElement("section");
         ingreListSec.id = "ingre-list";
-        ingreListSec.innerHTML = getIngre(data);
+        ingreListSec.innerHTML = getIngreFea(data);
+
 
         ingreAside.appendChild(ingreLabel);
         ingreAside.appendChild(ingreListSec);
@@ -486,49 +554,118 @@ class ViewMyRecipe extends HTMLElement {
         dietAside.appendChild(glutenSec);
         dietAside.appendChild(vegetaSec);
 
+        // aside.appendChild(mainHeaderSec);
+        // aside.appendChild(leftMainSec);
         aside.appendChild(ingreAside);
         aside.appendChild(dietAside);
 
+        let showIngre = document.createElement("img");
+        showIngre.setAttribute("id", "show-ingre-btn");
+        showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+        showIngre.addEventListener("click", () => {
+            if (ingreAside.style.display != "none" && dietAside.style.display != "none") {
+                ingreAside.style.display = "none";
+                dietAside.style.display = "none";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-down.png");
+            } else {
+                ingreAside.style.display = "block";
+                dietAside.style.display = "block";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+            }
+        });
+
+        aside.appendChild(showIngre)
+
         card.appendChild(header);
-        card.appendChild(main);
+        card.appendChild(mainHeaderSec);
+        card.appendChild(leftMainSec);
         card.appendChild(aside);
+        card.appendChild(main);
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
+        // console.log(ingreListSec.querySelector("li[id='1']").querySelector("p[id='amount']").getAttribute("unit"));
+        let ingredientsOL = ingreListSec.querySelector("ol").querySelectorAll("li");
+
+        // Loop thru ol and parse the necessary parameters
+        for (let i = 0; i < ingredientsOL.length; i++) {
+            let requestBody = {};
+            let dropdown = ingredientsOL[i].querySelector("select");
+            requestBody["ingredientName"] = ingredientsOL[i].querySelector("p[id='name']").getAttribute("name");
+            requestBody["sourceAmount"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("amount");
+            requestBody["sourceUnit"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("unit");
+
+            dropdown.addEventListener("change", async () => {
+                requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;
+                if (dropdown.options[dropdown.selectedIndex].value == "Select") {
+                    requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
+                }
+                let convertInit = async (dataToConvert, locationObject) => {
+                    let convertSuccess = await this.fetchConvertUnit(dataToConvert, locationObject);
+                    if (!convertSuccess) {
+                        console.log("Convert Sucess");
+                        return;
+                    }
+                }
+                convertInit(requestBody, ingredientsOL[i]); // Call the netlify function for API call
+            });
+        }
     }
 
     /**
-     * Leave View My Recipe Page to landing page.
+     * Toggles on and off the heart based on favorite.
+     * @param {Object} data a JSON data object contains information to keep track of which recipe is being added to favorites.
+     * @param {HTMLElement} cardObj an HTML element that contains the heart image.
+     * @return Void
+     */
+    changeHeart(data, cardObj) {
+        if (checkFav(getTitle(data))) {
+            cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
+            rmFav(getTitle(data));
+        }
+        else {
+            cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
+            addFav(data);
+        }
+    }
+
+    /**
+     * View nutrition facts about the selected recipe.
+     * @param {Object} data a JSON data object contains information to load the nutrition page.
      * @returns Void
      */
-    myRecipeToLand() {
+    viewNutrition(data) {
+        $("#view-recipe-page").classList.remove("main-shown");
+        $("#view-recipe-page").innerHTML = "";
+        speechSynthesis.cancel();
+        $("#view-nutrition-page").classList.add("main-shown");
+        const nutritionPage = document.createElement("nutrition-page");
+        nutritionPage.data = data;
+        $("#view-nutrition-page").appendChild(nutritionPage);
+    }
+
+
+    /**
+     * Leave Featured Recipe Page to landing page using router object.
+     * @returns Void
+     */
+    feaRecipeToLand() {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
         speechSynthesis.cancel();
         loadMain();
-        if ($("#my-page").classList.contains("shown")) {
-            router.navigate("ToMyRecipePage");
+        if ($("#featured-page").classList.contains("shown")) {
+            router.navigate("ToFeaturedPage");
         }
-        else if ($("#search-my").classList.contains("shown")) {
+        else if ($("#favorite-page").classList.contains("shown")) {
+            router.navigate("ToFavoritePage");
+        }
+        else if ($("#search-featured").classList.contains("shown")) {
             router.navigate("ToSearchPage");
         }
         else {
             router.navigate("home");
         }
-    }
-
-    /**
-     * Leave View My Recipe Page to edit page.
-     * @param {Object} data a JSON data object contains information to populate this component.
-     * @returns Void
-     */
-    myRecipeToEdit(data) {
-        $("#view-recipe-page").classList.remove("main-shown");
-        $("#view-recipe-page").innerHTML = "";
-        let editRecipePage = document.createElement("edit-recipe");
-        editRecipePage.data = data;
-        $("#add-recipe-page").appendChild(editRecipePage);
-        $("#add-recipe-page").classList.add("main-shown");
     }
 
 
@@ -543,9 +680,9 @@ class ViewMyRecipe extends HTMLElement {
         let i = 0;
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
-        let myRecipeView = document.querySelector("#view-recipe-page").children[0];
-        myRecipeView.addEventListener('keydown', function (event) {
-            console.log("MyRecipePage");
+        let featuredView = document.querySelector("#view-recipe-page").children[0];
+        featuredView.addEventListener('keydown', function (event) {
+            console.log("FeaRecipePage");
             if (event.key == "ArrowRight" && i < recipeText.length - 1) {
                 i++;
                 let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
@@ -566,8 +703,31 @@ class ViewMyRecipe extends HTMLElement {
             }
         });
     }
+
+    /**
+     * Make a GET call to the netlify function using provided parameters, which would then
+     * returns the converted result from spoonacular API.
+     * @param {Object} dataToConvert JSON object contains parsed unit conversion data.
+     * @param {HTMLElement} locationObject HTML element contain the location to display result.
+     * @returns a Promise of fetched data.
+     */
+    async fetchConvertUnit(dataToConvert, locationObject) {
+        return new Promise((resolve, reject) => {
+            fetch("./.netlify/functions/convert-unit?" + new URLSearchParams({
+                ingredientName: dataToConvert.ingredientName,
+                sourceAmount: dataToConvert.sourceAmount,
+                sourceUnit: dataToConvert.sourceUnit,
+                targetUnit: dataToConvert.targetUnit
+            }))
+                .then((response) => response.json())
+                .then((data) => {
+                    locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
+                    console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
+                    resolve(true);
+                }).catch(() => reject(false));
+        });
+    }
 }
 
-
 // Define the "view-fea-recipe" element using this class.
-customElements.define("view-my-recipe", ViewMyRecipe);
+customElements.define("view-fea-recipe-mobile", ViewFeaRecipeMobile);

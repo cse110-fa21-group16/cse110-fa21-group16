@@ -7,7 +7,7 @@ import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetData
  * This is the component for the Edit Recipe Page.
  * @class
  */
-class EditRecipe extends HTMLElement {
+class EditRecipeMobile extends HTMLElement {
   /**
    * Attach shadowroot which contains the edit page materials.
    * @constructor
@@ -41,9 +41,17 @@ class EditRecipe extends HTMLElement {
         article {
           width: 70vw;
           box-shadow: 0px 0px 15px #888888;
-          margin: 10px 0px 90px 0px;
+          margin: 10px 0px 90px 10px;
         }
-         
+
+        @media (max-width: 480px) {
+          article {
+            width: 100vw;
+            box-shadow: 0px 0px 15px #888888;
+            margin: 10px 0px 90px 10px;
+          }
+        }
+     
          /*****************************************
           *****************************************
           Style for header section in article
@@ -101,6 +109,19 @@ class EditRecipe extends HTMLElement {
            font-size: 2vw;
            margin: 0px 0px 0px 20px;
          }
+
+         @media (max-width: 480px) {
+          header {
+            display: flex;
+            justify-content: center;
+            /* border: 1px solid orange; */
+          }
+          .header-div h1 {
+            color: white;
+            font-size: 5vw;
+          }
+    
+        }
          
          /*****************************************
           *****************************************
@@ -125,13 +146,14 @@ class EditRecipe extends HTMLElement {
            grid-template-columns: 100%;
            /* border: 1px solid yellow; */
          }
-         
+       
          /*****************************************
           Style for picture section 
           *****************************************/
          .picture {
            width: 98%;
            display: flex;
+           flex-direction: column;
            justify-content: space-between;
            align-items: center;
            margin: 2em 0;
@@ -147,8 +169,9 @@ class EditRecipe extends HTMLElement {
            outline: none;
            resize: none;
            text-align: center;
-           width: 50%;
+           width: 100%;
          }
+         
          #recipe-name:hover{
           border: 1px solid #313131;
          }
@@ -163,7 +186,37 @@ class EditRecipe extends HTMLElement {
           width: 260px;
           margin: 10px
         }
- 
+        
+        @media (max-width: 480px) {
+
+          .origin {
+            width: 100%;
+            display: grid;
+            justify-content: center;
+            grid-template-columns: 100%;
+            /* border: 1px solid yellow; */
+          }
+
+          .picture {
+            width: 100vw;
+            position: relative;
+            flex-direction: column;
+            /* border: 1px solid black; */
+          }
+
+          #recipe-name {
+            border: 1px solid #ccccd8;
+            border-radius: 14px;
+            font-size: 12vw;
+            height: 30%;
+            margin: 0 10px;
+            outline: none;
+            resize: none;
+            text-align: center;
+            width: 95vw;
+          }
+
+        }
          
          /*****************************************
           Style for instructions section 
@@ -241,6 +294,26 @@ class EditRecipe extends HTMLElement {
           box-shadow:0px 1px 17px -8px #000;
           transform: scale(1.02);
         }
+
+        @media (max-width: 480px) {
+          .instructions {
+            /* border: 1px solid blue; */
+            width: 98vw;
+            position: relative;
+          }
+
+          .procedures {
+            position: relative;
+            /* border: 1px solid greenyellow; */
+          }
+
+          .procedures > .title {
+            font-size: 12px;
+          }
+          
+        }
+
+
          
          /*****************************************
           Style for ingredients section 
@@ -313,7 +386,77 @@ class EditRecipe extends HTMLElement {
            grid-template-columns: 50% 50%;
            /* border: 1px solid black; */
          }
+
+         @media (max-width: 480px) {
+           .ingredients {
+             width: 98vw;
+             position: relative;
+           }
+
+           .ingredients-list-div {
+            display: grid;
+            grid-template-columns: 50% 20% 27.5%;
+            position: relative;
+          }
+
+          .ingredients-item {
+            width: 95%;
+            height: 30px;
+            border-radius: 10px;
+            padding-top: 5px;
+            padding-left: 5px;
+            resize: none;
+            font-size: 12px;
+          }
+
+          .amount-item {
+            border: 1px solid rgb(118, 118, 118);
+            width: 80%;
+            height: 30px;
+            border-radius: 10px;
+            padding-top: 5px;
+            padding-left: 5px;
+            font-size: 12px;
+          }
+        
+          .unit-item {
+            width: 95%;
+            height: 40px;
+            border-radius: 10px;
+            padding-top: 5px;
+            padding-left: 5px;
+            font-size: 12px;
+          }
+          
+          .ingredient-column > .title {
+            font-size: 12px;
+          }
+
+          .amount-column > .title{
+            font-size:12px;
+          }
+
+          .unit-column > .title{
+            padding-left: 20px; 
+            font-size: 12px;  
+          }
+         }
          
+         @media (min-width: 481px) and (max-width: 960px) {
+          .ingredient-column > .title {
+            font-size: 14px;
+          }
+
+          .amount-column > .title{
+            font-size: 14px;
+          }
+
+          .unit-column > .title{
+            padding-left: 20px; 
+            font-size: 14px;  
+          }
+         }
+
          /*****************************************
           *****************************************
           Style for footer section in article
@@ -346,7 +489,6 @@ class EditRecipe extends HTMLElement {
           font-size: 20px;
           margin: 20px;
           padding: 5px 40px;
-          min-width: 150px;
          }
          
          #delete-edit,
@@ -369,6 +511,73 @@ class EditRecipe extends HTMLElement {
          .title {
           font-size: 20px;
           margin: 5px 0px 10px 0px;
+        }
+        
+        @media (max-width: 480px) {
+          footer {
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+          }
+
+          .action-buttons {
+            display: flex;
+            flex-flow: row nowrap;
+            padding: 5px;
+            margin: 20px 0px;
+            justify-content: center;
+          }
+
+          #submit-edit,
+          #delete-edit,
+          #cancel-edit {
+           border: 1px solid #ccccd8;
+           background-color: #fff;
+           border-radius: 14px;
+           color: #305A50;
+           cursor: pointer;
+           font-size: 14px;
+           margin: 20px;
+           padding: 10px 15px;
+          }
+
+          #delete-edit,
+          #cancel-edit {
+           color: #c0392b;
+          }
+
+          #delete-edit:hover,
+          #cancel-edit:hover {
+            background: #c0392b;
+            color: white;
+         }
+        
+        }
+
+        @media (min-width: 481px) and (max-width: 1024px) {
+          #submit-edit,
+          #delete-edit,
+          #cancel-edit {
+           border: 1px solid #ccccd8;
+           background-color: #fff;
+           border-radius: 14px;
+           color: #305A50;
+           cursor: pointer;
+           font-size: 14px;
+           margin: 20px;
+           padding: 10px 15px;
+          }
+
+          #delete-edit,
+          #cancel-edit {
+           color: #c0392b;
+          }
+
+          #delete-edit:hover,
+          #cancel-edit:hover {
+            background: #c0392b;
+            color: white;
+         }
         }
         `;
 
@@ -428,12 +637,7 @@ class EditRecipe extends HTMLElement {
     let picTitle = document.createElement("textarea");
     picSection.setAttribute("class", "picture");
     picTitle.setAttribute("id", "recipe-name");
-    if (getTitle(data) == "") {
-      picTitle.placeholder = "Recipe Name";
-    }
-    else {
-      picTitle.innerHTML = getTitle(data);
-    }
+    picTitle.innerHTML = getTitle(data);
 
     let picImgContainer = document.createElement("div");
     let picInput = document.createElement("input");
@@ -612,26 +816,6 @@ class EditRecipe extends HTMLElement {
       unitPounds.setAttribute("value", "lbs");
       unitTablespoons.setAttribute("value", "tbps");
       unitCups.setAttribute("value", "cups");
-      switch (ingreArr[i].unit) {
-        case "":
-          unitDefault.setAttribute("selected", "selected");
-          break;
-        case "grams":
-          unitGrams.setAttribute("selected", "selected");
-          break;
-        case "kgs":
-          unitKilograms.setAttribute("selected", "selected");
-          break;
-        case "lbs":
-          unitPounds.setAttribute("selected", "selected");
-          break;
-        case "tbps":
-          unitTablespoons.setAttribute("selected", "selected");
-          break;
-        case "cups":
-          unitCups.setAttribute("selected", "selected");
-          break;
-      }
       unitDefault.innerHTML = "Select unit";
       unitGrams.innerHTML = "grams";
       unitKilograms.innerHTML = "kgs";
@@ -639,6 +823,7 @@ class EditRecipe extends HTMLElement {
       unitTablespoons.innerHTML = "tbps";
       unitCups.innerHTML = "cups";
       unitColumnInput.setAttribute("class", "unit-item");
+      unitColumnInput.value = ingreArr[i].unit;
       unitColumnInput.appendChild(unitDefault);
       unitColumnInput.appendChild(unitGrams);
       unitColumnInput.appendChild(unitKilograms);
@@ -892,7 +1077,7 @@ class EditRecipe extends HTMLElement {
       imgContext.drawImage(picImgPreRead, 0, 0, picImgPreRead.width, picImgPreRead.height);
       inputData["image"] = imgCanvas.toDataURL("image/jpeg");
 
-      updateMy(inputData, JSON.parse(window.localStorage.getItem("myRecipeArray")));
+      updateMy(inputData);
       this.leaveEdit(inputData);
     });
 
@@ -1046,7 +1231,7 @@ class EditRecipe extends HTMLElement {
     $("#add-recipe-page").classList.remove("main-shown");
     $("#add-recipe-page").innerHTML = "";
     $("#view-recipe-page").classList.add("main-shown");
-    let viewRecipePage = document.createElement("view-my-recipe");
+    let viewRecipePage = document.createElement("view-my-recipe-mobile");
     viewRecipePage.data = data;
     $("#view-recipe-page").appendChild(viewRecipePage);
   }
@@ -1067,4 +1252,4 @@ class EditRecipe extends HTMLElement {
 }
 
 // Define the "edit-recipe" element using this class
-customElements.define("edit-recipe", EditRecipe);
+customElements.define("edit-recipe-mobile", EditRecipeMobile);

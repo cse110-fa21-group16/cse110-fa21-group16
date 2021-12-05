@@ -6,7 +6,7 @@ import { getDairy, getGluten, getVegan, getVegeta } from "../scripts/helpGetData
  * This is the component for the View My Recipe Page.
  * @class
  */
-class ViewMyRecipe extends HTMLElement {
+class ViewMyRecipeMobile extends HTMLElement {
     /**
      * Attach the shadowroot which contains the View Recipe Page materials.
      * @constructor
@@ -37,8 +37,7 @@ class ViewMyRecipe extends HTMLElement {
             flex-flow: row wrap;
             margin: 10px 0px 90px 0px;
         }
-
-
+        
         /* header */
         article > header {
             align-items: center;
@@ -48,6 +47,7 @@ class ViewMyRecipe extends HTMLElement {
             height: 12vh;
             justify-content: space-between;
             width: 100%;
+            border-style:dotted;
         }
 
         #logo-sec {
@@ -58,7 +58,7 @@ class ViewMyRecipe extends HTMLElement {
 
         #logo-sec > a > img {
             height: 100%;
-            width: 125px;
+            width: 100px;
             object-fit: cover;
         }
 
@@ -82,9 +82,25 @@ class ViewMyRecipe extends HTMLElement {
         #home-link {
             color: white;
             font-size: 2vw;
-            margin: 0px 0px 0px 20px;
+            // margin: 0px 0px 0px 20px;
             text-decoration: none;
         }
+
+        @media (max-width: 480px) {
+            article {
+                box-shadow: 0px 0px 15px #888888;
+                display: flex;
+                flex-flow: row wrap;
+                margin: 10px 0px 90px 0px;
+            }
+
+            #header-title {
+                font-size: 5vw; 
+                position:relative;
+                left: 6vw;
+            }
+
+          }
 
 
         /* main */
@@ -92,7 +108,7 @@ class ViewMyRecipe extends HTMLElement {
             align-content: flex-start;
             display: flex;
             flex: 1 1 70%;
-            flex-flow: row wrap;
+            flex-flow: column wrap;
             justify-content: center;
             padding: 15px;
             height: 100%;
@@ -102,17 +118,24 @@ class ViewMyRecipe extends HTMLElement {
         #main-header {
             align-items: center;
             display: flex;
-            flex-flow: row nowrap;
+            flex-flow: column nowrap;
             justify-content: center;
-            margin: 20px 0px 50px 0px;
+            margin: 20px 8px;
             width: 100%;
+            text-align: center;
         }
 
         #main-header > h1 {
-            width: 55%;
+            width: 80%;
             line-height: 35px;
-            font-size: 30px;
+            font-size: 23px;
             margin: 0px 30px;
+        }
+
+        @media (max-width: 480px) {
+            article > main {
+                width: calc(100vw - 480px);
+            }
         }
 
 
@@ -120,8 +143,9 @@ class ViewMyRecipe extends HTMLElement {
         #left-main {
             align-items: center;
             display: flex;
-            flex: 1 1 40%;
+            // flex: 1 1 40%;
             flex-flow: column nowrap;
+            width: 100%;
         }
 
         #left-main > img {
@@ -130,14 +154,14 @@ class ViewMyRecipe extends HTMLElement {
         }
 
         #left-main > h2 {
-            visibility: hidden;
-            margin: 10px 0px 20px 0px;
+            display: none;
+            // margin: 10px 0px 20px 0px;
         }
         
         #left-main > p {
             visibility: hidden;
             font-size: 20px;
-            margin-bottom: 10px;
+            // margin-bottom: 10px;
         }
 
         #left-main > button {
@@ -180,6 +204,12 @@ class ViewMyRecipe extends HTMLElement {
             margin: 20px 5px 20px 30px;
             text-indent: 0px;
         }
+
+        #steps-list > ol > li:hover {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         #ingre-list button{
             background-color: transparent;
             border: rgb(34,139,34) 1px solid;
@@ -202,8 +232,8 @@ class ViewMyRecipe extends HTMLElement {
             align-items: center;
             display: flex;
             flex-flow: row nowrap;
-            justify-content: flex-end;
-            margin: 90px 60px 60px 60px;
+            justify-content: center;
+            // margin: 90px 60px 60px 60px;
             width: 100%;
         }
 
@@ -214,7 +244,7 @@ class ViewMyRecipe extends HTMLElement {
             color: #305a50;
             cursor: pointer;
             font-size: 16px;
-            margin: 0px 20px 0px 0px;
+            margin: 20px 5px;
             min-width: 120px;
             padding: 5px 20px;
         }
@@ -225,7 +255,6 @@ class ViewMyRecipe extends HTMLElement {
             color: white;
         }
 
-
         /* aside */
         article > aside {
             align-items: center;
@@ -233,11 +262,12 @@ class ViewMyRecipe extends HTMLElement {
             display: flex;
             flex: 1 1 25%;
             flex-flow: column nowrap;
-            padding-bottom: 60px;
+            margin-top: 20px;
         }
 
+    
         #ingre-aside {
-            margin: 40px 15px;
+            margin: 15px 15px;
         }
 
         #ingre-aside h2 {
@@ -265,6 +295,24 @@ class ViewMyRecipe extends HTMLElement {
             width: 20px;
             height: 20px;
         }
+
+        #show-ingre-btn {
+            display: none;
+        }
+        @media (max-width: 1091px) {
+            #show-ingre-btn {
+                width: 100%;
+                height: 70px;
+                display: block;
+                background-color: white;
+                object-fit: contain;
+            }
+
+            #show-ingre-btn:hover {
+                cursor: pointer;
+            }
+        }
+        
         `;
         styleElem.innerHTML = styles;
 
@@ -374,8 +422,8 @@ class ViewMyRecipe extends HTMLElement {
         mainFooterSec.appendChild(backButton);
         mainFooterSec.appendChild(editButton);
 
-        main.appendChild(mainHeaderSec);
-        main.appendChild(leftMainSec);
+        // main.appendChild(mainHeaderSec);
+        // main.appendChild(leftMainSec);
         main.appendChild(rightMainSec);
         main.appendChild(mainFooterSec);
 
@@ -486,12 +534,33 @@ class ViewMyRecipe extends HTMLElement {
         dietAside.appendChild(glutenSec);
         dietAside.appendChild(vegetaSec);
 
+        // aside.appendChild(mainHeaderSec);
+        // aside.appendChild(leftMainSec);
         aside.appendChild(ingreAside);
         aside.appendChild(dietAside);
 
+        let showIngre = document.createElement("img");
+        showIngre.setAttribute("id", "show-ingre-btn");
+        showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+        showIngre.addEventListener("click", () => {
+            if (ingreAside.style.display != "none" && dietAside.style.display != "none") {
+                ingreAside.style.display = "none";
+                dietAside.style.display = "none";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-down.png");
+            } else {
+                ingreAside.style.display = "block";
+                dietAside.style.display = "block";
+                showIngre.setAttribute("src", "./assets/images/icons/arrow-up.png");
+            }
+        });
+
+        aside.appendChild(showIngre)
+
         card.appendChild(header);
-        card.appendChild(main);
+        card.appendChild(mainHeaderSec);
+        card.appendChild(leftMainSec);
         card.appendChild(aside);
+        card.appendChild(main);
 
         this.shadow.appendChild(styleElem);
         this.shadow.appendChild(card);
@@ -525,12 +594,11 @@ class ViewMyRecipe extends HTMLElement {
     myRecipeToEdit(data) {
         $("#view-recipe-page").classList.remove("main-shown");
         $("#view-recipe-page").innerHTML = "";
-        let editRecipePage = document.createElement("edit-recipe");
+        let editRecipePage = document.createElement("edit-recipe-mobile");
         editRecipePage.data = data;
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");
     }
-
 
     /**
      * Play the instruction step by step
@@ -570,4 +638,4 @@ class ViewMyRecipe extends HTMLElement {
 
 
 // Define the "view-fea-recipe" element using this class.
-customElements.define("view-my-recipe", ViewMyRecipe);
+customElements.define("view-my-recipe-mobile", ViewMyRecipeMobile);

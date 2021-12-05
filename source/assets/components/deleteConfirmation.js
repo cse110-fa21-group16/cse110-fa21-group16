@@ -79,6 +79,31 @@ class DeleteConfirmation extends HTMLElement {
             background: #c0392b;
             color: white;
         }
+
+        @media (max-width: 480px) {
+            article {
+                align-items: center;
+                display: flex;
+                flex-flow: row wrap;
+                justify-content:center;
+                width: 100vw;
+                box-shadow: 0px 0px 15px #888888;
+                margin: 250px 0px 90px 0px;
+            }
+            
+            button {
+                background-color: #ffffff;
+                border: 1px solid #ccccd8;
+                border-radius: 14px;
+                color: #305a50;
+                cursor: pointer;
+                font-size: 20px;
+                margin: 0px 30px;
+                min-width: 50px;
+                padding: 5px 20px;
+            }
+               
+        }
         `;
         styleElem.innerHTML = styles;
 
@@ -151,7 +176,15 @@ class DeleteConfirmation extends HTMLElement {
     backToView(data) {
         $("#delete-page").classList.remove("main-shown");
         $("#delete-page").innerHTML = "";
-        let editRecipePage = document.createElement("edit-recipe");
+        let winWide = window.innerWidth;
+        let editRecipePage;
+        if (winWide < 1000) {
+            editRecipePage = document.createElement("edit-recipe-mobile");
+
+        }
+        else {
+            editRecipePage = document.createElement("edit-recipe");
+        }
         editRecipePage.data = data;
         $("#add-recipe-page").appendChild(editRecipePage);
         $("#add-recipe-page").classList.add("main-shown");

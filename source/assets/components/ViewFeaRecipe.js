@@ -375,18 +375,18 @@ class ViewFeaRecipe extends HTMLElement {
             let instructionItem = instructionArray[i]["steps"];
             for (let j = 0; j < instructionItem.length; j++) {
                 let instructionStep = document.createElement("li");
-                instructionStep.innerHTML = `Step ${j+1}: ` + instructionItem[j]["step"];
+                instructionStep.innerHTML = `Step ${j + 1}: ` + instructionItem[j]["step"];
                 instructionStep.addEventListener("click", () => {
                     let speechText = new SpeechSynthesisUtterance(instructionStep.innerHTML);
                     speechSynthesis.cancel();
-                    speechSynthesis.speak(speechText); 
+                    speechSynthesis.speak(speechText);
                 })
                 instructionOrderedList.appendChild(instructionStep);
             }
         }
 
         stepsSec.appendChild(instructionOrderedList);
-        
+
         if (stepsSec.innerHTML == '') {
             stepsSec.innerHTML = 'OOOPS! The recipe does not contain any procedure or steps. Please start using your imagination!'
         }
@@ -536,9 +536,9 @@ class ViewFeaRecipe extends HTMLElement {
             requestBody["ingredientName"] = ingredientsOL[i].querySelector("p[id='name']").getAttribute("name");
             requestBody["sourceAmount"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("amount");
             requestBody["sourceUnit"] = ingredientsOL[i].querySelector("p[id='amount']").getAttribute("unit");
-      
+
             dropdown.addEventListener("change", async () => {
-                requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;  
+                requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value;
                 if (dropdown.options[dropdown.selectedIndex].value == "Select") {
                     requestBody["targetUnit"] = dropdown.options[dropdown.selectedIndex].value = "";
                 }
@@ -601,10 +601,10 @@ class ViewFeaRecipe extends HTMLElement {
         }
         else if ($("#favorite-page").classList.contains("shown")) {
             router.navigate("ToFavoritePage");
-        } 
+        }
         else if ($("#search-featured").classList.contains("shown")) {
             router.navigate("ToSearchPage");
-        } 
+        }
         else {
             router.navigate("home");
         }
@@ -623,7 +623,7 @@ class ViewFeaRecipe extends HTMLElement {
         let speechText = new SpeechSynthesisUtterance(recipeText[i].textContent);
         speechSynthesis.speak(speechText);
         let featuredView = document.querySelector("#view-recipe-page").children[0];
-        featuredView.addEventListener('keydown', function(event) {
+        featuredView.addEventListener('keydown', function (event) {
             console.log("FeaRecipePage");
             if (event.key == "ArrowRight" && i < recipeText.length - 1) {
                 i++;
@@ -643,7 +643,7 @@ class ViewFeaRecipe extends HTMLElement {
                 speechSynthesis.cancel();
                 speechSynthesis.speak(speechText);
             }
-        });    
+        });
     }
 
     /**
@@ -661,12 +661,12 @@ class ViewFeaRecipe extends HTMLElement {
                 sourceUnit: dataToConvert.sourceUnit,
                 targetUnit: dataToConvert.targetUnit
             }))
-            .then((response) => response.json())
-            .then((data) => {
-                locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
-                console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
-                resolve(true);
-            }).catch(() => reject(false));
+                .then((response) => response.json())
+                .then((data) => {
+                    locationObject.querySelector("span[id='converted-result']").innerHTML = data.targetAmount + data.targetUnit;
+                    console.log(locationObject.querySelector("span[id='converted-result']").innerHTML);
+                    resolve(true);
+                }).catch(() => reject(false));
         });
     }
 }

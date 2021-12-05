@@ -961,7 +961,7 @@ class AddRecipe extends HTMLElement {
       let trueIndex = 0;
       while (trueIndex < instruList.length) {
         if (instruList[trueIndex].value != "") {
-          let newInstruList = `<li>Step ${nonEmptyIndex+1}: ${instruList[trueIndex].value}</li>`;
+          let newInstruList = `<li>Step ${nonEmptyIndex + 1}: ${instruList[trueIndex].value}</li>`;
           listHtml += newInstruList;
           instruArray.push(instruList[trueIndex].value);
           nonEmptyIndex++;

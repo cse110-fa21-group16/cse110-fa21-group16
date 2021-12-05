@@ -163,9 +163,9 @@ class NutritionPage extends HTMLElement {
           margin-bottom: 4px;
         }
     `;
-    
+
     styling.innerHTML = styles;
-    
+
     // root element to attach everything to
     let page = document.createElement("article");
     let nutritionData = data["nutrition"]["nutrients"];
@@ -176,7 +176,7 @@ class NutritionPage extends HTMLElement {
     let header = document.createElement("header");
     let headerDiv = document.createElement("div");
     let headerTitle = document.createElement("h1");
-    
+
     headerDiv.classList.add("header-div");
     headerTitle.classList.add("header-title");
     headerTitle.innerHTML = "Nutrition Facts";
@@ -187,7 +187,7 @@ class NutritionPage extends HTMLElement {
     /////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////// Creating the main and origin //////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
-    
+
     let main = document.createElement("main");
 
     let origin = document.createElement("div");
@@ -196,7 +196,7 @@ class NutritionPage extends HTMLElement {
     /////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////// Creating the Servings /////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
-    
+
     let amountPerServings = document.createElement("section");
     amountPerServings.classList.add("amountPerServings");
     let servings = document.createElement("div");
@@ -213,7 +213,7 @@ class NutritionPage extends HTMLElement {
     let calculateBtn = document.createElement("button");
     calculateBtn.setAttribute("id", "calculate");
     calculateBtn.innerHTML = "Calculate";
-    
+
     form.appendChild(label);
     form.appendChild(input);
     form.appendChild(calculateBtn)
@@ -223,12 +223,12 @@ class NutritionPage extends HTMLElement {
     /////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////// Creating the Nutrition Facts /////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////
-    
+
     let facts = document.createElement("section");
     facts.classList.add("facts");
     let gridContainer = document.createElement("div");
     gridContainer.classList.add("grid-container");
-    
+
     let requiredData = ["calories", "fat", "carbohydrates", "sugar", "cholesterol", "sodium", "srotein", "fiber", "copper", "iron", "calcium"];
     // Loop thru the data array and put every nutrtition on
     for (let i = 0; i < nutritionData.length; i++) {
@@ -241,7 +241,7 @@ class NutritionPage extends HTMLElement {
       let amountUnit = document.createElement("div");
       let amount = document.createElement("span");
       let unit = document.createElement("span");
-  
+
       item.classList.add("item");
       nutrition.classList.add(`${dataName.toLowerCase()}`);
       amount.setAttribute("id", "amount-serving");
@@ -258,7 +258,7 @@ class NutritionPage extends HTMLElement {
     }
 
     facts.appendChild(gridContainer);
-    
+
     // Append origin children
     origin.appendChild(amountPerServings);
     origin.appendChild(facts);
@@ -315,7 +315,14 @@ class NutritionPage extends HTMLElement {
   backToView(data) {
     $("#view-nutrition-page").classList.remove("main-shown");
     $("#view-nutrition-page").innerHTML = "";
-    let viewRecipePage = document.createElement("view-fea-recipe");
+    let winWide = window.innerWidth;
+    let viewRecipePage;
+    if (winWide < 1000) {
+      viewRecipePage = document.createElement("view-fea-recipe-mobile");
+    }
+    else {
+      viewRecipePage = document.createElement("view-fea-recipe");
+    }
     viewRecipePage.data = data;
     $("#view-recipe-page").appendChild(viewRecipePage);
     $("#view-recipe-page").classList.add("main-shown");
