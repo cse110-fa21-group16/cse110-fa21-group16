@@ -269,47 +269,45 @@ test("test8 checkFav function", () => {
 });
 // spaces at the end, in the middle, lower case, number at end should not turn true
 
+
+let fav1 = {"title": "Glazed pork chops"};
+let fav2 = {"title": "Autumn Harvest Quail"};
+let fav3 = {"title": "Coconut Crusted Rockfish"};
+let fav4 = {"title": "Falafel Burgers"};
 //unit test 1 of addFav function
-let data1 = {"title": "Glazed pork chops"};
-let data2 = {"title": "Autumn Harvest Quail"};
-let data3 = {"title": "Coconut Crusted Rockfish"};
-let favRecipeArray = [data1, data2];
+
+let favRecipe1 = [fav1, fav2];
 
 test("test1 addFav function to check if the size of the fav array is correct when adding a third favorite", () => {
-    addFav(data3, favRecipeArray)
+    addFav(fav3, favRecipe1)
     let favArray = localStorage.getItem('favRecipeArray');
     expect(favArray.length).toBe(3);
 });
 
 //unit test 2 of addFav function
-let data1 = {"title": "Glazed pork chops"};
-let favRecipeArray = [];
+let favRecipe2 = [];
 
 test("test2 addFav function to add a favorite on an empty favRecipeArray", () => {
-    addFav(data1, favRecipeArray)
+    addFav(fav1, favRecipe2)
     let favArray = localStorage.getItem('favRecipeArray');
     expect(favArray.length).toBe(1);
 });
 
 //unit test 3 of addFav function
-let data1 = {"title": "Glazed pork chops"};
-let data2 = {"title": "Autumn Harvest Quail"};
-let data3 = {"title": "Coconut Crusted Rockfish"};
-let data4 = {"title": "Falafel Burgers"};
-let favRecipeArray = [data1, data2, data3];
+let favRecipe3 = [fav1, fav2, fav3];
 
 test("test3 addFav function to check if the title of the last added favorite is correct", () => {
-    addFav(data4, favRecipeArray)
+    addFav(fav4, favRecipe3)
     let favArray = localStorage.getItem('favRecipeArray');
     expect(getTitle(favArray.at(-1))).toBe("Falafel Burgers");
     expect(favArray.length).toBe(4);
 });
 
 //unit test 4 of addFav function
-let favRecipeArray = [];
+let favRecipe4 = [];
 
 test("test4 addFav function to add empty data into the favorite recipe array" , () => {
-    addFav("", favRecipeArray);
+    addFav("", favRecipe4);
     let favArray = localStorage.getItem('favRecipeArray');
     expect(favArray[0]).toBe("");
     expect(favArray.length).toBe(1);
