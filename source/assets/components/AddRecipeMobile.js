@@ -1194,7 +1194,7 @@ class AddRecipeMobile extends HTMLElement {
 
       inputData["image"] = imgCanvas.toDataURL("image/jpeg");
 
-      addMy(inputData);
+      addMy(inputData, JSON.parse(window.localStorage.getItem("nextMyRecipeID")) ,JSON.parse(window.localStorage.getItem("myRecipeArray")));
       localStorage.setItem("draftMyRecipe", "{}");
       this.leaveAdd();
     });

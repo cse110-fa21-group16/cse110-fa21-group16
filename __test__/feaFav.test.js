@@ -1,7 +1,7 @@
 describe("Test for featured recipe", () => {
   jest.setTimeout(100000);
   beforeAll(async () => {
-    await page.goto("https://unruffled-lichterman-185ae7.netlify.app");
+    await page.goto("https://zeste.netlify.app");
     
     // wait for fetch local storage
     let data = await page.evaluate(() => {
@@ -73,7 +73,7 @@ describe("Test for featured recipe", () => {
     await cook.click();
 
     // click the heart
-    let view = await page.$("view-fea-recipe");
+    let view = await page.$("view-fea-recipe") || await page.$("view-fea-recipe-mobile");
     let viewRoot = await view.getProperty("shadowRoot");
     let header = await viewRoot.$("#main-header");
     let heart = await header.$("img");

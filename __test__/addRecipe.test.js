@@ -1,7 +1,7 @@
 describe("Test for add recipe", () => {
   jest.setTimeout(100000);
   beforeAll(async () => {
-    await page.goto("https://unruffled-lichterman-185ae7.netlify.app",{"waitUntil" : "networkidle0"});
+    await page.goto("https://zeste.netlify.app",{"waitUntil" : "networkidle0"});
 
     // clicks bring the page to my page
     let myPageButton = await page.$("#to-my-page");
@@ -26,7 +26,7 @@ describe("Test for add recipe", () => {
       await page.waitForTimeout(100);
       
       // adding
-      let addPage = await page.$("add-recipe");
+      let addPage = await page.$("add-recipe") || await page.$("add-recipe-mobile");
       let addPageRoot = await addPage.getProperty("shadowRoot");
       let textarea = await addPageRoot.$("#recipe-name");
       // enter recipe name
@@ -143,7 +143,7 @@ describe("Test for add recipe", () => {
       let button = await cardRoot.$("button");
       await button.click();
       // check title
-      let viewCard = await page.$("view-my-recipe");
+      let viewCard = await page.$("view-my-recipe") || await page.$("view-my-recipe-mobile");
       let viewCardRoot = await viewCard.getProperty("shadowRoot");
       title = await viewCardRoot.$("#main-header");
       title = await title.$("h1");
@@ -212,14 +212,14 @@ describe("Test for add recipe", () => {
       await button.click();
 
       // click into edit recipe
-      let viewCard = await page.$("view-my-recipe");
+      let viewCard = await page.$("view-my-recipe") || await page.$("view-my-recipe-mobile");
       let viewCardRoot = await viewCard.getProperty("shadowRoot");
       let edit = await viewCardRoot.$("#main-footer");
       edit = await edit.$$("button");
       await edit[1].click();
 
       // click delete button
-      let editRecipe = await page.$("edit-recipe");
+      let editRecipe = await page.$("edit-recipe") || await page.$("edit-recipe-mobile");
       let editRecipeRoot = await editRecipe.getProperty("shadowRoot");
       let deleteBtn = await editRecipeRoot.$("#delete-edit");
       await deleteBtn.click();
