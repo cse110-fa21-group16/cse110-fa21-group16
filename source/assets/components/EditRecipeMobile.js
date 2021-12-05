@@ -1077,7 +1077,7 @@ class EditRecipeMobile extends HTMLElement {
       imgContext.drawImage(picImgPreRead, 0, 0, picImgPreRead.width, picImgPreRead.height);
       inputData["image"] = imgCanvas.toDataURL("image/jpeg");
 
-      updateMy(inputData);
+      updateMy(inputData, JSON.parse(window.localStorage.getItem("myRecipeArray")));
       this.leaveEdit(inputData);
     });
 

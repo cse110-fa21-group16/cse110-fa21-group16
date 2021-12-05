@@ -359,7 +359,7 @@ class ViewFeaRecipeMobile extends HTMLElement {
         cookTime.textContent = `Time: ${getTime(data)} min`;
 
         let heartImg = document.createElement("img");
-        if (checkFav(getTitle(data))) {
+        if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
             heartImg.setAttribute("src", "assets/images/icons/fillHeart.svg");
         }
         else {
@@ -619,13 +619,13 @@ class ViewFeaRecipeMobile extends HTMLElement {
      * @return Void
      */
     changeHeart(data, cardObj) {
-        if (checkFav(getTitle(data))) {
+        if (checkFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")))) {
             cardObj.setAttribute("src", "assets/images/icons/emptyHeart.svg");
-            rmFav(getTitle(data));
+            rmFav(getTitle(data), JSON.parse(window.localStorage.getItem("favRecipeArray")));
         }
         else {
             cardObj.setAttribute("src", "assets/images/icons/fillHeart.svg");
-            addFav(data);
+            addFav(data, JSON.parse(window.localStorage.getItem("favRecipeArray")));
         }
     }
 
