@@ -13,10 +13,17 @@ Zest is a **recipe manager application** where users can explore new dishes as w
 <p align="center">
     <a href="https://unruffled-lichterman-185ae7.netlify.app/">Zest Official Site</a>
     <br>
-    <a href="admin/team.md">Team 16</a>
-    <br>
     <a href="https://cse110-fa21-group16.github.io/index.html">Documentation</a>
+    <br>
+    <a href="admin/team.md">Team 16</a>
 </p>
+
+# Table of Contents 
+1. [Tech Stack](#tech-stack) :books:
+2. [CRUD](#crud) :collision:
+3. [Features](#features) :eyes:
+4. [Timeline](#timeline) :calendar:
+6. [Credits](#credits) :credit_card:
 
 # Tech Stack
 ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
@@ -52,6 +59,27 @@ In addition to the CRUD functionality, below is a list of additional features th
 - Ingredient unit conversions 
 - Servings calculation
 - Recipe draft saving
+
+# Timeline
+- Week 1-6: Research and Design 
+    - [Brainstorm](./specs/brainstorm)
+    - [Project Pitch](./specs/pitch/)
+    - [User Interface](./specs/interface)
+- Week 7: Sprint 1
+    - [Assets](./source/assets)
+    - [Sprint 1 Review](./admin/meetings/111421-sprint-1-review.md)
+    - [Retrospective](./admin/meetings/111421-retrospective.md)
+    - [Status Video](./admin/videos)
+    - [Sprint 2 Setup](./admin/meetings/111621-sprint-2-setup.md)
+- Week 8-9: Sprint 2
+    - [ADRS](./specs/adrs)
+    - [Pipeline](./admin/cipipeline)
+    - [Testing](./__test__)
+    - [Sprint 2 Review](./admin/meetings/112821-sprint-2-review.md)
+    - [Retrospective](./admin/meetings/112821-sprint-2-retrospective-retrium-screenshot.png)
+    - [Status Video](./admin/videos)
+- Week 10: Bug Fixes and Touch ups 
+
 
 # Credits 
 <p align="center">
