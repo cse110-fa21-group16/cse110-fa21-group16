@@ -11,7 +11,7 @@
 Zest is a **recipe manager application** where users can explore new dishes as well as create their own. Similar to other apps such as *Paprika* and *Uber Eats*, our site provides simplicity as well as functionality to our users. Whether you're a novice cook or a master chef, ***Zest will freshen up your palettes***. 
 
 <p align="center">
-    <a href="https://unruffled-lichterman-185ae7.netlify.app/">Zest Official Site</a>
+    <a href="https://zeste.netlify.app/">Zest Official Site</a>
     <br>
     <a href="https://cse110-fa21-group16.github.io/index.html">Documentation</a>
     <br>
