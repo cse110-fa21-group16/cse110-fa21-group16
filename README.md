@@ -6,6 +6,7 @@
 [![Codacy Analysis CLI](https://github.com/cse110-fa21-group16/cse110-fa21-group16/actions/workflows/code_analysis.yml/badge.svg)](https://github.com/cse110-fa21-group16/cse110-fa21-group16/actions/workflows/code_analysis.yml)
 [![Eslint](https://github.com/cse110-fa21-group16/cse110-fa21-group16/actions/workflows/eslint.yml/badge.svg)](https://github.com/cse110-fa21-group16/cse110-fa21-group16/actions/workflows/eslint.yml)
 [![JSDoc](https://github.com/cse110-fa21-group16/cse110-fa21-group16/actions/workflows/JSDoc.yml/badge.svg)](https://github.com/cse110-fa21-group16/cse110-fa21-group16/actions/workflows/JSDoc.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8576e7c9-3361-4444-aad2-9387c2c47908/deploy-status)](https://app.netlify.com/sites/zeste/deploys)
 
 # Overview 
 Zest is a **recipe manager application** where users can explore new dishes as well as create their own. Similar to other apps such as *Paprika* and *Uber Eats*, our site provides simplicity as well as functionality to our users. Whether you're a novice cook or a master chef, ***Zest will freshen up your palettes***. 
