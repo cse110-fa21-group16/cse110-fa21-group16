@@ -16,6 +16,7 @@ Zest is a **recipe manager application** where users can explore new dishes as w
     <a href="https://cse110-fa21-group16.github.io/index.html">Documentation</a>
     <br>
     <a href="admin/team.md">Team 16</a>
+    <br>
     <a href="https://www.youtube.com/watch?v=h_vfEYurK9A">Private Video</a>
 </p>
 
